@@ -87,12 +87,56 @@
 ### Layouts & Navigation
 - **Page Layout**
   - Fields Visability & Order for record type
+  - Related Lists
   - Quick Actions & Buttons
+ 
 - **Flexipage** 
   - Tab Order
   - Component Visibility
   - Components: Screen-flow, Chatter, Highlight Panel, List View, Path, Record Detail, Related Lists, Custom LWC, etc.
  
+
+
+   
+## Tuesday - September 19, 2023
+    
+### Apex Triggers
+- **Trigger Syntax**
+  ```
+  trigger TriggerName on sObjectName (trigger_event_context) {
+  
+      // Trigger.New is list of records that were just created
+      // include logic in handler class and methods so trigger class is logic-less
+  
+      HandlerClass.handlerMethod(Trigger.New);
+  }
+  ```
+  
+- **Trigger Event Context**
+  - before insert, before update, before delete
+  - after insert, after update, after delete, after undelete
+
+- **Best Practice**
+  - Only use triggers if no declarative options work
+  - Use only one trigger per object. You can then use context-specific handler methods within triggers to create logic-less triggers
+	
+- **Execution Log**
+  - EXECUTION_STARTED - first line in the execution log marks the execution started event
+  - EXECUTION_FINISHED - last line is the execution finished event. Everything in between is the execution context
+  - CODE_UNIT_STARTED - event marks when the code from the Execute Anonymous window was kicked off
+ 
+- **Methods of Invoking Apex**
+  - Database Trigger, Anonymous Apex, Asynchronous Apex, Web Services, Email Services, Visualforce controllers and Lightning components   
+    
+### Apex Classes
+   
+- **Class Definition Syntax**
+  ```
+  private | public | global 
+  [virtual | abstract | with sharing | without sharing] 
+  class ClassName [implements InterfaceNameList] [extends ClassName] { ... }
+  ```
+  
 ### Apex Data Types
 - **Primitive Data Types**
   - String
@@ -103,22 +147,40 @@
       - Salesforce Id, string of 15-18 characters 
   - Date  
   - DateTime
-  - Time  
-   
-## Tuesday - September 19, 2023
-    
-### Apex Triggers
-- **Topic:**
-- info
-  - more info
-    
-### Apex Classes
-- **Topic:**
-  - info
-    - more info
-    
-
+  - Time
  
+- **sObjects**
+  - Standard and Custom Objects
+  - Constructor parameters can include field values
+  - Instantiate an object:
+    ```
+    Account acc = new Account(Name = 'Name');
+    ```
+   
+- **Arrays**
+  - List
+    - Instantiate a list:
+      ```
+      List<String> stringList = new List<String>();
+      
+      Account[] accountList = new Account[](testAccount1, testAccount2);
+      ````
+    - Iterate through a list:
+      ```
+      for (element : list) { ... }
+      ```
+  - Set: unordered collection without duplicates
+      - Instantiate a set:
+      ```
+      Set<Integer> intSet = new Set<Integer>(1, 2, 3);
+      ````
+  - Map: collection of key and value pairs
+      - Instantiate a map:
+      ```
+      Map<String, String> stringMap = new Map<String, String>();
+      
+      Map<Integer, String> populatedMap = new Map<Integer, String>(1 => 'First, 3 => 'Third');
+      ```` 
     
 ### Apex Logic
 - **Topic:**
