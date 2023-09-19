@@ -161,8 +161,7 @@
  	- protected: Accessible to any inner classes in the defining Apex class, and to the classes that extend the defining Apex class
   	- public: Can be accessed by code in the same namespace  
 	- static: Before an object of a class is created, all static member variables in a class are initialized, and all static initialization code blocks are executed. These items are handled in the order in which they appear in the class.
-
-
+  	- this: use with instance/non-static variables 
 
 ### Apex Data Types
 - **Primitive Data Types**
@@ -239,30 +238,56 @@
   	// something you think could fail or error
   } catch ( Exception ex ){
   	throw ex;
+  
+  	// to call custom exception method:
+  	TriggerHandlerClass.throwException(ex.getMessage());
   } 
   ```
-	- Custom Exceptions 
+	- Custom Exception Class
+   
+   ```
+   public class AccountTriggerException extends Exception {}
+   ```
+    
+  - Custom Exception Method 
+    
+  ```
+    public static void throwException(String message){
+  	System.debug(message);
+    	throw new AccountTriggerException(message);
+  }
+  ```
 
 - **Methods of Invoking Apex**
   - Database Trigger, Anonymous Apex, Asynchronous Apex, Web Services, Email Services, Visualforce controllers and Lightning components   
     
 
-
-
 ### Object Oriented Concepts
-- **Topic:**
-  - info
-    - more info
-    
-### Custom Metadata Types
-- **Topic:**
-  - info
-    - more info
-    
-### Platform Events
-- **Topic:**
-  - info
-    - more info
+- **Salesforce vs. Apex Objects:**
+  - Salesforce:
+    - Standard and custom objects are built declaratively and used to organized the data we store in the org.
+  - Apex: 
+    - Apex objects are developed programmatically and used to organize reusable methods and variables.
+   
+- **Constructor**
+	- located near the top of the class
+ 	- best practice to include a constructor with no arguments
+  	- you will likely need to assign this.arg = arg;  
+
+
+- **Instantiation**
+```
+  data_type variableName = new constructor (parameters);
+```
+
+- **Variables**
+	- All variables are initialized to null by default
+ 	- Parallel blocks can use the same variable name
+  	- Sub-blocks cannot redeclare a parent's block variable name
+  	- Can be declare at any point in a block
+
+- **Subclasses**
+	- inheritance and polymorphism   
     
 ### Asynchronous Apex
 - **Reasons to Program Asynchronously**
@@ -324,12 +349,6 @@
  		- Monitoring - Job Id is returned to identify job and monitor progress
   		- Chaining Jobs - You can chain one job to another job by starting a second job from a running job. This can be useful for sequential processing.
 	
-    
-### Extending Declarative Functionality
-- **Topic:**
-  - info
-    - more info
-    
 ### Testing & Debugging
 - **Execution Log**
   - EXECUTION_STARTED - first line in the execution log marks the execution started event
@@ -351,7 +370,30 @@
   		- Assignment rules
   		- Approval processes
   		- Validation rules
+ 
+<br>
     
+## Wednesday, September 19th
+### SQL, SOQL & DML
+- **Topic:**
+  - info
+    - more info
+
+### Custom Metadata Types
+- **Topic:**
+  - info
+    - more info
+    
+### Platform Events
+- **Topic:**
+  - info
+    - more info
+
+### Extending Declarative Functionality
+- **Topic:**
+  - info
+    - more info
+
 ### Visualforce Pages
 - **Topic:**
   - info
