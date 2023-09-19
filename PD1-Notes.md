@@ -94,10 +94,9 @@
   - Tab Order
   - Component Visibility
   - Components: Screen-flow, Chatter, Highlight Panel, List View, Path, Record Detail, Related Lists, Custom LWC, etc.
- 
 
+<br>
 
-   
 ## Tuesday - September 19, 2023
     
 ### Apex Triggers
@@ -114,29 +113,57 @@
   
 - **Trigger Event Context**
   - before insert, before update, before delete
+  	- no update needed since record has not been committed to database    
   - after insert, after update, after delete, after undelete
+  	- need updated since record has already been committed to database 
 
-- **Best Practice**
+- **Best Practices**
   - Only use triggers if no declarative options work
-  - Use only one trigger per object. You can then use context-specific handler methods within triggers to create logic-less triggers
-	
-- **Execution Log**
-  - EXECUTION_STARTED - first line in the execution log marks the execution started event
-  - EXECUTION_FINISHED - last line is the execution finished event. Everything in between is the execution context
-  - CODE_UNIT_STARTED - event marks when the code from the Execute Anonymous window was kicked off
- 
-- **Methods of Invoking Apex**
-  - Database Trigger, Anonymous Apex, Asynchronous Apex, Web Services, Email Services, Visualforce controllers and Lightning components   
-    
+  - Use only one trigger per object.
+  	- You can then use context-specific handler methods within triggers to create logic-less triggers
+  - Control triggers with declarative functionality.
+  	- Allow admins to access custom metadata or custom setting that  can turn triggers on/off.
+     
 ### Apex Classes
-   
 - **Class Definition Syntax**
   ```
-  private | public | global 
-  [virtual | abstract | with sharing | without sharing] 
-  class ClassName [implements InterfaceNameList] [extends ClassName] { ... }
+  // Access Modifiers:
+  private | public | global
+
+  // Interface:
+  [ virtual | abstract ]
+
+  // Sharing Rules:
+  [ with sharing | without sharing]
+
+  // Implements an interface
+  // Extends this class with functionality of another class
+  class ClassName [implements InterfaceNameList] [extends ClassName2] { ... }
   ```
   
+- **Class Capabilities**
+   - Can be used to create 
+  	- Trigger Handlers
+   	- Controllers for LWC and Visualforce
+   	- Invokable methods for flows and process builder to call
+   	- Web services methods for external services to call
+ 
+- **Method Definition Syntax**
+  ```
+  [public | private | protected | global] [override] [static] [ data_type | void ] method_name(input parameters) {
+	// The body of the method
+  	return;
+  }
+  ```
+- **Access Modifiers and Key Words**
+	- global: Can be accessed by any code in your salesforce org. If a method or variable is declared as global, the class must also be global.
+   	- private: Can only accessible in the class it was created in 
+ 	- protected: Accessible to any inner classes in the defining Apex class, and to the classes that extend the defining Apex class
+  	- public: Can be accessed by code in the same namespace  
+	- static: Before an object of a class is created, all static member variables in a class are initialized, and all static initialization code blocks are executed. These items are handled in the order in which they appear in the class.
+
+
+
 ### Apex Data Types
 - **Primitive Data Types**
   - String
@@ -144,7 +171,6 @@
   - Integer
   - Double/Decimal
   - Id
-      - Salesforce Id, string of 15-18 characters 
   - Date  
   - DateTime
   - Time
@@ -171,22 +197,58 @@
       ```
   - Set: unordered collection without duplicates
       - Instantiate a set:
-      ```
-      Set<Integer> intSet = new Set<Integer>(1, 2, 3);
-      ````
+       ```
+       Set<Integer> intSet = new Set<Integer>(1, 2, 3);
+       ````
   - Map: collection of key and value pairs
       - Instantiate a map:
-      ```
-      Map<String, String> stringMap = new Map<String, String>();
+       ```
+       Map<String, String> stringMap = new Map<String, String>();
       
-      Map<Integer, String> populatedMap = new Map<Integer, String>(1 => 'First, 3 => 'Third');
-      ```` 
+       Map<Integer, String> populatedMap = new Map<Integer, String>(1 => 'First, 3 => 'Third');
+       ```` 
     
 ### Apex Logic
-- **Topic:**
-  - info
-    - more info
+- **Control Flow Statements**
+	- if, else if and else statements
+ 	- for loops
+  	- for loops for arrays or sets
+  	- for loops for soql query
+  	- while loop
+  	- do {...} while loops (will run atleast once)
+  	- ternary operator
+  	  ```
+  	  variable = condition ? if true action : if false action
+  	  ```
+  	- switch statements (can only be run on strings, ints, and sObjects)
+  	  ```
+  	  switch on variable {
+  	  	when 'variable value' {
+				// logic
+  	  	}
+  	  	when else {
+  	  		// logic
+  	  	}
+  	  }
+  	  ```
+  	  
+- **Exception Handling**
+	- Try/catch block
+  ```
+  try {
+  	// something you think could fail or error
+  } catch ( Exception ex ){
+  	throw ex;
+  } 
+  ```
+	- Custom Exceptions 
+
+- **Methods of Invoking Apex**
+  - Database Trigger, Anonymous Apex, Asynchronous Apex, Web Services, Email Services, Visualforce controllers and Lightning components   
     
+
+
+
 ### Object Oriented Concepts
 - **Topic:**
   - info
@@ -203,9 +265,65 @@
     - more info
     
 ### Asynchronous Apex
-- **Topic:**
-  - info
-    - more info
+- **Reasons to Program Asynchronously**
+  - Processing a very large number of records. Limits are larger for asynchronous than synchronous processes
+  - Making Callouts to external web services
+  - Create better faster user experience
+
+- **Future Methods**
+  - Syntax
+  	- must include @future static void  
+  ```
+   @future
+   static void myFutureMethod (Set<Id> ids){
+  	// query for records using Salesforce Ids
+  	// loop through records and perform logic
+   } 
+   ```
+  - Limitations:
+  	- Parameters must be primitive data types. You cannot pass objects as parameters to future methods
+   	- No execution tracking and no jobId
+    	- You cannot chain future methods and have one call another.
+
+- **Batch Apex Class**
+  - Syntax
+    ```
+    global class BatchableClass implements Database.Batchable<sObjects> {
+
+    	global Database.QueryLocator start(Database.BatchableContext bc) {
+    		// query for records
+    	}
+
+    	global void execute(Database.BatchableContext bc, List<sObject> scope){
+    		// loop through records and process records
+    	}
+    	global void finish(Database.BatchableContext bc) {
+		// perform actions after data is processed
+    	}
+    
+    }
+    ```
+  	- Use this if you need to process a large number of records
+     	- Processes 200 records at a time
+  - Limitations:
+  	- Troubleshooting can be hard
+   	- Jobs are queued and subject to server availability
+
+- **Queueable Apex**
+	- Syntax
+  		 ```
+   		public class QueueableClass implements Queueable {
+     			public void execute (QueueableContext context){
+     				// loop through records
+     				// call another method for the callout
+     			}
+     		}
+  		 ```
+ 	- Benefits:
+  		- Accepts non-primitive types as parameters
+ 		- Monitoring - Job Id is returned to identify job and monitor progress
+  		- Chaining Jobs - You can chain one job to another job by starting a second job from a running job. This can be useful for sequential processing.
+	
     
 ### Extending Declarative Functionality
 - **Topic:**
@@ -213,9 +331,26 @@
     - more info
     
 ### Testing & Debugging
-- **Topic:**
-  - info
-    - more info
+- **Execution Log**
+  - EXECUTION_STARTED - first line in the execution log marks the execution started event
+  - EXECUTION_FINISHED - last line is the execution finished event. Everything in between is the execution context
+  - CODE_UNIT_STARTED - event marks when the code from the Execute Anonymous window was kicked off
+    
+- **Log Inspector**
+	- Logging Levels: None, Error, Warn, Info, Debug, Fine, Finer, Finest
+	- Open dev console and do actions in UI. Logs will be captured in the dev console automatically.
+ 	-  You can also run logs on a specific user and get the logs after the UI actions have been completed
+    
+- **Debug Logs Contains Info About**
+	- Database changes
+ 	- HTTP callouts
+ 	- Apex errors
+ 	- Resources used by Apex
+ 	- Automated workflow processes, such as:
+  		- Workflow rules
+  		- Assignment rules
+  		- Approval processes
+  		- Validation rules
     
 ### Visualforce Pages
 - **Topic:**
