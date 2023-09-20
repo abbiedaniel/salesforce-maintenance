@@ -1,5 +1,7 @@
 # Platform Developer 1 Notes
-##### Udemy Platform Developer 1 Course: https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview
+
+[Udemy Platform Developer 1 Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview)
+
 ## Monday - September 18, 2023
 ### Salesforce Development Fundamentals
 - **Multi-tenant Environment Considerations:**
