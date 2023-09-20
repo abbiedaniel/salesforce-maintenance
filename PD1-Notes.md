@@ -1,11 +1,10 @@
-## Monday - September 18, 2023
-
+# Platform Developer 1 Notes
 ##### Udemy Platform Developer 1 Course: https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview
-
+## Monday - September 18, 2023
 ### Salesforce Development Fundamentals
 - **Multi-tenant Environment Considerations:**
   - Unique URL for each environment
-  - Governer limits on every user and every salesforce org
+  - Governor limits on every user and every Salesforce org
       - Data retrieval, creation and manipulation
       - API limits
       - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_gov_limits.htm
@@ -61,8 +60,8 @@
   - Schedule-Triggered
     - once, daily, weekly
   - Record-Triggered
-    -  Fast Field Updates: before record is saved
-    -  Actions & Related Records: after record is saved
+    -  Fast Field Updates: before the record is saved
+    -  Actions & Related Records: after the record is saved
   - Platform Event-Trigger
   - Autolaunched
 
@@ -79,14 +78,14 @@
   10. Workflow Rules
   11. *System validation and Apex triggers will fire again if a workflow rules updates a field.*
   12. Escalation Rules
-  13. Flow Automations
+  13. Flow Automation
   14. After Save Flows
-  15. Commit all DML operations to database
+  15. Commit all DML operations to the database
       - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_order_of_execution.htm
 
 ### Layouts & Navigation
 - **Page Layout**
-  - Fields Visability & Order for record type
+  - Fields Visibility & Order for record type
   - Related Lists
   - Quick Actions & Buttons
  
@@ -104,9 +103,9 @@
   ```
   trigger TriggerName on sObjectName (trigger_event_context) {
   
-      // Trigger.New is list of records that were just created
+      // Trigger.New is a list of records that were just created
       // Trigger.Old provides the old version of sObjects before they were updated in update triggers or a list of deleted sObjects in delete triggers
-      // include logic in handler class and methods so trigger class is logic-less
+      // include logic in handler class and methods so the trigger class is logic-less
   
       HandlerClass.handlerMethod(Trigger.New);
   }
@@ -134,7 +133,7 @@
   // Interface:
   [ virtual | abstract ]
 
-  // Sharing Rules:
+  // Sharing Context: with sharing specifies the sharing rules for the current user to be taken into account for a class
   [ with sharing | without sharing]
 
   // Implements an interface
@@ -158,7 +157,7 @@
   ```
 - **Access Modifiers and Key Words**
 	- global: Can be accessed by any code in your salesforce org. If a method or variable is declared as global, the class must also be global.
-   	- private: Can only accessible in the class it was created in 
+   	- private: Can only be accessible in the class it was created in 
  	- protected: Accessible to any inner classes in the defining Apex class, and to the classes that extend the defining Apex class
   	- public: Can be accessed by code in the same namespace  
 	- static: Before an object of a class is created, all static member variables in a class are initialized, and all static initialization code blocks are executed. These items are handled in the order in which they appear in the class.
@@ -258,6 +257,10 @@
     	throw new AccountTriggerException(message);
   }
   ```
+  	- allorNone boolean: false allows partial success if an error is thrown.
+  	  ```
+  	  Database.insert(recordToInsert, allOrNone, accessLevel);
+  	  ```
 
 - **Methods of Invoking Apex**
   - Database Trigger, Anonymous Apex, Asynchronous Apex, Web Services, Email Services, Visualforce controllers and Lightning components   
@@ -421,7 +424,7 @@
     		// Standard relationship fields, use Child Relationship Name instead of Field Name
      		```
 
-  - **Salesforce Object Search Language (SOSL)**
+- **Salesforce Object Search Language (SOSL)**
 	- Syntax: return type list of list of sObjecs
   	```
    	FIND {Search Query Text} // this line is required // apex uses ' ', query editor uses {}
@@ -445,8 +448,8 @@
   	 RETURNING Account(Id, Name, Phone), Opportunity(Id, Name, AccountId LIMIT 5)
   	 ```
     
-- **Dynamic SOQL**
-	- Syntax: create string with query line
+- **Dynamic SOQL & SOSL**
+	- Syntax: construct string with query line
    ```
    global static list<sObject> SOQL(List<String> fields, String sobjectType, String filterField, String filterValue){
 
@@ -464,28 +467,65 @@
    			query = query + 'WHERE ' + filterField + ' = \'' + filterValue + '\'';
    
    			// WHERE filterField = 'filterValue'
-   			// \' is an escape character which 
+   			//  backslash character (\) escapes characters in column names and string values in a predicate expression.
 
    			}
    	List<sObjects> results = Database.query(query);
    	return results;
    }
    ```
-   
 	- Use Cases
 		- Don't know the exact field or conditions
 		- Querying dynamic objects
+    
+- **Data Governor Limits**
+	- Per-Transaction Apex Limits
+		- Total number of records retrieved in SOQL: 50k
+ 		- Total number of SOQL queries: 100 Synchronous, 200 Asynchronous
+   		- Total number of records retrieved by Database.getQueryLocator: 10k
+     	- Total number of SOSL queries: 20
+      	- Total number of records retrieved in SOSL: 2k
+      	- Total number of DML statements: 150
+      	- Total records processed by DML statements: 10k
+     	- Maximum number of @future methods: 50
+      	- Max Queue Jobs: 50 
+     - Solution: Never put SOQL, SOSL, or DML statements in a loop! Bulkify! 
 
 ### Custom Metadata Types
-- **Topic:**
-  - info
-    - more info
-    
+- **Characteristics**
+  - Similar to custom objects and custom settings
+  - All records maintained in setup under custom metadata
+  - __mdt suffix
+  - Governor limits don't apply to queries on custom metadata records
+  - Ideal for saving **stagnant/hardcoded values** and then query from apex code
+  - Migrated with change sets or developer tools
+  - Visibility: all apex code and APIs can use, only apex code in the same namespace, only apex code in the same managed package
+  - Includes custom fields, validation rules, and page layout
+  - Option to create a new record of the custom metadata type
+  - Custom_Metadata_Tyoe_Name__mdt to reference in apex
+	
 ### Platform Events
-- **Topic:**
-  - info
-    - more info
+- **Custom Platform Events**
+  - Setup platform events in setup like custom objects
+  - __e suffix for API name
+  - Inserting platform event records (from a Flow, Apex, Process Builder) fires the event
+  - Any automation listening to the event will run upon platform event insertions
+  - Custom fields can be added to platform events
+  - Listen and Fire Platform Events:
+  	- Apex Triggers (can fire and subscribe)
+    - Flows (can fire and subscribe)
+    - Process Builder (can fire and subscribe)
+    - Lightning Web Components (subscribe)
+    - Apex (fire)
+    - APIs (fire)
 
+
+- **Subscribe & Publish Platform Events**
+  - Publish Behavior:
+  	- Publish After Commit: don't want event to fire if Apex fails
+   	- Publish Immediately: the event will fire immediately even if Apex fails
+
+## Thursday, September 20
 ### Extending Declarative Functionality
 - **Topic:**
   - info
