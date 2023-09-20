@@ -105,6 +105,7 @@
   trigger TriggerName on sObjectName (trigger_event_context) {
   
       // Trigger.New is list of records that were just created
+      // Trigger.Old provides the old version of sObjects before they were updated in update triggers or a list of deleted sObjects in delete triggers
       // include logic in handler class and methods so trigger class is logic-less
   
       HandlerClass.handlerMethod(Trigger.New);
