@@ -38,7 +38,7 @@
     - Profile
     - Permission Sets & Permission Set Groups 
   -  Record Access
-      - OWD (private, public read only, public read/write, controlled by parent)
+      - OWD (private, public read-only, public read/write, controlled by parent)
       - Sharing Rules & Role Hierarchy
    
 - **Data Imports & Exports**
@@ -138,7 +138,7 @@
   [ with sharing | without sharing]
 
   // Implements an interface
-  // Extends this class with functionality of another class
+  // Extends this class with the functionality of another class
   class ClassName [implements InterfaceNameList] [extends ClassName2] { ... }
   ```
   
@@ -193,14 +193,14 @@
       ````
     - Iterate through a list:
       ```
-      for (element : list) { ... }
+      for (datatype element : list) { ... }
       ```
   - Set: unordered collection without duplicates
       - Instantiate a set:
        ```
        Set<Integer> intSet = new Set<Integer>(1, 2, 3);
        ````
-  - Map: collection of key and value pairs
+  - Map: a collection of key and value pairs
       - Instantiate a map:
        ```
        Map<String, String> stringMap = new Map<String, String>();
@@ -215,7 +215,7 @@
   	- for loops for arrays or sets
   	- for loops for soql query
   	- while loop
-  	- do {...} while loops (will run atleast once)
+  	- do {...} while loops (will run at least once)
   	- ternary operator
   	  ```
   	  variable = condition ? if true action : if false action
@@ -263,10 +263,10 @@
   - Database Trigger, Anonymous Apex, Asynchronous Apex, Web Services, Email Services, Visualforce controllers and Lightning components   
     
 
-### Object Oriented Concepts
+### Object-Oriented Concepts
 - **Salesforce vs. Apex Objects:**
   - Salesforce:
-    - Standard and custom objects are built declaratively and used to organized the data we store in the org.
+    - Standard and custom objects are built declaratively and used to organize the data we store in the org.
   - Apex: 
     - Apex objects are developed programmatically and used to organize reusable methods and variables.
    
@@ -347,7 +347,7 @@
   		 ```
  	- Benefits:
   		- Accepts non-primitive types as parameters
- 		- Monitoring - Job Id is returned to identify job and monitor progress
+ 		- Monitoring - Job Id is returned to identify the job and monitor the progress
   		- Chaining Jobs - You can chain one job to another job by starting a second job from a running job. This can be useful for sequential processing.
 	
 ### Testing & Debugging
@@ -375,10 +375,106 @@
 <br>
     
 ## Wednesday, September 19th
-### SQL, SOQL & DML
-- **Topic:**
-  - info
-    - more info
+### SOQL, SOSL & DML
+- **DML**
+  - Operations
+    - update: use for after triggers
+    - upsert: create new and update existing records
+    - delete
+    - undelete: restores one or more existing sObject records from the recycling bin
+    - merge: merges up to three records of the same sObject type into one of the records, deletes the others, and re-parents any related records.
+ - Best Practices
+    - Always use DMLs with lists over single records
+    - DML Governor's Limit: 150 per transaction
+
+- **Salesforce Object Query Language (SOQL)**
+	- Syntax: returns list of sObjects, single sObject, integer
+   
+   ```
+   [
+    SELECT one or more fields,
+    	(SELECT fields
+    	FROM Child Relationship Field Name or Custom Relationship Field Name with appeneded __r
+   		)
+   FROM an object
+   WHERE filter statements and, optionally, results are ordered
+   ]
+    ```
+	- Capabilities in Salesforce
+ 		- query in the query editor in the developer console
+   		- query in apex code
+     
+     		```
+       		Account[] parentAccounts = [SELECT Id, Name, Phone FROM Account WHERE Id IN :accountIdsSet];
+       
+       		// " :value " is needed on the right side of the comparison clause
+       		// IN can only be used on a set and not a list
+       		```
+       
+       		- query for related records that have a lookup relationship to the Account object
+  			```
+    		Account[] parentAccounts = [SELECT Id, Name, Phone,
+							(SELECT Id, FirstName, LastName FROM Contacts)
+							FROM Account WHERE Id IN :accountIdsSet];
+    	
+    		// Custom relationship fields, use CustomObject__r
+    		// Standard relationship fields, use Child Relationship Name instead of Field Name
+     		```
+
+  - **Salesforce Object Search Language (SOSL)**
+	- Syntax: return type list of list of sObjecs
+  	```
+   	FIND {Search Query Text} // this line is required // apex uses ' ', query editor uses {}
+   
+  	[ IN SearchGroup ]
+  	[ RETURNING FieldSpec [[ toLabel(fields) ] [ convertCurrency(Amount) ] [ FORMAT() ] ] ]
+   	[ WITH DivisionFilter ]
+   	[ WITH DATA CATEGORY DataCategorySpec ]
+	[ WITH SNIPPET [ (target_length = n )] ]
+   	[ WITH NETWORK NetworkIdSpec ]
+   	[ WITH PricebookId ]
+   	[ WITH METADATA ]
+   	[ LIMIT n ] //default is 2,000 rows that can be returned
+
+   	[ UPDATE [TRACKING], [VIEWSTAT] ] 
+    ```
+  	 - Example
+  	 ```
+  	 FIND {Booz Allen Hamilton}
+  	 IN NAME FIELDS
+  	 RETURNING Account(Id, Name, Phone), Opportunity(Id, Name, AccountId LIMIT 5)
+  	 ```
+    
+- **Dynamic SOQL**
+	- Syntax: create string with query line
+   ```
+   global static list<sObject> SOQL(List<String> fields, String sobjectType, String filterField, String filterValue){
+
+   	String query = 'SELECT ';
+
+    	// add fields to query
+   	for (String field : fields){
+   		query = query + field + ', ';
+   	}
+
+   	query = query.left(query.length() - 2 ); //removes last comma and space
+   	query = query + ' FROM' + sobjectType;
+
+   	if (filterField != null && filterField != '' && filterValue != null && filterValue != ''){
+   			query = query + 'WHERE ' + filterField + ' = \'' + filterValue + '\'';
+   
+   			// WHERE filterField = 'filterValue'
+   			// \' is an escape character which 
+
+   			}
+   	List<sObjects> results = Database.query(query);
+   	return results;
+   }
+   ```
+   
+	- Use Cases
+		- Don't know the exact field or conditions
+		- Querying dynamic objects
 
 ### Custom Metadata Types
 - **Topic:**
