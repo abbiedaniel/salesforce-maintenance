@@ -3,7 +3,10 @@
 [Udemy Platform Developer 1 Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview)
 
 ## Monday - September 18, 2023
-### Salesforce Development Fundamentals
+
+<details>
+	<summary>Salesforce Development Fundamentals</summary>
+
 - **Multi-tenant Environment Considerations:**
   - Unique URL for each environment
   - Governor limits on every user and every Salesforce org
@@ -19,7 +22,11 @@
   - Controller: how data is manipulated/logic
       - Custom Apex and Javascript, flows, processes, workflow rules, email alerts
 
-### Data Modeling & Management
+</details>
+
+<details>
+	<summary>Data Modeling & Management</summary>
+	
 - **Relationships**
   - Master-detail
     - Creates a special type of parent-child relationship between this object **(the child, or "detail")** and another object (the parent, or "master") where:
@@ -55,8 +62,12 @@
     - Max: 5,000,000 records
     - File Type: CSV
     - Match by Salesforce ID
- 
-### Declarative Process & Automation
+
+</details>
+
+<details>
+	<summary>Declarative Process & Automation</summary>
+
 - **Flows**
   - Screen
   - Schedule-Triggered
@@ -85,7 +96,11 @@
   15. Commit all DML operations to the database
       - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_order_of_execution.htm
 
-### Layouts & Navigation
+</details>
+
+<details>
+	<summary>Layouts & Navigation</summary>
+
 - **Page Layout**
   - Fields Visibility & Order for record type
   - Related Lists
@@ -96,13 +111,21 @@
   - Component Visibility
   - Components: Screen-flow, Chatter, Highlight Panel, List View, Path, Record Detail, Related Lists, Custom LWC, etc.
 
+</details>
+
 <br>
 
 ## Tuesday - September 19, 2023
+
+
+
+
+
+<details>
+	<summary>Apex Triggers</summary>
     
-### Apex Triggers
 - **Trigger Syntax**
-  ```
+  ```apex
   trigger TriggerName on sObjectName (trigger_event_context) {
   
       // Trigger.New is a list of records that were just created
@@ -125,10 +148,13 @@
   	- You can then use context-specific handler methods within triggers to create logic-less triggers
   - Control triggers with declarative functionality.
   	- Allow admins to access custom metadata or custom setting that  can turn triggers on/off.
+</details>
+	
+<details>
+	<summary>Apex Classes</summary>
      
-### Apex Classes
 - **Class Definition Syntax**
-  ```
+  ```apex
   // Access Modifiers:
   private | public | global
 
@@ -151,7 +177,7 @@
    	- Web services methods for external services to call
  
 - **Method Definition Syntax**
-  ```
+  ```apex
   [public | private | protected | global] [override] [static] [ data_type | void ] method_name(input parameters) {
 	// The body of the method
   	return;
@@ -165,7 +191,13 @@
 	- static: Before an object of a class is created, all static member variables in a class are initialized, and all static initialization code blocks are executed. These items are handled in the order in which they appear in the class.
   	- this: use with instance/non-static variables 
 
-### Apex Data Types
+
+</details>
+
+
+<details>
+	<summary>Apex Data Types</summary>
+
 - **Primitive Data Types**
   - String
   - Boolean
@@ -180,36 +212,39 @@
   - Standard and Custom Objects
   - Constructor parameters can include field values
   - Instantiate an object:
-    ```
+    ```apex
     Account acc = new Account(Name = 'Name');
     ```
    
 - **Arrays**
   - List
     - Instantiate a list:
-      ```
+      ```apex
       List<String> stringList = new List<String>();
       
       Account[] accountList = new Account[](testAccount1, testAccount2);
-      ````
-    - Iterate through a list:
       ```
+    - Iterate through a list:
+      ```apex
       for (datatype element : list) { ... }
       ```
   - Set: unordered collection without duplicates
       - Instantiate a set:
-       ```
+       ```apex
        Set<Integer> intSet = new Set<Integer>(1, 2, 3);
        ````
   - Map: a collection of key and value pairs
       - Instantiate a map:
-       ```
+       ```apex
        Map<String, String> stringMap = new Map<String, String>();
       
        Map<Integer, String> populatedMap = new Map<Integer, String>(1 => 'First, 3 => 'Third');
        ```` 
+</details>
     
-### Apex Logic
+<details>
+	<summary>Apex Logic</summary>
+
 - **Control Flow Statements**
 	- if, else if and else statements
  	- for loops
@@ -218,11 +253,11 @@
   	- while loop
   	- do {...} while loops (will run at least once)
   	- ternary operator
-  	  ```
+  	  ```apex
   	  variable = condition ? if true action : if false action
   	  ```
   	- switch statements (can only be run on strings, ints, and sObjects)
-  	  ```
+  	  ```apex
   	  switch on variable {
   	  	when 'variable value' {
 				// logic
@@ -235,7 +270,7 @@
   	  
 - **Exception Handling**
 	- Try/catch block
-  ```
+  ```apex
   try {
   	// something you think could fail or error
   } catch ( Exception ex ){
@@ -247,28 +282,31 @@
   ```
 	- Custom Exception Class
    
-   ```
+   ```apex
    public class AccountTriggerException extends Exception {}
    ```
     
   - Custom Exception Method 
     
-  ```
+  ```apex
     public static void throwException(String message){
   	System.debug(message);
     	throw new AccountTriggerException(message);
   }
   ```
-  	- allorNone boolean: false allows partial success if an error is thrown.
-  	  ```
-  	  Database.insert(recordToInsert, allOrNone, accessLevel);
-  	  ```
+  - allorNone boolean: false allows partial success if an error is thrown.
+  ```apex
+  Database.insert(recordToInsert, allOrNone, accessLevel);
+  ```
 
 - **Methods of Invoking Apex**
   - Database Trigger, Anonymous Apex, Asynchronous Apex, Web Services, Email Services, Visualforce controllers and Lightning components   
-    
 
-### Object-Oriented Concepts
+</details>
+    
+<details>
+	<summary>Object-Oriented Concepts</summary>
+
 - **Salesforce vs. Apex Objects:**
   - Salesforce:
     - Standard and custom objects are built declaratively and used to organize the data we store in the org.
@@ -282,7 +320,7 @@
 
 
 - **Instantiation**
-```
+```apex
   data_type variableName = new constructor (parameters);
 ```
 
@@ -295,7 +333,12 @@
 - **Subclasses**
 	- inheritance and polymorphism   
     
-### Asynchronous Apex
+</details>
+
+
+<details>
+	<summary>Asynchronous Apex</summary>
+    
 - **Reasons to Program Asynchronously**
   - Processing a very large number of records. Limits are larger for asynchronous than synchronous processes
   - Making Callouts to external web services
@@ -304,7 +347,7 @@
 - **Future Methods**
   - Syntax
   	- must include @future static void  
-  ```
+  ```apex
    @future
    static void myFutureMethod (Set<Id> ids){
   	// query for records using Salesforce Ids
@@ -318,7 +361,7 @@
 
 - **Batch Apex Class**
   - Syntax
-    ```
+    ```apex
     global class BatchableClass implements Database.Batchable<sObjects> {
 
     	global Database.QueryLocator start(Database.BatchableContext bc) {
@@ -342,7 +385,7 @@
 
 - **Queueable Apex**
 	- Syntax
-  		 ```
+  		 ```apex
    		public class QueueableClass implements Queueable {
      			public void execute (QueueableContext context){
      				// loop through records
@@ -354,8 +397,11 @@
   		- Accepts non-primitive types as parameters
  		- Monitoring - Job Id is returned to identify the job and monitor the progress
   		- Chaining Jobs - You can chain one job to another job by starting a second job from a running job. This can be useful for sequential processing.
-	
-### Testing & Debugging
+</details>	
+
+<details>
+	<summary>Testing & Debugging</summary>
+		
 - **Execution Log**
   - EXECUTION_STARTED - first line in the execution log marks the execution started event
   - EXECUTION_FINISHED - last line is the execution finished event. Everything in between is the execution context
@@ -376,11 +422,15 @@
   		- Assignment rules
   		- Approval processes
   		- Validation rules
+</details>	
  
 <br>
     
 ## Wednesday, September 19th
-### SOQL, SOSL & DML
+
+<details>
+	<summary>SOQL, SOSL & DML</summary>
+
 - **DML**
   - Operations
     - update: use for after triggers
@@ -395,7 +445,7 @@
 - **Salesforce Object Query Language (SOQL)**
 	- Syntax: returns list of sObjects, single sObject, integer
    
-   ```
+   ```apex
    [
     SELECT one or more fields,
     	(SELECT fields
@@ -409,7 +459,7 @@
  		- query in the query editor in the developer console
    		- query in apex code
      
-     		```
+     		```apex
        		Account[] parentAccounts = [SELECT Id, Name, Phone FROM Account WHERE Id IN :accountIdsSet];
        
        		// " :value " is needed on the right side of the comparison clause
@@ -417,7 +467,7 @@
        		```
        
        		- query for related records that have a lookup relationship to the Account object
-  			```
+  			```apex
     		Account[] parentAccounts = [SELECT Id, Name, Phone,
 							(SELECT Id, FirstName, LastName FROM Contacts)
 							FROM Account WHERE Id IN :accountIdsSet];
@@ -428,7 +478,7 @@
 
 - **Salesforce Object Search Language (SOSL)**
 	- Syntax: return type list of list of sObjecs
-  	```
+  	```apex
    	FIND {Search Query Text} // this line is required // apex uses ' ', query editor uses {}
    
   	[ IN SearchGroup ]
@@ -444,7 +494,7 @@
    	[ UPDATE [TRACKING], [VIEWSTAT] ] 
     ```
   	 - Example
-  	 ```
+  	 ```apex
   	 FIND {Booz Allen Hamilton}
   	 IN NAME FIELDS
   	 RETURNING Account(Id, Name, Phone), Opportunity(Id, Name, AccountId LIMIT 5)
@@ -452,7 +502,7 @@
     
 - **Dynamic SOQL & SOSL**
 	- Syntax: construct string with query line
-   ```
+   ```apex
    global static list<sObject> SOQL(List<String> fields, String sobjectType, String filterField, String filterValue){
 
    	String query = 'SELECT ';
@@ -491,9 +541,13 @@
       	- Total records processed by DML statements: 10k
      	- Maximum number of @future methods: 50
       	- Max Queue Jobs: 50 
-     - Solution: Never put SOQL, SOSL, or DML statements in a loop! Bulkify! 
+     - Solution: Never put SOQL, SOSL, or DML statements in a loop! Bulkify!
+ 
+    </details>
+    
+<details>
+	<summary>Custom Metadata Types</summary>
 
-### Custom Metadata Types
 - **Characteristics**
   - Similar to custom objects and custom settings
   - All records maintained in setup under custom metadata
@@ -505,8 +559,12 @@
   - Includes custom fields, validation rules, and page layout
   - Option to create a new record of the custom metadata type
   - Custom_Metadata_Tyoe_Name__mdt to reference in apex
-	
-### Platform Events
+
+</details>
+  
+<details>
+	<summary>Platform Events</summary>
+
 - **Custom Platform Events**
   - Setup platform events in setup like custom objects
   - __e suffix for API name
@@ -527,7 +585,9 @@
   	- Publish After Commit: don't want event to fire if Apex fails
    	- Publish Immediately: the event will fire immediately even if Apex fails
 
-## Thursday, September 20
+</details>
+
+## Thursday, September 20th
 ### Extending Declarative Functionality
 - **Topic:**
   - info
