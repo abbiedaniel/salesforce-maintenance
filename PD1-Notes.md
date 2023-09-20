@@ -2,6 +2,8 @@
 
 [Udemy Platform Developer 1 Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview)
 
+<be>
+
 ## Monday - September 18, 2023
 
 <details>
@@ -116,10 +118,6 @@
 <br>
 
 ## Tuesday - September 19, 2023
-
-
-
-
 
 <details>
 	<summary>Apex Triggers</summary>
@@ -586,6 +584,8 @@
    	- Publish Immediately: the event will fire immediately even if Apex fails
 
 </details>
+
+<br>
 
 ## Thursday, September 20th
 ### Extending Declarative Functionality
