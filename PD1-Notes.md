@@ -120,95 +120,35 @@
 ## Tuesday - September 19, 2023
 
 <details>
-	<summary>Apex Triggers</summary>
-    
-- **Trigger Syntax**
-  ```apex
-  trigger TriggerName on sObjectName (trigger_event_context) {
-  
-      // Trigger.New is a list of records that were just created
-      // Trigger.Old provides the old version of sObjects before they were updated in update triggers or a list of deleted sObjects in delete triggers
-      // include logic in handler class and methods so the trigger class is logic-less
-  
-      HandlerClass.handlerMethod(Trigger.New);
-  }
-  ```
-  
-- **Trigger Event Context**
+	<summary>Object-Oriented Concepts</summary>
 
-  - ```before insert```, ```before update```, ```before delete```
-  	- no update needed since record has not been committed to database
+- **Salesforce vs. Apex Objects:**
+  - Salesforce:
+    - Standard and custom objects are built declaratively and used to organize the data we store in the org.
+  - Apex: 
+    - Apex objects are developed programmatically and used to organize reusable methods and variables.
    
-  - ```after insert```, ```after update```, ```after delete```, ```after undelete```
-  	- need updated since record has already been committed to database
+- **Constructor**
+	- located near the top of the class
+ 	- best practice to include a constructor with no arguments
+  	- you will likely need to assign ```this.arg = arg;```  
 
-- **Context Variables**
-  - ```Trigger.New``` returns a list of the new versions of the sObject records
-  	- available in ```insert```, ```update```, ```undelete```
-   	- records can only be modified in ```before``` triggers
-      
-  - ```Trigger.newMap``` returns new map of IDs to the new versions of the sObject records
-	- available in ```before insert```,```after insert```,```after update```,```after undelete```
+
+- **Instantiation**
+```apex
+  data_type variableName = new constructor (parameters);
+```
+
+- **Variables**
+	- All variables are initialized to null by default
+ 	- Parallel blocks can use the same variable name
+  	- Sub-blocks cannot redeclare a parent's block variable name
+  	- Can be declare at any point in a block
+
+- **Subclasses**
+	- inheritance and polymorphism   
     
-  - ```Trigger.Old``` returns a list of the old versions of the sObject records
-  	- available in ```update``` and ```delete``` triggers
-     
-   - ```Trigger.oldMap``` returns map of IDs to the old versions of the sObject records
-   		- available in ```update``` and ```delete``` triggers 
-
-
-- **Best Practices**
-  - Only use triggers if no declarative options work
-  - Use only one trigger per object.
-  	- You can then use context-specific handler methods within triggers to create logic-less triggers
-  - Control triggers with declarative functionality.
-  	- Allow admins to access custom metadata or custom setting that  can turn triggers on/off.
 </details>
-	
-<details>
-	<summary>Apex Classes</summary>
-     
-- **Class Definition Syntax**
-  ```apex
-  // Access Modifiers:
-  private | public | global
-
-  // Interface:
-  [ virtual | abstract ]
-
-  // Sharing Context: with sharing specifies the sharing rules for the current user to be taken into account for a class
-  [ with sharing | without sharing]
-
-  // Implements an interface
-  // Extends this class with the functionality of another class
-  class ClassName [implements InterfaceNameList] [extends ClassName2] { ... }
-  ```
-  
-- **Class Capabilities**
-   - Can be used to create 
-  	- Trigger Handlers
-   	- Controllers for LWC and Visualforce
-   	- Invokable methods for flows and process builder to call
-   	- Web services methods for external services to call
- 
-- **Method Definition Syntax**
-  ```apex
-  [public | private | protected | global] [override] [static] [ data_type | void ] method_name(input parameters) {
-	// The body of the method
-  	return;
-  }
-  ```
-- **Access Modifiers and Key Words**
-	- global: Can be accessed by any code in your salesforce org. If a method or variable is declared as global, the class must also be global.
-   	- private: Can only be accessible in the class it was created in 
- 	- protected: Accessible to any inner classes in the defining Apex class, and to the classes that extend the defining Apex class
-  	- public: Can be accessed by code in the same namespace  
-	- static: Before an object of a class is created, all static member variables in a class are initialized, and all static initialization code blocks are executed. These items are handled in the order in which they appear in the class.
-  	- this: use with instance/non-static variables 
-
-
-</details>
-
 
 <details>
 	<summary>Apex Data Types</summary>
@@ -254,7 +194,13 @@
        Map<String, String> stringMap = new Map<String, String>();
       
        Map<Integer, String> populatedMap = new Map<Integer, String>(1 => 'First, 3 => 'Third');
-       ```` 
+       ````
+
+- **API Data Type and Salesforce Field Types**
+  - ID: lookup relationship and master-detail relationship  
+  - string: auto number, email, phone, picklist, multi-select picklist, text, text area, long text area, rich text area     
+  - boolean: checkbox 
+  - double: currency, formula, number, percent, roll-up summary  
 </details>
     
 <details>
@@ -282,38 +228,112 @@
   	  	}
   	  }
   	  ```
-  	  
-- **Exception Handling**
-	- Try/catch block
+</details>
+	
+<details>
+	<summary>Apex Classes</summary>
+     
+- **Class & Method Definition Syntax**
   ```apex
-  try {
-  	// something you think could fail or error
-  } catch ( Exception ex ){
-  	throw ex;
-  
-  	// to call custom exception method:
-  	TriggerHandlerClass.throwException(ex.getMessage());
-  } 
-  ```
-	- Custom Exception Class
-   
-   ```apex
-   public class AccountTriggerException extends Exception {}
-   ```
-    
-  - Custom Exception Method 
-    
-  ```apex
-    public static void throwException(String message){
-  	System.debug(message);
-    	throw new AccountTriggerException(message);
+  // Access Modifiers
+  private | public | global
+
+  // Interface
+  [ virtual | abstract ]
+
+  // Sharing Context
+  [ with sharing | without sharing | inherited sharing ]
+
+  // Class Definition
+  class ClassName [implements InterfaceNameList] [extends ClassName2] {
+
+  	// Method Definition
+  	[public | private | protected | global] [override] [static] [ data_type | void ] method_name(input parameters) {
+  		// method body
+  		return;
+  	}
   }
   ```
-  - allorNone boolean: false allows partial success if an error is thrown.
-  ```apex
-  Database.insert(recordToInsert, allOrNone, accessLevel);
-  ```
+- **Class Keywords**
+	- ```implements``` an interface
+ 	- ```extends``` this class with the functionality of another class
+  	  
+- **Interface Keywords**
+	- ```virtual```
+ 	- ```abstract```   
 
+- **Sharing Keywords**
+	- ```with sharing``` enforce sharing rules of the current user.
+ 	-  ```without sharing``` sharing rules for the current user are not enforced
+   	- ```inherited sharing``` enforces the sharing rules of the class that calls it. Using inherited sharing is an advanced technique to determine the sharing mode at runtime and design Apex classes that can run in either with sharing or without sharing mode
+
+- **Access Modifiers**
+	- ```global``` Can be accessed by any code in your salesforce org. If a method or variable is declared as global, the class must also be global.
+   	- ```private``` Can only be accessible in the class it was created in
+   	- ```public``` Can be accessed by code in the same namespace
+ 	- ```protected``` Accessible to any inner classes in the defining Apex class, and to the classes that extend the defining Apex class
+ 
+- **Key Words** 
+	- ```static``` Before an object of a class is created, all static member variables in a class are initialized, and all static initialization code blocks are executed. These items are handled in the order in which they appear in the class.
+  	- ```this.``` use with instance/non-static variables 
+
+-  **Class Capabilities**
+   - Can be used to create 
+  	- Trigger Handlers
+   	- Controllers for LWC and Visualforce
+   	- Invokable methods for flows and process builder to call
+   	- Web services methods for external services to call
+</details>
+
+<details>
+	<summary>Apex Triggers</summary>
+    
+- **Trigger Syntax**
+  ```apex
+  trigger TriggerName on sObjectName (trigger_event_context) {
+  
+      // Trigger.New is a list of records that were just created
+      // Trigger.Old provides the old version of sObjects before they were updated in update triggers or a list of deleted sObjects in delete triggers
+      // include logic in handler class and methods so the trigger class is logic-less
+  
+      HandlerClass.handlerMethod(Trigger.New);
+  }
+  ```
+  
+- **Trigger Event Context**
+
+  - ```before insert```, ```before update```, ```before delete```
+  	- no update needed since record has not been committed to database
+   
+  - ```after insert```, ```after update```, ```after delete```, ```after undelete```
+  	- need updated since record has already been committed to database
+
+- **Context Variables**
+  - ```Trigger.New``` returns a list of the new versions of the sObject records
+  	- available in ```insert```, ```update```, ```undelete```
+   	- records can only be modified in ```before``` triggers
+      
+  - ```Trigger.newMap``` returns new map of IDs to the new versions of the sObject records
+	- available in ```before insert```,```after insert```,```after update```,```after undelete```
+    
+  - ```Trigger.Old``` returns a list of the old versions of the sObject records
+  	- available in ```update``` and ```delete``` triggers
+     
+   - ```Trigger.oldMap``` returns map of IDs to the old versions of the sObject records
+   		- available in ```update``` and ```delete``` triggers 
+
+
+- **Best Practices**
+  - Only use triggers if no declarative options work
+  - Use only one trigger per object.
+  	- You can then use context-specific handler methods within triggers to create logic-less triggers
+  - Control triggers with declarative functionality.
+  	- Allow admins to access custom metadata or custom setting that  can turn triggers on/off.
+</details>
+
+<details>
+	<summary>Invokable Apex</summary>
+	
 - **Methods of Invoking Apex**
   - Database Trigger, Anonymous Apex, Asynchronous Apex, Web Services, Email Services, Visualforce controllers and Lightning components   
 
@@ -322,40 +342,8 @@
  	- Utilise the REST API “executeAnonymous” endpoint
   	- Use the Salesforce CLI “force:apex:execute” command 
  
-
 </details>
     
-<details>
-	<summary>Object-Oriented Concepts</summary>
-
-- **Salesforce vs. Apex Objects:**
-  - Salesforce:
-    - Standard and custom objects are built declaratively and used to organize the data we store in the org.
-  - Apex: 
-    - Apex objects are developed programmatically and used to organize reusable methods and variables.
-   
-- **Constructor**
-	- located near the top of the class
- 	- best practice to include a constructor with no arguments
-  	- you will likely need to assign ```this.arg = arg;```  
-
-
-- **Instantiation**
-```apex
-  data_type variableName = new constructor (parameters);
-```
-
-- **Variables**
-	- All variables are initialized to null by default
- 	- Parallel blocks can use the same variable name
-  	- Sub-blocks cannot redeclare a parent's block variable name
-  	- Can be declare at any point in a block
-
-- **Subclasses**
-	- inheritance and polymorphism   
-    
-</details>
-
 
 <details>
 	<summary>Asynchronous Apex</summary>
@@ -418,7 +406,45 @@
   		- Accepts non-primitive types as parameters
  		- Monitoring - Job Id is returned to identify the job and monitor the progress
   		- Chaining Jobs - You can chain one job to another job by starting a second job from a running job. This can be useful for sequential processing.
-</details>	
+</details>
+
+<details>
+	<summary>Exception Handling</summary>
+	
+- **Exception Handling**
+	- Try/catch block
+  ```apex
+  try {
+  	// something you think could fail or error
+  } catch ( Exception ex ){
+  	throw ex;
+  
+  	// to call custom exception method:
+  	TriggerHandlerClass.throwException(ex.getMessage());
+  } 
+  ```
+	- Custom Exception Class
+   
+   ```apex
+   public class AccountTriggerException extends Exception {}
+   ```
+    
+  - Custom Exception Method 
+    
+  ```apex
+    public static void throwException(String message){
+  	System.debug(message);
+    	throw new AccountTriggerException(message);
+  }
+  ```
+  - allorNone boolean: false allows partial success if an error is thrown.
+  ```apex
+  Database.insert(recordToInsert, allOrNone, accessLevel);
+  ```
+
+</details>
+
+
 
 <details>
 	<summary>Execution Log</summary>
@@ -559,6 +585,7 @@
 - **Data Governor Limits**
 	- Per-Transaction Apex Limits
 		- Total number of records processed by a trigger at a time: 200
+  			- If the number of records being inserted is greater than this (e.g. from the Bulk API or a bulk DML operation), the trigger is invoked in batches of 200 records at a time. 
   		- Total number of records retrieved in SOQL: 50k
  		- Total number of SOQL queries: 100 Synchronous, 200 Asynchronous
    		- Total number of records retrieved by Database.getQueryLocator: 10k
@@ -602,13 +629,13 @@
     
   - Subscribe and Fire Platform Events:
   	- Apex Triggers (can fire and subscribe)
-    	- Flows (can fire and subscribe)
-     	- Process Builder (can fire and subscribe) 
+  	- Flows (can fire and subscribe)
+ 	- Process Builder (can fire and subscribe) 
   - Fire Platform Events Only:
   	- Apex (fire)
-   	- APIs (fire) 
+  	- APIs (fire) 
   - Subscribe to Platform Events Only:
-    - Lightning Web Components (subscribe)
+  	- Lightning Web Components (subscribe)
  
 
 
@@ -647,9 +674,8 @@
 	- ```Security.stripInaccessible(AccessType, sourceRecords)``` enforces the FLS of the current user by stripping anything which is not accessible in the defined context.
 
 ### Extending Declarative Functionality
-- **Topic:**
-  - info
-    - more info
+
+    
 
 ### Visualforce Pages
 - **Topic:**
