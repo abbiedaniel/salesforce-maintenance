@@ -300,6 +300,12 @@
 - **Methods of Invoking Apex**
   - Database Trigger, Anonymous Apex, Asynchronous Apex, Web Services, Email Services, Visualforce controllers and Lightning components   
 
+- **Anonymous Apex**
+	- Use the “Execute Anonymous” functionality of the Developer Console
+ 	- Utilise the REST API “executeAnonymous” endpoint
+  	- Use the Salesforce CLI “force:apex:execute” command 
+ 
+
 </details>
     
 <details>
@@ -398,8 +404,9 @@
 </details>	
 
 <details>
-	<summary>Testing & Debugging</summary>
-		
+	<summary>Execution Log</summary>
+
+
 - **Execution Log**
   - EXECUTION_STARTED - first line in the execution log marks the execution started event
   - EXECUTION_FINISHED - last line is the execution finished event. Everything in between is the execution context
@@ -588,6 +595,26 @@
 <br>
 
 ## Thursday, September 20th
+
+### Dev Orgs
+- **Scratch Orgs**
+	- To utilize scratch orgs in your development process
+ 		- Enable Dev Hub to allow scratch orgs to be created
+   		- Have a user with permissions to create scratch orgs
+     		- Have the Salesforce CLI setup to log into the dev hub and request scratch org creation
+
+### Testing and Debugging
+- **Test Classes**
+	- Streamline Setup
+ 		-  Create a class specifically to create data for test methods aka Test data factory class
+   		- Add a @TestSetup annotated method to the class. This method is called before any tests are run and allows the test records to be created before the tests themselves are run.
+
+- **Common Errors**
+	- "List has no rows for assignment to sObject" - running a query which returns no rows
+ 	- "Index 0 is out of bounds" - attempting to access value at index 0 when there is no data
+
+
+
 ### Extending Declarative Functionality
 - **Topic:**
   - info
