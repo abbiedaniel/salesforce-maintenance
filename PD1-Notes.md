@@ -145,7 +145,7 @@
   	- Can be declare at any point in a block
 
 - **Subclasses**
-	- inheritance and polymorphism   
+	- Inner classes can have their own sharing modes declared, which don’t have to match that of the outer classes. This can be useful for nesting specific methods which require without sharing inside a class which has with sharing declared. 
     
 </details>
 
@@ -265,7 +265,7 @@
 - **Sharing Keywords**
 	- ```with sharing``` enforce sharing rules of the current user.
  	-  ```without sharing``` sharing rules for the current user are not enforced
-   	- ```inherited sharing``` enforces the sharing rules of the class that calls it. Using inherited sharing is an advanced technique to determine the sharing mode at runtime and design Apex classes that can run in either with sharing or without sharing mode
+   	- ```inherited sharing``` Inherited sharing takes on the sharing declaration of the class which has executed the code, so if a class with sharing enforced calls a method in a class with inherited sharing, the inherited sharing class code would run with sharing enforced. This is really useful for when the sharing model to be used isn’t known at design time, or the code is built to be called from varying places within the system.
 
 - **Access Modifiers**
 	- ```global``` Can be accessed by any code in your salesforce org. If a method or variable is declared as global, the class must also be global.
@@ -323,6 +323,8 @@
    		- available in ```update``` and ```delete``` triggers 
 
 
+- **TO DO: Trigger Exceptions** : https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_exceptions.htm
+  
 - **Best Practices**
   - Only use triggers if no declarative options work
   - Use only one trigger per object.
@@ -371,7 +373,7 @@
 - **Batch Apex Class**
   - Syntax
     ```apex
-    global class BatchableClass implements Database.Batchable<sObjects> {
+    global class BatchableClass implements Database.Batchable<sObjects>, Database.Stateful {
 
     	global Database.QueryLocator start(Database.BatchableContext bc) {
     		// query for records
@@ -388,6 +390,8 @@
     ```
   	- Use this if you need to process a large number of records
      	- Processes 200 records at a time
+      	- ```Database.Stateful``` instance variables of this class are preserved after each execute method call
+      	  
   - Limitations:
   	- Troubleshooting can be hard
    	- Jobs are queued and subject to server availability
@@ -406,6 +410,10 @@
   		- Accepts non-primitive types as parameters
  		- Monitoring - Job Id is returned to identify the job and monitor the progress
   		- Chaining Jobs - You can chain one job to another job by starting a second job from a running job. This can be useful for sequential processing.
+
+- **Apex Scheduled Job**
+  	- Use Apex Scheduler
+     	- Use the ```System.schedule()``` method within apex
 </details>	
  
 <details>
@@ -591,6 +599,15 @@
 
 ## Testing, Debugging & Deployments - 22%
 
+<details>
+	<summary>TO DO: Code Coverage</summary>
+ - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_code_coverage_best_pract.htm
+- https://help.salesforce.com/s/articleView?id=000385650&type=1
+- When doing a deployment into production, there must be an average of 75% code coverage for all Apex code within the org. Alongside this, Apex triggers being deployed must have at least 1 line being covered (i.e. they must have been called by at least one test class). When running deployments, there is the option to run a subset of tests which changes the code coverage behaviour. When running the default testing mode, all tests are executed and the total coverage in an org must meet 75%. However, when running a specified set of tests, every item in the deployment must average 75% instead.
+
+
+
+</details>
 
 <details>
 	<summary>Exception Handling</summary>
@@ -621,9 +638,11 @@
     	throw new AccountTriggerException(message);
   }
   ```
-  - allorNone boolean: false allows partial success if an error is thrown.
+  
+  - ```allorNone``` boolean: ```false``` allows partial success if an error is thrown. Instead of an exception being thrown when any record encounters an error during save, a ```List<Database.SaveResult>``` is returned instead of an exception being thrown.
   ```apex
   Database.insert(recordToInsert, allOrNone, accessLevel);
+  // When we wish to configure the DML operation, or handle failed records, we must use the Database class methods.
   ```
 
 </details>
@@ -654,24 +673,28 @@
   		- Validation rules
 </details>
 
-<details>
-	<summary>Scratch Orgs</summary>
-	
-- **Scratch Orgs**
-  
- 	- Enable Dev Hub to allow scratch orgs to be created
-   	- Have a user with permissions to create scratch orgs
-   	- Have the Salesforce CLI setup to log into the dev hub and request scratch org creation
-</details>
+
 
 <details>
-	<summary>Test Class</summary>
+	<summary>Test Classes</summary>
+
+- **Purpose**
+	- Used to determine whether a piece of code is behaving exactly as it was intended to.
+ 	- Setup: preparing data and the runtime environment for your testing scenario
+  	- Execution: executing the code you wish to test
+  	- Validation: verifying the results of the executed test against the expected results  
 
 - **Best Practices**
   
 	- Create a class specifically to create data for test methods aka Test data factory class
  	- Add a ```@TestSetup``` annotated method to the class. This method is called before any tests are run and allows the test records to be created before the tests themselves are run.
   	- Use ```@TestVisible``` for private methods that need to be visible for a test
+ 
+- **Methods**
+	- ```Test.startTest()``` use method before executing the code we wish, to test to assign that block of code a new set of governor limits.
+ 	- ```Test.stopTest()``` use once we’ve finished our execution and are ready to validate our results
+  	- Asynchronous Apex: If we are testing asynchronous apex (e.g. a batch class), since the code gets flagged to run at an unknown future date, we would not be able to write tests for any asynchronous methods. Instead by wrapping the code execution in Test.startTest() and Test.stopTest(), when the stopTest method is called, the async code is executed and so we can test the results of the execution within our test class. 
+  
 </details>
 
 <details>
@@ -681,6 +704,16 @@
 - ```Index 0 is out of bounds``` - attempting to access value at index 0 when there is no data
 
 </details> 
+
+<details>
+	<summary>Scratch Orgs</summary>
+	
+- **Scratch Orgs**
+  
+ 	- Enable Dev Hub to allow scratch orgs to be created
+   	- Have a user with permissions to create scratch orgs
+   	- Have the Salesforce CLI setup to log into the dev hub and request scratch org creation
+</details>
 
 <br>
 
@@ -699,6 +732,11 @@
 - **Topic:**
   - info
     - more info
+
+- to add a related record's field name to a Visualforce page 
+	- Reference the object's fields using {!opportunity.Account.fieldName} in a standard controller
+ - to generate a simple PDF
+ 	- create a visualforce page with ```renderAs="pdf"``` 
     
 </details> 
 
@@ -713,6 +751,8 @@
     - Standard controllers exist for all custom and most standard objects
     -  Field level and object level security is enforced by built-in actions
     - Controller extensions can be built to define custom logic and actions to be performed within a controller while retaining the functionality of the standard controller.
+   
+
 </details>    
 
 <details>
@@ -724,6 +764,11 @@
   - Experiences
   - Salesforce Mobile App
 
+- **HTML Specs**
+	- picklists: ```<lightning-combobox> </lightning-combobox>```
+   
+ - Static Resources: Lightning Components require all third-party resources to be uploaded as Static Resources and loaded through the Platform Resource Loader, however Visualforce can reference external URLs.
+
 </details>
 
 <details>
@@ -734,5 +779,8 @@
   - info
     - more info
 
+- ```@AuraEnabled(cacheable=true)``` improves the runtime performance of Lightning Components on the Aura Enabled apex methods that are frequently used in multiple LWCs
+	- https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/controllers_server_apex_auraenabled_annotation.htm
+ - ```setStorable()``` https://developer.salesforce.com/docs/atlas.en-us.224.0.lightning.meta/lightning/ref_jsapi_action_setStorable.htm
 </details>
 
