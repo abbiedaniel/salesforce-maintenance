@@ -135,10 +135,12 @@
   ```
   
 - **Trigger Event Context**
-  - before insert, before update, before delete
-  	- no update needed since record has not been committed to database    
-  - after insert, after update, after delete, after undelete
-  	- need updated since record has already been committed to database 
+  - ```before insert```, ```before update```, ```before delete```
+  	- no update needed since record has not been committed to database
+   	- ```Trigger.New```     
+  - ```after insert```, ```after update```, ```after delete```, ```after undelete```
+  	- need updated since record has already been committed to database
+   	- ```Trigger.Old``` 
 
 - **Best Practices**
   - Only use triggers if no declarative options work
@@ -320,7 +322,7 @@
 - **Constructor**
 	- located near the top of the class
  	- best practice to include a constructor with no arguments
-  	- you will likely need to assign this.arg = arg;  
+  	- you will likely need to assign ```this.arg = arg;```  
 
 
 - **Instantiation**
@@ -350,7 +352,7 @@
 
 - **Future Methods**
   - Syntax
-  	- must include @future static void  
+  	- must include ```@future static void```  
   ```apex
    @future
    static void myFutureMethod (Set<Id> ids){
@@ -438,11 +440,11 @@
 
 - **DML**
   - Operations
-    - update: use for after triggers
-    - upsert: create new and update existing records
-    - delete
-    - undelete: restores one or more existing sObject records from the recycling bin
-    - merge: merges up to three records of the same sObject type into one of the records, deletes the others, and re-parents any related records.
+    - ```update``` - use for after triggers
+    - ```upsert``` create new and update existing records
+    - ```delete```
+    - ```undelete``` restores one or more existing sObject records from the recycling bin
+    - ```merge``` merges up to three records of the same sObject type into one of the records, deletes the others, and re-parents any related records.
  - Best Practices
     - Always use DMLs with lists over single records
     - DML Governor's Limit: 150 per transaction
@@ -544,7 +546,7 @@
       	- Total number of records retrieved in SOSL: 2k
       	- Total number of DML statements: 150
       	- Total records processed by DML statements: 10k
-     	- Maximum number of @future methods: 50
+     	- Maximum number of ```@future``` methods: 50
       	- Max Queue Jobs: 50 
      - Solution: Never put SOQL, SOSL, or DML statements in a loop! Bulkify!
  
@@ -563,7 +565,7 @@
   - Visibility: all apex code and APIs can use, only apex code in the same namespace, only apex code in the same managed package
   - Includes custom fields, validation rules, and page layout
   - Option to create a new record of the custom metadata type
-  - Custom_Metadata_Tyoe_Name__mdt to reference in apex
+  - Custom_Metadata_Type_Name__mdt to reference in apex
 
 </details>
   
@@ -607,11 +609,11 @@
 - **Test Classes**
 	- Streamline Setup
  		-  Create a class specifically to create data for test methods aka Test data factory class
-   		- Add a @TestSetup annotated method to the class. This method is called before any tests are run and allows the test records to be created before the tests themselves are run.
+   		- Add a ```@TestSetup``` annotated method to the class. This method is called before any tests are run and allows the test records to be created before the tests themselves are run.
 
 - **Common Errors**
-	- "List has no rows for assignment to sObject" - running a query which returns no rows
- 	- "Index 0 is out of bounds" - attempting to access value at index 0 when there is no data
+	- ```List has no rows for assignment to sObject``` - running a query which returns no rows
+ 	- ```Index 0 is out of bounds``` - attempting to access value at index 0 when there is no data
 
 
 
