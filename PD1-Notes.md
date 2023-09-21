@@ -2,7 +2,7 @@
 
 [Udemy Platform Developer 1 Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview)
 
-<be>
+<br>
 
 ## Monday - September 18, 2023
 
@@ -636,8 +636,6 @@
   	- APIs (fire) 
   - Subscribe to Platform Events Only:
   	- Lightning Web Components (subscribe)
- 
-
 
 - **Subscribe & Publish Platform Events**
   - Publish Behavior:
@@ -673,15 +671,27 @@
 - **Important Methods**
 	- ```Security.stripInaccessible(AccessType, sourceRecords)``` enforces the FLS of the current user by stripping anything which is not accessible in the defined context.
 
+<details>
+	<summary>Extending Declarative Functionality</summary>   
+	
 ### Extending Declarative Functionality
 
-    
+</details> 
 
+    
+<details>
+	<summary>Visualforce Pages</summary>   
+	
 ### Visualforce Pages
 - **Topic:**
   - info
     - more info
     
+</details> 
+
+<details>
+	<summary>Visualforce Controllers</summary>   
+	
 ### Visualforce Controllers
 - **Standard Controllers**
   - Characteristics
@@ -690,15 +700,26 @@
     - Standard controllers exist for all custom and most standard objects
     -  Field level and object level security is enforced by built-in actions
     - Controller extensions can be built to define custom logic and actions to be performed within a controller while retaining the functionality of the standard controller.
-    
+</details>    
+
+<details>
+	<summary>Lightning Web Components</summary>   
+	
 ### Lightning Web Components
 - **Salesforce Environment for Lightning Components**
   - Lightning Experience
   - Experiences
   - Salesforce Mobile App
 
-    
+</details>
+
+<details>
+	<summary>Lightning Aura Components</summary>   
+	
 ### Lightning Aura Components
 - **Topic:**
   - info
     - more info
+
+</details>
+
