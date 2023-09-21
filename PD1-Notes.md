@@ -2,9 +2,8 @@
 
 [Udemy Platform Developer 1 Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview)
 
-<br>
 
-## Monday - September 18, 2023
+## Developer Fundamentals - 23%
 
 <details>
 	<summary>Salesforce Development Fundamentals</summary>
@@ -117,7 +116,7 @@
 
 <br>
 
-## Tuesday - September 19, 2023
+## Process Automation & Logic - 30%
 
 <details>
 	<summary>Object-Oriented Concepts</summary>
@@ -207,6 +206,7 @@
 	<summary>Apex Logic</summary>
 
 - **Control Flow Statements**
+  
 	- if, else if and else statements
  	- for loops
   	- for loops for arrays or sets
@@ -406,76 +406,8 @@
   		- Accepts non-primitive types as parameters
  		- Monitoring - Job Id is returned to identify the job and monitor the progress
   		- Chaining Jobs - You can chain one job to another job by starting a second job from a running job. This can be useful for sequential processing.
-</details>
-
-<details>
-	<summary>Exception Handling</summary>
-	
-- **Exception Handling**
-	- Try/catch block
-  ```apex
-  try {
-  	// something you think could fail or error
-  } catch ( Exception ex ){
-  	throw ex;
-  
-  	// to call custom exception method:
-  	TriggerHandlerClass.throwException(ex.getMessage());
-  } 
-  ```
-	- Custom Exception Class
-   
-   ```apex
-   public class AccountTriggerException extends Exception {}
-   ```
-    
-  - Custom Exception Method 
-    
-  ```apex
-    public static void throwException(String message){
-  	System.debug(message);
-    	throw new AccountTriggerException(message);
-  }
-  ```
-  - allorNone boolean: false allows partial success if an error is thrown.
-  ```apex
-  Database.insert(recordToInsert, allOrNone, accessLevel);
-  ```
-
-</details>
-
-
-
-<details>
-	<summary>Execution Log</summary>
-
-
-- **Execution Log**
-  - EXECUTION_STARTED - first line in the execution log marks the execution started event
-  - EXECUTION_FINISHED - last line is the execution finished event. Everything in between is the execution context
-  - CODE_UNIT_STARTED - event marks when the code from the Execute Anonymous window was kicked off
-    
-- **Log Inspector**
-	- Logging Levels: None, Error, Warn, Info, Debug, Fine, Finer, Finest
-	- Open dev console and do actions in UI. Logs will be captured in the dev console automatically.
- 	-  You can also run logs on a specific user and get the logs after the UI actions have been completed
-    
-- **Debug Logs Contains Info About**
-	- Database changes
- 	- HTTP callouts
- 	- Apex errors
- 	- Resources used by Apex
- 	- Automated workflow processes, such as:
-  		- Workflow rules
-  		- Assignment rules
-  		- Approval processes
-  		- Validation rules
 </details>	
  
-<br>
-    
-## Wednesday, September 19th
-
 <details>
 	<summary>SOQL, SOSL & DML</summary>
 
@@ -598,11 +530,22 @@
      - Solution: Never put SOQL, SOSL, or DML statements in a loop! Bulkify!
  
     </details>
+
+<details>
+	<summary>Apex Security & Sharing</summary>
+	
+
+- **Important Methods**
+  
+	- ```Security.stripInaccessible(AccessType, sourceRecords)``` enforces the FLS of the current user by stripping anything which is not accessible in the defined context.
+
+</details>
     
 <details>
 	<summary>Custom Metadata Types</summary>
 
 - **Characteristics**
+  
   - Similar to custom objects and custom settings
   - All records maintained in setup under custom metadata
   - ```__mdt``` suffix
@@ -646,39 +589,109 @@
 
 <br>
 
-## Thursday, September 20th
+## Testing, Debugging & Deployments - 22%
 
-### Dev Orgs
-- **Scratch Orgs**
-	- To utilize scratch orgs in your development process
- 		- Enable Dev Hub to allow scratch orgs to be created
-   		- Have a user with permissions to create scratch orgs
-     	- Have the Salesforce CLI setup to log into the dev hub and request scratch org creation
-
-### Testing and Debugging
-- **Test Classes**
-	- Streamline Setup
- 		-  Create a class specifically to create data for test methods aka Test data factory class
-   		- Add a ```@TestSetup``` annotated method to the class. This method is called before any tests are run and allows the test records to be created before the tests themselves are run.
-     - Use ```@TestVisible``` for private methods that need to be visible for a test
-
-- **Common Errors**
-	- ```List has no rows for assignment to sObject``` - running a query which returns no rows
- 	- ```Index 0 is out of bounds``` - attempting to access value at index 0 when there is no data
-  	
-
-### Apex Security & Sharing
-- **Important Methods**
-	- ```Security.stripInaccessible(AccessType, sourceRecords)``` enforces the FLS of the current user by stripping anything which is not accessible in the defined context.
 
 <details>
-	<summary>Extending Declarative Functionality</summary>   
+	<summary>Exception Handling</summary>
 	
-### Extending Declarative Functionality
+- **Exception Handling**
+	- Try/catch block
+  ```apex
+  try {
+  	// something you think could fail or error
+  } catch ( Exception ex ){
+  	throw ex;
+  
+  	// to call custom exception method:
+  	TriggerHandlerClass.throwException(ex.getMessage());
+  } 
+  ```
+	- Custom Exception Class
+   
+   ```apex
+   public class AccountTriggerException extends Exception {}
+   ```
+    
+  - Custom Exception Method 
+    
+  ```apex
+    public static void throwException(String message){
+  	System.debug(message);
+    	throw new AccountTriggerException(message);
+  }
+  ```
+  - allorNone boolean: false allows partial success if an error is thrown.
+  ```apex
+  Database.insert(recordToInsert, allOrNone, accessLevel);
+  ```
+
+</details>
+
+
+<details>
+	<summary>Execution Log</summary>
+
+- **Execution Log**
+  - EXECUTION_STARTED - first line in the execution log marks the execution started event
+  - EXECUTION_FINISHED - last line is the execution finished event. Everything in between is the execution context
+  - CODE_UNIT_STARTED - event marks when the code from the Execute Anonymous window was kicked off
+    
+- **Log Inspector**
+	- Logging Levels: None, Error, Warn, Info, Debug, Fine, Finer, Finest
+	- Open dev console and do actions in UI. Logs will be captured in the dev console automatically.
+ 	-  You can also run logs on a specific user and get the logs after the UI actions have been completed
+    
+- **Debug Logs Contains Info About**
+	- Database changes
+ 	- HTTP callouts
+ 	- Apex errors
+ 	- Resources used by Apex
+ 	- Automated workflow processes, such as:
+  		- Workflow rules
+  		- Assignment rules
+  		- Approval processes
+  		- Validation rules
+</details>
+
+<details>
+	<summary>Scratch Orgs</summary>
+	
+- **Scratch Orgs**
+  
+ 	- Enable Dev Hub to allow scratch orgs to be created
+   	- Have a user with permissions to create scratch orgs
+   	- Have the Salesforce CLI setup to log into the dev hub and request scratch org creation
+</details>
+
+<details>
+	<summary>Test Class</summary>
+
+- **Best Practices**
+  
+	- Create a class specifically to create data for test methods aka Test data factory class
+ 	- Add a ```@TestSetup``` annotated method to the class. This method is called before any tests are run and allows the test records to be created before the tests themselves are run.
+  	- Use ```@TestVisible``` for private methods that need to be visible for a test
+</details>
+
+<details>
+	<summary>Common Errors</summary>
+
+- ```List has no rows for assignment to sObject``` - running a query which returns no rows
+- ```Index 0 is out of bounds``` - attempting to access value at index 0 when there is no data
 
 </details> 
 
-    
+<br>
+
+## User Interface - 25%
+
+<details>
+	<summary>Extending Declarative Functionality</summary>   
+
+### Extending Declarative Functionality
+</details>
+
 <details>
 	<summary>Visualforce Pages</summary>   
 	
