@@ -618,7 +618,7 @@
 	- To utilize scratch orgs in your development process
  		- Enable Dev Hub to allow scratch orgs to be created
    		- Have a user with permissions to create scratch orgs
-     		- Have the Salesforce CLI setup to log into the dev hub and request scratch org creation
+     	- Have the Salesforce CLI setup to log into the dev hub and request scratch org creation
 
 ### Testing and Debugging
 - **Test Classes**
@@ -633,7 +633,7 @@
 
 ### Apex Security & Sharing
 - **Important Methods**
-	- ``Security.stripInaccessible(AccessType, sourceRecords)``` enforces the FLS of the current user by stripping anything which is not accessible in the defined context.
+	- ```Security.stripInaccessible(AccessType, sourceRecords)``` enforces the FLS of the current user by stripping anything which is not accessible in the defined context.
 
 ### Extending Declarative Functionality
 - **Topic:**
