@@ -551,10 +551,15 @@
 	- Use Cases
 		- Don't know the exact field or conditions
 		- Querying dynamic objects
-    
+</details>
+
+<details>
+	<summary>Governor Limits</summary> 
+	
 - **Data Governor Limits**
 	- Per-Transaction Apex Limits
-		- Total number of records retrieved in SOQL: 50k
+		- Total number of records processed by a trigger at a time: 200
+  		- Total number of records retrieved in SOQL: 50k
  		- Total number of SOQL queries: 100 Synchronous, 200 Asynchronous
    		- Total number of records retrieved by Database.getQueryLocator: 10k
      	- Total number of SOSL queries: 20
@@ -581,6 +586,7 @@
   - Includes custom fields, validation rules, and page layout
   - Option to create a new record of the custom metadata type
   - Custom_Metadata_Type_Name__mdt to reference in apex
+  - Use ```Custom_Metadata_Type_Name__mdt.getInstance('Record_Name');``` to access custom metadata in Apex
 
 </details>
   
@@ -593,13 +599,17 @@
   - Inserting platform event records (from a Flow, Apex, Process Builder) fires the event
   - Any automation listening to the event will run upon platform event insertions
   - Custom fields can be added to platform events
-  - Listen and Fire Platform Events:
+    
+  - Subscribe and Fire Platform Events:
   	- Apex Triggers (can fire and subscribe)
-    - Flows (can fire and subscribe)
-    - Process Builder (can fire and subscribe)
+    	- Flows (can fire and subscribe)
+     	- Process Builder (can fire and subscribe) 
+  - Fire Platform Events Only:
+  	- Apex (fire)
+   	- APIs (fire) 
+  - Subscribe to Platform Events Only:
     - Lightning Web Components (subscribe)
-    - Apex (fire)
-    - APIs (fire)
+ 
 
 
 - **Subscribe & Publish Platform Events**
@@ -625,11 +635,12 @@
 	- Streamline Setup
  		-  Create a class specifically to create data for test methods aka Test data factory class
    		- Add a ```@TestSetup``` annotated method to the class. This method is called before any tests are run and allows the test records to be created before the tests themselves are run.
+     - Use ```@TestVisible``` for private methods that need to be visible for a test
 
 - **Common Errors**
 	- ```List has no rows for assignment to sObject``` - running a query which returns no rows
  	- ```Index 0 is out of bounds``` - attempting to access value at index 0 when there is no data
-  	- runtime exceptions 
+  	
 
 ### Apex Security & Sharing
 - **Important Methods**
@@ -646,14 +657,20 @@
     - more info
     
 ### Visualforce Controllers
-- **Topic:**
-  - info
-    - more info
+- **Standard Controllers**
+  - Characteristics
+    - Controllers can either be tied to a single record or a collection of records
+    	- ```StandardController``` and ```StandardSetController``` 
+    - Standard controllers exist for all custom and most standard objects
+    -  Field level and object level security is enforced by built-in actions
+    - Controller extensions can be built to define custom logic and actions to be performed within a controller while retaining the functionality of the standard controller.
     
 ### Lightning Web Components
-- **Topic:**
-  - info
-    - more info
+- **Salesforce Environment for Lightning Components**
+  - Lightning Experience
+  - Experiences
+  - Salesforce Mobile App
+
     
 ### Lightning Aura Components
 - **Topic:**
