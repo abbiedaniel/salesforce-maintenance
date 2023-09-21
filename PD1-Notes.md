@@ -135,12 +135,27 @@
   ```
   
 - **Trigger Event Context**
+
   - ```before insert```, ```before update```, ```before delete```
   	- no update needed since record has not been committed to database
-   	- ```Trigger.New```     
+   
   - ```after insert```, ```after update```, ```after delete```, ```after undelete```
   	- need updated since record has already been committed to database
-   	- ```Trigger.Old``` 
+
+- **Context Variables**
+  - ```Trigger.New``` returns a list of the new versions of the sObject records
+  	- available in ```insert```, ```update```, ```undelete```
+   	- records can only be modified in ```before``` triggers
+      
+  - ```Trigger.newMap``` returns new map of IDs to the new versions of the sObject records
+	- available in ```before insert```,```after insert```,```after update```,```after undelete```
+    
+  - ```Trigger.Old``` returns a list of the old versions of the sObject records
+  	- available in ```update``` and ```delete``` triggers
+     
+   - ```Trigger.oldMap``` returns map of IDs to the old versions of the sObject records
+   		- available in ```update``` and ```delete``` triggers 
+
 
 - **Best Practices**
   - Only use triggers if no declarative options work
@@ -558,7 +573,7 @@
 - **Characteristics**
   - Similar to custom objects and custom settings
   - All records maintained in setup under custom metadata
-  - __mdt suffix
+  - ```__mdt``` suffix
   - Governor limits don't apply to queries on custom metadata records
   - Ideal for saving **stagnant/hardcoded values** and then query from apex code
   - Migrated with change sets or developer tools
@@ -574,7 +589,7 @@
 
 - **Custom Platform Events**
   - Setup platform events in setup like custom objects
-  - __e suffix for API name
+  - ```__e``` suffix for API name
   - Inserting platform event records (from a Flow, Apex, Process Builder) fires the event
   - Any automation listening to the event will run upon platform event insertions
   - Custom fields can be added to platform events
@@ -614,8 +629,11 @@
 - **Common Errors**
 	- ```List has no rows for assignment to sObject``` - running a query which returns no rows
  	- ```Index 0 is out of bounds``` - attempting to access value at index 0 when there is no data
+  	- runtime exceptions 
 
-
+### Apex Security & Sharing
+- **Important Methods**
+	- ``Security.stripInaccessible(AccessType, sourceRecords)``` enforces the FLS of the current user by stripping anything which is not accessible in the defined context.
 
 ### Extending Declarative Functionality
 - **Topic:**
