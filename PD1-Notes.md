@@ -840,9 +840,10 @@ development be considered.
 	- Syntax
    	```apex
     	@InvocableVariable(required = true)
-    	```
-      - Identifies a class variable used as an input or output parameter for an invocable method's invocable action.
-      - Use the action element in a flow and search for the invocable method. The invocable variable names will display at the bottom.
+    ```
+    
+    - Identifies a class variable used as an input or output parameter for an invocable method's invocable action.
+    - Use the action element in a flow and search for the invocable method. The invocable variable names will display at the bottom.
      
 
   
