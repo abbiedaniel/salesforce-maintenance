@@ -643,7 +643,7 @@ development be considered.
 ## Testing, Debugging & Deployments - 22%
 
 <details>
-	<summary>EXPAND: Test Classes</summary>
+	<summary>Test Classes</summary>
 
 - **Purpose**
 	- Used to determine whether a piece of code is behaving exactly as it was intended to.
