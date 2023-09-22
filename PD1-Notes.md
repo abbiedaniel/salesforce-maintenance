@@ -53,6 +53,7 @@
       - Sharing Rules & Role Hierarchy
    
 - **Data Imports & Exports**
+- Best Practice for Importing: Match Salesforce ID or custom External ID field to a column in the imported file
   - Data Import Wizard
     - Standard Actions: add new records, update existing records, or both
     - Max: 50,000 records
@@ -64,7 +65,11 @@
     - Standard Actions: insert, update, upsert, delete, export, export all
     - Max: 5,000,000 records
     - File Type: CSV
-    - Match by Salesforce ID
+    - Match by Salesforce ID or External ID
+  - Example: Moving analogous-Account, Contact, and Opportunity object records to a new Salesforce CRM and preserving relationships during data migration
+  	- Solution:
+   		- Add fields flagged as **external IDs** for each of the objects to be imported, populated with its legacy CRM ID
+     		- Use the Data Loader tool, and set the relationship fields to match these external IDs
 
 </details>
 
@@ -81,9 +86,9 @@
   - Platform Event-Trigger
   - Autolaunched
 
-- **Declarative Caviats**
+- **Declarative Caveats**
 	- Standard validation rules are unable to operate on parent-child relationships
- 	-  
+ 	- Roll-up summary fields can only be on the master 
   
 - **Best Practices**
 	- For complex solutions, check if there is an app on AppExchange. If there are no suitable AppExchange apps, only then should custom
@@ -227,8 +232,8 @@ development be considered.
   
 	- if, else if and else statements
  	- for loops
-  	- for loops for arrays or sets
-  	- for loops for soql query
+  	- List or Set for loops
+  	- SOQL for loops: utilize more efficient chunking of SObjects behind the scenes, resulting in reduced heap usage and a lower chance of hitting governor limits for large queries. 
   	- while loop
   	- do {...} while loops (will run at least once)
   	- ternary operator
@@ -340,8 +345,6 @@ development be considered.
    - ```Trigger.oldMap``` returns map of IDs to the old versions of the sObject records
    		- available in ```update``` and ```delete``` triggers 
 
-
-- **TO DO: Trigger Exceptions** : https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_exceptions.htm
   
 - **Best Practices**
   - Only use triggers if no declarative options work
@@ -349,6 +352,14 @@ development be considered.
   	- You can then use context-specific handler methods within triggers to create logic-less triggers
   - Control triggers with declarative functionality.
   	- Allow admins to access custom metadata or custom setting that  can turn triggers on/off.
+</details>
+<details>
+	<summary>TO DO: Trigger Exceptions</summary>
+	
+- **TO DO: Trigger Exceptions** 
+	- https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_exceptions.htm
+	- ```object_record.addError( 'Text to display to the user!' );```  can be used in an Apex trigger and display on the record save operation 
+
 </details>
 
 <details>
@@ -445,14 +456,11 @@ development be considered.
 
  	// to execute class: instantiate the schedulable class
  	String jobID = System.schedule('Job Title' , scheduledDateTime, new ScheduledJob() );
-
-
- 	
  	```
   	- Max: 100 scheduled apex jobs at a time
   	- Use Apex Scheduler: search apex classes in setup and click Schedule Apex
   		- Weekly or monthly basis 
-     	- Use the `````` method within apex
+     	- Use the ```System.schedule``` method within apex
 </details>	
  
 <details>
@@ -578,16 +586,6 @@ development be considered.
  
     </details>
 
-<details>
-	<summary>TO DO: Apex Security & Sharing</summary>
-	
-
-- **Important Methods**
-  
-	- ```Security.stripInaccessible(AccessType, sourceRecords)``` enforces the FLS of the current user by stripping anything which is not accessible in the defined context.
- 	-```ApexTrigger.addError( )```` 
-
-</details>
     
 <details>
 	<summary>Custom Metadata Types</summary>
@@ -645,13 +643,15 @@ development be considered.
 ## Testing, Debugging & Deployments - 22%
 
 <details>
-	<summary>Test Classes</summary>
+	<summary>EXPAND: Test Classes</summary>
 
 - **Purpose**
 	- Used to determine whether a piece of code is behaving exactly as it was intended to.
- 	- Setup: preparing data and the runtime environment for your testing scenario
-  	- Execution: executing the code you wish to test
-  	- Validation: verifying the results of the executed test against the expected results  
+ 	- Three Parts to Testing: 
+ 		- Setup: preparing data and the runtime environment for your testing scenario
+  		- Execution: executing the code you wish to test
+  		- Validation: verifying the results of the executed test against the expected results
+    - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_qs_test.htm  
 
 - **Best Practices**
   
@@ -681,7 +681,7 @@ development be considered.
   	TriggerHandlerClass.throwException(ex.getMessage());
   } 
   ```
-	- Custom Exception Class
+	- Custom Exception Class: **class name must with ```Exception```
    
    ```apex
    public class AccountTriggerException extends Exception {}
@@ -742,8 +742,6 @@ development be considered.
   		- Validation rules
 </details>
 
-
-
 <details>
 	<summary>EXPAND: Common Errors</summary>
 
@@ -776,14 +774,12 @@ development be considered.
 	<summary>Visualforce Pages</summary>   
 	
 ### Visualforce Pages
-- **Topic:**
-  - info
-    - more info
-
-- to add a related record's field name to a Visualforce page 
-	- Reference the object's fields using {!opportunity.Account.fieldName} in a standard controller
- - to generate a simple PDF
- 	- create a visualforce page with ```renderAs="pdf"``` 
+- **Important Methods:**
+  
+	- to add a related record's field name to a Visualforce page 
+		- Reference the object's fields using ```{!opportunity.Account.fieldName}``` in a standard controller
+ 	- to generate a simple PDF
+ 		- create a visualforce page with ```renderAs="pdf"``` 
     
 </details> 
 
@@ -792,7 +788,7 @@ development be considered.
 	
 ### Visualforce Controllers
 - **Standard Controllers**
-  - Characteristics
+  
     - Controllers can either be tied to a single record or a collection of records
     	- ```StandardController``` and ```StandardSetController``` 
     - Standard controllers exist for all custom and most standard objects
@@ -806,15 +802,26 @@ development be considered.
 	<summary>Lightning Web Components</summary>   
 	
 ### Lightning Web Components
+
 - **Salesforce Environment for Lightning Components**
   - Lightning Experience
   - Experiences
   - Salesforce Mobile App
 
+- **Lightning Data Service**
+
+	- When building components that work on individual records, the Lightning Data Service provides a performant and cached mechanism for loading and updating record data that gets propagated throughout all components utilizing the service.
+ 	- This offers advantages over performing Apex calls to achieve simple record data since it increases performance and allows changes in other areas of the UI (for example for the standard record details component) to propagate to other components.
+   	- (https://developer.salesforce.com/docs/atlas.enus.
+lightning.meta/lightning/data_service.htm) 
+  
 - **HTML Specs**
+  
 	- picklists: ```<lightning-combobox> </lightning-combobox>```
    
- - Static Resources: Lightning Components require all third-party resources to be uploaded as Static Resources and loaded through the Platform Resource Loader, however Visualforce can reference external URLs.
+ - **Static Resources**
+
+ 	- Lightning Components require all third-party resources to be uploaded as Static Resources and loaded through the Platform Resource Loader, however Visualforce can reference external URLs.
 
 </details>
 
@@ -822,12 +829,17 @@ development be considered.
 	<summary>Lightning Aura Components</summary>   
 	
 ### Lightning Aura Components
-- **Topic:**
-  - info
-    - more info
 
-- ```@AuraEnabled(cacheable=true)``` improves the runtime performance of Lightning Components on the Aura Enabled apex methods that are frequently used in multiple LWCs
-	- https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/controllers_server_apex_auraenabled_annotation.htm
- - ```setStorable()``` https://developer.salesforce.com/docs/atlas.en-us.224.0.lightning.meta/lightning/ref_jsapi_action_setStorable.htm
+- **Aura Enabled**
+  
+	- ```@AuraEnabled(cacheable=true)``` improves the runtime performance of Lightning Components on the Aura Enabled apex methods that are frequently used in multiple LWCs by caching the result on the client side
+		- https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/controllers_server_apex_auraenabled_annotation.htm
+   
+	 - ```Security.stripInaccessible(AccessType, sourceRecords)``` enforces the FLS of the current user by stripping anything which is not accessible in the defined context in @AuraEnabled methods 
+ 		- https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_with_security_stripInaccessible.htm 
+
+   
+	 - ```setStorable()``` must be used if we wish for an Apex action to be cached within an Aura component, however there is no such requirement when we are working with LWCs.
+ 		- https://developer.salesforce.com/docs/atlas.en-us.224.0.lightning.meta/lightning/ref_jsapi_action_setStorable.htm
 </details>
 
