@@ -777,7 +777,7 @@ development be considered.
  </details>
  
 <details>
-	<summary><b>EXPAND: Execution Log</b></summary>
+	<summary>Execution Log</summary>
 
 - **Execution Log**
   - EXECUTION_STARTED - first line in the execution log marks the execution started event
@@ -799,13 +799,11 @@ development be considered.
   		- Assignment rules
   		- Approval processes
   		- Validation rules
-</details>
+      
+- **Common Errors**
 
-<details>
-	<summary><B>EXPAND: Common Errors</b></summary>
-
-- ```List has no rows for assignment to sObject``` - running a query which returns no rows
-- ```Index 0 is out of bounds``` - attempting to access value at index 0 when there is no data
+	- ```List has no rows for assignment to sObject``` - running a query that returns no rows
+	- ```Index 0 is out of bounds``` - attempting to access value at index 0 when there is no data
 
 </details> 
 
