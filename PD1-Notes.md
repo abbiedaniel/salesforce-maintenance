@@ -824,12 +824,37 @@ development be considered.
 ## User Interface - 25%
 
 <details>
-	<summary><b>TO DO: Extending Declarative Functionality</b>b></summary>   
+	<summary>Extending Declarative Functionality: Flows</summary>   
 
 - **Invocable Methods**
   
+	- Syntax
+   
+   ```apex
+    	@InvocableMethod( label = 'methodName' description = 'description' category = 'DML')
+    	global static List<List<sObject>> methodName( List<List<sObject>> records){
+   		return records;
+   	}
+   ```
+  - Parameter and return type is a list (single record) or list of lists (bulkify) and the method must be static
+  - Use Case: Flows cannot upsert records. You can pass the flow records to an invocable apex method to do the upsert action. In the flow, use the action element and search your invocable method label name and category.
+  
 - **Invocable Variables**
-- **Apex-Defined Types**
+	- Syntax
+   	```apex
+    	@InvocableVariable(required = true)
+    	```
+      - Identifies a class variable used as an input or output parameter for an invocable method's invocable action.
+      - Use the action element in a flow and search for the invocable method. The invocable variable names will display at the bottom.
+     
+
+  
+- **Apex-Defined Data Type**
+	- Apex classes can be used in flows as the data type for a flow variable/resource
+ 	- Apex class must have a no-parameter constructor
+  	- Each invocable variable needs to be ```@AuraEnabled``` to be used as a apex-defined type
+  	- Invocable variables cannot be of type ID
+  	- Cannot be required
 
 </details>
 
