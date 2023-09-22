@@ -74,7 +74,7 @@
 </details>
 
 <details>
-	<summary>EXPAND: Declarative Process & Automation</summary>
+	<summary>Declarative Process & Automation</summary>
 
 - **Flows**
   - Screen
@@ -88,13 +88,14 @@
 
 - **Declarative Caveats**
 	- Standard validation rules are unable to operate on parent-child relationships
- 	- Roll-up summary fields can only be on the master 
+ 	- Roll-up summary fields can only be on the master
+  	- Formula fields are calculated at access time and can span multiple objects 
   
 - **Best Practices**
 	- For complex solutions, check if there is an app on AppExchange. If there are no suitable AppExchange apps, only then should custom
 development be considered.
  	- For declarative solutions, do not use workflow rules or process builders.
-  	-   
+  	- Junction objects are used to represent many-to-many relationships and can prevent orphan records  
     
 </details>
 
@@ -271,7 +272,7 @@ development be considered.
   class ClassName [implements InterfaceNameList] [extends ClassName2] {
 
   	// Method Definition
-  	[public | private | protected | global] [override] [static] [ data_type | void ] method_name(input parameters) {
+  	[public | private | protected | global] [override] [static] [ return_type | void ] method_name(input parameters) {
   		// method body
   		return;
   	}
@@ -306,7 +307,12 @@ development be considered.
    	- Controllers for LWC and Visualforce
    	- Invokable methods for flows and process builder to call
    	- Web services methods for external services to call
+
 </details>
+
+
+
+
 
 <details>
 	<summary>Apex Triggers</summary>
@@ -658,11 +664,15 @@ development be considered.
 	- Create a class specifically to create data for test methods aka Test data factory class
  	- Add a ```@TestSetup``` annotated method to the class. This method is called before any tests are run and allows the test records to be created before the tests themselves are run.
   	- Use ```@TestVisible``` for private methods that need to be visible for a test
+  	- Use ```@IsTest``` for all test classes
+  	- Use the ```runAs``` method to test your application in different user contexts.
+  	- Use ```System.assert``` methods to prove that code behaves properly.
  
 - **Methods**
 	- ```Test.startTest()``` use method before executing the code we wish, to test to assign that block of code a new set of governor limits.
  	- ```Test.stopTest()``` use once we’ve finished our execution and are ready to validate our results
-  	- Asynchronous Apex: If we are testing asynchronous apex (e.g. a batch class), since the code gets flagged to run at an unknown future date, we would not be able to write tests for any asynchronous methods. Instead by wrapping the code execution in Test.startTest() and Test.stopTest(), when the stopTest method is called, the async code is executed and so we can test the results of the execution within our test class. 
+  	- Asynchronous Apex: If we are testing asynchronous apex (e.g. a batch class), since the code gets flagged to run at an unknown future date, we would not be able to write tests for any asynchronous methods.
+  		- Instead by wrapping the code execution in Test.startTest() and Test.stopTest(), when the stopTest method is called, the async code is executed and so we can test the results of the execution within our test class. 
   
 </details>
 
@@ -679,9 +689,15 @@ development be considered.
   
   	// to call custom exception method:
   	TriggerHandlerClass.throwException(ex.getMessage());
-  } 
+  }
+  
+  //optional:
+  finally{
+	// runs after the try block successfully runs or the catch block finishes executing  
+
+  }
   ```
-	- Custom Exception Class: **class name must with ```Exception```
+	- Custom Exception Class: **class name must end with ```Exception```
    
    ```apex
    public class AccountTriggerException extends Exception {}
@@ -705,16 +721,40 @@ development be considered.
 </details>
 
 <details>
-	<summary>TO DO: Code Coverage</summary>
- - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_code_coverage_best_pract.htm
-- https://help.salesforce.com/s/articleView?id=000385650&type=1
-- When doing a deployment into production, there must be an average of 75% code coverage for all Apex code within the org. Alongside this, Apex triggers being deployed must have at least 1 line being covered (i.e. they must have been called by at least one test class). When running deployments, there is the option to run a subset of tests which changes the code coverage behaviour. When running the default testing mode, all tests are executed and the total coverage in an org must meet 75%. However, when running a specified set of tests, every item in the deployment must average 75% instead.
+	<summary>Code Coverage</summary>
+
+- **Requirements**
+  
+	 - Average of 75% code coverage for all apex code to be deployed to production
+	 - Apex triggers being deployed must have at least 1 line being covered (i.e. they must have been called by at least one test class)
+  	- Run Specified Set of Tests during deployment: every item in the deployment must average 75% instead.
+  	- Run All Tests during deployment: all tests are executed and the total coverage in an org must meet 75%
+  	- [Best Practices](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_code_coverage_best_pract.htm)
 
 </details>
 
 
 <details>
 	<summary>TO DO: Deployments</summary>
+
+- **Org Basics**
+- **Change Sets**
+	- Target & Source Pairs
+ 		- Sandbox to Sandbox
+   		- Sandbox to Production Org
+     		* Org must be tied to a production instance to have change sets feature
+      - (https://help.salesforce.com/s/articleView?id=sf.deploy_connection_parent.htm&type=5)   
+- **Salesforce CLI**
+
+- **Deprecration**
+	- Apex Classes & Metadata
+
+   		- Apex classes and some other metadata cannot be directly deleted from production. While these pieces of metadata can be deleted within a Sandbox, changesets cannot upload these destructive changes.
+   			- Instead the Metadata API must be used. This could be with a tool such as ANT to produce a destructive changeset which is deployed into the org.
+   	 		- (https://developer.salesforce.com/docs/atlas.enus.api_meta.meta/api_meta/meta_deploy_deleting_files.htm)
+       - Fields
+       		- Remove all references of this field in the org before deleting
+ 
  </details>
  
 <details>
@@ -779,7 +819,9 @@ development be considered.
 	- to add a related record's field name to a Visualforce page 
 		- Reference the object's fields using ```{!opportunity.Account.fieldName}``` in a standard controller
  	- to generate a simple PDF
- 		- create a visualforce page with ```renderAs="pdf"``` 
+ 		- create a visualforce page with ```renderAs="pdf"```
+   	- to add pagination to a page
+   		- The ```StandardSetController``` is designed to work with sets of records, and so provides built-in methods to enable a large set of records to be displayed on a Visualforce page, with methods to assist in pagination of the record list.
     
 </details> 
 
@@ -803,25 +845,54 @@ development be considered.
 	
 ### Lightning Web Components
 
+- **Benefits of LWC Framework**
+	- Lightweight for faster development
+ 	- Faster performance
+  	- Out-of-the-box components
+  	- Built upon web standards 
+
 - **Salesforce Environment for Lightning Components**
+  
   - Lightning Experience
   - Experiences
   - Salesforce Mobile App
 
-- **Lightning Data Service**
+- **LWC Development Tools**
+	- VSCode and Salesforce Extension Pack 
 
+- **Capabilities**
+	- Lightning Record Form 
+
+- **Lightning Data Service**
 	- When building components that work on individual records, the Lightning Data Service provides a performant and cached mechanism for loading and updating record data that gets propagated throughout all components utilizing the service.
  	- This offers advantages over performing Apex calls to achieve simple record data since it increases performance and allows changes in other areas of the UI (for example for the standard record details component) to propagate to other components.
    	- (https://developer.salesforce.com/docs/atlas.enus.
 lightning.meta/lightning/data_service.htm) 
   
 - **HTML Specs**
-  
 	- picklists: ```<lightning-combobox> </lightning-combobox>```
+   
+ - **Best Practices**
+ 	- All event names must not use uppercase letters, have no spaces and use underscores to separate words
+    
+  - **LWC Security**
+  	- Sanitize any user input
+   	- Add the ```WITH SECURITY_ENFORCED``` clause to the query to enforce permissions on the query, so if a query attempts to access a field or object the user doesn’t have access to, an exception is thrown.
+    - Use bind variables for user input to ensure values are treated as values and not accidentally interpreted as extensions to a query.
+    - Hardcode the filterable fields in the Apex controller
+    	- A piece of Apex should never trust search parameters from a Lightning Component as these could easily be manipulated. Instead, in scenarios where this is required, alternative approaches should be used such as hardcoding the filter variables in an Apex datatype or as parameters to the method, in order to ensure that any requested fields/filters have been explicitly pre-authorized.	 
+    - Utilize the ```with sharing``` keyword on the Apex class
+
+ - **Methods**
+ 	- ```this.dispatchEvent( my CustomEvent( "my_event", {detail: this.recordId} ))```
+  		- Lightning Web Components utilize the standard CustomEvent class within JavaScript, which is then dispatched through the EventTarget.dispatchEvent() method, which in the majority of cases, would be this.dispatchEvent() – since we would want parent components to handle this event. We add information to the event with the detail property of CustomEvent, which the event handlers can access and process accordingly. The detail property can be any datatype.
+    	- We should follow the DOM event standard in the naming of our events, meaning no upper-case letters, no spaces, and underscores to separate words.
+     	- https://developer.salesforce.com/docs/componentlibrary/documentation/en/lwc/lwc.events_create_dispatch
    
  - **Static Resources**
 
- 	- Lightning Components require all third-party resources to be uploaded as Static Resources and loaded through the Platform Resource Loader, however Visualforce can reference external URLs.
+ 	- Lightning Components require all third-party resources to be uploaded as Static Resources and loaded through the Platform Resource Loader, however, Visualforce can reference external URLs.
+  	- Example: external resources like CSS or JavaScript 
 
 </details>
 
@@ -830,7 +901,7 @@ lightning.meta/lightning/data_service.htm)
 	
 ### Lightning Aura Components
 
-- **Aura Enabled**
+- **Aura Enabled Important Methods & Signatures**
   
 	- ```@AuraEnabled(cacheable=true)``` improves the runtime performance of Lightning Components on the Aura Enabled apex methods that are frequently used in multiple LWCs by caching the result on the client side
 		- https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/controllers_server_apex_auraenabled_annotation.htm
@@ -838,7 +909,14 @@ lightning.meta/lightning/data_service.htm)
 	 - ```Security.stripInaccessible(AccessType, sourceRecords)``` enforces the FLS of the current user by stripping anything which is not accessible in the defined context in @AuraEnabled methods 
  		- https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_with_security_stripInaccessible.htm 
 
-   
+- ``` @AuraEnabled(cacheable=true) public static Object performAction()``` this method signature allows apex methods to  be used by the wire services
+ 		- The Wire service is designed to provision a component with an immutable stream of data to a component that is ever updating. Because of this, the values returned by the Apex methods must be cached and so we must always annotate a method intended to be used by the Wire service with @AuraEnabled (cacheable = true).
+		- (https://developer.salesforce.com/docs/componentlibrary/
+documentation/en/lwc/data_wire_service_about) & (https://developer.salesforce.com/docs/componentlibrary/
+documentation/en/lwc/lwc.apex_wire_method) 
+
+
+
 	 - ```setStorable()``` must be used if we wish for an Apex action to be cached within an Aura component, however there is no such requirement when we are working with LWCs.
  		- https://developer.salesforce.com/docs/atlas.en-us.224.0.lightning.meta/lightning/ref_jsapi_action_setStorable.htm
 </details>
