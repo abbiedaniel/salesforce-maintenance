@@ -80,6 +80,17 @@
     -  Actions & Related Records: after the record is saved
   - Platform Event-Trigger
   - Autolaunched
+
+- **Declarative Caviats**
+	- Standard validation rules are unable to operate on parent-child relationships
+ 	-  
+  
+- **Best Practices**
+	- For complex solutions, check if there is an app on AppExchange. If there are no suitable AppExchange apps, only then should custom
+development be considered.
+ 	- For declarative solutions, do not use workflow rules or process builders.
+  	-   
+    
 </details>
 
 <details>
@@ -574,6 +585,7 @@
 - **Important Methods**
   
 	- ```Security.stripInaccessible(AccessType, sourceRecords)``` enforces the FLS of the current user by stripping anything which is not accessible in the defined context.
+ 	-```ApexTrigger.addError( )```` 
 
 </details>
     
