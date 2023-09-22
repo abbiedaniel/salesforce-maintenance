@@ -289,7 +289,7 @@ development be considered.
 - **Sharing Keywords**
 	- ```with sharing``` enforce sharing rules of the current user.
  	-  ```without sharing``` sharing rules for the current user are not enforced
-   	- ```inherited sharing``` Inherited sharing takes on the sharing declaration of the class which has executed the code, so if a class with sharing enforced calls a method in a class with inherited sharing, the inherited sharing class code would run with sharing enforced. This is really useful for when the sharing model to be used isn’t known at design time, or the code is built to be called from varying places within the system.
+   	- ```inherited sharing``` Inherited sharing takes on the sharing declaration of the class that has executed the code, so if a class with sharing enforced calls a method in a class with inherited sharing, the inherited sharing class code would run with sharing enforced. This is useful for when the sharing model to be used isn’t known at design time, or the code is built to be called from varying places within the system.
 
 - **Access Modifiers**
 	- ```global``` Can be accessed by any code in your salesforce org. If a method or variable is declared as global, the class must also be global.
@@ -332,23 +332,23 @@ development be considered.
 - **Trigger Event Context**
 
   - ```before insert```, ```before update```, ```before delete```
-  	- no update needed since record has not been committed to database
+  	- no update is needed since the record has not been committed to the database
    
   - ```after insert```, ```after update```, ```after delete```, ```after undelete```
-  	- need updated since record has already been committed to database
+  	- needs updating since the record has already been committed to the database
 
 - **Context Variables**
   - ```Trigger.New``` returns a list of the new versions of the sObject records
   	- available in ```insert```, ```update```, ```undelete```
    	- records can only be modified in ```before``` triggers
       
-  - ```Trigger.newMap``` returns new map of IDs to the new versions of the sObject records
+  - ```Trigger.newMap``` returns a new map of IDs to the new versions of the sObject records
 	- available in ```before insert```,```after insert```,```after update```,```after undelete```
     
   - ```Trigger.Old``` returns a list of the old versions of the sObject records
   	- available in ```update``` and ```delete``` triggers
      
-   - ```Trigger.oldMap``` returns map of IDs to the old versions of the sObject records
+   - ```Trigger.oldMap``` returns a map of IDs to the old versions of the sObject records
    		- available in ```update``` and ```delete``` triggers 
 
   
@@ -357,10 +357,10 @@ development be considered.
   - Use only one trigger per object.
   	- You can then use context-specific handler methods within triggers to create logic-less triggers
   - Control triggers with declarative functionality.
-  	- Allow admins to access custom metadata or custom setting that  can turn triggers on/off.
+  	- Allow admins to access custom metadata or custom settings that  can turn triggers on/off.
 </details>
 <details>
-	<summary>TO DO: Trigger Exceptions</summary>
+	<summary><b>TO DO: Trigger Exceptions</b></summary>
 	
 - **TO DO: Trigger Exceptions** 
 	- https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_exceptions.htm
@@ -388,8 +388,10 @@ development be considered.
 - **Reasons to Program Asynchronously**
   - Processing a very large number of records. Limits are larger for asynchronous than synchronous processes
   - Making Callouts to external web services
-  - Create better, faster user experience
-  - Future methods, Batch Apex, Queueable Apex, Scheduled Apex
+  - Create a better, faster user experience
+  - Queueable (sequential processing) > Future 
+  - Future methods (separate transaction), Batch Apex (large data processing), Queueable Apex (sequential processing), Scheduled Apex (scheduled processing)
+  - Uses ```global``` or ```public``` access modifiers
 
 - **Future Methods**
   - Syntax
@@ -397,7 +399,7 @@ development be considered.
   ```apex
    @future (callout=true) // to use APIs
    static void myFutureMethod (Set<Id> ids){
-  	// query for records using Salesforce Ids
+  	// query for records using Salesforce IDs
   	// loop through records and perform logic
    } 
    ```
@@ -406,7 +408,7 @@ development be considered.
    	- No execution tracking and no jobId
     	- You cannot chain future methods and have one call another.
      	- Max invocations for 24 hrs: 250k
-     - Benefits: if you want to separate transactions in apex due to cpu usage or governor limits
+     - Benefits: if you want to separate transactions in apex due to CPU usage or governor limits
 
 - **Batch Apex Class**
   - Syntax
@@ -426,8 +428,14 @@ development be considered.
     
     }
     ```
+	- To execute:
+	```apex
+  	Database.executeBatch(new BatchableClass(), batchSize);
+  	// batchSize maximum == 2,000 records, if value is large salesforce automatically makes batch size 2,000
+  	// batchSize minimum == 1
+   	```
   	- Use this if you need to process a large number of records
-     	- Processes 200 records at a time
+     	- Processes 200 records at a time?
       	- ```Database.Stateful``` instance variables of this class are preserved after each execute method call
       	  
   - Limitations:
@@ -450,8 +458,9 @@ development be considered.
         ```  
  	- Benefits:
   		- Accepts non-primitive types as parameters
- 		- Monitoring - Job Id is returned to identify the job and monitor the progress
+ 		- Monitoring - Job ID is returned to identify the job and monitor the progress
   		- Chaining Jobs - You can chain one job to another job by starting a second job from a running job. This can be useful for sequential processing.
+    		- Max: 50 jobs in the queue with system.enqueueJob  in a single transaction 
 
 - **Scheduled Apex**
   	- Syntax:
@@ -722,6 +731,14 @@ development be considered.
 
 </details>
 
+
+<details>
+	<summary><b>TO DO:Testing Asynchronous Apex</b></summary>
+
+	
+
+ </details>
+
 <details>
 	<summary>Code Coverage</summary>
 
@@ -737,7 +754,7 @@ development be considered.
 
 
 <details>
-	<summary>TO DO: Deployments</summary>
+	<summary><b>TO DO: Deployments</b></summary>
 
 - **Org Basics**
 - **Change Sets**
@@ -760,7 +777,7 @@ development be considered.
  </details>
  
 <details>
-	<summary>EXPAND: Execution Log</summary>
+	<summary><b>EXPAND: Execution Log</b></summary>
 
 - **Execution Log**
   - EXECUTION_STARTED - first line in the execution log marks the execution started event
@@ -785,7 +802,7 @@ development be considered.
 </details>
 
 <details>
-	<summary>EXPAND: Common Errors</summary>
+	<summary><B>EXPAND: Common Errors</b></summary>
 
 - ```List has no rows for assignment to sObject``` - running a query which returns no rows
 - ```Index 0 is out of bounds``` - attempting to access value at index 0 when there is no data
@@ -809,13 +826,26 @@ development be considered.
 <details>
 	<summary>Extending Declarative Functionality</summary>   
 
-### Extending Declarative Functionality
+- **Invocable Methods**
+- **Invocable Variables**
+- **Apex-Defined Types**
+
 </details>
 
 <details>
 	<summary>Visualforce Pages</summary>   
 	
+
+- **Standard Controllers**
+- **Standard List Controllers**
+- **Record Edit Page**
+- **Component Library**
+- **Custom Visualforce Components**
+- **Debugging Visualforce**
+- **Use Cases**
+
 ### Visualforce Pages
+
 - **Important Methods:**
   
 	- to add a related record's field name to a Visualforce page 
@@ -828,7 +858,13 @@ development be considered.
 </details> 
 
 <details>
-	<summary>Visualforce Controllers</summary>   
+	<summary>Visualforce Controllers</summary>
+	
+- **Basic Controller**
+- **Controller Methods**
+- **Dynamic Expressions**
+- **Standard Controller Extensions**
+- **Controller Test Coverage**
 	
 ### Visualforce Controllers
 - **Standard Controllers**
@@ -844,6 +880,15 @@ development be considered.
 
 <details>
 	<summary>Lightning Web Components</summary>   
+	
+- **Basic Component**
+- **LWC Framework**
+- **Component Composition**
+- **Events**
+- **Lightning Base Components**
+- **Salesforce Data**
+- **Lightning Message Service**
+- **Use Cases**
 	
 ### Lightning Web Components
 
@@ -903,6 +948,13 @@ documentation/en/lwc/lwc.create_components_html_file)
 
 <details>
 	<summary>Lightning Aura Components</summary>   
+
+- **LWC vs Aura Components**
+- **Aura Component Framework**
+- **Basic Aura Component**
+- **Events**
+- **Using LWC with Aura**
+- **Aura Component Use Cases**
 	
 ### Lightning Aura Components
 
