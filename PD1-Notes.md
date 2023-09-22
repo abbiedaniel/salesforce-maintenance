@@ -359,14 +359,6 @@ development be considered.
   - Control triggers with declarative functionality.
   	- Allow admins to access custom metadata or custom settings that  can turn triggers on/off.
 </details>
-<details>
-	<summary><b>TO DO: Trigger Exceptions</b></summary>
-	
-- **TO DO: Trigger Exceptions** 
-	- https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_exceptions.htm
-	- ```object_record.addError( 'Text to display to the user!' );```  can be used in an Apex trigger and display on the record save operation 
-
-</details>
 
 <details>
 	<summary>Invokable Apex</summary>
@@ -731,11 +723,18 @@ development be considered.
 
 </details>
 
+<details>
+	<summary><b>TO DO: Trigger Exceptions</b></summary>
+	
+- **TO DO: Trigger Exceptions** 
+	- https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_exceptions.htm
+	- ```object_record.addError( 'Text to display to the user!' );```  can be used in an Apex trigger and display on the record save operation 
+
+</details>
+
 
 <details>
 	<summary><b>TO DO: Testing Asynchronous Apex</b></summary>
-
-	
 
  </details>
 
