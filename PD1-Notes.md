@@ -821,22 +821,24 @@ development be considered.
 
 <br>
 
-## TO DO: User Interface - 25%
+## User Interface - 25%
 
 <details>
-	<summary>Extending Declarative Functionality</summary>   
+	<summary><b>TO DO: Extending Declarative Functionality</b>b></summary>   
 
 - **Invocable Methods**
+  
 - **Invocable Variables**
 - **Apex-Defined Types**
 
 </details>
 
 <details>
-	<summary>Visualforce Pages</summary>   
+	<summary><b>TO DO: Visualforce Pages</b></summary>   
 	
 
 - **Standard Controllers**
+  
 - **Standard List Controllers**
 - **Record Edit Page**
 - **Component Library**
@@ -858,9 +860,10 @@ development be considered.
 </details> 
 
 <details>
-	<summary>Visualforce Controllers</summary>
+	<summary><b>TO DO: Visualforce Controllers</b></summary>
 	
 - **Basic Controller**
+  
 - **Controller Methods**
 - **Dynamic Expressions**
 - **Standard Controller Extensions**
@@ -879,9 +882,10 @@ development be considered.
 </details>    
 
 <details>
-	<summary>Lightning Web Components</summary>   
+	<summary><b>TO DO: Lightning Web Components</b></summary>   
 	
 - **Basic Component**
+  
 - **LWC Framework**
 - **Component Composition**
 - **Events**
@@ -947,9 +951,10 @@ documentation/en/lwc/lwc.create_components_html_file)
 </details>
 
 <details>
-	<summary>Lightning Aura Components</summary>   
+	<summary><b>TO DO: Lightning Aura Components</b></summary>   
 
 - **LWC vs Aura Components**
+  
 - **Aura Component Framework**
 - **Basic Aura Component**
 - **Events**
