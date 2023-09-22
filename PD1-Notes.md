@@ -360,7 +360,7 @@
 - **Reasons to Program Asynchronously**
   - Processing a very large number of records. Limits are larger for asynchronous than synchronous processes
   - Making Callouts to external web services
-  - Create better faster user experience
+  - Create better, faster user experience
   - Future methods, Batch Apex, Queueable Apex, Scheduled Apex
 
 - **Future Methods**
@@ -374,7 +374,7 @@
    } 
    ```
   - Limitations:
-  	- Parameters must be primitive data types. You cannot pass sObjects as parameters to future methods
+  	- Parameters must be primitive data types. **You cannot pass sObjects as parameters to future methods**
    	- No execution tracking and no jobId
     	- You cannot chain future methods and have one call another.
      	- Max invocations for 24 hrs: 250k
@@ -407,7 +407,7 @@
    	- Jobs are queued and subject to server availability
 
 - **Queueable Apex**
-	- Syntax
+	- Declaration Syntax
   		 ```apex
    		public class QueueableClass implements Queueable {
      			public void execute (QueueableContext context){
@@ -416,6 +416,10 @@
      			}
      		}
   		 ```
+        - To add class as a job and queue job
+        ```apex
+        ID jobID = System.enqueueJob(new QueueableClass());
+        ```  
  	- Benefits:
   		- Accepts non-primitive types as parameters
  		- Monitoring - Job Id is returned to identify the job and monitor the progress
@@ -429,14 +433,15 @@
  	}
 
  	// to execute class: instantiate the schedulable class
- 	system.schedule('
+ 	String jobID = System.schedule('Job Title' , scheduledDateTime, new ScheduledJob() );
+
 
  	
  	```
   	- Max: 100 scheduled apex jobs at a time
   	- Use Apex Scheduler: search apex classes in setup and click Schedule Apex
   		- Weekly or monthly basis 
-     	- Use the ```System.schedule('Job Title' , scheduleDate, new ScheduledJob() );``` method within apex
+     	- Use the `````` method within apex
 </details>	
  
 <details>
