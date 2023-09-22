@@ -464,9 +464,10 @@ development be considered.
  	String jobID = System.schedule('Job Title' , scheduledDateTime, new ScheduledJob() );
  	```
   	- Max: 100 scheduled apex jobs at a time
-  	- Use Apex Scheduler: search apex classes in setup and click Schedule Apex
-  		- Weekly or monthly basis 
-     	- Use the ```System.schedule``` method within apex
+  	- To Schedule the job:
+  		- Use Apex Scheduler: search apex classes in setup and click Schedule Apex
+  			- Weekly or monthly basis 
+     		- Use the ```System.schedule``` method within apex
 </details>	
  
 <details>
@@ -637,6 +638,7 @@ development be considered.
   		- APIs (fire) 
   - Subscribe to Platform Events Only:
   	- Lightning Web Components (subscribe)
+   		- use lightning-emp-api to subscribe to any type of platform event published
 
   - Publish Behavior:
   	- Publish After Commit: don't want event to fire if Apex fails
@@ -870,7 +872,10 @@ development be considered.
 lightning.meta/lightning/data_service.htm) 
   
 - **HTML Specs**
+- The LWC framework follows the HTML specification for how it expects HTML to be written within component templates. This means that for any components that aren’t base HTML tags, it is required that no component tags are self-closing (i.e., there is always an explicit closing tag).
 	- picklists: ```<lightning-combobox> </lightning-combobox>```
+ 	- (https://developer.salesforce.com/docs/componentlibrary/
+documentation/en/lwc/lwc.create_components_html_file) 
    
  - **Best Practices**
  	- All event names must not use uppercase letters, have no spaces and use underscores to separate words
