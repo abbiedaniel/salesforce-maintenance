@@ -69,7 +69,7 @@
 </details>
 
 <details>
-	<summary>Declarative Process & Automation</summary>
+	<summary>EXPAND: Declarative Process & Automation</summary>
 
 - **Flows**
   - Screen
@@ -80,8 +80,12 @@
     -  Actions & Related Records: after the record is saved
   - Platform Event-Trigger
   - Autolaunched
+</details>
 
- - **Save Order of Execution**
+<details>
+	<summary>Save Order of Execution</summary>
+ <br>
+
   1. System Validation
   2. Before Save Flows
   3. Before Triggers
@@ -97,7 +101,8 @@
   13. Flow Automation
   14. After Save Flows
   15. Commit all DML operations to the database
-      - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_order_of_execution.htm
+      
+  - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_order_of_execution.htm
 
 </details>
 
@@ -356,21 +361,24 @@
   - Processing a very large number of records. Limits are larger for asynchronous than synchronous processes
   - Making Callouts to external web services
   - Create better faster user experience
+  - Future methods, Batch Apex, Queueable Apex, Scheduled Apex
 
 - **Future Methods**
   - Syntax
   	- must include ```@future static void```  
   ```apex
-   @future
+   @future (callout=true) // to use APIs
    static void myFutureMethod (Set<Id> ids){
   	// query for records using Salesforce Ids
   	// loop through records and perform logic
    } 
    ```
   - Limitations:
-  	- Parameters must be primitive data types. You cannot pass objects as parameters to future methods
+  	- Parameters must be primitive data types. You cannot pass sObjects as parameters to future methods
    	- No execution tracking and no jobId
     	- You cannot chain future methods and have one call another.
+     	- Max invocations for 24 hrs: 250k
+     - Benefits: if you want to separate transactions in apex due to cpu usage or governor limits
 
 - **Batch Apex Class**
   - Syntax
@@ -413,9 +421,22 @@
  		- Monitoring - Job Id is returned to identify the job and monitor the progress
   		- Chaining Jobs - You can chain one job to another job by starting a second job from a running job. This can be useful for sequential processing.
 
-- **Apex Scheduled Job**
-  	- Use Apex Scheduler
-     	- Use the ```System.schedule()``` method within apex
+- **Scheduled Apex**
+  	- Syntax:
+	```apex
+ 	global class ScheduledJob implements Schedulable {
+ 		global void execute(Schedulable Context SC){}
+ 	}
+
+ 	// to execute class: instantiate the schedulable class
+ 	system.schedule('
+
+ 	
+ 	```
+  	- Max: 100 scheduled apex jobs at a time
+  	- Use Apex Scheduler: search apex classes in setup and click Schedule Apex
+  		- Weekly or monthly basis 
+     	- Use the ```System.schedule('Job Title' , scheduleDate, new ScheduledJob() );``` method within apex
 </details>	
  
 <details>
@@ -542,7 +563,7 @@
     </details>
 
 <details>
-	<summary>Apex Security & Sharing</summary>
+	<summary>TO DO: Apex Security & Sharing</summary>
 	
 
 - **Important Methods**
@@ -579,18 +600,23 @@
   - Inserting platform event records (from a Flow, Apex, Process Builder) fires the event
   - Any automation listening to the event will run upon platform event insertions
   - Custom fields can be added to platform events
+  - Turn on debug logs for an automated process entity to debug platform events & triggers/flows
     
-  - Subscribe and Fire Platform Events:
-  	- Apex Triggers (can fire and subscribe)
-  	- Flows (can fire and subscribe)
- 	- Process Builder (can fire and subscribe) 
-  - Fire Platform Events Only:
-  	- Apex (fire)
-  	- APIs (fire) 
+
+- **Subscribe & Publish Platform Events**
+   - Subscribe and Fire Platform Events:
+  		- Apex Triggers (can fire and subscribe)
+   			- subscribe: create an after insert trigger on the platform event object and use ```for (Platform_Event_Name__e event : Trigger.new)``` to create logic to run for each event
+     			- publish: in a trigger handler class, instantiate the platform event and use ```EventBus.publish(eventName);``` 
+  		- Flows (can fire and subscribe)
+   			- subscribe: create an auto-launch flow and create records based on the platform event object
+ 		- Process Builder (can fire and subscribe) 
+   - Fire Platform Events Only:
+  		- Apex (fire)
+  		- APIs (fire) 
   - Subscribe to Platform Events Only:
   	- Lightning Web Components (subscribe)
 
-- **Subscribe & Publish Platform Events**
   - Publish Behavior:
   	- Publish After Commit: don't want event to fire if Apex fails
    	- Publish Immediately: the event will fire immediately even if Apex fails
@@ -599,15 +625,7 @@
 
 <br>
 
-## TO DO: Testing, Debugging & Deployments - 22%
-
-<details>
-	<summary>TO DO: Code Coverage</summary>
- - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_code_coverage_best_pract.htm
-- https://help.salesforce.com/s/articleView?id=000385650&type=1
-- When doing a deployment into production, there must be an average of 75% code coverage for all Apex code within the org. Alongside this, Apex triggers being deployed must have at least 1 line being covered (i.e. they must have been called by at least one test class). When running deployments, there is the option to run a subset of tests which changes the code coverage behaviour. When running the default testing mode, all tests are executed and the total coverage in an org must meet 75%. However, when running a specified set of tests, every item in the deployment must average 75% instead.
-
-</details>
+## Testing, Debugging & Deployments - 22%
 
 <details>
 	<summary>Test Classes</summary>
@@ -669,9 +687,21 @@
 
 </details>
 
+<details>
+	<summary>TO DO: Code Coverage</summary>
+ - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_code_coverage_best_pract.htm
+- https://help.salesforce.com/s/articleView?id=000385650&type=1
+- When doing a deployment into production, there must be an average of 75% code coverage for all Apex code within the org. Alongside this, Apex triggers being deployed must have at least 1 line being covered (i.e. they must have been called by at least one test class). When running deployments, there is the option to run a subset of tests which changes the code coverage behaviour. When running the default testing mode, all tests are executed and the total coverage in an org must meet 75%. However, when running a specified set of tests, every item in the deployment must average 75% instead.
+
+</details>
+
 
 <details>
-	<summary>Execution Log</summary>
+	<summary>TO DO: Deployments</summary>
+ </details>
+ 
+<details>
+	<summary>EXPAND: Execution Log</summary>
 
 - **Execution Log**
   - EXECUTION_STARTED - first line in the execution log marks the execution started event
@@ -698,7 +728,7 @@
 
 
 <details>
-	<summary>Common Errors</summary>
+	<summary>EXPAND: Common Errors</summary>
 
 - ```List has no rows for assignment to sObject``` - running a query which returns no rows
 - ```Index 0 is out of bounds``` - attempting to access value at index 0 when there is no data
