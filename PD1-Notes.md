@@ -680,7 +680,7 @@ development be considered.
  
 - **Test Class Syntax**
   ```apex
-  @IsTest
+  @IsTest (SeeAllData = true)
   global class MyTest {
 
   	@testSetup
@@ -700,6 +700,9 @@ development be considered.
   
   		// actions to test could be a DML statement
   		update testAccount;
+
+  		// for queueable apex testing:
+  		System.enqueuJob(new QueueableClass());
   
   		Test.stopTest();
 
@@ -777,6 +780,8 @@ development be considered.
 
 <details>
 	<summary><b>TO DO: Testing Asynchronous Apex</b></summary>
+
+ 
 
  </details>
 
