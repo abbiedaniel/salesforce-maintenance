@@ -657,25 +657,67 @@ development be considered.
 - **Purpose**
 	- Used to determine whether a piece of code is behaving exactly as it was intended to.
  	- Three Parts to Testing: 
- 		- Setup: preparing data and the runtime environment for your testing scenario
-  		- Execution: executing the code you wish to test
-  		- Validation: verifying the results of the executed test against the expected results
+ 		- **Setup**: preparing data and the runtime environment for your testing scenario. 
+  		- **Execution**: executing the code you wish to test
+  		- **Validation**: verifying the results of the executed test against the expected results
     - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_qs_test.htm  
 
 - **Best Practices**
   
-	- Create a class specifically to create data for test methods aka Test data factory class
- 	- Add a ```@TestSetup``` annotated method to the class. This method is called before any tests are run and allows the test records to be created before the tests themselves are run.
-  	- Use ```@TestVisible``` for private methods that need to be visible for a test
+	- Do not access live data in your org in tests. 
+ 	- Create a class specifically to create data for test methods aka Test data factory class
+ 		- Add a ```@testSetup``` annotated method to the class. This method is called before any tests are run and allows the test records to be created before the tests themselves are run.
   	- Use ```@IsTest``` for all test classes
+  		- Use ```@TestVisible``` for private methods that need to be visible for a test 
   	- Use the ```runAs``` method to test your application in different user contexts.
   	- Use ```System.assert``` methods to prove that code behaves properly.
- 
+  	 
 - **Methods**
 	- ```Test.startTest()``` use method before executing the code we wish, to test to assign that block of code a new set of governor limits.
  	- ```Test.stopTest()``` use once we’ve finished our execution and are ready to validate our results
   	- Asynchronous Apex: If we are testing asynchronous apex (e.g. a batch class), since the code gets flagged to run at an unknown future date, we would not be able to write tests for any asynchronous methods.
-  		- Instead by wrapping the code execution in Test.startTest() and Test.stopTest(), when the stopTest method is called, the async code is executed and so we can test the results of the execution within our test class. 
+  		- Instead by wrapping the code execution in ```Test.startTest()``` and ```Test.stopTest()```, when the stopTest method is called, the async code is executed and so we can test the results of the execution within our test class.
+ 
+- **Test Class Syntax**
+  ```apex
+  @IsTest
+  global class MyTest {
+
+  	@testSetup
+	global static void testSetup(){
+  		Account testAccounts = new Account(Name = 'Test Name');
+  		// initialize accounts with data using a loop
+  		insert testAccounts;
+  	}
+  
+
+  	@isTest
+  	global static void mytestMethod(){
+  		// query for the record
+  		testAccount = [ SELECT Id, Name From Account, LIMIT 1 ];
+
+  		Test.startTest();
+  
+  		// actions to test could be a DML statement
+  		update testAccount;
+  
+  		Test.stopTest();
+
+  		// query for most up-to-date record and values
+  		updatedTestAccount = [ SELECT Id, Name From Account, where ID =: testAccount.Id ];
+  
+  		System.assert( boolean condition );
+  		System.assertEquals( variable1, variable2 );
+  	}
+
+  	// you can use testMethod type instead of @isTest
+  	static testMethod void mytestMethod(){
+  	}
+  
+  }
+  
+  ```
+
   
 </details>
 
@@ -744,9 +786,11 @@ development be considered.
 - **Requirements**
   
 	 - Average of 75% code coverage for all apex code to be deployed to production
+  	- Code Coverage = Total number of lines that successfully execute / Total number of lines of code 
 	 - Apex triggers being deployed must have at least 1 line being covered (i.e. they must have been called by at least one test class)
   	- Run Specified Set of Tests during deployment: every item in the deployment must average 75% instead.
   	- Run All Tests during deployment: all tests are executed and the total coverage in an org must meet 75%
+  	- Your goal should be 100% coverage
   	- [Best Practices](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_code_coverage_best_pract.htm)
 
 </details>
@@ -798,6 +842,10 @@ development be considered.
   		- Assignment rules
   		- Approval processes
   		- Validation rules
+      
+- **Developer Console Test Tab**
+ 	- Test Table: displays status, test run class/method, enqueued time, duration, failures, and total
+   	- Overall Code Coverage Table: displays clickable class name, code coverage percentage, and # of lines covered/ # of total lines
       
 - **Common Errors**
 
