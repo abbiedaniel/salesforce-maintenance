@@ -838,9 +838,9 @@ development be considered.
 	<summary>Execution Log</summary>
 
 - **Execution Log**
-  - EXECUTION_STARTED - first line in the execution log marks the execution started event
-  - EXECUTION_FINISHED - last line is the execution finished event. Everything in between is the execution context
-  - CODE_UNIT_STARTED - event marks when the code from the Execute Anonymous window was kicked off
+  - ```EXECUTION_STARTED``` - first line in the execution log marks the execution started event
+  - ```EXECUTION_FINISHED``` - last line is the execution finished event. Everything in between is the execution context
+  - ```CODE_UNIT_STARTED``` - event marks when the code from the Execute Anonymous window was kicked off
     
 - **Log Inspector**
 	- Logging Levels: None, Error, Warn, Info, Debug, Fine, Finer, Finest
