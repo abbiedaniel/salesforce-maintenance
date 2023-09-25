@@ -917,8 +917,6 @@ development be considered.
     - Identifies a class variable used as an input or output parameter for an invocable method's invocable action.
     - Use the action element in a flow and search for the invocable method. The invocable variable names will display at the bottom.
      
-
-  
 - **Apex-Defined Data Type**
 	- Apex classes can be used in flows as the data type for a flow variable/resource
  	- Apex class must have a no-parameter constructor
@@ -929,30 +927,131 @@ development be considered.
 </details>
 
 <details>
-	<summary><b>TO DO: Visualforce Pages</b></summary>   
-	
+	<summary>Visualforce Pages</summary>   	
 
-- **Standard Controllers**
+- **Visualforce Basics**
   
-- **Standard List Controllers**
-- **Record Edit Page**
-- **Component Library**
-- **Custom Visualforce Components**
-- **Debugging Visualforce**
-- **Use Cases**
+  	- Created before lightning experience, compatible with classic
+  	- Page files end in ```.vfp```
+  		- ```apex:page``` header is required
+  	 	- Enable override option button in object setup     
+	- Component files ends in ```.vfc```
+ 		- ```apex:component``` header is required
+  	
+- **Standard Controller**
+  ```apex
+  <apex:page standardController = "Object" lightningStylesheets = "true">
+  // allows access to standard controller methods and fields
+  // lightningStylesheets renders page similar to lightning experience display, without it, it looks like salesforce classic
+        
+  	<apex:form>
+  	// allows user to input data to the page
+        
+  		<apex:pageBlock title = "Page Block Title" mode = "edit">
+  		// set page block title and mode
+        
+  			<apex:pageBlockButtons>
+  			// display a page block button
+  
+  				<apex:commandsButton action = " {!save}" value = "Save" />
+  				// create save button and close tag
+            
+  			</apex:pageBlockButtons>
+        
+  			<apex:pageBlockSection title = "Section Title" columns = "2">
+				// create page block section and title with 2 columns
+        
+  				<apex:inputField value = "{!objectName.fieldName}" />
+  				// reference objects and fields using {! }
 
-### Visualforce Pages
+        
+  			</apex:pageBlockSection>
+ 			 </apex:pageBlock>
+		</apex:form>
+	</apex:page>
+	``` 
+
+
+- **Standard List Controller**
+  
+```apex
+<apex:page standardController = "Object Name" recordsSetVar = "object_variable" >
+// list controllers must set the recordsSetVar variable
+// object_variable represents the list of objects
+
+	<apex:form>
+	// apex:commandButton needs to be in an apex:form
+
+ 
+		<apex:pageBlock>
+			<apex:pageBlockTable value = "{!object_variable}" var = "single_element">
+			// displays data in a table format
+			// value = list, var = element in the list
+
+				<apex:column value = "{!single_element.field}"/>
+				// display field as a column in the table
+
+			</apex:pageBlockTable>
+
+			<apex:blockButtons>
+			// display previous and next buttons since List Controller only returns the first 20 elements
+
+				<apex:commandButton action = "{!previous} value = "Previous"/>
+				<apex:commandButton action = "{!next} value = "Next"/>
+
+			</apex:blockButtons>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>
+```
+
+- **Custom Visualforce Components**
+	- ```WelcomeMessage.vfc```
+	```apex
+	<apex:component>
+		<apex:attribute name = "User's Name" type = "String" description = "The name of the user we are welcoming." />
+		Welcome {!name} to Salesforce CRM!
+	</apex:component>
+	```
+    
+ 	- To use in a visualforce controller
+    	```apex
+     	<c:WelcomeMessage name = "Abbie" />
+     	```
+
+- **Debugging Visualforce Tips**
+	- Development mode in user setup allows you to directly view and edit visualforce pages
+ 	- View State: holds state and size of visualforce components and controllers
+  		- Max Visualforce View State Size: 170KB
+    	- Order of Execution
+     		1. Custom controller and controller extension constructors are called
+       		2. Custom components are created and associated constructors are executed. Attributes with expressions are evaluated after constructors. 
+       		3. Any ```assignTo``` attributes on the page's custom components is executed
+         	4. ```apex:form``` is saved to the view state
+          	5. HTML is sent to the browser. The browser executes any client-side code.   
+   
+- **Use Cases**
+	- Build wizards and other multi-step processes
+ 	- Provide low-code solution to non-developers or junior developers
+  	- To create custom flow control through an application
+  	- Define navigation patterns and data-specific rules for optimal, efficient application interaction
+  	- Can add visualforce pages in lightning app builder/flexipage   
 
 - **Important Methods:**
-  
-	- to add a related record's field name to a Visualforce page 
+	- to add a related record's field name to a Visualforce page, use formula field syntax 
 		- Reference the object's fields using ```{!opportunity.Account.fieldName}``` in a standard controller
  	- to generate a simple PDF
  		- create a visualforce page with ```renderAs="pdf"```
    	- to add pagination to a page
-   		- The ```StandardSetController``` is designed to work with sets of records, and so provides built-in methods to enable a large set of records to be displayed on a Visualforce page, with methods to assist in pagination of the record list.
+   		- The ```StandardSetController``` is designed to work with sets of records, and provides built-in methods to enable a large set of records to be displayed on a Visualforce page, with methods to assist in pagination of the record list.
     
 </details> 
+
+
+
+
+
+
 
 <details>
 	<summary><b>TO DO: Visualforce Controllers</b></summary>
