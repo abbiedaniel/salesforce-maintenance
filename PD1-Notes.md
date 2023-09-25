@@ -1068,43 +1068,109 @@ development be considered.
 	- Apex Class: ```EditPageController.apxc```
    
  	```apex
-  	public Account account;
+	public Account[] account;
+  
+  	// getter and setter
+  	// use 'private set' to disable the setter
+  	public String searchText {get;set;}
+  
+
+  	// expanded getter method
+  	public String getSearchText(){
+  		return this.searchText;
+  	}
+  	
 
   	public EditPageController(){
-  
   		// gets account ID from URL
   		this.account = [SELECT Id, Name, AccountNumber
   				FROM Account
   				WHERE Id = :ApexPages.currentPage().getParameters().get('id')];
   	}
-
-  	// Getter 
-  	public Account getAccount(){
-  		return this.account;
   
-  	}
-
-  	// a simplier getter and setter method
-  	public Account account  (get;set;)
-
-	// getter method only when set is private
-  	public Account account  (get;private set;)
+	// controller method
+  	public PageReference doSearch(){}
   
   	```  
-  
 - **Controller Methods**
+```apex
+<apex:page>
+	<apex:form>
+	
+		<apex:pageBlock id="block">
+ 		// assigns page block an id
+	
+			<apex:inputText id = "searchText" value = "{!searchText}"/>
+			// assigns input text to searchText 
+
+			<apex:commandButton value = "Search" action = "{!doSearch}" reRender = "block"/>
+			// button runs the doSearch method, rerenders the page block titled "block"
+
+		</apex:pageBlock>
+	<apex:form>
+</apex:page>
+```
+
+
 - **Dynamic Expressions**
+
+```apex
+// dynamically decide to show results or not based on how many records are returned using a formula expression
+<apex:pageBlockTable> value = {!results} var = "r" rendered = {!NOT (ISNULL (results) )}" />
+```
+
 - **Standard Controller Extensions**
+  
+	- Apex Class: ```EditPageControllerExtension.apxc```
+
+ 	```apex
+	public class EditPageControllerExtension{
+
+		// need a constructor to take in a standardSetController
+		public AccountControllerExtension(ApexPages.StandardSetController stdSetController){}
+	}
+	```
+
+	- Visualforce Page: ```EditPageController.vfp```
+ 
+   	```apex
+    	<apex:page> standardController = "Account" extensions = "AccountControllerExtension" recordSetVar = "acounts"/>
+    	```
+  
 - **Controller Test Coverage**
-- **Standard Controllers**
+```apex
+// set the current page reference
+PageReference pageRef = Page.EditPageController;
+Test.setCurrentPage(pageRef);
+
+// start test
+Test.startTest();
+
+// instantiates controller
+ControllerPageController ctrl = EditPageController();
+
+// runs search action
+ctrl.searchText = "Test Account";
+ctrl.doSearch();
+
+// save search results
+Account[] results = ctrl.results;
+
+// stop test
+Test.stopTest();
+
+// verify expected results
+System.assertEquals(expected, actual);
+```
+
+- **Controller Characteristics**
   
     - Controllers can either be tied to a single record or a collection of records
     	- ```StandardController``` and ```StandardSetController``` 
     - Standard controllers exist for all custom and most standard objects
-    -  Field level and object level security is enforced by built-in actions
+    - Field level and object level security is enforced by built-in actions
     - Controller extensions can be built to define custom logic and actions to be performed within a controller while retaining the functionality of the standard controller.
    
-
 </details>    
 
 
