@@ -314,7 +314,7 @@ development be considered.
    - Classes can be used to create: 
   		- Trigger Handlers
    		- Controllers for LWC and Visualforce
-   		- Invokable methods for flows and process builder to call
+   		- Invocable methods for flows and process builder to call
    		- Web services methods for external services to call
 
 </details>
@@ -370,7 +370,7 @@ development be considered.
 </details>
 
 <details>
-	<summary>Invokable Apex</summary>
+	<summary>Invocable Apex</summary>
 	
 - **Methods of Invoking Apex**
   - Database Trigger, Anonymous Apex, Asynchronous Apex, Web Services, Email Services, Visualforce controllers and Lightning components   
