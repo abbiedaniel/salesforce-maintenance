@@ -1038,11 +1038,11 @@ development be considered.
   	- Can add visualforce pages in lightning app builder/flexipage   
 
 - **Important Methods:**
-	- to add a related record's field name to a Visualforce page, use formula field syntax 
+	- To add a related record's field name to a Visualforce page, use formula field syntax 
 		- Reference the object's fields using ```{!opportunity.Account.fieldName}``` in a standard controller
- 	- to generate a simple PDF
+ 	- To generate a simple PDF
  		- create a visualforce page with ```renderAs="pdf"```
-   	- to add pagination to a page
+   	- To add pagination to a page
    		- The ```StandardSetController``` is designed to work with sets of records, and provides built-in methods to enable a large set of records to be displayed on a Visualforce page, with methods to assist in pagination of the record list.
     
 </details> 
@@ -1050,20 +1050,52 @@ development be considered.
 
 
 
-
-
-
 <details>
-	<summary><b>TO DO: Visualforce Controllers</b></summary>
+	<summary>Visualforce Controllers</summary>
 	
 - **Basic Controller**
+  
+	- Visualforce Page: ```EditPage.vfp```
+   
+	```apex
+	<apex:page controller = "EditPageController">'
+ 
+ 	{ !account.Name }
+ 
+	</apex:page>
+	```
+
+	- Apex Class: ```EditPageController.apxc```
+   
+ 	```apex
+  	public Account account;
+
+  	public EditPageController(){
+  
+  		// gets account ID from URL
+  		this.account = [SELECT Id, Name, AccountNumber
+  				FROM Account
+  				WHERE Id = :ApexPages.currentPage().getParameters().get('id')];
+  	}
+
+  	// Getter 
+  	public Account getAccount(){
+  		return this.account;
+  
+  	}
+
+  	// a simplier getter and setter method
+  	public Account account  (get;set;)
+
+	// getter method only when set is private
+  	public Account account  (get;private set;)
+  
+  	```  
   
 - **Controller Methods**
 - **Dynamic Expressions**
 - **Standard Controller Extensions**
 - **Controller Test Coverage**
-	
-### Visualforce Controllers
 - **Standard Controllers**
   
     - Controllers can either be tied to a single record or a collection of records
@@ -1074,6 +1106,18 @@ development be considered.
    
 
 </details>    
+
+
+
+
+
+
+
+
+
+
+
+
 
 <details>
 	<summary><b>TO DO: Lightning Web Components</b></summary>   
