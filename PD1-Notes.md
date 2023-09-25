@@ -19,7 +19,7 @@
 
 - **Multi-tenant Environment Considerations:**
   - Unique URL for each environment
-  - (Governor limits)[https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_gov_limits.htm] on every user and every Salesforce org
+  - [Governor limits](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_gov_limits.htm) on every user and every Salesforce org
       - Data retrieval, creation and manipulation
       - API limits
 
