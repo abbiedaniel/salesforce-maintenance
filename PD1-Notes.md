@@ -58,7 +58,7 @@
       - Sharing Rules & Role Hierarchy
    
 - **Data Imports & Exports**
-- Best Practice for Importing: Match Salesforce ID or custom External ID field to a column in the imported file
+  - Best Practice for Importing: Match Salesforce ID or custom External ID field to a column in the imported file
   - Data Import Wizard
     - Standard Actions: add new records, update existing records, or both
     - Max: 50,000 records
@@ -285,12 +285,13 @@ development be considered.
   }
   ```
 - **Class Keywords**
-	- ```implements``` an interface
+	- ```implements``` an interface, which is a class in which none of the methods have been implemented. The method signatures are there, but the body of each method is empty. To use an interface, another class must implement it by providing a body for all of the methods contained in the interface.
  	- ```extends``` this class with the functionality of another class
   	  
 - **Interface Keywords**
-	- ```virtual```
- 	- ```abstract```   
+	- ```virtual``` makes it inheritable by any other class present in Salesforce that ```extends``` that class. Virtual methods can be defined in virtual or abstract classes
+ 	- ```abstract``` makes it inheritable by any other class present in Salesforce that ```extends``` that class. Abstract methods can only be defined in abstract classes.
+  		
 
 - **Sharing Keywords**
 	- ```with sharing``` enforce sharing rules of the current user.
@@ -308,11 +309,11 @@ development be considered.
   	- ```this.``` use with instance/non-static variables 
 
 -  **Class Capabilities**
-   - Can be used to create 
-  	- Trigger Handlers
-   	- Controllers for LWC and Visualforce
-   	- Invokable methods for flows and process builder to call
-   	- Web services methods for external services to call
+   - Classes can be used to create: 
+  		- Trigger Handlers
+   		- Controllers for LWC and Visualforce
+   		- Invokable methods for flows and process builder to call
+   		- Web services methods for external services to call
 
 </details>
 
@@ -382,9 +383,16 @@ development be considered.
 
 <details>
 	<summary>Asynchronous Apex</summary>
-    
+
+- **Asyncrhonous Apex**
+  
+	- Future methods (separate transaction)
+    - Batch Apex (large data processing)
+    - Queueable Apex (sequential processing)
+    - Scheduled Apex (scheduled processing)
+        
 - **Reasons to Program Asynchronously**
-  - Future methods (separate transaction), Batch Apex (large data processing), Queueable Apex (sequential processing), Scheduled Apex (scheduled processing)
+  
   - Processing a very large number of records. Limits are larger for asynchronous than synchronous processes
   - Making Callouts to external web services
   - Create a better, faster user experience
@@ -433,7 +441,6 @@ development be considered.
   	// batchSize minimum == 1
    	```
   	- Use this if you need to process a large number of records
-     	- Processes 200 records at a time?
       	- ```Database.Stateful``` instance variables of this class are preserved after each execute method call
       	  
   - Limitations:
@@ -528,22 +535,23 @@ development be considered.
 
 - **Salesforce Object Search Language (SOSL)**
 	- Syntax: return type list of list of sObjects
+   
   	```apex
    	FIND {Search Query Text} // this line is required // apex uses ' ', query editor uses {}
-   
-  	[ IN SearchGroup ]
-  	[ RETURNING FieldSpec [[ toLabel(fields) ] [ convertCurrency(Amount) ] [ FORMAT() ] ] ]
+   	[ IN SearchGroup ]
+   	[ RETURNING FieldSpec [[ toLabel(fields) ] [ convertCurrency(Amount) ] [ FORMAT() ] ] ]
    	[ WITH DivisionFilter ]
    	[ WITH DATA CATEGORY DataCategorySpec ]
-	[ WITH SNIPPET [ (target_length = n )] ]
+   	[ WITH SNIPPET [ (target_length = n )] ]
    	[ WITH NETWORK NetworkIdSpec ]
    	[ WITH PricebookId ]
    	[ WITH METADATA ]
    	[ LIMIT n ] //default is 2,000 rows that can be returned
-
+   
    	[ UPDATE [TRACKING], [VIEWSTAT] ] 
-    ```
+   	```
   	 - Example
+  	   
   	 ```apex
   	 FIND {Booz Allen Hamilton}
   	 IN NAME FIELDS
@@ -738,8 +746,7 @@ development be considered.
 <details>
 	<summary>Exception Handling</summary>
 	
-- **Exception Handling**
-	- Try/catch block
+- **Try/catch block**
   ```apex
   try {
   	// something you think could fail or error
@@ -756,13 +763,14 @@ development be considered.
 
   }
   ```
-	- Custom Exception Class: **class name must end with ```Exception```
+- **Custom Exception Class**
+	-  class name must end with ```Exception```
    
    ```apex
    public class AccountTriggerException extends Exception {}
    ```
     
-  - Custom Exception Method 
+- **Custom Exception Method** 
     
   ```apex
     public static void throwException(String message){
@@ -771,10 +779,12 @@ development be considered.
   }
   ```
   
-  - ```allorNone``` boolean: ```false``` allows partial success if an error is thrown. Instead of an exception being thrown when any record encounters an error during save, a ```List<Database.SaveResult>``` is returned instead of an exception being thrown.
+- ```allorNone``` **boolean:**
+	- ```false``` allows partial success if an error is thrown. Instead of an exception being thrown when any record encounters an error during save, a ```List<Database.SaveResult>``` is returned instead of an exception being thrown.
   ```apex
   Database.insert(recordToInsert, allOrNone, accessLevel);
-  // When we wish to configure the DML operation, or handle failed records, we must use the Database class methods.
+  // When we wish to configure the DML operation, or handle failed records,
+  // we must use the Database class methods.
   ```
 
 </details>
@@ -819,7 +829,7 @@ development be considered.
   	- Run Specified Set of Tests during deployment: every item in the deployment must average 75% instead.
   	- Run All Tests during deployment: all tests are executed and the total coverage in an org must meet 75%
   	- Your goal should be 100% coverage
-  	- [Best Practices](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_code_coverage_best_pract.htm)
+  - **[Best Practices](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_code_coverage_best_pract.htm)**
 
 </details>
 
@@ -896,8 +906,6 @@ development be considered.
 	<summary>Extending Declarative Functionality: Flows</summary>   
 
 - **Invocable Methods**
-  
-	- Syntax
    
    ```apex
     	@InvocableMethod( label = 'methodName' description = 'description' category = 'DML')
@@ -909,7 +917,7 @@ development be considered.
   - Use Case: Flows cannot upsert records. You can pass the flow records to an invocable apex method to do the upsert action. In the flow, use the action element and search your invocable method label name and category.
   
 - **Invocable Variables**
-	- Syntax
+
    	```apex
     	@InvocableVariable(required = true)
     ```
