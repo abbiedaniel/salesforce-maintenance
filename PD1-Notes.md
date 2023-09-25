@@ -821,29 +821,6 @@ development be considered.
 
 
 <details>
-	<summary><b>NEED REVIEW: Deployments</b></summary>
-
-- **Org Basics**
-- **Change Sets**
-	- Target & Source Pairs
- 		- Sandbox to Sandbox
-   		- Sandbox to Production Org
-     		* Org must be tied to a production instance to have change sets feature
-      - (https://help.salesforce.com/s/articleView?id=sf.deploy_connection_parent.htm&type=5)   
-- **Salesforce CLI**
-
-- **Deprecration**
-	- Apex Classes & Metadata
-
-   		- Apex classes and some other metadata cannot be directly deleted from production. While these pieces of metadata can be deleted within a Sandbox, changesets cannot upload these destructive changes.
-   			- Instead the Metadata API must be used. This could be with a tool such as ANT to produce a destructive changeset which is deployed into the org.
-   	 		- (https://developer.salesforce.com/docs/atlas.enus.api_meta.meta/api_meta/meta_deploy_deleting_files.htm)
-       - Fields
-       		- Remove all references of this field in the org before deleting
- 
- </details>
- 
-<details>
 	<summary>Execution Log</summary>
 
 - **Execution Log**
@@ -878,8 +855,27 @@ development be considered.
 
 </details> 
 
-<details>
-	<summary>Scratch Orgs</summary>
+ <details>
+	<summary><b>NEEDS REVIEW: Deployments</b></summary>
+
+- **Org Basics**
+- **Change Sets**
+	- Target & Source Pairs
+ 		- Sandbox to Sandbox
+   		- Sandbox to Production Org
+     		* Org must be tied to a production instance to have change sets feature
+      - (https://help.salesforce.com/s/articleView?id=sf.deploy_connection_parent.htm&type=5)   
+- **Salesforce CLI**
+
+- **Deprecration**
+	- Apex Classes & Metadata
+
+   		- Apex classes and some other metadata cannot be directly deleted from production. While these pieces of metadata can be deleted within a Sandbox, changesets cannot upload these destructive changes.
+   			- Instead the Metadata API must be used. This could be with a tool such as ANT to produce a destructive changeset which is deployed into the org.
+   	 		- (https://developer.salesforce.com/docs/atlas.enus.api_meta.meta/api_meta/meta_deploy_deleting_files.htm)
+       - Fields
+       		- Remove all references of this field in the org before deleting
+
 	
 - **Scratch Orgs**
   
