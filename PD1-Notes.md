@@ -1,6 +1,8 @@
 # Platform Developer 1 Notes
 
-:accessibility:  [Udemy Platform Developer 1 Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview) 
+:accessibility: [Exam Guide](https://trailhead.salesforce.com/help?article=Salesforce-Certified-Platform-Developer-I-Exam-Guide)
+
+:accessibility:  [Udemy Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview) 
 
 :accessibility:  [Practice Test](https://www.salesforceben.com/salesforce-platform-developer-1-practice-exams/)
 
