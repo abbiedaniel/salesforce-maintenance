@@ -69,7 +69,7 @@
   - Example: Moving analogous-Account, Contact, and Opportunity object records to a new Salesforce CRM and preserving relationships during data migration
   	- Solution:
    		- Add fields flagged as **external IDs** for each of the objects to be imported, populated with its legacy CRM ID
-     		- Use the Data Loader tool, and set the relationship fields to match these external IDs
+     	- Use the Data Loader tool, and set the relationship fields to match these external IDs
 
 </details>
 
@@ -135,6 +135,7 @@ development be considered.
   - Tab Order
   - Component Visibility
   - Components: Screen-flow, Chatter, Highlight Panel, List View, Path, Record Detail, Related Lists, Custom LWC, etc.
+  	- Add more here!!	 	
 
 </details>
 
@@ -368,8 +369,8 @@ development be considered.
 
 - **Anonymous Apex**
 	- Use the “Execute Anonymous” functionality of the Developer Console
- 	- Utilise the REST API “executeAnonymous” endpoint
-  	- Use the Salesforce CLI “force:apex:execute” command 
+ 	- Utilise the REST API ```executeAnonymous``` endpoint
+  	- Use the Salesforce CLI ```force:apex:execute``` command 
  
 </details>
     
@@ -818,7 +819,7 @@ development be considered.
 
 
 <details>
-	<summary><b>TO DO: Deployments</b></summary>
+	<summary><b>NEED REVIEW: Deployments</b></summary>
 
 - **Org Basics**
 - **Change Sets**
@@ -1180,7 +1181,7 @@ System.assertEquals(expected, actual);
 
 
 <details>
-	<summary>Lightning Web Components</summary>   
+	<summary><b>IN PROGRESS: Lightning Web Components</b></summary>   
 
 - **LWC Characteristics**
 	- LWCs use standard HTML and Javascript
