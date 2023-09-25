@@ -1,13 +1,12 @@
 # Platform Developer 1 Notes
 
+:accessibility:  [Udemy Platform Developer 1 Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview) 
 
-ℹ [Udemy Platform Developer 1 Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview) 
+:accessibility:  [Practice Test](https://www.salesforceben.com/salesforce-platform-developer-1-practice-exams/)
 
-ℹ [Practice Test](https://www.salesforceben.com/salesforce-platform-developer-1-practice-exams/)
+:accessibility:  [Apex Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_apex)
 
-ℹ [Apex Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_apex)
-
-ℹ [Lightning Web Component Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
+:accessibility:  [Lightning Web Component Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
 
 
 
