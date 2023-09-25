@@ -1,4 +1,4 @@
-# Platform Developer 1 Study Guide
+# Platform Developer 1 Notes
 
 :accessibility: [Exam Guide](https://trailhead.salesforce.com/help?article=Salesforce-Certified-Platform-Developer-I-Exam-Guide)
 
