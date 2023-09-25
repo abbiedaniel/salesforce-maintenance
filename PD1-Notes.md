@@ -378,11 +378,11 @@ development be considered.
 	<summary>Asynchronous Apex</summary>
     
 - **Reasons to Program Asynchronously**
+  - Future methods (separate transaction), Batch Apex (large data processing), Queueable Apex (sequential processing), Scheduled Apex (scheduled processing)
   - Processing a very large number of records. Limits are larger for asynchronous than synchronous processes
   - Making Callouts to external web services
   - Create a better, faster user experience
   - Queueable (sequential processing) > Future 
-  - Future methods (separate transaction), Batch Apex (large data processing), Queueable Apex (sequential processing), Scheduled Apex (scheduled processing)
   - Uses ```global``` or ```public``` access modifiers
 
 - **Future Methods**
@@ -684,7 +684,7 @@ development be considered.
   global class MyTest {
 
   	@testSetup
-	global static void testSetup(){
+		global static void testSetup(){
   		Account testAccounts = new Account(Name = 'Test Name');
   		// initialize accounts with data using a loop
   		insert testAccounts;
@@ -703,6 +703,11 @@ development be considered.
 
   		// for queueable apex testing:
   		System.enqueuJob(new QueueableClass());
+
+  		// for future methods testing:
+  		// for 
+
+  
   
   		Test.stopTest();
 
@@ -779,9 +784,15 @@ development be considered.
 
 
 <details>
-	<summary><b>TO DO: Testing Asynchronous Apex</b></summary>
+	<summary>Testing Asynchronous Apex</summary>
 
- 
+- Similar as any test class (needs Test.startTest & Test.stopTest()), but use specific methods for
+  
+	- Queueable Apex: ```System.enqueuJob(new QueueableClass());```
+  	- Batchable Apex: ```Database.executeBatch(new BatchableClass(), batchSize);```
+  	- Scheduled Apex: ```System.schedule('Job Title' , scheduledDateTime, new ScheduledJob() );```
+  	- Future Methods: call the future method between startTest and stopTest
+  	  
 
  </details>
 
