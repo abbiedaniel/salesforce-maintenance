@@ -834,7 +834,7 @@ development be considered.
   	- Run Specified Set of Tests during deployment: every item in the deployment must average 75% instead.
   	- Run All Tests during deployment: all tests are executed and the total coverage in an org must meet 75%
   	- Your goal should be 100% coverage
-- **[Best Practices](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_code_coverage_best_pract.htm)**
+- **[Best Practices](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_best_practices.htm)**
 
 </details>
 
