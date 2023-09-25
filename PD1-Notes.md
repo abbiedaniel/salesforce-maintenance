@@ -285,7 +285,7 @@ development be considered.
   }
   ```
 - **Class Keywords**
-	- ```implements``` an interface, which is a class in which none of the methods have been implemented. The method signatures are there, but the body of each method is empty. To use an interface, another class must implement it by providing a body for all of the methods contained in the interface.
+	- ```implements``` an ```interface```, which is a class in which none of the methods have been implemented. The method signatures are there, but the body of each method is empty. To use an interface, another class must implement it by providing a body for all of the methods contained in the interface.
  	- ```extends``` this class with the functionality of another class
   	  
 - **Interface Keywords**
