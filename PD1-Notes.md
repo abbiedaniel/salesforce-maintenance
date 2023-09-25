@@ -725,7 +725,6 @@ development be considered.
   }
   
   ```
-
   
 </details>
 
@@ -787,7 +786,6 @@ development be considered.
          		- If the trigger was spawned by a bulk DML call in the Lightning Platform API, the runtime engine sets aside the bad records and attempts to do a partial save of the records that did not generate errors. See Bulk DML Exception Handling.
            	- If a trigger ever throws an unhandled exception, all records are marked with an error and no further processing takes place.
            
-
 </details>
 
 
@@ -801,7 +799,6 @@ development be considered.
   	- Scheduled Apex: ```System.schedule('Job Title' , scheduledDateTime, new ScheduledJob() );```
   	- Future Methods: call the future method between startTest and stopTest
   	  
-
  </details>
 
 <details>
@@ -971,7 +968,6 @@ development be considered.
 	</apex:page>
 	``` 
 
-
 - **Standard List Controller**
   
 ```apex
@@ -1046,8 +1042,6 @@ development be considered.
    		- The ```StandardSetController``` is designed to work with sets of records, and provides built-in methods to enable a large set of records to be displayed on a Visualforce page, with methods to assist in pagination of the record list.
     
 </details> 
-
-
 
 
 <details>
@@ -1186,11 +1180,125 @@ System.assertEquals(expected, actual);
 
 
 <details>
-	<summary><b>TO DO: Lightning Web Components</b></summary>   
-	
+	<summary>Lightning Web Components</summary>   
+
+- **LWC Characteristics**
+	- LWCs use standard HTML and Javascript
+ 	- Dev tools needed for LWCs are VSCode and Salesforce Extension Pack
+  	- LWC can be used in Lightning Experience apps, Experiences, and Salesforce Mobile App
+  	- LWC requires all third-party resources, like Javascript and CSS, to be uploaded as Static Resources and loaded through the Platform Resource Loader
+  	- LWC require an HTML file, a JavaScript file and a Salesforce-specific JS-META.XML metadata file
+  	- LWC must be named in camelCase
+  	- Capabilities: Lists View, Related Lists, Lightning Record Form
+
+- **LWC Framework**
+	- Benefits:
+ 		- Lightweight for faster development
+ 		- Faster performance
+  		- Out-of-the-box components
+  		- Built upon web standards
+ 
+
 - **Basic Component**
   
-- **LWC Framework**
+	- JavaScript File: ```home.js```
+ 
+	```javascript
+	import {LightningElement} from 'lwc';
+
+	export default class Home extends LightningElement{
+
+ 		message = "Hello World"; 
+	}
+	```
+ 
+	- HTML File: ```home.html```
+   
+	```html
+	<template>
+ 		// to reference a custom component add c- with all lower case
+ 		// sets the custom component's message attribute to the message variable in the Home class
+ 		<c-custom-message> message={message}
+ 
+ 		<c-custom-message>
+	</template>
+	```
+ 
+  	 - Metadata file: ```home.js-meta.xml```
+  	   
+	```xml
+	<LightningComponentBundle xlmns = "salesforce soap metadata url">
+		<apiVersion> 55.0 </apiVersion>
+		<isExposed> true </isExposed> // allows the component to be visible in the lightning app builder
+
+		<targets>
+			<target> lightning__HomePage </tagets> // location on where the file can be used
+		</targets>
+	</LightningComponentBundle>
+	```
+ 
+ 	- Optional CSS File: ```home.css`
+    
+ 	```css
+  	.test{
+  		background-color: aliceblue;
+    	}
+  	```
+
+
+- **Component Composition**
+  
+	- Javascript file: ```customMessage.js```
+   
+   	```javascript
+	import {LightningElement, api} from 'lwc';
+
+	export default class customMessage extends LightningElement{
+
+ 		@api  // allows variables to pass in as an attribute
+    	message; // stores value from home page input and stores here
+	}
+	```
+
+
+	- HTML File: ```customMessage.html```
+
+	```html
+	<template>
+ 		// custom css and styling
+ 		// slds-box is a class from the lightning design system 
+ 		<div class = "slds-box" style="background-color: white;">
+ 
+ 			// creates a simple white box with the message inside
+ 			// referencing message variable in customMessage class
+ 			{message}
+ 		</div>
+	</template>
+	```
+ 
+ 	 - Metadata file: ```customMessage.js-meta.xml```
+ 
+	```xml
+	<LightningComponentBundle xlmns = "salesforce soap metadata url">
+		<apiVersion> 55.0 </apiVersion>
+		<isExposed> true </isExposed
+		// allows the component to be visible in the lightning app builder-->
+
+		<targets>
+			<target> lightning__HomePage </tagets>
+			// location on where the file can be used
+		</targets>
+	</LightningComponentBundle>
+	```
+ 
+	- Optional CSS File
+   
+	```css
+  	.test{
+ 		background-color: aliceblue;
+    	}
+  	```
+   
 - **Component Composition**
 - **Events**
 - **Lightning Base Components**
@@ -1198,25 +1306,7 @@ System.assertEquals(expected, actual);
 - **Lightning Message Service**
 - **Use Cases**
 	
-### Lightning Web Components
 
-- **Benefits of LWC Framework**
-	- Lightweight for faster development
- 	- Faster performance
-  	- Out-of-the-box components
-  	- Built upon web standards 
-
-- **Salesforce Environment for Lightning Components**
-  
-  - Lightning Experience
-  - Experiences
-  - Salesforce Mobile App
-
-- **LWC Development Tools**
-	- VSCode and Salesforce Extension Pack 
-
-- **Capabilities**
-	- Lightning Record Form 
 
 - **Lightning Data Service**
 	- When building components that work on individual records, the Lightning Data Service provides a performant and cached mechanism for loading and updating record data that gets propagated throughout all components utilizing the service.
@@ -1247,12 +1337,14 @@ documentation/en/lwc/lwc.create_components_html_file)
     	- We should follow the DOM event standard in the naming of our events, meaning no upper-case letters, no spaces, and underscores to separate words.
      	- https://developer.salesforce.com/docs/componentlibrary/documentation/en/lwc/lwc.events_create_dispatch
    
- - **Static Resources**
 
- 	- Lightning Components require all third-party resources to be uploaded as Static Resources and loaded through the Platform Resource Loader, however, Visualforce can reference external URLs.
-  	- Example: external resources like CSS or JavaScript 
 
 </details>
+
+
+
+
+
 
 <details>
 	<summary><b>TO DO: Lightning Aura Components</b></summary>   
