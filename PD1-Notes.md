@@ -478,9 +478,9 @@ development be considered.
 </details>	
  
 <details>
-	<summary>SOQL, SOSL & DML</summary>
+	<summary>DML, SOQL & SOSL</summary>
 	
- ### SOQL, SOSL & DML
+ ### DML, SOQL & SOSL
 
 - **DML**
   - Operations
@@ -489,7 +489,8 @@ development be considered.
     - ```delete```
     - ```undelete``` restores one or more existing sObject records from the recycling bin
     - ```merge``` merges up to three records of the same sObject type into one of the records, deletes the others, and re-parents any related records.
- - Best Practices
+      
+  - Best Practices
     - Always use DMLs with lists over single records
     - DML Governor's Limit: 150 per transaction
 
