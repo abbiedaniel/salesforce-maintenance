@@ -479,6 +479,8 @@ development be considered.
  
 <details>
 	<summary>SOQL, SOSL & DML</summary>
+	
+ ### SOQL, SOSL & DML
 
 - **DML**
   - Operations
@@ -582,6 +584,8 @@ development be considered.
 
 <details>
 	<summary>Governor Limits</summary> 
+
+ ### Governor Limits
 	
 - **Data Governor Limits**
 	- Per-Transaction Apex Limits
@@ -603,6 +607,8 @@ development be considered.
     
 <details>
 	<summary>Custom Metadata Types</summary>
+	
+ ### Metadata Types
 
 - **Characteristics**
   
@@ -622,6 +628,8 @@ development be considered.
   
 <details>
 	<summary>Platform Events</summary>
+
+ ### Platform Events
 
 - **Custom Platform Events**
   - Setup platform events in setup like custom objects
@@ -659,6 +667,8 @@ development be considered.
 
 <details>
 	<summary>Test Classes</summary>
+	
+ ### Test Classes
 
 - **Purpose**
 	- Used to determine whether a piece of code is behaving exactly as it was intended to.
@@ -736,6 +746,8 @@ development be considered.
 
 <details>
 	<summary>Exception Handling</summary>
+
+ ### Exception Handling
 	
 - **Exception Handling**
 	- Try/catch block
@@ -780,6 +792,8 @@ development be considered.
 
 <details>
 	<summary>Trigger Exceptions</summary>
+
+ ### Trigger Exceptions
 	
 - **addError**
   
@@ -797,6 +811,8 @@ development be considered.
 
 <details>
 	<summary>Testing Asynchronous Apex</summary>
+	
+### Testing Asynchronous Apex
 
 - Similar as any test class (needs Test.startTest & Test.stopTest()), but use specific methods for
   
@@ -809,6 +825,8 @@ development be considered.
 
 <details>
 	<summary>Code Coverage</summary>
+	
+### Code Coverage
 
 - **Requirements**
   
@@ -825,6 +843,8 @@ development be considered.
 
 <details>
 	<summary>Execution Log</summary>
+	
+### Execution Log
 
 - **Execution Log**
   - EXECUTION_STARTED - first line in the execution log marks the execution started event
@@ -860,6 +880,8 @@ development be considered.
 
  <details>
 	<summary><b>NEEDS REVIEW: Deployments</b></summary>
+
+### Deployments
 
 - **Org Basics**
 - **Change Sets**
@@ -926,7 +948,9 @@ development be considered.
 </details>
 
 <details>
-	<summary>Visualforce Pages</summary>   	
+	<summary>Visualforce Pages</summary>
+
+ ### Visualforce Pages
 
 - **Visualforce Basics**
   
@@ -1183,6 +1207,8 @@ System.assertEquals(expected, actual);
 
 <details>
 	<summary><b>IN PROGRESS: Lightning Web Components</b></summary>   
+	
+ ### Lightning Web Components
 
 - **LWC Characteristics**
 	- LWCs use standard HTML and Javascript
@@ -1349,7 +1375,9 @@ documentation/en/lwc/lwc.create_components_html_file)
 
 
 <details>
-	<summary><b>TO DO: Lightning Aura Components</b></summary>   
+	<summary><b>TO DO: Lightning Aura Components</b></summary>  
+
+### Lightning Aura Components
 
 - **LWC vs Aura Components**
   
@@ -1359,7 +1387,7 @@ documentation/en/lwc/lwc.create_components_html_file)
 - **Using LWC with Aura**
 - **Aura Component Use Cases**
 	
-### Lightning Aura Components
+
 
 - **Aura Enabled Important Methods & Signatures**
   
