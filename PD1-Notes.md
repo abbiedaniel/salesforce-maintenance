@@ -127,15 +127,15 @@ development be considered.
 	<summary>Layouts & Navigation</summary>
 
 - **Page Layout**
-  - Fields Visibility & Order for record type
+  - Fields visibility & order for record type
   - Related Lists
   - Quick Actions & Buttons
  
-- **Flexipage** 
+- **Lightning Pages** 
   - Tab Order
   - Component Visibility
-  - Components: Screen-flow, Chatter, Highlight Panel, List View, Path, Record Detail, Related Lists, Custom LWC, etc.
-  	- Add more here!!	 	
+  - Standard Lightning Page Components: Flow, List View, Visualforce, Chatter, Dashboard, Highlight Panel, Highlightd Panel, Recent Items, Record Detail, Path,  Related Lists, Custom LWC, etc.
+  		 	
 
 </details>
 
