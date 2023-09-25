@@ -8,7 +8,7 @@
 
 :accessibility:  [Lightning Web Component Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
 
-
+<br>
 
 ## Developer Fundamentals - 23%
 
