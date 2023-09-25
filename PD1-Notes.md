@@ -83,6 +83,9 @@
 <details>
 	<summary>Declarative Process & Automation</summary>
 
+
+ 
+
 - **Flows**
   - Screen
   - Schedule-Triggered
@@ -141,7 +144,7 @@ development be considered.
 - **Lightning Pages** 
   - Tab Order
   - Component Visibility
-  - Standard Lightning Page Components: Flow, List View, Visualforce, Chatter, Dashboard, Highlight Panel, Highlightd Panel, Recent Items, Record Detail, Path,  Related Lists, Custom LWC, etc.
+  - Standard Lightning Page Components: Flow, List View, Visualforce, Chatter, Dashboard, Highlight Panel, Highlights Panel, Recent Items, Record Detail, Path,  Related Lists, Custom LWC, etc.
   		 	
 
 </details>
@@ -177,7 +180,7 @@ development be considered.
   	- Can be declare at any point in a block
 
 - **Subclasses**
-	- Inner classes can have their own sharing modes declared, which don’t have to match that of the outer classes. This can be useful for nesting specific methods which require without sharing inside a class which has with sharing declared. 
+	- Inner classes can have their own sharing modes declared, which don’t have to match that of the outer classes. This can be useful for nesting specific methods that require ```without sharing``` inside a class that has ```with sharing``` declared. 
     
 </details>
 
@@ -314,7 +317,7 @@ development be considered.
    - Classes can be used to create: 
   		- Trigger Handlers
    		- Controllers for LWC and Visualforce
-   		- Invocable methods for flows and process builder to call
+   		- Invocable methods for flows and Process Builder to call
    		- Web services methods for external services to call
 
 </details>
@@ -386,7 +389,7 @@ development be considered.
 <details>
 	<summary>Asynchronous Apex</summary>
 
-- **Asyncrhonous Apex**
+- **Asynchronous Apex**
   
 	- Future methods (separate transaction)
     - Batch Apex (large data processing)
@@ -439,7 +442,7 @@ development be considered.
 	- To execute:
 	```apex
   	Database.executeBatch(new BatchableClass(), batchSize);
-  	// batchSize maximum == 2,000 records, if value is large salesforce automatically makes batch size 2,000
+  	// batchSize maximum == 2,000 records, if value is larger, salesforce automatically makes batch size 2,000
   	// batchSize minimum == 1
    	```
   	- Use this if you need to process a large number of records
@@ -454,8 +457,8 @@ development be considered.
   		 ```apex
    		public class QueueableClass implements Queueable {
      			public void execute (QueueableContext context){
-     				// loop through records
-     				// call another method for the callout
+     				// Loop through records
+     				// Call another method for the callout
      			}
      		}
   		 ```
@@ -637,7 +640,7 @@ development be considered.
 - **Custom Platform Events**
   - Setup platform events in setup like custom objects
   - ```__e``` suffix for API name
-  - Inserting platform event records (from a Flow, Apex, Process Builder) fires the event
+  - Inserting platform event records (from a Flow, Apex, or Process Builder) fires the event
   - Any automation listening to the event will run upon platform event insertions
   - Custom fields can be added to platform events
   - Turn on debug logs for an automated process entity to debug platform events & triggers/flows
@@ -646,7 +649,7 @@ development be considered.
 - **Subscribe & Publish Platform Events**
    - Subscribe and Fire Platform Events:
   		- Apex Triggers (can fire and subscribe)
-   			- subscribe: create an after insert trigger on the platform event object and use ```for (Platform_Event_Name__e event : Trigger.new)``` to create logic to run for each event
+   			- subscribe: create an ```after insert``` trigger on the platform event object and use ```for (Platform_Event_Name__e event : Trigger.new)``` to create logic to run for each event
      			- publish: in a trigger handler class, instantiate the platform event and use ```EventBus.publish(eventName);``` 
   		- Flows (can fire and subscribe)
    			- subscribe: create an auto-launch flow and create records based on the platform event object
@@ -656,7 +659,7 @@ development be considered.
   		- APIs (fire) 
   - Subscribe to Platform Events Only:
   	- Lightning Web Components (subscribe)
-   		- use lightning-emp-api to subscribe to any type of platform event published
+   		- use lightning-emp-API to subscribe to any type of platform event published
 
   - Publish Behavior:
   	- Publish After Commit: don't want event to fire if Apex fails
