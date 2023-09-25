@@ -774,11 +774,19 @@ development be considered.
 </details>
 
 <details>
-	<summary><b>TO DO: Trigger Exceptions</b></summary>
+	<summary>Trigger Exceptions</summary>
 	
-- **TO DO: Trigger Exceptions** 
-	- https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_exceptions.htm
-	- ```object_record.addError( 'Text to display to the user!' );```  can be used in an Apex trigger and display on the record save operation 
+- **addError**
+  
+ 	-  ```object_record.addError( 'Text to display to the user!' );``` 
+    
+  		- Triggers can be used to prevent DML operations from occurring by calling the addError() method on a record or field
+  		- When used on Trigger.new records in insert and update triggers, and on Trigger.old records in delete triggers, the custom error message is displayed in the application interface and logged.
+    		- When a subset of records are being processed:
+      			- If the trigger was spawned by a DML statement in Apex, any one error results in the entire operation rolling back. However, the runtime engine still processes every record in the operation to compile a comprehensive list of errors.
+         		- If the trigger was spawned by a bulk DML call in the Lightning Platform API, the runtime engine sets aside the bad records and attempts to do a partial save of the records that did not generate errors. See Bulk DML Exception Handling.
+           	- If a trigger ever throws an unhandled exception, all records are marked with an error and no further processing takes place.
+           
 
 </details>
 
