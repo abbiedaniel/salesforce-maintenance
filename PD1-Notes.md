@@ -874,29 +874,32 @@ development be considered.
 </details> 
 
  <details>
-	<summary><b>NEEDS REVIEW:</b> Deployments</summary>
+	<summary>Deployments</summary>
 
-- **Org Basics**
+- **Deployment Tools**
+	- VSCode and Salesforce Extension Pack: deploy and retrieve from orgs and write, debug, and refactor code
+ 	- Developer Console: create, debug, and test applications
+  	- Change Sets: deploy workflows, rules, Apex classes and triggers, and other customization from a sandbox org to your production org 
+ 	- Metadata API: retrieve, deploy, create, update or delete customization information, such as custom object definitions and page layouts, for your org. This API is intended for managing customizations and for building tools that can manage the metadata model, not the data itself.
+  	- Ant Migration Tool: perform a file-based deployment of metadata changes and Apex classes from a Developer Edition
+  
+
 - **Change Sets**
-	- Target & Source Pairs
- 		- Sandbox to Sandbox
-   		- Sandbox to Production Org
-     		* Org must be tied to a production instance to have change sets feature
-      - (https://help.salesforce.com/s/articleView?id=sf.deploy_connection_parent.htm&type=5)   
-- **Salesforce CLI**
+	- Deployment Connection: A deployment connection is required between two Salesforce orgs to send change sets from one org to another. You can’t create deployment connections between arbitrary orgs. Instead, you create connections between all orgs affiliated with a production org.
+ 	- Authorize inbound changes so that another Salesforce org can send change sets to the org you are logged into.
+  	- Tyoes: Inboard Change Sets and Outbound Change Sets  
+ 	- Target & Source Pairs: Sandbox to Sandbox OR Sandbox to Prod
 
 - **Deprecration**
 	- Apex Classes & Metadata
 
-   		- Apex classes and some other metadata cannot be directly deleted from production. While these pieces of metadata can be deleted within a Sandbox, changesets cannot upload these destructive changes.
-   			- Instead the Metadata API must be used. This could be with a tool such as ANT to produce a destructive changeset which is deployed into the org.
-   	 		- (https://developer.salesforce.com/docs/atlas.enus.api_meta.meta/api_meta/meta_deploy_deleting_files.htm)
+   		- Apex classes and some other metadata cannot be directly deleted from production. While these pieces of metadata can be deleted within a Sandbox, changesets cannot upload these destructive changes. The Metadata API must be used for deleting apex classes. This could be with a tool such as ANT to produce a destructive changeset which is deployed into the org.
+   	 		  
        - Fields
        		- Remove all references of this field in the org before deleting
 
 	
 - **Scratch Orgs**
-  
  	- Enable Dev Hub to allow scratch orgs to be created
    	- Have a user with permissions to create scratch orgs
    	- Have the Salesforce CLI setup to log into the dev hub and request scratch org creation
