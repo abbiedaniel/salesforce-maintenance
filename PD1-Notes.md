@@ -1197,7 +1197,6 @@ System.assertEquals(expected, actual);
 <details>
 	<summary><b>IN PROGRESS:</b> Lightning Web Components</summary>   
 	
- ### Lightning Web Components
 
 - **LWC Characteristics**
 	- LWCs use standard HTML and Javascript
@@ -1206,15 +1205,12 @@ System.assertEquals(expected, actual);
   	- LWC requires all third-party resources, like Javascript and CSS, to be uploaded as Static Resources and loaded through the Platform Resource Loader
   	- LWC require an HTML file, a JavaScript file and a Salesforce-specific JS-META.XML metadata file
   	- LWC must be named in camelCase
-  	- Capabilities: Lists View, Related Lists, Lightning Record Form
-
-- **LWC Framework**
-	- Benefits:
- 		- Lightweight for faster development
+  	- LWC Benefits:
+  		- Lightweight for faster development
  		- Faster performance
   		- Out-of-the-box components
-  		- Built upon web standards
- 
+  		- Built upon web standards 
+  
 
 - **Basic Component**
   
@@ -1229,19 +1225,25 @@ System.assertEquals(expected, actual);
 	}
 	```
  
+
+ 
 	- HTML File: ```home.html```
+ 		- how to pass the parameter ```message``` from the parent ```home.js``` into a child event ```customMessage.js```
    
 	```html
 	<template>
  		// to reference a custom component add c- with all lower case
- 		// sets the custom component's message attribute to the message variable in the Home class
+ 		// sets the custom component's message attribute to the message variable in the Home class 
+ 	
  		<c-custom-message> message={message}
  
- 		<c-custom-message>
+ 		</c-custom-message>
 	</template>
 	```
  
-  	 - Metadata file: ```home.js-meta.xml```
+
+ 
+  	 - Metadata File: ```home.js-meta.xml```
   	   
 	```xml
 	<LightningComponentBundle xlmns = "salesforce soap metadata url">
@@ -1254,7 +1256,9 @@ System.assertEquals(expected, actual);
 	</LightningComponentBundle>
 	```
  
- 	- Optional CSS File: ```home.css`
+
+ 
+ 	- Optional CSS File: ```home.css```
     
  	```css
   	.test{
@@ -1265,7 +1269,7 @@ System.assertEquals(expected, actual);
 
 - **Component Composition**
   
-	- Javascript file: ```customMessage.js```
+	- Javascript File: ```customMessage.js```
    
    	```javascript
 	import {LightningElement, api} from 'lwc';
@@ -1278,28 +1282,33 @@ System.assertEquals(expected, actual);
 	```
 
 
+ 
 	- HTML File: ```customMessage.html```
 
 	```html
 	<template>
+ 
  		// custom css and styling
  		// slds-box is a class from the lightning design system 
  		<div class = "slds-box" style="background-color: white;">
  
+ 			{message}
  			// creates a simple white box with the message inside
  			// referencing message variable in customMessage class
- 			{message}
+ 
  		</div>
 	</template>
 	```
+
+
  
- 	 - Metadata file: ```customMessage.js-meta.xml```
+ 	 - Metadata File: ```customMessage.js-meta.xml```
  
 	```xml
 	<LightningComponentBundle xlmns = "salesforce soap metadata url">
 		<apiVersion> 55.0 </apiVersion>
 		<isExposed> true </isExposed
-		// allows the component to be visible in the lightning app builder-->
+		<!-- allows the component to be visible in the lightning app builder -->
 
 		<targets>
 			<target> lightning__HomePage </tagets>
@@ -1307,23 +1316,103 @@ System.assertEquals(expected, actual);
 		</targets>
 	</LightningComponentBundle>
 	```
+
+
  
-	- Optional CSS File
+	- Optional CSS File: ```customMessage.css```
    
 	```css
   	.test{
  		background-color: aliceblue;
     	}
   	```
+
+
+
    
-- **Component Composition**
 - **Events**
+	- events can send message from child event ```customMessage``` to parent event  ```home```
+
+  - JavaScript File: ```customMessage.js``` 
+    
+  ```javascript
+  clickHandler(){
+
+  	// instantiates a new event using the CustomEvent class 
+  	const clickEvent = new CustomEvent(
+  
+  	// this is the event name
+  	'clicked',
+
+  		// parameters for the event.detail
+  		{
+  			detail: 'CLICKED!'
+  		}
+  	);
+  
+  	// dispatch event and passes to the home parent event
+  	this.dispatchEvent(clickEvent);
+  }
+
+  ```
+  
+	- HTML File: ```customMessage.html```
+   
+   ```html
+	<template>
+
+   		// when this div is clicked the clickHandler method is called and the clickEvent is dispatched to the parent 
+ 		<div class = "slds-box" style = "background-color: white;"
+   
+   
+   		onclick = {clickHandler}">
+   		// add onclick event 
+   		// add the clickHandler method as an attribute
+		
+ 			{message}
+ 		</div>
+	</template>
+	```
+
+	- HTML File: ```home.html```
+   
+	```html
+	<template>
+ 
+ 		// home is the parent event since it references customMessage 
+ 		<c-custom-message> message={message}
+ 				
+ 				onclicked = {handleClicked}
+ 				// reference event using 'on' and the event name, in this case, the 'clicked' event from customMessage.js
+ 
+ 		</c-custom-message>
+	</template>
+	```
+
+	- JavaScript File: ```home.js```
+ 
+	```javascript
+	import {LightningElement} from 'lwc';
+
+	export default class Home extends LightningElement{
+
+ 		message = "Hello World"; // default message
+
+ 		handleClicked(event){
+ 			// set  the message to be the event detail which is 'CLICKED!' from  customMessage.js
+ 			this.message = event.detail;
+ 		}
+	}
+	```
+
+<br>
+
 - **Lightning Base Components**
 - **Salesforce Data**
 - **Lightning Message Service**
 - **Use Cases**
 	
-
+ - Capabilities: Lightning Record Form
 
 - **Lightning Data Service**
 	- When building components that work on individual records, the Lightning Data Service provides a performant and cached mechanism for loading and updating record data that gets propagated throughout all components utilizing the service.
@@ -1340,7 +1429,7 @@ documentation/en/lwc/lwc.create_components_html_file)
  - **Best Practices**
  	- All event names must not use uppercase letters, have no spaces and use underscores to separate words
     
-  - **LWC Security**
+  - **LWC Security Best Practice**
   	- Sanitize any user input
    	- Add the ```WITH SECURITY_ENFORCED``` clause to the query to enforce permissions on the query, so if a query attempts to access a field or object the user doesn’t have access to, an exception is thrown.
     - Use bind variables for user input to ensure values are treated as values and not accidentally interpreted as extensions to a query.
