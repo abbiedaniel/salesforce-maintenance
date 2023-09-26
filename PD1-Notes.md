@@ -1463,42 +1463,101 @@ export default class Home extends LightningElement{
 </details>
 
 
-
-
-
-
 <details>
-	<summary><b>TO DO:</b> Lightning Aura Components</summary>  
+	<summary>Lightning Aura Components</summary>  
 
-### Lightning Aura Components
-
-- **LWC vs Aura Components**
-  
+- **LWC vs. Aura Components**
+	- Developed with HTML and Javascript
+ 	- Created with original lightning experience, more specialized for the Salesforce platform
+  	- Choose LWC over Aura Components
+  	- Case sensitive, variable references must be in quotes
+  	- LWC can be inside an Aura Component markup, but you cannot have an Aura component in an LWC markup
+     
 - **Aura Component Framework**
+  
+	- ```AuraComponent.auradoc``` documentation
+ 	- ```AuraComponent.cmp``` base page of the componet
+  	- ```AuraComponent.cmp-meta.xml``` Salesforce metadata file for offline development
+  	- ```AuraComponent.css``` standard styling sheet
+  	- ```AuraComponent.design``` design component is where we place our configurations to make the component available in different locations in salesforce
+  	- ```AuraComponent.svg```  icon component drawing
+  	- ```AuraComponentController.js``` main logic called from component
+  	- ```AuraComponentHelper.js``` helper methods called by controller
+  	- ```AuraComponentRenderer.js``` runs code and overrides basic rendering of component
+ 
 - **Basic Aura Component**
-- **Events**
-- **Using LWC with Aura**
-- **Aura Component Use Cases**
 	
+	- AuraComponent.cmp
+ 		- variables are stored in tags and methods are in the controller
+		```html
+
+		<aura:component implements = "flexipage:availableForAllPageTypes,force:hasRecordId" controller = "ApexControllerName">
+		// implements allows the component to be accessed in lightning pages
+  		// force:hasRecordId to display on a record page
+		// defines controller
+  		
+
+			// handler name is init
+			// parameter is this, must used "{! }"
+			// c.doInit references the controller's doInit method. This method runs when the component initializes/loads
+			<aura:handler name="init" value = "{!this}" action={!c.doInit}/>
+
+  			// create variables for controller
+  			<aura:attribute name = "recordId" type = "String"/>
+  			<aura:attribute name = "account" type = "Account"/>
+
+  			// from here add display components
+		</aura:component>
+		```
+
+	- AuraComponentController.js
+
+		```javascript
+		({
+			methodName : function(component, event, helper){
+  			
+				// get apex method from component
+				var action = component.get("c.methodName");
+
+  				// get parameters for apex method and set parameter as attribute
+				action.setParams({
+					"apexParameter" : component.get("v.recordId")
+				});
+
+				// this runs when the apex method is done running
+				action.setCallback(this, function(response){
+  
+  					// best practice is to get the state
+  					var state = response.getState();
+  
+  					if (state === 'SUCCESS'){
+  						// set the component attribute with the return value
+  						component.set("v.account", response.getReturnValue());
+	  				}
+
+ 				 });
+  				// run action 
+  				$A.enqueueAction(action);
+			}
+		})
+		```
+  
+- **Events**
+  
+	- Use events to communicate from child to parent event
+ 	- create two aura events ```.evt``` and two controllers ```.js``` for each event
+  	- Use ```event.setParams``` and ```event.fire``` on the child controller to pass the method parameters to the parent
+  	- Use ```component.set``` and ```component.get``` to initialize or retrieve the component
 
 
 - **Aura Enabled Important Methods & Signatures**
   
-	- ```@AuraEnabled(cacheable=true)``` improves the runtime performance of Lightning Components on the Aura Enabled apex methods that are frequently used in multiple LWCs by caching the result on the client side
-		- https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/controllers_server_apex_auraenabled_annotation.htm
+	- ```@AuraEnabled(cacheable=true)``` improves the runtime performance of Lightning Components on the Aura Enabled apex methods that are frequently used in multiple LWCs by caching the result on the client side [resource](https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/controllers_server_apex_auraenabled_annotation.htm)
    
-	 - ```Security.stripInaccessible(AccessType, sourceRecords)``` enforces the FLS of the current user by stripping anything which is not accessible in the defined context in @AuraEnabled methods 
- 		- https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_with_security_stripInaccessible.htm 
+	 - ```Security.stripInaccessible(AccessType, sourceRecords)``` enforces the FLS of the current user by stripping anything which is not accessible in the defined context in @AuraEnabled methods [resource](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_with_security_stripInaccessible.htm) 
 
-- ``` @AuraEnabled(cacheable=true) public static Object performAction()``` this method signature allows apex methods to  be used by the wire services
- 		- The Wire service is designed to provision a component with an immutable stream of data to a component that is ever updating. Because of this, the values returned by the Apex methods must be cached and so we must always annotate a method intended to be used by the Wire service with @AuraEnabled (cacheable = true).
-		- (https://developer.salesforce.com/docs/componentlibrary/
-documentation/en/lwc/data_wire_service_about) & (https://developer.salesforce.com/docs/componentlibrary/
-documentation/en/lwc/lwc.apex_wire_method) 
+	- ``` @AuraEnabled(cacheable=true) public static Object performAction()``` this method signature allows apex methods to  be used by the wire services. The Wire service is designed to provision a component with an immutable stream of data to a component that is ever updating. Because of this, the values returned by the Apex methods must be cached and so we must always annotate a method intended to be used by the Wire service with @AuraEnabled (cacheable = true) [resource](https://developer.salesforce.com/docs/componentlibrary/documentation/en/lwc/data_wire_service_about) & [more resources](https://developer.salesforce.com/docs/componentlibrary/documentation/en/lwc/lwc.apex_wire_method) 
 
-
-
-	 - ```setStorable()``` must be used if we wish for an Apex action to be cached within an Aura component, however there is no such requirement when we are working with LWCs.
- 		- https://developer.salesforce.com/docs/atlas.en-us.224.0.lightning.meta/lightning/ref_jsapi_action_setStorable.htm
+	 - ```setStorable()``` must be used if we wish for an Apex action to be cached within an Aura component, however there is no such requirement when we are working with LWCs. [resource]( https://developer.salesforce.com/docs/atlas.en-us.224.0.lightning.meta/lightning/ref_jsapi_action_setStorable.htm)
 </details>
 
