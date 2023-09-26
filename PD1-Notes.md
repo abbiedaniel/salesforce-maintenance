@@ -1199,6 +1199,7 @@ System.assertEquals(expected, actual);
 	
 
 - **LWC Characteristics**
+  
 	- LWCs use standard HTML and Javascript
  	- Dev tools needed for LWCs are VSCode and Salesforce Extension Pack
   	- LWC can be used in Lightning Experience apps, Experiences, and Salesforce Mobile App
@@ -1228,6 +1229,7 @@ System.assertEquals(expected, actual);
 
  
 	- HTML File: ```home.html```
+   
  		- how to pass the parameter ```message``` from the parent ```home.js``` into a child event ```customMessage.js```
    
 	```html
@@ -1266,6 +1268,7 @@ System.assertEquals(expected, actual);
     	}
   	```
 
+<br>
 
 - **Component Composition**
   
@@ -1328,9 +1331,11 @@ System.assertEquals(expected, actual);
   	```
 
 
+<br>
 
    
 - **Events**
+  
 	- events can send message from child event ```customMessage``` to parent event  ```home```
 
   - JavaScript File: ```customMessage.js``` 
@@ -1408,28 +1413,83 @@ System.assertEquals(expected, actual);
 <br>
 
 - **Lightning Base Components**
-- **Salesforce Data**
+  
+	- Helpful Components in  Lightning Component library
+ 	```html
+  	<lightning-button> </lightning-button>
+	<lightning-button-group> </lightning-button-group>
+	<lightning-datatable> </lightning-datatable>
+	<lightning-combobox> </lightning-combobox> // use this for picklists and dropdowns
+	<lightning-card> </ligthning-card> // puts text in a card format
+	<lightning-input> </lightning-input> // input field
+
+	import from 'lightning/empAPI' // provides access to methods for subscribing to a streaming channel and listening to event messages aka subscribe to platform events
+  ```
+
+
+- **Retrieve Salesforce Data**
+  
+	- Create Apex Controllers to retrieve data for LWC
+ 	- Apex Controller methods must be ```@AuraEnabled(cacheable = true)``` to be accessible for LWC. Cacheable is needed when you are retrieving records and you do not need it if you are inserting or updating records.
+  	- Import the apex aura enabled method in the LWC using ```import methodName from '@salesforce/apex/ControllerName.methodName';```
+  	- LWC must have ```import wire from 'lwc'``` to allow the javascript to interact with apex.
+  		- Use ```@wire(methodName, {methodParameters: '$api_variable_in_lwc'}) variable;``` to call the apex method and save the return value. 	```'$ api_variable_in_lwc'``` allows us to dynamically reference the variable.
+  
+  	   
+- **Create Salesforce Data**
+  
+	- Use the ```<lightning-input/>``` component and include your method in the ```onchange``` attribute. In the method, set the variable to display as ```event.target.value```
+ 	- Import the apex method and use a promise to handle an asynchronous result. And assumes it is true, if it is not true then handles it by catching an error
+  	  ```javascript
+  	  handleSave(){
+  	  	apexControllerMethod({ apexParameter : this.lwc_variable })
+  	  		.then( result => {
+  	  			// actions to run if the apexControllerMethod is run successfully and result is true
+  	  		})
+  	  		.catch( error => {
+  	  			// actions to run if apexControllerMethod errors out
+  	  		});
+  	  }
+  	  ``` 
+	- Add the LWC to the Lightning page using the Lightning App Builder
+   
 - **Lightning Message Service**
+	- Can be used to communicate across different components, on a lightning page, that are not necessarily related to each other.
+
+
+**HTML**
+	- Can use ```<tempalate if:true={methodThatReturnsBoolean}``` to only render if true.
+	- ```<template for:each={listName.data} for:item={elemnt}>``` to iterate HTML
+
+
 - **Use Cases**
-	
- - Capabilities: Lightning Record Form
+	 - Capabilities: Lightning Record Form
+
+
+## Non-Video Below
 
 - **Lightning Data Service**
+  
 	- When building components that work on individual records, the Lightning Data Service provides a performant and cached mechanism for loading and updating record data that gets propagated throughout all components utilizing the service.
  	- This offers advantages over performing Apex calls to achieve simple record data since it increases performance and allows changes in other areas of the UI (for example for the standard record details component) to propagate to other components.
    	- (https://developer.salesforce.com/docs/atlas.enus.
 lightning.meta/lightning/data_service.htm) 
   
 - **HTML Specs**
+  
 - The LWC framework follows the HTML specification for how it expects HTML to be written within component templates. This means that for any components that aren’t base HTML tags, it is required that no component tags are self-closing (i.e., there is always an explicit closing tag).
 	- picklists: ```<lightning-combobox> </lightning-combobox>```
  	- (https://developer.salesforce.com/docs/componentlibrary/
-documentation/en/lwc/lwc.create_components_html_file) 
+documentation/en/lwc/lwc.create_components_html_file)
+
+
    
  - **Best Practices**
+   
  	- All event names must not use uppercase letters, have no spaces and use underscores to separate words
     
   - **LWC Security Best Practice**
+    
   	- Sanitize any user input
    	- Add the ```WITH SECURITY_ENFORCED``` clause to the query to enforce permissions on the query, so if a query attempts to access a field or object the user doesn’t have access to, an exception is thrown.
     - Use bind variables for user input to ensure values are treated as values and not accidentally interpreted as extensions to a query.
@@ -1438,6 +1498,7 @@ documentation/en/lwc/lwc.create_components_html_file)
     - Utilize the ```with sharing``` keyword on the Apex class
 
  - **Methods**
+   
  	- ```this.dispatchEvent( my CustomEvent( "my_event", {detail: this.recordId} ))```
   		- Lightning Web Components utilize the standard CustomEvent class within JavaScript, which is then dispatched through the EventTarget.dispatchEvent() method, which in the majority of cases, would be this.dispatchEvent() – since we would want parent components to handle this event. We add information to the event with the detail property of CustomEvent, which the event handlers can access and process accordingly. The detail property can be any datatype.
     	- We should follow the DOM event standard in the naming of our events, meaning no upper-case letters, no spaces, and underscores to separate words.
