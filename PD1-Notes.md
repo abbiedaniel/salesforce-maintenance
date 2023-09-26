@@ -874,7 +874,7 @@ development be considered.
 </details> 
 
  <details>
-	<summary><b>NEEDS REVIEW: Deployments</b></summary>
+	<summary><b>NEEDS REVIEW:</b> Deployments</summary>
 
 - **Org Basics**
 - **Change Sets**
@@ -1195,7 +1195,7 @@ System.assertEquals(expected, actual);
 
 
 <details>
-	<summary><b>IN PROGRESS: Lightning Web Components</b></summary>   
+	<summary><b>IN PROGRESS:</b> Lightning Web Components</summary>   
 	
  ### Lightning Web Components
 
@@ -1364,7 +1364,7 @@ documentation/en/lwc/lwc.create_components_html_file)
 
 
 <details>
-	<summary><b>TO DO: Lightning Aura Components</b></summary>  
+	<summary><b>TO DO:</b> Lightning Aura Components</summary>  
 
 ### Lightning Aura Components
 
