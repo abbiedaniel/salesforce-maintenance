@@ -1183,19 +1183,8 @@ System.assertEquals(expected, actual);
 </details>    
 
 
-
-
-
-
-
-
-
-
-
-
-
 <details>
-	<summary><b>IN PROGRESS:</b> Lightning Web Components</summary>   
+	<summary>Lightning Web Components</summary>   
 	
 
 - **LWC Characteristics**
@@ -1212,203 +1201,202 @@ System.assertEquals(expected, actual);
   		- Out-of-the-box components
   		- Built upon web standards 
   
+    
 
 - **Basic Component**
   
-	- JavaScript File: ```home.js```
- 
-	```javascript
-	import {LightningElement} from 'lwc';
+```javascript
+// JavaScript File: home.js
 
-	export default class Home extends LightningElement{
+import {LightningElement} from 'lwc';
 
- 		message = "Hello World"; 
-	}
-	```
- 
+export default class Home extends LightningElement{
 
- 
-	- HTML File: ```home.html```
+	message = "Hello World"; 
+}
+
+__________________________________________________
+
+// HTML File: home.html
+// how to pass the parameter message from the parent home.js into a child event customMessage.js
    
- 		- how to pass the parameter ```message``` from the parent ```home.js``` into a child event ```customMessage.js```
-   
-	```html
-	<template>
- 		// to reference a custom component add c- with all lower case
- 		// sets the custom component's message attribute to the message variable in the Home class 
- 	
- 		<c-custom-message> message={message}
- 
- 		</c-custom-message>
-	</template>
-	```
- 
+<template>
 
+// to reference a custom component add c- with all lower case
+// sets the custom component's message attribute to the message variable in the Home class 
+	<c-custom-message> message={message} </c-custom-message>
+
+</template>
+	
+__________________________________________________
  
-  	 - Metadata File: ```home.js-meta.xml```
+// Metadata File: home.js-meta.xml
   	   
-	```xml
-	<LightningComponentBundle xlmns = "salesforce soap metadata url">
-		<apiVersion> 55.0 </apiVersion>
-		<isExposed> true </isExposed> // allows the component to be visible in the lightning app builder
+<LightningComponentBundle xlmns = "salesforce soap metadata URL">
+	<apiVersion> 55.0 </apiVersion>
+	<isExposed> true </isExposed> // allows the component to be visible in the lightning app builder
 
-		<targets>
-			<target> lightning__HomePage </tagets> // location on where the file can be used
-		</targets>
-	</LightningComponentBundle>
-	```
- 
+	<targets>
+		<target> lightning__HomePage </tagets> // location on where the file can be used //lightning__RecordPage _AppPage, _flowScreen, etc.
+	</targets>
+</LightningComponentBundle>
 
- 
- 	- Optional CSS File: ```home.css```
-    
- 	```css
-  	.test{
-  		background-color: aliceblue;
-    	}
-  	```
+__________________________________________________
 
-<br>
+// Optional CSS File: home.css
+
+.test{
+	background-color: aliceblue;
+}
+
+```
+
+- **HTML Specifications**
+  
+	- Can use ```<tempalate if:true={methodThatReturnsBoolean}``` to only render if true.
+	- ```<template for:each={listName.data} for:item={elemnt}>``` to iterate HTML
+ 	- Any components that aren’t base HTML tags (i.e. custom lwc), it is required that no component tags are self-closing (i.e., there is always an explicit closing tag)
+  	- HTHML Comment Format ```<!-- text here -->```
 
 - **Component Composition**
   
-	- Javascript File: ```customMessage.js```
+```javascript
+// Javascript File: customMessage.js
    
-   	```javascript
-	import {LightningElement, api} from 'lwc';
+import {LightningElement, api} from 'lwc';
 
-	export default class customMessage extends LightningElement{
+export default class customMessage extends LightningElement{
 
- 		@api  // allows variables to pass in as an attribute
+ 	@api  // allows variables to pass in as an attribute
     	message; // stores value from home page input and stores here
-	}
-	```
+}
 
-
+__________________________________________________
  
-	- HTML File: ```customMessage.html```
+// HTML File: customMessage.html
 
-	```html
-	<template>
+<template>
  
- 		// custom css and styling
- 		// slds-box is a class from the lightning design system 
- 		<div class = "slds-box" style="background-color: white;">
+ 	// custom css and styling
+ 	// slds-box is a class from the lightning design system 
+ 	<div class = "slds-box" style="background-color: white;">
  
- 			{message}
- 			// creates a simple white box with the message inside
- 			// referencing message variable in customMessage class
+ 		{message}
+ 		// creates a simple white box with the message inside
+ 		// referencing message variable in customMessage class
  
- 		</div>
-	</template>
-	```
+ 	</div>
+</template>
 
-
+__________________________________________________
  
- 	 - Metadata File: ```customMessage.js-meta.xml```
- 
-	```xml
-	<LightningComponentBundle xlmns = "salesforce soap metadata url">
-		<apiVersion> 55.0 </apiVersion>
-		<isExposed> true </isExposed
-		<!-- allows the component to be visible in the lightning app builder -->
+// Metadata File: customMessage.js-meta.xml
 
-		<targets>
-			<target> lightning__HomePage </tagets>
-			// location on where the file can be used
-		</targets>
-	</LightningComponentBundle>
-	```
+<LightningComponentBundle xlmns = "salesforce soap metadata url">
+	<apiVersion> 55.0 </apiVersion>
+	
+	<isExposed> true </isExposed
+	// allows the component to be visible in the lightning app builder
 
+	<targets>
+		<target> lightning__HomePage </tagets>
+		// location on where the file can be used
+  
+	</targets>
+</LightningComponentBundle>
 
- 
-	- Optional CSS File: ```customMessage.css```
+__________________________________________________
+
+// Optional CSS File: customMessage.css
    
-	```css
-  	.test{
- 		background-color: aliceblue;
-    	}
-  	```
+.test{
+	background-color: aliceblue;
+}
 
-
-<br>
-
+```
    
 - **Events**
   
-	- events can send message from child event ```customMessage``` to parent event  ```home```
+	-  All event names must not use uppercase letters, have no spaces and use underscores to separate words
+  	- ```this.dispatchEvent( my CustomEvent( "my_event", {detail: this.recordId} ))``` Lightning Web Components utilize the standard CustomEvent class within JavaScript, which is then dispatched through the EventTarget.dispatchEvent() method, which in the majority of cases, would be this.dispatchEvent(). Since we would want parent components to handle this event. We add information to the event with the detail property of CustomEvent, which the event handlers can access and process accordingly. The detail property can be any datatype. 
 
-  - JavaScript File: ```customMessage.js``` 
-    
-  ```javascript
-  clickHandler(){
+```javascript
 
-  	// instantiates a new event using the CustomEvent class 
+// JavaScript File: customMessage.js 
+
+clickHandler(){
+
+	// instantiates a new event using the CustomEvent class 
   	const clickEvent = new CustomEvent(
-  
-  	// this is the event name
-  	'clicked',
+
+		// this is the event name
+  		'clicked',
 
   		// parameters for the event.detail
-  		{
-  			detail: 'CLICKED!'
-  		}
+  		{ detail: 'CLICKED!' }
   	);
   
   	// dispatch event and passes to the home parent event
   	this.dispatchEvent(clickEvent);
   }
 
-  ```
+__________________________________________________
   
-	- HTML File: ```customMessage.html```
+// HTML File: customMessage.html
    
-   ```html
-	<template>
+<template>
 
-   		// when this div is clicked the clickHandler method is called and the clickEvent is dispatched to the parent 
- 		<div class = "slds-box" style = "background-color: white;"
+	// when this div is clicked the clickHandler method is called and the clickEvent is dispatched to the parent 
+	<div class = "slds-box" style = "background-color: white;"
    
-   
-   		onclick = {clickHandler}">
-   		// add onclick event 
-   		// add the clickHandler method as an attribute
+		onclick = {clickHandler}">
+		// add onclick event 
+		// add the clickHandler method as an attribute
 		
- 			{message}
- 		</div>
-	</template>
-	```
+			{message}
+	</div>
+</template>
+```
 
-	- HTML File: ```home.html```
+<br>
+
+
+
+```javascript
+// HTML File: home.html
    
-	```html
-	<template>
+<template>
  
- 		// home is the parent event since it references customMessage 
- 		<c-custom-message> message={message}
+	// home is the parent event since it references customMessage 
+	<c-custom-message> message={message}
  				
- 				onclicked = {handleClicked}
- 				// reference event using 'on' and the event name, in this case, the 'clicked' event from customMessage.js
+		onclicked = {handleClicked}
+		// reference event using 'on' and the event name, in this case, the 'clicked' event from customMessage.js
  
- 		</c-custom-message>
-	</template>
-	```
+	</c-custom-message>
+</template>
 
-	- JavaScript File: ```home.js```
- 
-	```javascript
-	import {LightningElement} from 'lwc';
+__________________________________________________
 
-	export default class Home extends LightningElement{
+// JavaScript File: home.js
 
- 		message = "Hello World"; // default message
+import {LightningElement} from 'lwc';
 
- 		handleClicked(event){
- 			// set  the message to be the event detail which is 'CLICKED!' from  customMessage.js
- 			this.message = event.detail;
+export default class Home extends LightningElement{
+
+	message = "Hello World"; // default message
+	handleClicked(event){
+
+		// set  the message to be the event detail which is 'CLICKED!' from  customMessage.js
+		this.message = event.detail;
+
  		}
 	}
-	```
+```
+
+
+
+
 
 <br>
 
@@ -1435,7 +1423,7 @@ System.assertEquals(expected, actual);
   	- LWC must have ```import wire from 'lwc'``` to allow the javascript to interact with apex.
   		- Use ```@wire(methodName, {methodParameters: '$api_variable_in_lwc'}) variable;``` to call the apex method and save the return value. 	```'$ api_variable_in_lwc'``` allows us to dynamically reference the variable.
   
-  	   
+
 - **Create Salesforce Data**
   
 	- Use the ```<lightning-input/>``` component and include your method in the ```onchange``` attribute. In the method, set the variable to display as ```event.target.value```
@@ -1454,59 +1442,24 @@ System.assertEquals(expected, actual);
 	- Add the LWC to the Lightning page using the Lightning App Builder
    
 - **Lightning Message Service**
-	- Can be used to communicate across different components, on a lightning page, that are not necessarily related to each other.
+  
+	- Create a custom message service to communicate across different components, on a lightning page, that are not necessarily related to each other.
   	- Create a ```connectCallback``` function to run when a component is loaded. Inside this method, you can pass parameters to handler functions
-
-
-**HTML**
-	- Can use ```<tempalate if:true={methodThatReturnsBoolean}``` to only render if true.
-	- ```<template for:each={listName.data} for:item={elemnt}>``` to iterate HTML
-
-
-- **Use Cases**
-	 - Capabilities: Lightning Record Form
-
-
-## Non-Video Below
 
 - **Lightning Data Service**
   
-	- When building components that work on individual records, the Lightning Data Service provides a performant and cached mechanism for loading and updating record data that gets propagated throughout all components utilizing the service.
- 	- This offers advantages over performing Apex calls to achieve simple record data since it increases performance and allows changes in other areas of the UI (for example for the standard record details component) to propagate to other components.
-   	- (https://developer.salesforce.com/docs/atlas.enus.
-lightning.meta/lightning/data_service.htm) 
+	- Use Lightning Data Service to load, create, edit, or delete a record in your component without requiring Apex code. Lightning Data Service handles sharing rules and field-level security for you.
+  	- When building components that work on individual records, the Lightning Data Service provides a performant and cached mechanism for loading and updating record data that gets propagated throughout all components utilizing the service. This offers advantages over performing Apex calls to achieve simple record data since it increases performance and allows changes in other areas of the UI (for example for the standard record details component) to propagate to other components.
+  	- LDS is available through ```force:recordData```  and other base components
   
-- **HTML Specs**
-  
-- The LWC framework follows the HTML specification for how it expects HTML to be written within component templates. This means that for any components that aren’t base HTML tags, it is required that no component tags are self-closing (i.e., there is always an explicit closing tag).
-	- picklists: ```<lightning-combobox> </lightning-combobox>```
- 	- (https://developer.salesforce.com/docs/componentlibrary/
-documentation/en/lwc/lwc.create_components_html_file)
 
-
-   
- - **Best Practices**
-   
- 	- All event names must not use uppercase letters, have no spaces and use underscores to separate words
+- **LWC Security Best Practice**
     
-  - **LWC Security Best Practice**
-    
-- Sanitize any user input
-- Add the ```WITH SECURITY_ENFORCED``` clause to the query to enforce permissions on the query, so if a query attempts to access a field or object the user doesn’t have access to, an exception is thrown.
-- Use bind variables for user input to ensure values are treated as values and not accidentally interpreted as extensions to a query.
-- Hardcode the filterable fields in the Apex controller
-- A piece of Apex should never trust search parameters from a Lightning Component as these could easily be manipulated. Instead, in scenarios where this is required, alternative approaches should be used such as hardcoding the filter variables in an Apex datatype or as parameters to the method, in order to ensure that any requested fields/filters have been explicitly pre-authorized.	 
-- Utilize the ```with sharing``` keyword on the Apex class
-
- - **Methods**
-   
- 	- ```this.dispatchEvent( my CustomEvent( "my_event", {detail: this.recordId} ))```
-  		- Lightning Web Components utilize the standard CustomEvent class within JavaScript, which is then dispatched through the EventTarget.dispatchEvent() method, which in the majority of cases, would be this.dispatchEvent() – since we would want parent components to handle this event. We add information to the event with the detail property of CustomEvent, which the event handlers can access and process accordingly. The detail property can be any datatype.
-    	- We should follow the DOM event standard in the naming of our events, meaning no upper-case letters, no spaces, and underscores to separate words.
-     	- https://developer.salesforce.com/docs/componentlibrary/documentation/en/lwc/lwc.events_create_dispatch
-   
-
-
+	- Sanitize any user input!
+ 	- Add the ```WITH SECURITY_ENFORCED``` clause to the query to enforce permissions on the query, so if a query attempts to access a field or object the user doesn’t have access to, an exception is thrown.
+  	- Use bind variables for user input to ensure values are treated as values and not accidentally interpreted as extensions to a query.
+  	- Hardcode the filterable fields in the Apex controller. A piece of Apex should never trust search parameters from a Lightning Component as these could easily be manipulated. Instead, in scenarios where this is required, alternative approaches should be used such as hardcoding the filter variables in an Apex datatype or as parameters to the method, in order to ensure that any requested fields/filters have been explicitly pre-authorized.
+  	- Utilize the ```with sharing``` keyword on the Apex class
 </details>
 
 
