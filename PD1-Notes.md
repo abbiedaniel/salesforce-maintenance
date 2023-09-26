@@ -1455,6 +1455,7 @@ System.assertEquals(expected, actual);
    
 - **Lightning Message Service**
 	- Can be used to communicate across different components, on a lightning page, that are not necessarily related to each other.
+  	- Create a ```connectCallback``` function to run when a component is loaded. Inside this method, you can pass parameters to handler functions
 
 
 **HTML**
@@ -1490,12 +1491,12 @@ documentation/en/lwc/lwc.create_components_html_file)
     
   - **LWC Security Best Practice**
     
-  	- Sanitize any user input
-   	- Add the ```WITH SECURITY_ENFORCED``` clause to the query to enforce permissions on the query, so if a query attempts to access a field or object the user doesn’t have access to, an exception is thrown.
-    - Use bind variables for user input to ensure values are treated as values and not accidentally interpreted as extensions to a query.
-    - Hardcode the filterable fields in the Apex controller
-    	- A piece of Apex should never trust search parameters from a Lightning Component as these could easily be manipulated. Instead, in scenarios where this is required, alternative approaches should be used such as hardcoding the filter variables in an Apex datatype or as parameters to the method, in order to ensure that any requested fields/filters have been explicitly pre-authorized.	 
-    - Utilize the ```with sharing``` keyword on the Apex class
+- Sanitize any user input
+- Add the ```WITH SECURITY_ENFORCED``` clause to the query to enforce permissions on the query, so if a query attempts to access a field or object the user doesn’t have access to, an exception is thrown.
+- Use bind variables for user input to ensure values are treated as values and not accidentally interpreted as extensions to a query.
+- Hardcode the filterable fields in the Apex controller
+- A piece of Apex should never trust search parameters from a Lightning Component as these could easily be manipulated. Instead, in scenarios where this is required, alternative approaches should be used such as hardcoding the filter variables in an Apex datatype or as parameters to the method, in order to ensure that any requested fields/filters have been explicitly pre-authorized.	 
+- Utilize the ```with sharing``` keyword on the Apex class
 
  - **Methods**
    
