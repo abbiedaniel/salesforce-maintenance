@@ -750,7 +750,7 @@ development be considered.
 <details>
 	<summary>Exception Handling</summary>
 	
-- **Try/catch block**
+- **Try/Catch Block**
   ```apex
   try {
   	// something you think could fail or error
@@ -783,13 +783,13 @@ development be considered.
   }
   ```
   
-- ```allorNone``` **boolean:**
+- ```allorNone``` **Boolean:**
 	- ```false``` allows partial success if an error is thrown. Instead of an exception being thrown when any record encounters an error during save, a ```List<Database.SaveResult>``` is returned instead of an exception being thrown.
-  ```apex
-  Database.insert(recordToInsert, allOrNone, accessLevel);
-  // When we wish to configure the DML operation, or handle failed records,
-  // we must use the Database class methods.
-  ```
+  		```apex
+  		Database.insert(recordToInsert, allOrNone, accessLevel);
+  		// When we wish to configure the DML operation, or handle failed records,
+  		// we must use the Database class methods.
+ 		```
 
 </details>
 
