@@ -17,7 +17,7 @@
 <details>
 	<summary>Salesforce Development Fundamentals</summary>
 
- #### Multi-tenant Environment Considerations
+ #### Salesforce Development Fundamentals
 
 - **Multi-tenant Environment Considerations:**
   - Unique URL for each environment
@@ -37,6 +37,8 @@
 
 <details>
 	<summary>Data Modeling & Management</summary>
+
+ ### Data Modeling & Mangement
 	
 - **Relationships**
   - Master-detail
@@ -84,8 +86,7 @@
 <details>
 	<summary>Declarative Process & Automation</summary>
 
-
- 
+### Declarative Process & Automation
 
 - **Flows**
   - Screen
@@ -112,7 +113,8 @@ development be considered.
 
 <details>
 	<summary>Save Order of Execution</summary>
- <br>
+	
+ ### Save Order of Execution
 
   1. System Validation
   2. Before Save Flows
@@ -137,6 +139,8 @@ development be considered.
 <details>
 	<summary>Layouts & Navigation</summary>
 
+ ### Layouts & Navigation
+
 - **Page Layout**
   - Fields visibility & order for record type
   - Related Lists
@@ -156,6 +160,8 @@ development be considered.
 
 <details>
 	<summary>Object-Oriented Concepts</summary>
+
+ ### Object-Oriented Concepts
 
 - **Salesforce vs. Apex Objects:**
   - Salesforce:
@@ -187,6 +193,8 @@ development be considered.
 
 <details>
 	<summary>Apex Data Types</summary>
+
+ ### Apex Data Types
 
 - **Primitive Data Types**
   - String
@@ -241,6 +249,8 @@ development be considered.
 <details>
 	<summary>Apex Logic</summary>
 
+ ### Apex Logic
+
 - **Control Flow Statements**
   
 	- if, else if and else statements
@@ -268,6 +278,8 @@ development be considered.
 	
 <details>
 	<summary>Apex Classes</summary>
+
+ ### Apex Classes
      
 - **Class & Method Definition Syntax**
   ```apex
@@ -323,12 +335,10 @@ development be considered.
 
 </details>
 
-
-
-
-
 <details>
 	<summary>Apex Triggers</summary>
+
+### Apex Triggers
 
 - **Types of Triggers**
   
@@ -381,6 +391,8 @@ development be considered.
 <details>
 	<summary>Invocable Apex</summary>
 	
+### Invocable Apex
+	
 - **Methods of Invoking Apex**
   - Database Trigger, Anonymous Apex, Asynchronous Apex, Web Services, Email Services, Visualforce controllers and Lightning components   
 
@@ -394,6 +406,8 @@ development be considered.
 
 <details>
 	<summary>Asynchronous Apex</summary>
+
+### Asynchronous Apex
 
 - **Asynchronous Apex**
   
@@ -497,6 +511,8 @@ development be considered.
  
 <details>
 	<summary>DML, SOQL & SOSL</summary>
+
+ ### DML, SOQL & SOSL
 
 - **DML**
   - Operations
@@ -602,6 +618,8 @@ development be considered.
 
 <details>
 	<summary>Governor Limits</summary> 
+
+ ### Governor Limits
 	
 - **Data Governor Limits**
 	- Per-Transaction Apex Limits
@@ -623,6 +641,8 @@ development be considered.
     
 <details>
 	<summary>Custom Metadata Types</summary>
+	
+ ### Custom Metadata Types
 
 - **Characteristics**
   
@@ -642,6 +662,8 @@ development be considered.
   
 <details>
 	<summary>Platform Events</summary>
+
+ ### Platform Events
 
 - **Custom Platform Events**
   - Setup platform events in setup like custom objects
@@ -679,6 +701,8 @@ development be considered.
 
 <details>
 	<summary>Test Classes</summary>
+
+### Test Classes
 
 - **Purpose**
 	- Used to determine whether a piece of code is behaving exactly as it was intended to.
@@ -756,6 +780,8 @@ development be considered.
 
 <details>
 	<summary>Exception Handling</summary>
+
+ ### Exception Handling
 	
 - **Try/Catch Block**
   ```apex
@@ -802,7 +828,9 @@ development be considered.
 
 <details>
 	<summary>Trigger Exceptions</summary>
-	
+
+ ### Trigger Exceptions
+ 
 - **addError**
   
  	-  ```object_record.addError( 'Text to display to the user!' );``` 
@@ -832,6 +860,8 @@ development be considered.
 <details>
 	<summary>Code Coverage</summary>
 
+ ### Code Coverage
+
 - **Requirements**
   
 	 - Average of 75% code coverage for all apex code to be deployed to production
@@ -847,6 +877,8 @@ development be considered.
 
 <details>
 	<summary>Execution Log</summary>
+
+ ### Execution Log
 
 - **Execution Log**
   - ```EXECUTION_STARTED``` - first line in the execution log marks the execution started event
@@ -883,6 +915,8 @@ development be considered.
  <details>
 	<summary>Deployments</summary>
 
+ ### Deployments
+
 - **Deployment Tools**
 	- VSCode and Salesforce Extension Pack: deploy and retrieve from orgs and write, debug, and refactor code
  	- Developer Console: create, debug, and test applications
@@ -905,7 +939,6 @@ development be considered.
        - Fields
        		- Remove all references of this field in the org before deleting
 
-	
 - **Scratch Orgs**
  	- Enable Dev Hub to allow scratch orgs to be created
    	- Have a user with permissions to create scratch orgs
@@ -918,6 +951,8 @@ development be considered.
 
 <details>
 	<summary>Extending Declarative Functionality: Flows</summary>   
+
+ ### Extending Declarative Functionality: Flows
 
 - **Invocable Methods**
    
@@ -950,6 +985,8 @@ development be considered.
 
 <details>
 	<summary>Visualforce Pages</summary>
+
+ ### Visualforce Pages
 
 - **Visualforce Basics**
   
@@ -1071,6 +1108,8 @@ development be considered.
 
 <details>
 	<summary>Visualforce Controllers</summary>
+
+ ### Visualforce Controllers
 	
 - **Basic Controller**
   
@@ -1195,7 +1234,8 @@ System.assertEquals(expected, actual);
 
 <details>
 	<summary>Lightning Web Components</summary>   
-	
+
+ ### Lightning Web Components
 
 - **LWC Characteristics**
   
@@ -1475,6 +1515,8 @@ export default class Home extends LightningElement{
 
 <details>
 	<summary>Lightning Aura Components</summary>  
+	
+ ### Lightning Aura Components
 
 - **LWC vs. Aura Components**
 	- Developed with HTML and Javascript
