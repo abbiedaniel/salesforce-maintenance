@@ -1075,7 +1075,7 @@ development be considered.
 	- Visualforce Page: ```EditPage.vfp```
    
 	```apex
-	<apex:page controller = "EditPageController">'
+	<apex:page controller = "EditPageController">
  
  	{ !account.Name }
  
