@@ -17,7 +17,7 @@
 <details>
 	<summary>Salesforce Development Fundamentals</summary>
 
- #### Salesforce Development Fundamentals
+ ####  Salesforce Development Fundamentals
 
 - **Multi-tenant Environment Considerations:**
   - Unique URL for each environment
@@ -38,7 +38,7 @@
 <details>
 	<summary>Data Modeling & Management</summary>
 
- ### Data Modeling & Mangement
+####  Data Modeling & Mangement
 	
 - **Relationships**
   - Master-detail
@@ -86,7 +86,7 @@
 <details>
 	<summary>Declarative Process & Automation</summary>
 
-### Declarative Process & Automation
+####  Declarative Process & Automation
 
 - **Flows**
   - Screen
@@ -114,7 +114,7 @@ development be considered.
 <details>
 	<summary>Save Order of Execution</summary>
 	
- ### Save Order of Execution
+ ####  Save Order of Execution
 
   1. System Validation
   2. Before Save Flows
@@ -139,7 +139,7 @@ development be considered.
 <details>
 	<summary>Layouts & Navigation</summary>
 
- ### Layouts & Navigation
+ ####  Layouts & Navigation
 
 - **Page Layout**
   - Fields visibility & order for record type
@@ -161,7 +161,7 @@ development be considered.
 <details>
 	<summary>Object-Oriented Concepts</summary>
 
- ### Object-Oriented Concepts
+ ####  Object-Oriented Concepts
 
 - **Salesforce vs. Apex Objects:**
   - Salesforce:
@@ -194,7 +194,7 @@ development be considered.
 <details>
 	<summary>Apex Data Types</summary>
 
- ### Apex Data Types
+ ####  Apex Data Types
 
 - **Primitive Data Types**
   - String
@@ -249,7 +249,7 @@ development be considered.
 <details>
 	<summary>Apex Logic</summary>
 
- ### Apex Logic
+ ####  Apex Logic
 
 - **Control Flow Statements**
   
@@ -279,7 +279,7 @@ development be considered.
 <details>
 	<summary>Apex Classes</summary>
 
- ### Apex Classes
+ ####  Apex Classes
      
 - **Class & Method Definition Syntax**
   ```apex
