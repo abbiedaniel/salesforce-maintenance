@@ -391,7 +391,7 @@ development be considered.
 <details>
 	<summary>Invocable Apex</summary>
 	
-##### Invocable Apex
+#### Invocable Apex
 	
 - **Methods of Invoking Apex**
   - Database Trigger, Anonymous Apex, Asynchronous Apex, Web Services, Email Services, Visualforce controllers and Lightning components   
@@ -407,7 +407,7 @@ development be considered.
 <details>
 	<summary>Asynchronous Apex</summary>
 
-##### Asynchronous Apex
+#### Asynchronous Apex
 
 - **Asynchronous Apex**
   
@@ -847,6 +847,8 @@ development be considered.
 
 <details>
 	<summary>Testing Asynchronous Apex</summary>
+
+ #### Testing Asynchronous Apex
 
 - Similar as any test class (needs ```Test.startTest``` & ```Test.stopTest```), but use specific methods for
   
