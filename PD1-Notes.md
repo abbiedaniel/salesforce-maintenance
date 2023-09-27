@@ -710,11 +710,13 @@ development be considered.
  		- **Setup**: preparing data and the runtime environment for your testing scenario. 
   		- **Execution**: executing the code you wish to test
   		- **Validation**: verifying the results of the executed test against the expected results
-    - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_qs_test.htm  
+    - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_qs_test.htm
+      
 
 - **Best Practices**
   
-	- Do not access live data in your org in tests. 
+	- Do not access live data in your org in tests.
+ 	- Test classes can be either private or public. If you’re using a test class for unit testing only, declare it as private. Public test classes are typically used for test data factory classes.
  	- Create a class specifically to create data for test methods aka Test data factory class
  		- Add a ```@testSetup``` annotated method to the class. This method is called before any tests are run and allows the test records to be created before the tests themselves are run.
   	- Use ```@IsTest``` for all test classes
