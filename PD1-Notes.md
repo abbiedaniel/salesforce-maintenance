@@ -917,9 +917,9 @@ development be considered.
 </details> 
 
 <details>
-	<summary>Error Handling for LWC</summary>
+	<summary>LWC Error Handling</summary>
 
-### LWC Error Handling
+#### LWC Error Handling
 
 - **Wired Properties**
 	- Use ```.error``` on the wired property/field
