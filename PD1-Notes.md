@@ -916,6 +916,29 @@ development be considered.
 
 </details> 
 
+<details>
+	<summary>Error Handling for LWC</summary>
+
+### LWC Error Handling
+
+- **Wired Properties**
+	- Use ```.error``` on the wired property/field
+ 	- Import reduceErrors from ldsUtils and use ```reduceErrors(field.errors)``` to format the error
+  	- Add errors to html and display if true
+  	   
+- **Wired Functions**
+	- define an errors variable/property
+ 	- When you use @wire to decorate a function, the function receives as a parameter an object that includes errors (if there are any errors). ``` wiredFunction({data, error})```
+  	- Import reduceErrors from ldsUtils and use ```reduceErrors(error)``` on the error parameter to format the error and associate it to the errors variable
+  	  
+- **Imperative Function Calls**
+	-  Define an errors variable/property
+ 	-  Import reduceErrors from ldsUtils   
+ 	-  Imperative apex calls are created with a promise (```.then(result``` and ```.catch(error``).
+  	-  If the promise is rejected, we use the reduceErrors helper function to format the received error and store it in the errors property.
+  	
+ </details> 
+
  <details>
 	<summary>Deployments</summary>
 
@@ -948,6 +971,7 @@ development be considered.
    	- Have a user with permissions to create scratch orgs
    	- Have the Salesforce CLI setup to log into the dev hub and request scratch org creation
 </details>
+
 
 <br>
 
