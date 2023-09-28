@@ -924,7 +924,7 @@ development be considered.
 - **Wired Properties**
 	- Use ```.error``` on the wired property/field
  	- Import reduceErrors from ldsUtils and use ```reduceErrors(field.errors)``` to format the error
-  	- Add errors to html and display if true
+  	- Create a getter for errors to define the errors property and add errors to html and display if true
   	   
 - **Wired Functions**
 	- define an errors variable/property
@@ -936,6 +936,9 @@ development be considered.
  	-  Import reduceErrors from ldsUtils   
  	-  Imperative apex calls are created with a promise (```.then(result``` and ```.catch(error``).
   	-  If the promise is rejected, we use the reduceErrors helper function to format the received error and store it in the errors property.
+ 
+	<img width="950" alt="Screen Shot 2023-09-28 at 3 06 36 PM 1" src="https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/75550f8b-9681-4fbf-9ba6-1bccc2c12b5f">
+
   	
  </details> 
 
