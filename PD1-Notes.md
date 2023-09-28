@@ -1,6 +1,6 @@
 # Platform Developer 1 Notes
 
-:accessibility: [Exam Guide](https://trailhead.salesforce.com/help?article=Salesforce-Certified-Platform-Developer-I-Exam-Guide)
+:accessibility: [Exam Guide](https://trailhead.salesforce.com/help?article=Salesforce-Certified-Platform-Developer-I-Exam-Guide) (60 Questions, 68% Passing)
 
 :accessibility:  [Udemy Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview) 
 
