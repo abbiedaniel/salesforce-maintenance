@@ -1532,12 +1532,7 @@ export default class Home extends LightningElement{
   	- Parent's html contains a reference to the child component.
   	- In the parent component, the handler method  uses  ```this.template.querySelector(c-childcomponent).childComponentMethod;``` to call the child component's method. Reference this handler method in the html to run ```onaction```
 
-   
-- **Example**: Parent: ```augmentor``` & Child: ```numerator```
 
-	- This function finds the c-numerator tag in augmentor.html and calls the public maximizeCounter function. 
-	- In the parent ```augmentor```, find the child tag in the parent's html and call the ```this.template.querySelector('c-numerator').maximizeCounter();
-     
  
 
 - **Lightning Base Components**
