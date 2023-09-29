@@ -8,6 +8,8 @@
 
 :accessibility:  [Practice Test](https://www.salesforceben.com/salesforce-platform-developer-1-practice-exams/)
 
+:accessibility:  [Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI)
+
 :accessibility:  [Apex Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_apex)
 
 :accessibility:  [LWC Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
