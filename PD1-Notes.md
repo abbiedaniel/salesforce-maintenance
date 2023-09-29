@@ -1578,8 +1578,19 @@ export default class Home extends LightningElement{
    
 - **Lightning Message Service**
   
-	- Create a custom message service to communicate across different components, on a lightning page, that are not necessarily related to each other.
-  	- Create a ```connectCallback``` function to run when a component is loaded. Inside this method, you can pass parameters to handler functions
+	- Use LMS for **communication between unrelated components** unless you control both components and a common parent.
+ 	- Need Two Components: ```remote``` and ```receiver```
+  		- Create a message channel folder and a specific-message channel metadata file
+    		- Import the channel metadata file in both ```remote``` and ```receiver```
+  		- In the remote component:
+    			- Import ```publish``` and ```@wire MessageConext``` from lightning/messageService
+      			- The data payload is sent with the ```publish``` function
+     
+    		- In the receiver component:
+      			- Import ```subscribe``` and ```MessageConext``` from lightning/messageService
+         		- The is sent with the ```subscribe``` function
+           		- ```connectCallback``` function to run when a component is loaded. Inside this method, you can pass parameters to handler functions
+  	- Use Cases: Need to communicate between components with a parent that you can’t control, such as two App Builder slots
 
 - **Lightning Data Service**
   
