@@ -983,7 +983,8 @@ development be considered.
  - **Sandboxes**
    
  	- **Developer Sandbox:** A Developer sandbox is intended for **development and testing** in an isolated environment. A Developer Sandbox includes a copy of your production org’s configuration (metadata).
-  	- **Developer Pro Sandbox:** A Developer Pro sandbox is intended for development and testing in an isolated environment and can host larger data sets than a Developer sandbox. A Developer Pro sandbox includes a copy of your production org’s configuration (metadata). Use a Developer Pro sandbox to **handle more development and quality assurance tasks and for integration testing or user training.** 
+
+   	- **Developer Pro Sandbox:** A Developer Pro sandbox is intended for development and testing in an isolated environment and can host larger data sets than a Developer sandbox. A Developer Pro sandbox includes a copy of your production org’s configuration (metadata). Use a Developer Pro sandbox to **handle more development and quality assurance tasks and for integration testing or user training.** 
    	- **Partial Copy Sandbox:** A Partial Copy sandbox is intended to be used as a **testing environment.** This environment includes a copy of your production org’s configuration (metadata) and **a sample of your production org’s data** as defined by a sandbox template. Use a Partial Copy sandbox for quality assurance tasks such as **user acceptance testing, integration testing, and training.**
    	- **Full Sandbox:** A Full sandbox is intended to be used as a **testing environment.** Only Full sandboxes support **performance testing, load testing, and staging.** Full sandboxes are a **replica of your production org,** including all data, such as object records and attachments, and metadata. The length of the refresh interval makes it difficult to use Full sandboxes for development.
     
