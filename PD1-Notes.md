@@ -1405,8 +1405,8 @@ __________________________________________________
 - **Events**
   
 	-  All event names must not use uppercase letters, have no spaces and use underscores to separate words
-  	- ```this.dispatchEvent( my CustomEvent( "my_event", {detail: this.recordId} ))``` Lightning Web Components utilize the standard CustomEvent class within JavaScript, which is then dispatched through the EventTarget.dispatchEvent() method, which in the majority of cases, would be this.dispatchEvent(). Since we would want parent components to handle this event. We add information to the event with the detail property of CustomEvent, which the event handlers can access and process accordingly. The detail property can be any datatype. 
-
+  	- ```this.dispatchEvent( my CustomEvent( "my_event", {detail: this.recordId} ))``` Lightning Web Components utilize the standard CustomEvent class within JavaScript, which is then dispatched through the EventTarget.dispatchEvent() method, which in the majority of cases, would be this.dispatchEvent(). Since we would want parent components to handle this event. We add information to the event with the detail property of CustomEvent, which the event handlers can access and process accordingly. The detail property can be any datatype.
+  	
 ```javascript
 
 // JavaScript File: customMessage.js 
@@ -1481,11 +1481,64 @@ export default class Home extends LightningElement{
 	}
 ```
 
+<img width="935" alt="Screen Shot 2023-09-29 at 10 36 12 AM" src="https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/e627e5b0-2fb5-44a5-bcaf-5d95860420ff">
+
+- **From Child to Parent**
+  
+	-  In the child components, the handler method use ```dispatchEvents()``` to send the event name and parameters to the parent component.
+ 	-  The parent component recieves the event from the child and parameters using ```event.detail``` in the handler method.
+  	-  The child and parent javascript handler methods are referenced in the corresponding html files to run ```onaction```.
+  	-  Note: By default, a custom event doesn't bubble up past the host. Use ```bubbles:true```.
+  	  
+  		-  Example: ```controls``` is the host for the custom event ```button``` because it contains a reference to <c-button>.
+  	   
+  	   ```html
+  	   <lightning-layout-item flexibility="auto" padding="around-small" onbuttonclick={handleDivision}>
+			<template for:each={factors} for:item="factor">
+          		<c-button/>
+  	   ```
+  		 -  Solution: To allow the event (```buttonclick```) to bubble up to the ```lightning-layout-item```, we add ```bubbles: true``` in the ```CustomEvent``` by calling ```this.dispatchEvent(new CustomEvent('buttonclick',{ bubbles: true }``` in the button handler method.
+  	 
+ 
+
+  	-  Example: Child Event - ```controller```, Parent Event - ```numerator```. 
+  		-  In the child event ```controls```, the handler method uses ```dispatchEvent``` to send the event name and parameters to the parent ```numerator```. The controls html specifies to run this method ```onbuttonclick```.
+  	 	- 	```javascript
+  	     	// dispatchs event to parent with event name and parameter factor
+  	     
+  	     	handleMultiply(event) {
+  	     		const factor = event.target.dataset.factor;
+  	     		this.dispatchEvent(new CustomEvent('multiply', { detail: factor }));
+     		}
+  
+  	 	-  In Parent event ```numerator```, the parent handler method receives the event from the child ```controller``` and uses the event as a parameter and sets the factor property as the ```event.detail```. The numerator html specifies to run this method ```onclick```.
+  	 	
 
 
+  		```javascript
+ 		// receives event from child controller
+ 
+  		handleMultiply(event) {
+  			const factor = event.detail;
+  			this.counter *= factor;
+  		}
+  		```	
 
 
-<br>
+- **From Parent to Child**
+  
+	- Child component uses ```@api``` decorator on the input variable to allow the child to receive input from parent.
+ 	- Child component contains process method for parent to reference. Use the ```@api``` decorator on the method, so the parent component can call it.
+  	- Parent's html contains a reference to the child component.
+  	- In the parent component, the handler method  uses  ```this.template.querySelector(c-childcomponent).childComponentMethod;``` to call the child component's method. Reference this handler method in the html to run ```onaction```
+
+   
+- **Example**: Parent: ```augmentor``` & Child: ```numerator```
+
+	- This function finds the c-numerator tag in augmentor.html and calls the public maximizeCounter function. 
+	- In the parent ```augmentor```, find the child tag in the parent's html and call the ```this.template.querySelector('c-numerator').maximizeCounter();
+     
+ 
 
 - **Lightning Base Components**
   
