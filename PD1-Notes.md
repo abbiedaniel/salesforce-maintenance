@@ -114,7 +114,7 @@
 	- Standard validation rules are unable to operate on parent-child relationships
  	- Roll-up summary fields can only be on the master
   	- Formula fields are calculated at access time and can span multiple objects
-  	- Workflow rules do not have the capability to submit records for approval or update child records. (blocked since Winter'23) 
+  	- Workflow rules cannot submit records for approval or update child records. (blocked since Winter'23) 
   
 - **Best Practices**
 	- For complex solutions, check if there is an app on AppExchange. If there are no suitable AppExchange apps, only then should custom
@@ -183,11 +183,16 @@ development be considered.
     - Standard and custom objects are built declaratively and used to organize the data we store in the org.
   - Apex: 
     - Apex objects are developed programmatically and used to organize reusable methods and variables.
-   
+
+- **Apex Use Cases**
+	- Implement a web service, email service, complex validation over multilple objects and complex business processes
+   	- Execute server-side logic for a custom Lightning component
+   	
 - **Constructor**
-	- located near the top of the class
- 	- best practice to include a constructor with no arguments
-  	- you will likely need to assign ```this.arg = arg;```  
+	- Located near the top of the class
+ 	- Best practice to include a constructor with no arguments
+  	- Constructor is invoked when it's apex class is initialized
+  	- You will likely need to assign ```this.arg = arg;```  
 
 
 - **Instantiation**
@@ -203,7 +208,7 @@ development be considered.
 
 - **Classes & Subclasses**
 	- Top classes must have one access modifiers (such as public or private). This is not mandatory for inner classes.
- 	- Inner class is private by default.
+ 	- Top and Inner class is private by default when no modiferies are specified.
   	- Inner classes can have their own sharing modes declared, which don’t have to match that of the outer classes.
  	-  Inner classes can only be one level deep.
 
@@ -224,10 +229,10 @@ development be considered.
   - String
   - Boolean
   - Integer
-  - Double/Decimal
+  - Decimal
   - Id
   - Date  
-  - DateTime
+  - DateTime YYYY-MM-DD HR:MIN:SEC
   - Time
   - Blob for binary data
   - Enum to store a set of identifiers that are accessed one at a time
@@ -341,8 +346,9 @@ development be considered.
 
 - **Sharing Keywords**
 	- By default, Apex code in classes, triggers or web services run in system mode where permissions and record sharing of the current user are **not** taken into account.
+ 	- Inner classes do not inherit sharing settings from outer class. 
  	- ```with sharing``` enforce sharing rules of the current user.
- 	-  ```without sharing``` sharing rules for the current user are not enforced
+ 	-  ```without sharing``` sharing rules for the current user are not enforced. This setting will be used for apex classes that do not include any sharing keywords.
    	- ```inherited sharing``` Inherited sharing takes on the sharing declaration of the class that has executed the code, so if a class with sharing enforced calls a method in a class with inherited sharing, the inherited sharing class code would run with sharing enforced. This is useful for when the sharing model to be used isn’t known at design time, or the code is built to be called from varying places within the system.
    
 
@@ -353,9 +359,12 @@ development be considered.
  	- ```protected``` Accessible to any inner classes in the defining Apex class, and to the classes that extend the defining Apex class
  
 - **Key Words** 
-	- ```static``` method, can be a utility method and is called without instantiating the class it is defined in. Can only be used with methods, variables, ans initilization code, and is not supported in class definitions.
+	- ```static``` method, can be a utility method and is called without instantiating the class it is defined in. Can only be used with methods, variables, and initilization code, and is not supported in class definitions.
+ 		- Static variables only persist within the context of a single transaction. Static Methods cannot access values of instance members of its class.
+ 		- No parentheses/constructors needed when accessing static variables.
  	- ```void``` specifies the method does not return a value. 
-  	- ```this.``` use with instance/non-static variables 
+  	- ```this.``` use with instance/non-static variables
+  	- ```final``` use to define constants. final indicates the variable can only be initlaized once.
 
 -  **Class Capabilities**
    - Classes can be used to create: 
@@ -549,13 +558,15 @@ development be considered.
 - **DML**
   - Operations
     - ```update``` - use for after triggers
-    - ```upsert``` create new and update existing records
+    - ```upsert``` create new and update existing records. Errors out if a key is matched multiple times. 
     - ```delete```
-    - ```undelete``` restores one or more existing sObject records from the recycling bin
+    - ```undelete``` restores one or more existing sObject records from the recycling bin.
+    	- Parent adn child records are supported. Custom lookups that haven't been replaced can be restored. 
     - ```merge``` merges up to three records of the same sObject type into one of the records, deletes the others, and re-parents any related records.
       
-  - Best Practices
+- **DML Best Practices**
     - Always use DMLs with lists over single records
+    - Profiles and Record Types do not suport DML operations
     - DML Governor's Limit: 150 per transaction
 
 - **Salesforce Object Query Language (SOQL)**
@@ -595,7 +606,15 @@ development be considered.
 - **SOQL Tips**
 	- Use ```GeolocationField__Lattitude__s``` and ```GeolocationField__Longitude__s``` to retreive latitude and longitude values of a geloation field
  	- Invalid SOQL syntax results in query exception
-  - 
+  	- GROUP BY clause can be used together with the COUNT(fieldName) aggregate function to return data that groups and counts the number of records based on a field value.
+  		- Example: ```SELECT LeadSource, COUNT(Name) FROM Lead GROUP BY LeadSource```
+  	 - SOQL does not support the asterisk * wild card character
+  	 - Heap Limits: Use ```transient``` keyword prevents an Apex instance variable from being transmitted as part of the view state of a Visualforce page, which reduces view state size. Use SOQL loops for controlled batches. Clear variables once done to clear up memory.
+  	 - Backslash Escape Character in SOQL:  \'  or \" or \n or \? etc.
+  	 - The % and _ wildcards are suppored for with the LIKE operator.
+  	 	- 'xyz%' matches zero or more characters
+  	  	- '_xyz' matches exactly one character 
+    
 
 - **Salesforce Object Search Language (SOSL)**
 	- Syntax: return type list of list of sObjects
@@ -604,6 +623,7 @@ development be considered.
    	FIND {Search Query Text} // this line is required // apex uses ' ', query editor uses {}
    	[ IN SearchGroup ]
    	[ RETURNING FieldSpec [[ toLabel(fields) ] [ convertCurrency(Amount) ] [ FORMAT() ] ] ]
+   	// RETURNING clause specifies the information that should be returned in the search result i.e. Account(Name)
    	[ WITH DivisionFilter ]
    	[ WITH DATA CATEGORY DataCategorySpec ]
    	[ WITH SNIPPET [ (target_length = n )] ]
@@ -621,7 +641,10 @@ development be considered.
   	 IN NAME FIELDS
   	 RETURNING Account(Id, Name, Phone), Opportunity(Id, Name, AccountId LIMIT 5)
   	 ```
-    
+
+- **SOSL Tips**
+	- Results are evenly distributed among the returned objects, ig a limit is set on the entiure query. Limits can also be set per individual object. 
+
 - **Dynamic SOQL & SOSL**
 	- Syntax: construct string with query line
    ```apex
@@ -1173,7 +1196,9 @@ development be considered.
   	- Can add visualforce pages in lightning app builder/flexipage   
 
 - **Important Methods:**
-	- To add a related record's field name to a Visualforce page, use formula field syntax 
+	- To reference an instantiation of a page:
+		 - Use  ```PageReference pageRef = new PageReference('URL');``` or ```Page.visualforcePageName```
+ 	- To add a related record's field name to a Visualforce page, use formula field syntax 
 		- Reference the object's fields using ```{!opportunity.Account.fieldName}``` in a standard controller
  	- To generate a simple PDF
  		- create a visualforce page with ```renderAs="pdf"```
