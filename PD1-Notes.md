@@ -2,15 +2,13 @@
 
 60 Questions, 68% Passing
 
-:accessibility:  [Exam Guide](https://trailhead.salesforce.com/help?article=Salesforce-Certified-Platform-Developer-I-Exam-Guide)
+:accessibility:  ~[Exam Guide](https://trailhead.salesforce.com/help?article=Salesforce-Certified-Platform-Developer-I-Exam-Guide)~
 
-:accessibility:  [Udemy Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview) 
+:accessibility:  ~[Udemy Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview)~ 
 
-:accessibility:  [Practice Test](https://www.salesforceben.com/salesforce-platform-developer-1-practice-exams/)
+:accessibility:  ~[Practice Test](https://www.salesforceben.com/salesforce-platform-developer-1-practice-exams/)~
 
 :accessibility:  [Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI)
-
-:accessibility: [Focus on Force Guide](https://focusonforce.com/salesforce-certifications/platform-developer-1/)
 
 :accessibility: [Apex Basics & Database Badge](https://trailhead.salesforce.com/content/learn/modules/apex_database?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
 
