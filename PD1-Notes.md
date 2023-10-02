@@ -1343,7 +1343,7 @@ System.assertEquals(expected, actual);
   
 	- HTML provides the structure for your component.
 	- JavaScript defines the core business logic and event handling.
-	- CSS provides the look, feel, and animation for your component.
+	- CSS provides the look, feel, and animation for your component. Use Salesforce Lightning Design System (SLDS), a CSS framework, to provides a look and feel that's consistent with Lightning Experience. 
  	- Salesforce-specific JS-META.XML metadata file
     
 - **LWC Benefits**
@@ -1374,7 +1374,13 @@ System.assertEquals(expected, actual);
 - **LWC Decorators**
 	- ```@api``` Marks a field as public. Public properties define the API for a component. An owner component that uses the component in its HTML markup can access the component's public properties. All public properties are reactive, which means that the framework observes the property for changes. When the property's value changes, the framework reacts and rerenders the component.
  	- ```@track``` Tells the framework to observe changes to the properties of an object or to the elements of an array. If a change occurs, the framework rerenders the component. All fields are reactive. If the value of a field changes and the field is used in a template—or in the getter of a property used in a template—the framework rerenders the component. You don't need to decorate the field with @track. Use @track only if a field contains an object or an array and if you want the framework to observe changes to the properties of the object or to the elements of the array. If you want to change the value of the whole property, you don't need to use @track.
-  	- ```@wire``` Gives you an easy way to get and bind data from a Salesforce org.  
+  	- ```@wire``` Gives you an easy way to get and bind data from a Salesforce org.
+  		- Syntax
+  	   	```apex
+  	    import { adapterId } from 'adapter-module';
+		@wire(adapterId, adapterConfig)
+		propertyOrFunction;
+  	    ```   
 
 - **Basic Component**
   
