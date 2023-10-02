@@ -1339,20 +1339,25 @@ System.assertEquals(expected, actual);
 
  #### Lightning Web Components
 
+- **LWC Framework**
+	- HTML provides the structure for your component.
+	- JavaScript defines the core business logic and event handling.
+	- CSS provides the look, feel, and animation for your component.
+ 	- Salesforce-specific JS-META.XML metadata file
+  - 
+- **LWC Benefits**
+  	- Lightweight for faster development
+ 	- Faster performance
+  	- Out-of-the-box components
+  	- Built upon web standards 
+  
 - **LWC Characteristics**
   
-	- LWCs use standard HTML and Javascript
  	- Dev tools needed for LWCs are VSCode and Salesforce Extension Pack
   	- LWC can be used in Lightning Experience apps, Experiences, and Salesforce Mobile App
   	- LWC requires all third-party resources, like Javascript and CSS, to be uploaded as Static Resources and loaded through the Platform Resource Loader
-  	- LWC require an HTML file, a JavaScript file and a Salesforce-specific JS-META.XML metadata file
   	- LWC must be named in camelCase
-  	- LWC Benefits:
-  		- Lightweight for faster development
- 		- Faster performance
-  		- Out-of-the-box components
-  		- Built upon web standards 
-  
+
     
 
 - **Basic Component**
