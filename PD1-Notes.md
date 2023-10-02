@@ -115,7 +115,8 @@
 - **Declarative Caveats**
 	- Standard validation rules are unable to operate on parent-child relationships
  	- Roll-up summary fields can only be on the master
-  	- Formula fields are calculated at access time and can span multiple objects 
+  	- Formula fields are calculated at access time and can span multiple objects
+  	- Workflow rules do not have the capability to submit records for approval or update child records. (blocked since Winter'23) 
   
 - **Best Practices**
 	- For complex solutions, check if there is an app on AppExchange. If there are no suitable AppExchange apps, only then should custom
@@ -202,8 +203,17 @@ development be considered.
   	- Sub-blocks cannot redeclare a parent's block variable name
   	- Can be declare at any point in a block
 
-- **Subclasses**
-	- Inner classes can have their own sharing modes declared, which don’t have to match that of the outer classes. This can be useful for nesting specific methods that require ```without sharing``` inside a class that has ```with sharing``` declared. 
+- **Classes & Subclasses**
+	- Top classes must have one access modifiers (such as public or private). This is not mandatory for inner classes.
+ 	- Inner class is private by default.
+  	- Inner classes can have their own sharing modes declared, which don’t have to match that of the outer classes.
+ 	-  Inner classes can only be one level deep.
+
+ - **Approval Process**
+ 	- "Enable email approval response" setting to allow approvers to reveive and respond to approvals via email.
+  	- "Allow Approvals" in Chatter setting enables approvers to reveive approval request notifications via Chatter
+   	- System Admin and specified Approver can edit records while it's locked for approval.
+   	- Approval requests can be sent to individual users or a queue.  
     
 </details>
 
@@ -212,7 +222,7 @@ development be considered.
 
  ####  Apex Data Types
 
-- **Primitive Data Types**
+- **Data Types**
   - String
   - Boolean
   - Integer
@@ -221,6 +231,8 @@ development be considered.
   - Date  
   - DateTime
   - Time
+  - Blob for binary data
+  - Enum to store a set of identifiers that are accessed one at a time
  
 - **sObjects**
   - Standard and Custom Objects
@@ -270,6 +282,7 @@ development be considered.
 - **Control Flow Statements**
   
 	- if, else if and else statements
+ 		- only 
  	- for loops
   	- List or Set for loops
   	- SOQL for loops: utilize more efficient chunking of SObjects behind the scenes, resulting in reduced heap usage and a lower chance of hitting governor limits for large queries. 
@@ -321,6 +334,7 @@ development be considered.
 - **Class Keywords**
 	- ```implements``` an ```interface```, which is a class in which none of the methods have been implemented. The method signatures are there, but the body of each method is empty. To use an interface, another class must implement it by providing a body for all of the methods contained in the interface.
  	- ```extends``` this class with the functionality of another class
+
   	  
 - **Interface Keywords**
 	- ```virtual``` makes it inheritable by any other class present in Salesforce that ```extends``` that class. Virtual methods can be defined in virtual or abstract classes
@@ -328,18 +342,21 @@ development be considered.
   		
 
 - **Sharing Keywords**
-	- ```with sharing``` enforce sharing rules of the current user.
+	- By default, Apex code in classes, triggers or web services run in system mode where permissions and record sharing of the current user are **not** taken into account.
+ 	- ```with sharing``` enforce sharing rules of the current user.
  	-  ```without sharing``` sharing rules for the current user are not enforced
    	- ```inherited sharing``` Inherited sharing takes on the sharing declaration of the class that has executed the code, so if a class with sharing enforced calls a method in a class with inherited sharing, the inherited sharing class code would run with sharing enforced. This is useful for when the sharing model to be used isn’t known at design time, or the code is built to be called from varying places within the system.
+   
 
 - **Access Modifiers**
 	- ```global``` Can be accessed by any code in your salesforce org. If a method or variable is declared as global, the class must also be global.
    	- ```private``` Can only be accessible in the class it was created in
-   	- ```public``` Can be accessed by code in the same namespace
+   	- ```public``` Can be accessed by other apex code in the same namespace
  	- ```protected``` Accessible to any inner classes in the defining Apex class, and to the classes that extend the defining Apex class
  
 - **Key Words** 
-	- ```static``` Before an object of a class is created, all static member variables in a class are initialized, and all static initialization code blocks are executed. These items are handled in the order in which they appear in the class.
+	- ```static``` method, can be a utility method and is called without instantiating the class it is defined in. Can only be used with methods, variables, ans initilization code, and is not supported in class definitions.
+ 	- ```void``` specifies the method does not return a value. 
   	- ```this.``` use with instance/non-static variables 
 
 -  **Class Capabilities**
@@ -415,7 +432,8 @@ development be considered.
 - **Anonymous Apex**
 	- Use the “Execute Anonymous” functionality of the Developer Console
  	- Utilise the REST API ```executeAnonymous``` endpoint
-  	- Use the Salesforce CLI ```force:apex:execute``` command 
+  	- Use the Salesforce CLI ```force:apex:execute``` command
+  	- Apex run inside anonymous blocks always executes with the current user context.
  
 </details>
     
@@ -575,6 +593,11 @@ development be considered.
     		// Custom relationship fields, use CustomObject__r
     		// Standard relationship fields, use Child Relationship Name instead of Field Name
      		```
+     
+- **SOQL Tips**
+	- Use ```GeolocationField__Lattitude__s``` and ```GeolocationField__Longitude__s``` to retreive latitude and longitude values of a geloation field
+ 	- Invalid SOQL syntax results in query exception
+  - 
 
 - **Salesforce Object Search Language (SOSL)**
 	- Syntax: return type list of list of sObjects
@@ -1639,6 +1662,7 @@ export default class Home extends LightningElement{
   	- Choose LWC over Aura Components
   	- Case sensitive, variable references must be in quotes
   	- LWC can be inside an Aura Component markup, but you cannot have an Aura component in an LWC markup
+  	- Server-side Lightning component controllers, or @AuraEnabled classe, use with sharing if no sharing keywords is defined on the class. Record level security is enforced by default in custom lightning components.
      
 - **Aura Component Framework**
   
