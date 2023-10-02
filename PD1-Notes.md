@@ -1021,6 +1021,16 @@ development be considered.
   	- Tyoes: Inboard Change Sets and Outbound Change Sets  
  	- Target & Source Pairs: Sandbox to Sandbox OR Sandbox to Prod
 
+- **Salesforce CLI Capabilities**
+  
+	- Authorize sandboxes (headless or web flow)
+	- Create and manage DX projects
+	- Import and export test data
+	- Retrieve and deploy metadata
+	- Run and automate tests
+
+
+  
 - **Deprecration**
 	- Apex Classes & Metadata
 
@@ -1035,15 +1045,24 @@ development be considered.
    	- Have the Salesforce CLI setup to log into the dev hub and request scratch org creation
    	  
  - **Sandboxes**
-   
+
+   <img width="940" alt="Screen Shot 2023-10-02 at 6 57 43 PM" src="https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/e1ded12c-8f6a-47a4-9bfe-161608df0a3d">
+
  	- **Developer Sandbox:** A Developer sandbox is intended for **development and testing** in an isolated environment. A Developer Sandbox includes a copy of your production org’s configuration (metadata).
 
    	- **Developer Pro Sandbox:** A Developer Pro sandbox is intended for development and testing in an isolated environment and can host larger data sets than a Developer sandbox. A Developer Pro sandbox includes a copy of your production org’s configuration (metadata). Use a Developer Pro sandbox to **handle more development and quality assurance tasks and for integration testing or user training.** 
    	- **Partial Copy Sandbox:** A Partial Copy sandbox is intended to be used as a **testing environment.** This environment includes a copy of your production org’s configuration (metadata) and **a sample of your production org’s data** as defined by a sandbox template. Use a Partial Copy sandbox for quality assurance tasks such as **user acceptance testing, integration testing, and training.**
    	- **Full Sandbox:** A Full sandbox is intended to be used as a **testing environment.** Only Full sandboxes support **performance testing, load testing, and staging.** Full sandboxes are a **replica of your production org,** including all data, such as object records and attachments, and metadata. The length of the refresh interval makes it difficult to use Full sandboxes for development.
     
-</details>
 
+- **Salesforce DX**
+	- The Salesforce DX project contains the source and files that comprise your changes. A DX project has a specific project structure and source format.
+	- In addition to source files, the project contains a configuration file, sfdx-project.json. This file contains project information and enables you to leverage Salesforce DX tools for many of your development tasks.
+ 	-  Manifest file (package.xml) lists the components to be deployed. The changes don’t take effect until they are deployed.
+
+ 
+
+</details>
 
 <br>
 
