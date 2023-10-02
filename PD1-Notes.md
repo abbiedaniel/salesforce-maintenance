@@ -14,7 +14,7 @@
 
 :accessibility:  [Apex Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_apex)
 
-:accessibility:  [LWC Basics Badge](https://trailhead.salesforce.com/content/learn/modules/lightning-web-components-basics?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
+:accessibility:  ~[LWC Basics Badge](https://trailhead.salesforce.com/content/learn/modules/lightning-web-components-basics?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)~
 
 :accessibility:  [LWC Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
 
