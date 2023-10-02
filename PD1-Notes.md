@@ -8,7 +8,7 @@
 
 :accessibility:  ~[Practice Test](https://www.salesforceben.com/salesforce-platform-developer-1-practice-exams/)~
 
-:accessibility:  [Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI)
+:accessibility:  ~[Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI)~
 
 :accessibility: [Apex Basics & Database Badge](https://trailhead.salesforce.com/content/learn/modules/apex_database?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
 
