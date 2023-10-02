@@ -363,7 +363,7 @@ development be considered.
  		- Static variables only persist within the context of a single transaction. Static Methods cannot access values of instance members of its class.
  		- No parentheses/constructors needed when accessing static variables.
  	- ```void``` specifies the method does not return a value. 
-  	- ```this.``` use with instance/non-static variables
+  	- ```this.``` keyword in JavaScript refers to the top level of the current context. 
   	- ```final``` use to define constants. final indicates the variable can only be initlaized once.
 
 -  **Class Capabilities**
@@ -1340,11 +1340,12 @@ System.assertEquals(expected, actual);
  #### Lightning Web Components
 
 - **LWC Framework**
+  
 	- HTML provides the structure for your component.
 	- JavaScript defines the core business logic and event handling.
 	- CSS provides the look, feel, and animation for your component.
  	- Salesforce-specific JS-META.XML metadata file
-  - 
+    
 - **LWC Benefits**
   	- Lightweight for faster development
  	- Faster performance
@@ -1357,8 +1358,23 @@ System.assertEquals(expected, actual);
   	- LWC can be used in Lightning Experience apps, Experiences, and Salesforce Mobile App
   	- LWC requires all third-party resources, like Javascript and CSS, to be uploaded as Static Resources and loaded through the Platform Resource Loader
   	- LWC must be named in camelCase
+  	- A single property or function can have only one decorator. For example, a property can't have @api and @wire decorators.
 
-    
+
+
+- **Lifecycle Hooks**
+	- Lightning Web Components provides methods that allow you to “hook” your code up to critical events in a component's lifecycle. These events include when a component is:
+ 		- Created
+   		- Added to the DOM
+       - Rendered in the browser
+       - Encountering errors
+       - Removed from the DOM
+       - Respond to any of these lifecycle events using callback methods.
+
+- **LWC Decorators**
+	- ```@api``` Marks a field as public. Public properties define the API for a component. An owner component that uses the component in its HTML markup can access the component's public properties. All public properties are reactive, which means that the framework observes the property for changes. When the property's value changes, the framework reacts and rerenders the component.
+ 	- ```@track``` Tells the framework to observe changes to the properties of an object or to the elements of an array. If a change occurs, the framework rerenders the component. All fields are reactive. If the value of a field changes and the field is used in a template—or in the getter of a property used in a template—the framework rerenders the component. You don't need to decorate the field with @track. Use @track only if a field contains an object or an array and if you want the framework to observe changes to the properties of the object or to the elements of the array. If you want to change the value of the whole property, you don't need to use @track.
+  	- ```@wire``` Gives you an easy way to get and bind data from a Salesforce org.  
 
 - **Basic Component**
   
