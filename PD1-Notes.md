@@ -1029,14 +1029,13 @@ development be considered.
 	- Retrieve and deploy metadata
 	- Run and automate tests
 
-
   
 - **Deprecration**
 	- Apex Classes & Metadata
 
    		- Apex classes and some other metadata cannot be directly deleted from production. While these pieces of metadata can be deleted within a Sandbox, changesets cannot upload these destructive changes. The Metadata API must be used for deleting apex classes. This could be with a tool such as ANT to produce a destructive changeset which is deployed into the org.
    	 		  
-       - Fields
+	- Fields
        		- Remove all references of this field in the org before deleting
 
 - **Scratch Orgs**
@@ -1058,9 +1057,13 @@ development be considered.
 - **Salesforce DX**
 	- The Salesforce DX project contains the source and files that comprise your changes. A DX project has a specific project structure and source format.
 	- In addition to source files, the project contains a configuration file, sfdx-project.json. This file contains project information and enables you to leverage Salesforce DX tools for many of your development tasks.
- 	-  Manifest file (package.xml) lists the components to be deployed. The changes don’t take effect until they are deployed.
-
- 
+ 	-  Manifest file (package.xml) lists the components to be deployed
+  	- Deployment Steps (IDE & Source Control, No Copado):
+  		- Build Release Artifact
+  	 	- Test the Release Artifact in the Test (Partial) Sandbox
+  	  	- Test the Release Artifact in the Staging (Full) Sandbox
+  	  	- Release to Production
+  	  	- Perform Post-Deployment Tasks Listed in Deployment Run List   
 
 </details>
 
