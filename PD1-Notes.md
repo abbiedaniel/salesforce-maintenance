@@ -1379,7 +1379,9 @@ System.assertEquals(expected, actual);
   	   	```apex
   	    import { adapterId } from 'adapter-module';
 		@wire(adapterId, adapterConfig)
-		propertyOrFunction;
+		propertyOrFunction; // A private property or function that receives the stream of data from the wire service.
+  	    	// If a property is decorated with @wire, the results are returned to the property's data property or error property.
+  	    	// If a function is decorated with @wire, the results are returned in an object with a data property and an error property.
   	    ```   
 
 - **Basic Component**
