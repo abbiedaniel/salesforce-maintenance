@@ -182,12 +182,11 @@ development be considered.
 - **About Apex**
 	- Apex is a programming language that uses Java-like syntax and acts like database stored procedures.
  	- Hosted—Apex is saved, compiled, and executed on the server—the Lightning Platform.
- 	- Object oriented—Apex supports classes, interfaces, and inheritance.
+ 	- Object oriented—Apex supports classes, interfaces, inheritance, abstraction, polymorphism, and encapsulation.
   	- Strongly typed—Apex validates references to objects at compile time.
-	- Use Cases: Implement a web service, email service, complex validation over multilple objects and complex business processes, execute server-side logic for a custom Lightning component
- 	- Unlike other object-oriented programming languages, Apex supports cloud development as Apex is stored, compiled, and executed in the cloud. 
-   
-   <img width="930" alt="Screen Shot 2023-10-03 at 10 28 36 AM" src="https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/42e5af84-1117-4854-b6a9-5de2b04da30b">
+	- Use Cases—Implement a web service, email service, complex validation over multilple objects and complex business processes, execute server-side logic for a custom Lightning component
+ 	- Unlike other object-oriented programming languages, Apex supports cloud development as Apex is stored, compiled, and executed in the cloud.
+    	 <img width="930" alt="Screen Shot 2023-10-03 at 10 28 36 AM" src="https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/42e5af84-1117-4854-b6a9-5de2b04da30b">
 
    	
 - **Constructor**
