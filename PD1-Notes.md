@@ -14,7 +14,7 @@
 
 :accessibility: ~[Org Deployments Badge](https://trailhead.salesforce.com/content/learn/modules/org-development-model?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)~
 
-:accessibility:  [Apex Basics & Database Badge](https://trailhead.salesforce.com/content/learn/modules/apex_database?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
+:accessibility:  ~[Apex Basics & Database Badge](https://trailhead.salesforce.com/content/learn/modules/apex_database?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)~
 
 :accessibility:  [Apex Specialist Superbadge - 2/5](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_apex)
 
@@ -177,16 +177,18 @@ development be considered.
 	<summary>Object-Oriented Concepts</summary>
 
  ####  Object-Oriented Concepts
+      
 
-- **Salesforce vs. Apex Objects:**
-  - Salesforce:
-    - Standard and custom objects are built declaratively and used to organize the data we store in the org.
-  - Apex: 
-    - Apex objects are developed programmatically and used to organize reusable methods and variables.
+- **About Apex**
+	- Apex is a programming language that uses Java-like syntax and acts like database stored procedures.
+ 	- Hosted—Apex is saved, compiled, and executed on the server—the Lightning Platform.
+ 	- Object oriented—Apex supports classes, interfaces, and inheritance.
+  	- Strongly typed—Apex validates references to objects at compile time.
+	- Use Cases: Implement a web service, email service, complex validation over multilple objects and complex business processes, execute server-side logic for a custom Lightning component
+ 	- Unlike other object-oriented programming languages, Apex supports cloud development as Apex is stored, compiled, and executed in the cloud. 
+   
+   <img width="930" alt="Screen Shot 2023-10-03 at 10 28 36 AM" src="https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/42e5af84-1117-4854-b6a9-5de2b04da30b">
 
-- **Apex Use Cases**
-	- Implement a web service, email service, complex validation over multilple objects and complex business processes
-   	- Execute server-side logic for a custom Lightning component
    	
 - **Constructor**
 	- Located near the top of the class
@@ -240,34 +242,69 @@ development be considered.
 - **sObjects**
   - Standard and Custom Objects
   - Constructor parameters can include field values
-  - Instantiate an object:
+  - For custom objects and custom fields, the API name always ends with the __c suffix.
+  - For custom relationship fields, the API name ends with the __r suffix
+  - Instantiate an Sobject with a constructor:
     ```apex
-    Account acc = new Account(Name = 'Name');
+    Account acc = new Account(Name='Acme');
+    // new creates an instance of this object in memory
+    acct.Phone = '(415)555-1212';
+    // can also use dot notation to also initliaze field values
     ```
    
 - **Arrays**
   - List
-    - Instantiate a list:
       ```apex
+      // Instantiate a list:
       List<String> stringList = new List<String>();
+      List<String> colors = new List<String> { 'red', 'green', 'blue' };
+      Account[] accountList = new List<Account>();
+      List<Contact> conList = new List<Contact> {new Contact(FirstName='Joe',LastName='Smith',Department='Finance')};
+
+      // List Methods:
+      colors.add('orange');
+      colors.get(0); // returns red
+      colors.size(); // returns 4
       
-      Account[] accountList = new Account[](testAccount1, testAccount2);
-      ```
-    - Iterate through a list:
-      ```apex
+      // Iterate through a list:
       for (datatype element : list) { ... }
       ```
   - Set: unordered collection without duplicates
-      - Instantiate a set:
        ```apex
+       // Instantiate a set:
        Set<Integer> intSet = new Set<Integer>(1, 2, 3);
+
+
+       // Set Methods: // most are used on sets AND lists
+       intSet.add(4);
+       intSet.contains(4); // returns true
+       intSet.isempty(); // returns false
+       intSet.toString(); // returns set of strings instead of integers
        ````
   - Map: a collection of key and value pairs
-      - Instantiate a map:
        ```apex
+       // Instantiate a map:
        Map<String, String> stringMap = new Map<String, String>();
-      
        Map<Integer, String> populatedMap = new Map<Integer, String>(1 => 'First', 3 => 'Third');
+       
+       // Map Methods:
+       populatedMap.get(key);
+       // Returns the value to which the specified key is mapped, or null if the map contains no value for this key.
+       
+       populatedMap.put(key, value);
+       // Associates the specified value with the specified key in the map.
+       
+       populatedMap.remove(key);
+       // Removes the mapping for the specified key from the map, if present, and returns the corresponding value.
+       
+       populatedMap.containsKey(key);
+       // Returns true if the map contains a mapping for the specified key.
+       
+       populateMap.clone();
+       // Makes a duplicate copy of the map.
+       
+       populateMap.clear();
+       // Removes all of the key-value mappings from the map.
        ````
 
 - **API Data Type and Salesforce Field Types**
@@ -555,14 +592,17 @@ development be considered.
 
  #### DML, SOQL & SOSL
 
-- **DML**
+- **Data Manipulation Language (DML)**
+  
   - Operations
-    - ```update``` - use for after triggers
-    - ```upsert``` create new and update existing records. Errors out if a key is matched multiple times. 
-    - ```delete```
+    - ```update``` use for after triggers
+    - ```upsert``` create new and update existing records. Errors out if a key is matched multiple times. You can specify a sObject record's primary key (the ID), an idLookup field, or an external ID to match.
+    - ```delete``` records in the Recycle Bin for 15 days from where they can be restored. Supports cascading deletions. If you delete a parent object, you delete its children automatically, as long as each child record can be deleted.
     - ```undelete``` restores one or more existing sObject records from the recycling bin.
-    	- Parent adn child records are supported. Custom lookups that haven't been replaced can be restored. 
+    	- Parent and child records are supported. Custom lookups that haven't been replaced can be restored. 
     - ```merge``` merges up to three records of the same sObject type into one of the records, deletes the others, and re-parents any related records.
+    - ```Database.insert(sObjectList, allOrNone)``` You can also call the built-in Database class static methods. Optional allOrNone parameter that allows you to specify whether the operation should partially succeed.
+    		- The Database methods return result objects containing success or failure information for each record in ```Database.SaveResults, Database.DeleteResult, Database.UpsertResult``` objects. These objects have getErrors() and isSucess() methods.
       
 - **DML Best Practices**
     - Always use DMLs with lists over single records
