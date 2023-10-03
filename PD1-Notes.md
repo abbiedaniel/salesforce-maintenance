@@ -267,7 +267,7 @@ development be considered.
        ```apex
        Map<String, String> stringMap = new Map<String, String>();
       
-       Map<Integer, String> populatedMap = new Map<Integer, String>(1 => 'First, 3 => 'Third');
+       Map<Integer, String> populatedMap = new Map<Integer, String>(1 => 'First', 3 => 'Third');
        ````
 
 - **API Data Type and Salesforce Field Types**
