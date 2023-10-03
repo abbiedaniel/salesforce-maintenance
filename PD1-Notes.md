@@ -588,9 +588,9 @@ development be considered.
 </details>	
  
 <details>
-	<summary>DML, SOQL & SOSL</summary>
+	<summary>Data Manipulation Language</summary>
 
- #### DML, SOQL & SOSL
+ #### DML
 
 - **Use Cases**
 	- Use DML to create and modify records in Salesforce.
@@ -614,7 +614,15 @@ development be considered.
     - Profiles and Record Types do not suport DML operations
     - DML Governor's Limit: 150 per transaction
 
+</details>
+
+<details>
+	<summary>Salesforce Object Query Language</summary>
+	
+  #### SOQL
+
 - **Salesforce Object Query Language (SOQL)**
+  
 	- Syntax: returns list of sObjects, single sObject, integer
    
    ```apex
@@ -655,9 +663,9 @@ development be considered.
      		//SOQL For Loop
      		for (data_type variable|variableList : [soql_query]) {
     			// the loop executes once for each batch of 200 sObjects
-     			// example: if you were to increment integer i in this code block, it would only increase once if the query returns less than 200 records
-     
-		}
+     			// example: if you were to increment integer i in this code block,
+     			// it would only increase once if the query returns less than 200 records
+     		}
      		```
      
 - **SOQL Tips**
@@ -672,16 +680,36 @@ development be considered.
   	 - The % and _ wildcards are suppored for with the LIKE operator.
   	 	- 'xyz%' matches zero or more characters
   	  	- '_xyz' matches exactly one character 
-    
+
+</details>
+
+<details>
+	<summary>Salesforce Object Search Language</summary>
+
+ ### SOSL
 
 - **Salesforce Object Search Language (SOSL)**
+  
 	- Syntax: return type list of list of sObjects
+ 		- SearchQuery is the text to search for (a single word or a phrase). Text searches are case-insensitive.
+  		- Search terms can be grouped with logical operators (AND, OR) and parentheses.
+  		- Also, search terms can include wildcard characters (*, ?). The * wildcard matches zero or more characters at the middle or end of the search term. The ? wildcard matches only one character at the middle or end of the search term.    
    
   	```apex
-   	FIND {Search Query Text} // this line is required // apex uses ' ', query editor uses {}
+   	FIND {Search Query Text} 
+    	// this line is required
+   	// apex uses 'SearchQuery ', query editor uses {SearchQuery}
+   	// Use double quotes for a specific phrase i.e. "hello world" 
+   
    	[ IN SearchGroup ]
+   	// If not specified, the default search scope is all fields.
+   	// Search Group Options: ALL FIELDS, NAME FIELDS, EMAIL FIELDS, PHONE FIELDS, SIDEBAR FIELDS
+   
    	[ RETURNING FieldSpec [[ toLabel(fields) ] [ convertCurrency(Amount) ] [ FORMAT() ] ] ]
-   	// RETURNING clause specifies the information that should be returned in the search result i.e. Account(Name)
+   	// optional RETURNING clause specifies the information that should be returned in the search result i.e. Account(Name)
+   	//  If not specified, the search results contain the IDs of all objects found.
+   	// You can also use WHERE, LIMIT and ORDER BY in the returning clause
+   
    	[ WITH DivisionFilter ]
    	[ WITH DATA CATEGORY DataCategorySpec ]
    	[ WITH SNIPPET [ (target_length = n )] ]
@@ -692,13 +720,19 @@ development be considered.
    
    	[ UPDATE [TRACKING], [VIEWSTAT] ] 
    	```
+   
+  	  
   	 - Example
   	   
-  	 ```apex
-  	 FIND {Booz Allen Hamilton}
-  	 IN NAME FIELDS
-  	 RETURNING Account(Id, Name, Phone), Opportunity(Id, Name, AccountId LIMIT 5)
-  	 ```
+  	 	```apex
+  	  	// apex
+  	  	List<List<sObject>> results = [FIND :name IN NAME FIELDS RETURNING Contact(Name), Lead(Name)];
+  	  
+  	  	// query editor
+  	  	FIND {Booz Allen Hamilton}
+  	  	IN NAME FIELDS
+  	  	RETURNING Account(Id, Name, Phone WHERE Industry='Apparel' ORDER BY Name), Opportunity(Id, Name, AccountId LIMIT 5)
+  	 	```
 
 - **SOSL Tips**
 	- Results are evenly distributed among the returned objects, ig a limit is set on the entiure query. Limits can also be set per individual object. 
