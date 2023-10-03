@@ -596,7 +596,7 @@ development be considered.
 </details>	
  
 <details>
-	<summary>Data Manipulation Language</summary>
+	<summary>Data Manipulation Language (DML)</summary>
 
  #### DML
 
@@ -625,7 +625,7 @@ development be considered.
 </details>
 
 <details>
-	<summary>Salesforce Object Query Language</summary>
+	<summary>Salesforce Object Query Language (SOQL)</summary>
 	
   #### SOQL
 
@@ -698,7 +698,7 @@ development be considered.
 </details>
 
 <details>
-	<summary>Salesforce Object Search Language</summary>
+	<summary>Salesforce Object Search Language (SOSL)</summary>
 
  ### SOSL
 
