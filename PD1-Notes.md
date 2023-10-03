@@ -488,13 +488,14 @@ development be considered.
 
 - **Asynchronous Apex**
   
-	- Future methods (separate transaction)
-    - Batch Apex (large data processing)
-    - Queueable Apex (sequential processing)
-    - Scheduled Apex (scheduled processing)
+	- Future methods: separate transactions, web service callouts
+    - Batch Apex: large data processing, data cleansing or archiving
+    - Queueable Apex: sequential processing, external web service callouts
+    - Scheduled Apex: scheduled processing, daily or weekly
         
 - **Reasons to Program Asynchronously**
   
+  - For callouts to external systems, operations that require higher limits, and code that needs to run at a certain time.
   - Processing a very large number of records. Limits are larger for asynchronous than synchronous processes
   - Making Callouts to external web services
   - Create a better, faster user experience
@@ -514,9 +515,17 @@ development be considered.
   - Limitations:
   	- Parameters must be primitive data types. **You cannot pass sObjects as parameters to future methods**
    	- No execution tracking and no jobId
+    	- Future methods are not guaranteed to execute in the same order as they are called.  
     	- You cannot chain future methods and have one call another.
-     	- Max invocations for 24 hrs: 250k
+     	- Future methods can’t be used in Visualforce controllers in getter, setter or constructor. 
+     	- Max Future Calls per Apex Invocation: 50
+      	- Max Invocations for 24 hrs: 250k
      - Benefits: if you want to separate transactions in apex due to CPU usage or governor limits
+   
+- Use Cases
+	- Callouts to external Web services. If you are making callouts from a trigger or after performing a DML operation, you must use a future or queueable method. A callout in a trigger would hold the database connection open for the lifetime of the callout and that is a "no-no" in a multitenant environment.
+ 	- Operations you want to run in their own thread, when time permits such as some sort of resource-intensive calculation or processing of records.
+  	- Isolating DML operations on different sObject types to prevent the mixed DML error. This is somewhat of an edge-case but you may occasionally run across this issue. 
 
 - **Batch Apex Class**
   - Syntax
