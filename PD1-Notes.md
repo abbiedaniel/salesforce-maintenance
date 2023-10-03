@@ -675,7 +675,13 @@ development be considered.
      			// it would only increase once if the query returns less than 200 records
      		}
      		```
+
      
+<img width="1327" alt="Screen Shot 2023-10-03 at 6 17 15 PM" src="https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/817e1ec3-9551-453b-9f5e-650bde8ed97e">
+<img width="1325" alt="Screen Shot 2023-10-03 at 6 17 43 PM" src="https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/51c5db98-ac74-4dd3-8ab6-e1a9d2b13a63">
+
+
+
 - **SOQL Tips**
 	- You don’t have to specify the Id field in a SOQL query as it is always returned in Apex queries, whether it is specified in the query or not.
  	- Use ```GeolocationField__Lattitude__s``` and ```GeolocationField__Longitude__s``` to retreive latitude and longitude values of a geloation field
