@@ -592,6 +592,11 @@ development be considered.
 
  #### DML, SOQL & SOSL
 
+- **Use Cases**
+	- Use DML to create and modify records in Salesforce.
+ 	- Use SOQL to retrieve records for a single object.
+  	- Use SOSL to search text fields across multiple objects. 
+
 - **Data Manipulation Language (DML)**
   
   - Operations
@@ -613,13 +618,14 @@ development be considered.
 	- Syntax: returns list of sObjects, single sObject, integer
    
    ```apex
-   [
-    SELECT one or more fields,
+   [ SELECT one or more fields,
+   	// inner query for child/related records
     	(SELECT fields
-    	FROM Child Relationship Field Name or Custom Relationship Field Name with appeneded __r
-   		)
+   	FROM Child Relationship Field Name or Custom Relationship Field Name with appeneded __r)
    FROM an object
-   WHERE filter statements and, optionally, results are ordered
+   WHERE (field=value OR|AND anotherField>value)
+   ORDER BY field ASC|DESC
+   LIMIT n
    ]
     ```
 	- Capabilities in Salesforce
@@ -627,9 +633,11 @@ development be considered.
    		- query in apex code
      
      		```apex
-       		Account[] parentAccounts = [SELECT Id, Name, Phone FROM Account WHERE Id IN :accountIdsSet];
+       		Account[] parentAccounts = [SELECT Id, Name, Phone FROM Account WHERE Id IN :accountIdsSet ORDER BY Name ASC LIMIT 10];
        
-       		// " :value " is needed on the right side of the comparison clause
+       
+       		// " :value " is needed on the right side of the comparison clause.
+       		// SOQL statements in Apex can reference Apex code variables and expressions if they are preceded by a colon. Example: field=:apexReferenceVariable
        		// IN can only be used on a set and not a list
        		```
        
@@ -641,10 +649,20 @@ development be considered.
     	
     		// Custom relationship fields, use CustomObject__r
     		// Standard relationship fields, use Child Relationship Name instead of Field Name
+
+
+
+     		//SOQL For Loop
+     		for (data_type variable|variableList : [soql_query]) {
+    			// the loop executes once for each batch of 200 sObjects
+     			// example: if you were to increment integer i in this code block, it would only increase once if the query returns less than 200 records
+     
+		}
      		```
      
 - **SOQL Tips**
-	- Use ```GeolocationField__Lattitude__s``` and ```GeolocationField__Longitude__s``` to retreive latitude and longitude values of a geloation field
+	- You don’t have to specify the Id field in a SOQL query as it is always returned in Apex queries, whether it is specified in the query or not.
+ 	- Use ```GeolocationField__Lattitude__s``` and ```GeolocationField__Longitude__s``` to retreive latitude and longitude values of a geloation field
  	- Invalid SOQL syntax results in query exception
   	- GROUP BY clause can be used together with the COUNT(fieldName) aggregate function to return data that groups and counts the number of records based on a field value.
   		- Example: ```SELECT LeadSource, COUNT(Name) FROM Lead GROUP BY LeadSource```
