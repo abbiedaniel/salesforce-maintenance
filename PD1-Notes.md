@@ -192,9 +192,11 @@ development be considered.
 
    	
 - **Constructor**
-	- Located near the top of the class
- 	- Best practice to include a constructor with no arguments
+	- A constructor is a special method that is used to create an instance of a class. 
+ 	- Initializes the values of the variables in the object and sets the state of the object.
+  	- Has the same name as the class (PascalCase) and does not have a return type.
   	- Constructor is invoked when it's apex class is initialized
+  	- If a class does not have a user-defined constructor, a default, no-argument, public constructor is used.
   	- You will likely need to assign ```this.arg = arg;```  
 
 
