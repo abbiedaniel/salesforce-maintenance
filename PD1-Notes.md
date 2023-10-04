@@ -529,7 +529,8 @@ development be considered.
 - Use Cases
 	- Callouts to external Web services. If you are making callouts from a trigger or after performing a DML operation, you must use a future or queueable method. A callout in a trigger would hold the database connection open for the lifetime of the callout and that is a "no-no" in a multitenant environment.
  	- Operations you want to run in their own thread, when time permits such as some sort of resource-intensive calculation or processing of records.
-  	- Isolating DML operations on different sObject types to prevent the mixed DML error. This is somewhat of an edge-case but you may occasionally run across this issue. 
+  	- Isolating DML operations on different sObject types to prevent the mixed DML error. This is somewhat of an edge-case but you may occasionally run across this issue.
+  	-  Use future methods instead of queueable is when your functionality is sometimes executed synchronously, and sometimes asynchronously. You can simply create a similar future method that calls your synchronous method.
 
 - **Batch Apex Class**
   - Syntax
@@ -592,11 +593,17 @@ development be considered.
         - To add class as a job and queue job
         ```apex
         ID jobID = System.enqueueJob(new QueueableClass());
-        ```  
+        // query for the job to monitor progress
+        AsyncApexJob job = [SELECT Id, Status, NumberOfErrors FROM AsyncApexJob WHERE Id = :jobID];
+
+        ```
+  
  	- Benefits:
   		- Accepts non-primitive types as parameters
  		- Monitoring - Job ID is returned to identify the job and monitor the progress
-  		- Chaining Jobs - You can chain one job to another job by starting a second job from a running job. This can be useful for sequential processing.
+  		- Chaining Jobs - You can chain one job to another job by starting a second job from a running job. In the ```execute``` method of the first job, run the ```System.enqueueJob(new SecondJob())```
+      
+    		- Testing Chained Queueable Jobs - You can’t chain queueable jobs in an Apex test so check if Apex is running in test context by calling ```Test.isRunningTest()``` before chaining jobs.
     		- Max: 50 jobs in the queue with system.enqueueJob  in a single transaction 
 
 - **Scheduled Apex**
@@ -629,6 +636,7 @@ development be considered.
 - **Data Manipulation Language (DML)**
   
   - Operations
+    - ```insert```
     - ```update``` use for after triggers
     - ```upsert``` create new and update existing records. Errors out if a key is matched multiple times. You can specify a sObject record's primary key (the ID), an idLookup field, or an external ID to match.
     - ```delete``` records in the Recycle Bin for 15 days from where they can be restored. Supports cascading deletions. If you delete a parent object, you delete its children automatically, as long as each child record can be deleted.
