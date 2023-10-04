@@ -536,10 +536,15 @@ development be considered.
 
     	global Database.QueryLocator start(Database.BatchableContext bc) {
     		// query for records
+    		// runs once at the beginnging of apex batch job
+    		// With the QueryLocator object, the governor limit for the total number of records retrieved by SOQL queries is bypassed and you can query up to 50 million records
     	}
 
     	global void execute(Database.BatchableContext bc, List<sObject> scope){
+    		// scope is the returned QueryLocator from the start method
+    		// The default batch size is 200 records. Batches of records are not guaranteed to execute in the order they are received from the start method.
     		// loop through records and process records
+    		
     	}
     	global void finish(Database.BatchableContext bc) {
 			// perform actions after data is processed
@@ -549,16 +554,28 @@ development be considered.
     ```
 	- To execute:
 	```apex
-  	Database.executeBatch(new BatchableClass(), batchSize);
+  	Id batchId = Database.executeBatch(new BatchableClass(), batchSize);
   	// batchSize maximum == 2,000 records, if value is larger, salesforce automatically makes batch size 2,000
   	// batchSize minimum == 1
+
+  	AsyncApexJob job = [SELECT Id, Status, JobItemsProcessed, TotalJobItems, NumberOfErrors FROM AsyncApexJob WHERE ID = :batchId ];
+  	// Each batch Apex invocation creates an AsyncApexJob record so that you can track the job’s progress.
+  	// You can view the progress via SOQL or manage your job in the Apex Job Queue. 
    	```
-  	- Use this if you need to process a large number of records
-      	- ```Database.Stateful``` instance variables of this class are preserved after each execute method call
+  
+  	- Use this if you need to count or summarize records as they’re processed.
+      	- ```Database.Stateful``` to maintain state across all transactions. Only instance member variables retain their values between transactions.
+ 
       	  
   - Limitations:
   	- Troubleshooting can be hard
    	- Jobs are queued and subject to server availability
+   
+  - Best Practices:
+  	- Only use Batch Apex if you have more than one batch of records. If you don't have enough records to run more than one batch, you are probably better off using Queueable Apex.
+   	- Tune any SOQL query to gather the records to execute as quickly as possible.
+   	- Minimize the number of asynchronous requests, i. e. web callouts, created to minimize the chance of delays.
+   	- Use extreme care if you are planning to invoke a batch job from a trigger. You must be able to guarantee that the trigger won’t add more batch jobs than the limit.  
 
 - **Queueable Apex**
 	- Declaration Syntax
