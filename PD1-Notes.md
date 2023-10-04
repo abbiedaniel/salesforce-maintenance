@@ -946,7 +946,7 @@ development be considered.
   		updatedTestAccount = [ SELECT Id, Name From Account, where ID =: testAccount.Id ];
   
   		System.assert( boolean condition );
-  		System.assertEquals( variable1, variable2 );
+  		System.assertEquals( expected, actual );
   	}
 
   	// you can use testMethod type instead of @isTest
