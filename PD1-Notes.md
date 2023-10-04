@@ -899,11 +899,62 @@ development be considered.
  ####  Apex Integration
 
 - **Apex Callout**
+  
 	- An Apex callout enables you to tightly integrate your Apex code with an external service. The callout makes a call to an external web service or sends an HTTP request from Apex code, and then receives the response.
  - Apex callouts come in two flavors:
  	- Web service callouts to SOAP web services use XML, and typically require a WSDL document for code generation.
   	- HTTP callouts to services typically use REST with JSON. Can also be used with SOAP.
-- SOAP or REST? REST services are typically easier to interact with, require much less code, and utilize easily readable JSON. SOAP web services are commonly used for enterprise applications, integrating with legacy applications or for transactions that require a formal exchange format or stateful operations.  
+- SOAP or REST? REST services are typically easier to interact with, require much less code, and utilize easily readable JSON. SOAP web services are commonly used for enterprise applications, integrating with legacy applications or for transactions that require a formal exchange format or stateful operations.
+
+
+- **HyperText Transfer Protocol  Review**
+	- Each callout request is associated with an HTTP method and an endpoint URL. The HTTP method indicates what type of action is desired.
+ 	- HTTP Methods: GET, POST, DELETE PUT
+ 	- Status Codes: 200 OK, 404 NOT FOUND, 500 INTERNAL SERVER ERROR
+  	- To create HTTP request and store response:
+  
+   	```apex
+    // instantiate http class and http request class
+    Http http = new Http();
+	HttpRequest request = new HttpRequest();
+    
+    // define endpoint service
+	request.setEndpoint('https://th-apex-http-callout.herokuapp.com/animals');
+    
+    // use GET to get data from a service 
+	request.setMethod('GET');
+    
+    // use POST and set header and body to send data to a service
+    request.setMethod('POST')
+    request.setHeader();
+    request.setBody()
+    
+    // store response from request
+	HttpResponse response = http.send(request);
+    
+    if (response.getStatusCode === 200){
+    	// deserialize JSON string and store in a Map<string, Object>
+    }
+    ```
+    
+- **Testing HTTP REST Callouts**
+	- Apex test methods don’t support callouts, and tests that perform callouts fail. To test your callouts, use mock callouts by either implementing an interface or using static resources.
+ 	- Static Resource
+    	```apex
+     	// use apex's static resource callout mock class
+     	StaticResourceCalloutMock mock = new StaticResourceCalloutMock();
+
+     	// Instead of sending the request to the endpoint, instead the Apex runtime knows to return the the response specified in the static resource
+        mock.setStaticResource('StaticResourceFileName');
+     	
+     	// The Test.setMock method informs the runtime that mock callouts are used in the test method. 
+        Test.setMock(HttpCalloutMock.class, mock);
+     	```
+     
+ 	- Have your mock callout class ```implements HttpCalloutMock``` and implement the ```respond(HTTPRequest)``` interface method. Use ```test.setMock(HttpCalloutMock.class, new MockCalloutClass())```
+
+- **Best Practice**
+	- Place the callout code in an asynchronous method that’s annotated with @future(callout=true) or use Queueable Apex. This way, the callout runs on a separate thread, and the code after the callout isn't blocked.
 
  </details>
 
