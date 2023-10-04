@@ -614,6 +614,7 @@ development be considered.
  	}
 
  	// to execute class: instantiate the schedulable class
+ 	String scheduledDateTime = '20 30 8 10 2 ?' //Seconds Minutes Hours Day_of_month Month Day_of_week optional_year
  	String jobID = System.schedule('Job Title' , scheduledDateTime, new ScheduledJob() );
  	```
   	- Max: 100 scheduled apex jobs at a time
