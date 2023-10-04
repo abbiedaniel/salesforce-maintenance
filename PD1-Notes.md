@@ -654,9 +654,10 @@ development be considered.
    
    ```apex
    [ SELECT one or more fields,
-   	// inner query for child/related records
+   	// inner query for child/related objects
+   	// inner query objects must be PLURAL
     	(SELECT fields
-   	FROM Child Relationship Field Name or Custom Relationship Field Name with appeneded __r)
+   	FROM Child Objects or Custom Child Objects with appeneded __r)
    FROM an object
    WHERE (field=value OR|AND anotherField>value)
    ORDER BY field ASC|DESC
@@ -935,16 +936,9 @@ development be considered.
 
   		Test.startTest();
   
-  		// actions to test could be a DML statement
+  		// actions to test: could be a DML statement
   		update testAccount;
 
-  		// for queueable apex testing:
-  		System.enqueuJob(new QueueableClass());
-
-  		// for future methods testing:
-  		// for 
-
-  
   
   		Test.stopTest();
 
