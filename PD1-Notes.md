@@ -14,13 +14,17 @@
 
 :accessibility:  ~[Apex Basics & Database Badge](https://trailhead.salesforce.com/content/learn/modules/apex_database?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)~
 
-:accessibility:  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI)
+:accessibility:  ~[LWC Specialist Superbadge - 3/6](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)~
 
-:accessibility:  [Apex Specialist Superbadge - 2/5](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_apex)
+**This Week:**
 
-:accessibility:  [LWC Specialist Superbadge - 3/6](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
+:accessibility:  [Apex Specialist Superbadge - 3/5](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_apex)
 
 :accessibility:  [Visualforce Fundamentals Badge](https://trailhead.salesforce.com/content/learn/modules/visualforce_fundamentals?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
+
+**Next Week:**
+
+:accessibility:  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI)
 
 :accessibility:  [Focus on Force Practice Exams](https://focusonforce.com/courses/salesforce-certified-platform-developer-1-exams/)
 
