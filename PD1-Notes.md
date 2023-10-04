@@ -532,7 +532,7 @@ development be considered.
 - **Batch Apex Class**
   - Syntax
     ```apex
-    global class BatchableClass implements Database.Batchable<sObjects>, Database.Stateful {
+    global class BatchableClass implements Database.Batchable<sObject>, Database.Stateful {
 
     	global Database.QueryLocator start(Database.BatchableContext bc) {
     		// query for records
