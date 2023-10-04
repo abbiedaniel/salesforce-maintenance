@@ -905,7 +905,7 @@ development be considered.
   	- HTTP callouts to services typically use REST with JSON. Can also be used with SOAP.
 - SOAP or REST? REST services are typically easier to interact with, require much less code, and utilize easily readable JSON. SOAP web services are commonly used for enterprise applications, integrating with legacy applications or for transactions that require a formal exchange format or stateful operations.  
 
- <details>
+ </details>
 
 <br>
 
