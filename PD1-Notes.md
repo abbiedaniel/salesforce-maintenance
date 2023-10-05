@@ -116,6 +116,7 @@
   - Platform Event-Trigger
   - Autolaunched
   - Flows can be configured to run in system with sharing (record level enforced, ignores  fls), system without sharing (acces to all data), or run in the context it was launched in (either user or system).
+  - Flow Trigger Explorer is a tool used for identifying the record-triggered flows that are associated with a specific object and trigger type such as created, updated or deleted. The flow trigger explorer also allows sorting of the execution order of the flows via drag-and-drop.
 
 - **Declarative Caveats**
 	- Standard validation rules are unable to operate on parent-child relationships
