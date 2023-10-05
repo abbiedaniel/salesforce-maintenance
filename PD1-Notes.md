@@ -18,7 +18,7 @@
 
 **This Week:** Oct 4-6
 
-:accessibility:  [Apex Specialist Superbadge - 3/5](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_apex)
+:accessibility:  [Apex Specialist Superbadge - 4/5](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_apex)
 
 :accessibility:  [Visualforce Fundamentals Badge](https://trailhead.salesforce.com/content/learn/modules/visualforce_fundamentals?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
 
@@ -869,7 +869,8 @@ development be considered.
  #### Platform Events
 
 - **Custom Platform Events**
-  - Setup platform events in setup like custom objects
+  - Platform events connect business processes in Salesforce and external apps through the exchange of real-time event data. Platform events are secure and scalable messages that contain data. Publishers publish event messages that subscribers receive in real time. To customize the data published, define platform event fields.
+  - Create in setup. 
   - ```__e``` suffix for API name
   - Inserting platform event records (from a Flow, Apex, or Process Builder) fires the event
   - Any automation listening to the event will run upon platform event insertions
