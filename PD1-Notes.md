@@ -20,9 +20,9 @@
 
 :accessibility:  [Apex Specialist Superbadge - 4/5](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_apex)
 
-:accessibility:  [Visualforce Fundamentals Badge](https://trailhead.salesforce.com/content/learn/modules/visualforce_fundamentals?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
-
 **Next Week:** Oct 9-11
+
+:accessibility:  [Visualforce Fundamentals Badge](https://trailhead.salesforce.com/content/learn/modules/visualforce_fundamentals?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
 
 :accessibility:  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI)
 
