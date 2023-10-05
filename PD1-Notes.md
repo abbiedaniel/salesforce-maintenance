@@ -342,7 +342,7 @@ development be considered.
   	- switch statements (can only be run on strings, ints, and sObjects)
   	  ```apex
   	  switch on variable {
-  	  	when 'variable value' {
+  	  	when 'variable value','another variable value' {
 				// logic
   	  	}
   	  	when else {
