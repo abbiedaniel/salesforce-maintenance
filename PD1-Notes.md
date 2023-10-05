@@ -1279,7 +1279,7 @@ development be considered.
 - **Invocable Methods**
    
    ```apex
-    	@InvocableMethod( label = 'methodName' description = 'description' category = 'DML')
+    	@InvocableMethod( callout = true label = 'methodName' description = 'description' category = 'DML')
     	global static List<List<sObject>> methodName( List<List<sObject>> records){
    		return records;
    	}
