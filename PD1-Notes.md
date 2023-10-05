@@ -961,6 +961,10 @@ development be considered.
 - **Best Practice**
 	- Place the callout code in an asynchronous method that’s annotated with @future(callout=true) or use Queueable Apex. This way, the callout runs on a separate thread, and the code after the callout isn't blocked.
 
+- **SOAP Services**
+	- Download the web service's WSDL file, and go to  SetUp to upload the WSDL file. The WSDL2Apex generates the Apex classes. Then create a class to make the callout.
+	- WSDL Apex code must have code coverage. Create a callout mock class and a test class. Then use ```Test.setMock(WebServiceMock.class, new CalloutMockClass()``` in the test class.
+  
  </details>
 
 <br>
