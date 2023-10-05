@@ -115,6 +115,7 @@
     -  Actions & Related Records: after the record is saved
   - Platform Event-Trigger
   - Autolaunched
+  - Flows can be configured to run in system with sharing (record level enforced, ignores  fls), system without sharing (acces to all data), or run in the context it was launched in (either user or system).
 
 - **Declarative Caveats**
 	- Standard validation rules are unable to operate on parent-child relationships
