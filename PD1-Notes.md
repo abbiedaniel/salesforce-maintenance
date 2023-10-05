@@ -373,7 +373,7 @@ development be considered.
   class ClassName [implements InterfaceNameList] [extends ClassName2] {
 
   	// Method Definition
-  	[public | private | protected | global] [override] [static] [ return_type | void ] method_name(input parameters) {
+  	[public | private | protected | global] [override] [static] [ return_type | void ] method_name(data_type parameter) {
   		// method body
   		return;
   	}
