@@ -906,10 +906,10 @@ development be considered.
 - **Apex Callout**
   
 	- An Apex callout enables you to tightly integrate your Apex code with an external service. The callout makes a call to an external web service or sends an HTTP request from Apex code, and then receives the response.
- - Apex callouts come in two flavors:
- 	- Web service callouts to SOAP web services use XML, and typically require a WSDL document for code generation.
-  	- HTTP callouts to services typically use REST with JSON. Can also be used with SOAP.
-- SOAP or REST? REST services are typically easier to interact with, require much less code, and utilize easily readable JSON. SOAP web services are commonly used for enterprise applications, integrating with legacy applications or for transactions that require a formal exchange format or stateful operations.
+ 	- Apex callouts come in two flavors:
+ 		- Web service callouts to SOAP web services use XML, and typically require a WSDL document for code generation.
+  		- HTTP callouts to services typically use REST with JSON. Can also be used with SOAP.
+	- SOAP or REST? REST services are typically easier to interact with, require much less code, and utilize easily readable JSON. SOAP web services are commonly used for enterprise applications, integrating with legacy applications or for transactions that require a formal exchange format or stateful operations.
 
 
 - **HyperText Transfer Protocol  Review**
