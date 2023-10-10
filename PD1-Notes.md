@@ -4,7 +4,7 @@
 
 :accessibility:  [Udemy Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview)
 
-:accessibility:  [Practice Test](https://www.salesforceben.com/salesforce-platform-developer-1-practice-exams/)f
+:accessibility:  [Practice Test](https://www.salesforceben.com/salesforce-platform-developer-1-practice-exams/)
 
 :accessibility:  [PD1 Trailmix](https://trailhead.salesforce.com/users/strailhead/trailmixes/prepare-for-your-salesforce-platform-developer-i-credential)
 
@@ -14,10 +14,10 @@
 
 :accessibility:  [Apex Basics & Database Badge](https://trailhead.salesforce.com/content/learn/modules/apex_database?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
 
-:accessibility:  [LWC Specialist Superbadge - 3/6](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
+:accessibility:  [LWC Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
 
 
-:accessibility:  [Apex Specialist Superbadge - 4/5](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_apex)
+:accessibility:  [Apex Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_apex)
 
 :accessibility:  [Visualforce Fundamentals Badge](https://trailhead.salesforce.com/content/learn/modules/visualforce_fundamentals?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
 
