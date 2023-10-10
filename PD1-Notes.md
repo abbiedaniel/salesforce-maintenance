@@ -41,10 +41,13 @@
 - **Model View Controller Architecture:**
   - Model: where data is saved
       - Custom and standard objects and fields
+      - Standard objects, custom objects, object fields, object relationships, apex classes (data)
   - View: how data is visualized
       - UI, page layout, Visualforce pages, apps, tabs, LWC, css, images
+      - Standard pages, Visualforce pages, Visualforce Components, Tabs, Page Layouts
   - Controller: how data is manipulated/logic
       - Custom Apex and Javascript, flows, processes, workflow rules, email alerts
+      - Standard controllers, custom controllers (apex), extensions (apex), declarative rules
 
 </details>
 
