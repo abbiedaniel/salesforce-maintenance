@@ -126,7 +126,8 @@
 	- Standard validation rules are unable to operate on parent-child relationships
  	- Roll-up summary fields can only be on the master
   	- Formula fields are calculated at access time and can span multiple objects
-  	- Workflow rules cannot submit records for approval or update child records. (blocked since Winter'23) 
+  	- Workflow rules cannot submit records for approval or update child records. (blocked since Winter'23)
+  	- Multiple Currencies feature allows the currency of the master record to determine currency in a roll up summary field. 
   
 - **Best Practices**
 	- For complex solutions, check if there is an app on AppExchange. If there are no suitable AppExchange apps, only then should custom
@@ -843,6 +844,11 @@ development be considered.
      	- Maximum number of ```@future``` methods: 50
       	- Max Queue Jobs: 50 
      - Solution: Never put SOQL, SOSL, or DML statements in a loop! Bulkify!
+
+- **Debugging**
+	- ```Limits.getDMLRows()``` returns the number of records t6hat have been processed using any SDML statements that count against the limit
+ 	- ```Limits.getLimitDMLRows()``` returns the actual limit 
+
  
     </details>
 
@@ -1130,6 +1136,9 @@ development be considered.
   	- Batchable Apex: ```Database.executeBatch(new BatchableClass(), batchSize);```
   	- Scheduled Apex: ```System.schedule('Job Title' , scheduledDateTime, new ScheduledJob() );```
   	- Future Methods: call the future method between startTest and stopTest
+ 
+- View completed apex jobs under Apex Jobs in Setup
+- View all jobs that are scheduled to run under Scheduled Jobs in Setup
   	  
  </details>
 
@@ -1367,7 +1376,9 @@ development be considered.
 	``` 
 
 - **Standard List Controller**
-  
+
+  - Standard List Controllers support record pagination, rendering dynamic number of records to the page, ans using existing list view filters.
+    
 ```apex
 <apex:page standardController = "Object Name" recordsSetVar = "object_variable" >
 // list controllers must set the recordsSetVar variable
