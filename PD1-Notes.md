@@ -1137,7 +1137,7 @@ development be considered.
   	- Scheduled Apex: ```System.schedule('Job Title' , scheduledDateTime, new ScheduledJob() );```
   	- Future Methods: call the future method between startTest and stopTest
  
-- View completed apex jobs under Apex Jobs in Setup
+- View all ongoing and completed apex jobs under Apex Jobs in Setup
 - View all jobs that are scheduled to run under Scheduled Jobs in Setup
   	  
  </details>
@@ -1888,6 +1888,7 @@ export default class Home extends LightningElement{
 	<lightning-combobox> </lightning-combobox> // use this for picklists and dropdowns
 	<lightning-card> </ligthning-card> // puts text in a card format
 	<lightning-input> </lightning-input> // input field
+  	<schema> <event> </event> </schema> //use in meta-xml file to expose a custom event of a LWC to another LWC within the page
 
 	import from 'lightning/empAPI' // provides access to methods for subscribing to a streaming channel and listening to event messages aka subscribe to platform events
   ```
