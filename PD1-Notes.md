@@ -1,32 +1,27 @@
 # Platform Developer 1 Notes
 
-:accessibility:  ~[Exam Guide](https://trailhead.salesforce.com/help?article=Salesforce-Certified-Platform-Developer-I-Exam-Guide)~
+:accessibility:  [Exam Guide](https://trailhead.salesforce.com/help?article=Salesforce-Certified-Platform-Developer-I-Exam-Guide)
 
-:accessibility:  ~[Udemy Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview)~ 
+:accessibility:  [Udemy Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview)
 
-:accessibility:  ~[Practice Test](https://www.salesforceben.com/salesforce-platform-developer-1-practice-exams/)~
+:accessibility:  [Practice Test](https://www.salesforceben.com/salesforce-platform-developer-1-practice-exams/)
 
-:accessibility:  ~[PD1 Trailmix](https://trailhead.salesforce.com/users/strailhead/trailmixes/prepare-for-your-salesforce-platform-developer-i-credential)~
+:accessibility:  [PD1 Trailmix](https://trailhead.salesforce.com/users/strailhead/trailmixes/prepare-for-your-salesforce-platform-developer-i-credential)
 
-:accessibility:  ~[LWC Basics Badge](https://trailhead.salesforce.com/content/learn/modules/lightning-web-components-basics?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)~
+:accessibility:  [LWC Basics Badge](https://trailhead.salesforce.com/content/learn/modules/lightning-web-components-basics?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
 
-:accessibility: ~[Org Deployments Badge](https://trailhead.salesforce.com/content/learn/modules/org-development-model?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)~
+:accessibility: [Org Deployments Badge](https://trailhead.salesforce.com/content/learn/modules/org-development-model?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
 
-:accessibility:  ~[Apex Basics & Database Badge](https://trailhead.salesforce.com/content/learn/modules/apex_database?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)~
+:accessibility:  [Apex Basics & Database Badge](https://trailhead.salesforce.com/content/learn/modules/apex_database?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
 
-:accessibility:  ~[LWC Specialist Superbadge - 3/6](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)~
+:accessibility:  [LWC Specialist Superbadge - 3/6](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
 
-**This Week:** Oct 4-6
 
 :accessibility:  [Apex Specialist Superbadge - 4/5](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_apex)
-
-**Next Week:** Oct 9-11
 
 :accessibility:  [Visualforce Fundamentals Badge](https://trailhead.salesforce.com/content/learn/modules/visualforce_fundamentals?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
 
 :accessibility:  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI)
-
-:accessibility:  [Focus on Force Practice Exams](https://focusonforce.com/courses/salesforce-certified-platform-developer-1-exams/)
 
 <br>
 
@@ -738,7 +733,7 @@ development be considered.
 <details>
 	<summary>Salesforce Object Search Language (SOSL)</summary>
 
- ### SOSL
+ #### SOSL
 
 - **Salesforce Object Search Language (SOSL)**
   
