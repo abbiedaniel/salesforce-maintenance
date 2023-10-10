@@ -4,7 +4,7 @@
 
 :accessibility:  [Udemy Course](https://bah.udemy.com/course/salesforce-developer/learn/lecture/34602170#overview)
 
-:accessibility:  [Practice Test](https://www.salesforceben.com/salesforce-platform-developer-1-practice-exams/)
+:accessibility:  [Practice Test](https://www.salesforceben.com/salesforce-platform-developer-1-practice-exams/)f
 
 :accessibility:  [PD1 Trailmix](https://trailhead.salesforce.com/users/strailhead/trailmixes/prepare-for-your-salesforce-platform-developer-i-credential)
 
@@ -96,6 +96,12 @@
   	- Solution:
    		- Add fields flagged as **external IDs** for each of the objects to be imported, populated with its legacy CRM ID
      	- Use the Data Loader tool, and set the relationship fields to match these external IDs
+    
+- **Considerations**
+	- Number of Records: Data Loader can load higher data volumes than Data Import Wizard.
+	- Object Support: Both support custom objects, Data Loader supports all standard objects, unlike Data Import Wizard.
+	- Multilpe Loads: Data loader is more suitable for multilple loads since mappings can be saved, unlike Data Import Wizard.
+	- Triggers always run. Although Data Import Wizard has an option to prevent workflow rules and processes from firing.
 
 </details>
 
@@ -1572,7 +1578,7 @@ System.assertEquals(expected, actual);
 	- HTML provides the structure for your component.
 	- JavaScript defines the core business logic and event handling.
 	- CSS provides the look, feel, and animation for your component. Use Salesforce Lightning Design System (SLDS), a CSS framework, to provides a look and feel that's consistent with Lightning Experience. 
- 	- Salesforce-specific JS-META.XML metadata file
+ 	- Salesforce-specific JS-META.XML metadata file 
     
 - **LWC Benefits**
   	- Lightweight for faster development
