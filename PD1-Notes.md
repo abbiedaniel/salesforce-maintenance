@@ -174,7 +174,7 @@ development be considered.
   - Quick Actions & Buttons
  
 - **Lightning Pages** 
-  - Tab Order
+  - Tab Order, Custom tabs (custom object, web page, visualforce page, lightning compontent or lightning page)
   - Component Visibility
   - Standard Lightning Page Components: Flow, List View, Visualforce, Chatter, Dashboard, Highlight Panel, Highlights Panel, Recent Items, Record Detail, Path,  Related Lists, Custom LWC, etc.
   		 	
@@ -1232,7 +1232,8 @@ development be considered.
  	- Authorize inbound changes so that another Salesforce org can send change sets to the org you are logged into.
   	- Tyoes: Inboard Change Sets and Outbound Change Sets  
  	- Target & Source Pairs: Sandbox to Sandbox OR Sandbox to Prod
-
+  	- Cloning existing and new sandboxes is an option if needing to cut down on  change sets (clones data and metadata)
+  	  
 - **Salesforce CLI Capabilities**
   
 	- Authorize sandboxes (headless or web flow)
@@ -1327,9 +1328,10 @@ development be considered.
   	- Created before lightning experience, compatible with classic
   	- Page files end in ```.vfp```
   		- ```apex:page``` header is required
-  	 	- Enable override option button in object setup     
+  	- Override standard buttons by **enabling override option in object setup** on the button
 	- Component files ends in ```.vfc```
  		- ```apex:component``` header is required
+   - Visualforce overrides are supported for new, edit, view, tab, list and clone actions in Lightning console apps. Does not support delete and custom actions.
   	
 - **Standard Controller**
   ```apex
@@ -1528,8 +1530,10 @@ development be considered.
 	- Visualforce Page: ```EditPageController.vfp```
  
    	```apex
-    	<apex:page> standardController = "Account" extensions = "AccountControllerExtension" recordSetVar = "acounts"/>
-    	```
+    	<apex:page> standardController = "Account" extensions = "AccountControllerExtension, AnotherControllerExtension" recordSetVar = "acounts"/>
+    	// the first extension class in the list overrides other extension method's with the same name
+    
+    ```
   
 - **Controller Test Coverage**
 ```apex
@@ -2025,6 +2029,10 @@ export default class Home extends LightningElement{
  	- create two aura events ```.evt``` and two controllers ```.js``` for each event
   	- Use ```event.setParams``` and ```event.fire``` on the child controller to pass the method parameters to the parent
   	- Use ```component.set``` and ```component.get``` to initialize or retrieve the component
+  	- Types of Events:
+  		- Component Event: supports two types of propagation - bubble and capture. Default phase is the bubble phase, where the source component gets to handle the event first when the event is fired. Next it's parent component, then grand parent component and so on until the root component. If a component uses the caoture phasem the order of event progragation behaves in a top-down manner. When the source component fires the event, the root component gets the handle the event first and the propogatuion traverse down the containment hierarchy until it reaches the source component.
+  	 	- Application Event: broadcast events to alll components in an application, which could adversely affect performance.  
+
 
 
 - **Aura Enabled Important Methods & Signatures**
