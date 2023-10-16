@@ -126,6 +126,7 @@
 	- Standard validation rules are unable to operate on parent-child relationships
  	- Roll-up summary fields can only be on the master
   	- Formula fields are calculated at access time and can span multiple objects
+  	- Cross-object formula can be created on a child object to reference data from parent objects (up to 10 relationships away).
   	- Workflow rules cannot submit records for approval or update child records. (blocked since Winter'23)
   	- Multiple Currencies feature allows the currency of the master record to determine currency in a roll up summary field. 
   
@@ -173,6 +174,7 @@ development be considered.
   - Fields visibility & order for record type
   - Related Lists
   - Quick Actions & Buttons
+  	- Buttons on edit page cannot be overriden. Standard buttons cannot be relabled.
  
 - **Lightning Pages** 
   - Tab Order, Custom tabs (custom object, web page, visualforce page, lightning compontent or lightning page)
@@ -736,7 +738,12 @@ development be considered.
   	 - Backslash Escape Character in SOQL:  \'  or \" or \n or \? etc.
   	 - The % and _ wildcards are suppored for with the LIKE operator.
   	 	- 'xyz%' matches zero or more characters
-  	  	- '_xyz' matches exactly one character 
+  	  	- '_xyz' matches exactly one character
+  	     
+  	- **Security**: ```Security.stripInaccessible(AccessType.READABLE, sourceRecords)``` enforces the FLS of the current user by stripping anything which is not accessible in the defined context in @AuraEnabled methods. Store the returned soql list in sourceRecords [resource](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_with_security_stripInaccessible.htm)
+  	  
+  <img width="1384" alt="Screen Shot 2023-10-13 at 3 59 26 PM" src="https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/be329e03-b3c5-461b-8d88-0f82f408cc6b">
+ 
 
 </details>
 
