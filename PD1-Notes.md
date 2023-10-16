@@ -728,7 +728,8 @@ development be considered.
 
 
 - **SOQL Tips**
-	- You don’t have to specify the Id field in a SOQL query as it is always returned in Apex queries, whether it is specified in the query or not.
+	- **Wildcard search:** % matches 0+ characters, _ matches 1+ characters
+ 	- You don’t have to specify the Id field in a SOQL query as it is always returned in Apex queries, whether it is specified in the query or not.
  	- Use ```GeolocationField__Lattitude__s``` and ```GeolocationField__Longitude__s``` to retreive latitude and longitude values of a geloation field
  	- Invalid SOQL syntax results in query exception
   	- GROUP BY clause can be used together with the COUNT(fieldName) aggregate function to return data that groups and counts the number of records based on a field value.
