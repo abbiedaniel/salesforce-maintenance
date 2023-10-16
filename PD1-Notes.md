@@ -124,7 +124,7 @@
 
 - **Declarative Caveats**
 	- Standard validation rules are unable to operate on parent-child relationships
- 	- Roll-up summary fields can only be on the master
+ 	- Roll-up summary fields can only be on the master. COUNT, SUM, MIN, MAX
   	- Formula fields are calculated at access time and can span multiple objects
   	- Cross-object formula can be created on a child object to reference data from parent objects (up to 10 relationships away).
   	- Workflow rules cannot submit records for approval or update child records. (blocked since Winter'23)
