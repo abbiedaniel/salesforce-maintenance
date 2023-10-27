@@ -85,6 +85,8 @@
     - Max: 50,000 records
     - File Type: CSV
     - Match Salesforce ID or Name
+    - Account, Contact, Lead, Solution, Campaign Member and all Custom Objects
+    - Can't import products opportunities
   - Data Export Service
     - Export now or schedule monthly export
   - Apex Data Loader
@@ -96,6 +98,9 @@
   	- Solution:
    		- Add fields flagged as **external IDs** for each of the objects to be imported, populated with its legacy CRM ID
      	- Use the Data Loader tool, and set the relationship fields to match these external IDs
+    
+![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/132f1294-3bc8-4042-97a5-cdca3ee501c2)
+
     
 - **Considerations**
 	- Number of Records: Data Loader can load higher data volumes than Data Import Wizard.
