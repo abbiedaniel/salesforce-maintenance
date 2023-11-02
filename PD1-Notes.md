@@ -835,6 +835,10 @@ development be considered.
 	- Use Cases
 		- Don't know the exact field or conditions
 		- Querying dynamic objects
+
+
+  ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/d7175bf2-de73-4fff-a6e3-f91176e2c7f0)
+
 </details>
 
 <details>
