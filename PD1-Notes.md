@@ -851,21 +851,26 @@ development be considered.
 		- Total number of records processed by a trigger at a time: 200
   			- If the number of records being inserted is greater than this (e.g. from the Bulk API or a bulk DML operation), the trigger is invoked in batches of 200 records at a time. 
   		- Total number of records retrieved in SOQL: 50k
- 		- Total number of SOQL queries: 100 Synchronous, 200 Asynchronous
+ 		- **Total number of SOQL queries: 100 Synchronous,** 200 Asynchronous
    		- Total number of records retrieved by Database.getQueryLocator: 10k
      	- Total number of SOSL queries: 20
       	- Total number of records retrieved in SOSL: 2k
-      	- Total number of DML statements: 150
+      	- **Total number of DML statements: 150**
       	- Total records processed by DML statements: 10k
      	- Maximum number of ```@future``` methods: 50
       	- Max Queue Jobs: 50 
      - Solution: Never put SOQL, SOSL, or DML statements in a loop! Bulkify!
 
 - **Debugging**
-	- ```Limits.getDMLRows()``` returns the number of records t6hat have been processed using any SDML statements that count against the limit
+	- ```Limits.getDMLRows()``` returns the number of records that have been processed using any SDML statements that count against the limit
  	- ```Limits.getLimitDMLRows()``` returns the actual limit
     
 ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/c051ebcb-30be-4f04-b63d-650529b90225)
+
+
+- **Example**: Avoids heap size limit (6mb) and avoids DML limit (150). Loop within a loop but the first loop only executes once.
+  
+  ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/dbcc08a6-1c3a-406c-ad6d-d6d9d078d5c1)
 
 
     </details>
