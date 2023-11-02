@@ -1122,6 +1122,15 @@ development be considered.
 
 </details>
 
+
+
+<details>
+	<summary>Exception Examples</summary>
+
+![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/148418e9-f911-4a44-8b93-b9ca4bb6b0f8)
+
+</details>
+
 <details>
 	<summary>Trigger Exceptions</summary>
 
