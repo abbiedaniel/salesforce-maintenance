@@ -863,9 +863,11 @@ development be considered.
 
 - **Debugging**
 	- ```Limits.getDMLRows()``` returns the number of records t6hat have been processed using any SDML statements that count against the limit
- 	- ```Limits.getLimitDMLRows()``` returns the actual limit 
+ 	- ```Limits.getLimitDMLRows()``` returns the actual limit
+    
+![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/c051ebcb-30be-4f04-b63d-650529b90225)
 
- 
+
     </details>
 
     
