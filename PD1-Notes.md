@@ -29,12 +29,11 @@
 
 <br>
 
-## Developer Fundamentals - 23% / 14 Questions
+## Developer Fundamentals - 23% / 14 Questions	
 ##### 🕴️ Understand multi-tenant concepts and design frameworks, such as MVC architecture and Lightning Component Framework.
 ##### 🕴️ Given a scenario, identify common use cases and best practices for declarative versus programmatic customizations, including governor limits, formula fields, and roll-up summaries.
 ##### 🕴️ Given a scenario, determine, create, and access the appropriate data model including objects, fields, relationships, and external IDs.
 ##### 🕴️ Given a scenario, identify the options and considerations when importing and exporting data into development environments.
-
 #
 <br>
 <details>
