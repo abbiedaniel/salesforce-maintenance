@@ -37,6 +37,7 @@
 ##### 🕴️ Given a scenario, identify the options and considerations when importing and exporting data into development environments.
 
 #
+<br>
 <details>
 	<summary>Salesforce Development Fundamentals</summary>
 
@@ -211,9 +212,8 @@ development be considered.
 ##### 🕴️ Describe the relationship between Apex transactions, the save order of execution, and the potential for recursion and/or cascading.
 ##### 🕴️ Implement exception handling in Apex, including custom exceptions as needed.
 ##### 🕴️ Given a scenario, use declarative functionality and Apex together to automate business logic.
-
 #
-
+<br>
 <details>
 	<summary>Object-Oriented Concepts</summary>
 
@@ -1033,7 +1033,7 @@ development be considered.
 ##### 🕴️ Describe how to approach debugging system issues and monitoring flows, processes, and asynchronous and batch jobs, etc.
 ##### 🕴️ Describe the environments, requirements, and process for deploying code and associated configurations.
 #
-
+<br>
 <details>
 	<summary>Test Classes</summary>
 
@@ -1358,6 +1358,7 @@ development be considered.
 ##### 🕴️ Describe the use cases and best practices for Lightning Web Component events.
 ##### 🕴️ Given a scenario, implement Apex to work with various types of page components, including Lightning Components, Flow, Next Best Actions, etc.
 #
+<br>
 
 <details>
 	<summary>Extending Declarative Functionality: Flows</summary>   
