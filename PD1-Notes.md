@@ -362,10 +362,9 @@ development be considered.
 - **Control Flow Statements**
   
 	- if, else if and else statements
- 		- only 
  	- for loops
   	- List or Set for loops
-  	- SOQL for loops: utilize more efficient chunking of SObjects behind the scenes, resulting in reduced heap usage and a lower chance of hitting governor limits for large queries. 
+  	- SOQL for loops: batches of 200 records, utilize more efficient chunking of SObjects behind the scenes, resulting in reduced heap usage and a lower chance of hitting governor limits for large queries. 
   	- while loop
   	- do {...} while loops (will run at least once)
   	- ternary operator
