@@ -441,7 +441,7 @@ development be considered.
  		- No parentheses/constructors needed when accessing static variables.
  	- ```void``` specifies the method does not return a value. 
   	- ```this.``` keyword in JavaScript refers to the top level of the current context. 
-  	- ```final``` use to define constants. final indicates the variable can only be initlaized once.
+  	- ```final``` use to define constants. final indicates the variable can only be initialized once.
 
 -  **Class Capabilities**
    - Classes can be used to create: 
