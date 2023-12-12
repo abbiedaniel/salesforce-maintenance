@@ -887,7 +887,7 @@ development be considered.
      	- Maximum number of ```@future``` methods: 50
       	- Max Queue Jobs: 50 
      - Solution: Never put SOQL, SOSL, or DML statements in a loop! Bulkify!
-     - When the maximum soql, dml, or sosl limit is reached, System.LimitException will be thrown. All records and changes will be rolled back (unless allOrNone boolean is set to false in dml call)
+     - When the maximum SOQL, DML, or SOSL limit is reached, a `System.LimitException` will be thrown. All records and changes will be rolled back (unless `allOrNone` boolean is set to false in database method)
 
 - **Debugging**
 	- ```Limits.getDMLRows()``` returns the number of records that have been processed using any SDML statements that count against the limit
