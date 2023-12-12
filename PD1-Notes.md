@@ -148,9 +148,38 @@
 	- For complex solutions, check if there is an app on AppExchange. If there are no suitable AppExchange apps, only then should custom
 development be considered.
  	- For declarative solutions, do not use workflow rules or process builders.
-  	- Junction objects are used to represent many-to-many relationships and can prevent orphan records  
-    
+  	- Junction objects are used to represent many-to-many relationships and can prevent orphan records
+ 
+
+- **Other Automation Tools**
+	- Schema Namespace
+ 		- offers classes and methods for schema metadata information.
+   		- The `Schema.DescribeFieldResult` class has methods to describe sObjects like getDigits() for integers, getScale() returns number of digits after the decimal for double data type, getLength() for the maximum unicode character count for field
+ 		- Syntax: `Schema.DescribeFieldResult variable = Account.Field_Name.getDecribe() \n variable.getDigits()`
+     	- To return a map `Map<Id, Schema.RecordTypeInfo>` of the records Ids and details of their assocaited record types, the `getRecordTypeInfosById()` method of the `Schema.DescribeSObjectResult` class can be used.
+ 	- Stragtegy Buidler
+  		- Generate element can be used to create recommendations automatically using apex. Method must have `@InvocableMethod` annotation.
+    	- Load element can be used to load existing recommendations
+      	- Enhance element can be used to modify recommendations on the fly when a strategy is executed
+		- Branch Selector element can be used to select a set of recommendations based on the specified condition
+  		- Branch Merge element is used to combine recommednations from multiple branches into a single branch 
+ 	- Schema Builder
+  		- Create and delete custom objects
+    	- Create lookup and master-detail relationships  
+  	- Approval Process
+  		- "Enable email approval response" setting allows approvers to receive and respon to requests via email
+  	 	- "Allow Approvals" in Chatter settings enable approvers to receive request notifications via chatter
+  	  	- System Admin and a specified approver can edit records while it's locked for approvals
+  	  	-  Requests can be sent to an individual or a queue  
+  	- Ant Migration Tool
+  		- The Ant Migration Tool is a Java/Ant-based command-line utility for moving metadata between a local directory and a Salesforce org. 
+  		- Can be used for deployment in a scripting environment
+  	 	- It is best to use in repetetive deployments using the same parameters
+  	    
+
 </details>
+
+
 
 <details>
 	<summary>Save Order of Execution</summary>
