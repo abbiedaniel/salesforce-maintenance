@@ -57,6 +57,8 @@
   - Controller: how data is manipulated/logic
       - Custom Apex and Javascript, flows, processes, workflow rules, email alerts
       - Standard controllers, custom controllers (apex), extensions (apex), declarative rules
+![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/f3a3b51d-c9b3-461f-8655-e04a11e1e962)
+
 
 </details>
 
