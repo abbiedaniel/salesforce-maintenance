@@ -711,7 +711,8 @@ development be considered.
 - **Use Cases**
 	- Use DML to create and modify records in Salesforce.
  	- Use SOQL to retrieve records for a single object.
-  	- Use SOSL to search text fields across multiple objects. 
+  	- Use SOSL to search text fields across multiple objects.
+  	- Can use in setter methods but not getter methods in a visualforce custom controller
 
 - **Data Manipulation Language (DML)**
   
@@ -1467,6 +1468,9 @@ development be considered.
   // runs javascript in visualforce page
   <apex:includeScript value="{!Resource.javascriptLibrary}"/>
   // upload javacsipt as a static resource  to run in visualforce page
+
+  <apex:styleSheet value="{!URLFOR($Resrouce.StyleResource, 'filename.css')}"/>
+  // import css stylesheet as a static resource
         
   	<apex:form>
   	// allows user to input data to the page
@@ -1571,6 +1575,7 @@ development be considered.
  		- create a visualforce page with ```renderAs="pdf"```
    	- To add pagination to a page
    		- The ```StandardSetController``` is designed to work with sets of records, and provides built-in methods to enable a large set of records to be displayed on a Visualforce page, with methods to assist in pagination of the record list.
+   	
     
 </details> 
 
