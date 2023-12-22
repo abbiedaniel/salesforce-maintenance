@@ -445,12 +445,13 @@ development be considered.
 - **Class Keywords**
 	- ```implements``` an ```interface```, which is a class in which none of the methods have been implemented. The method signatures are there, but the body of each method is empty. To use an interface, another class must implement it by providing a body for all of the methods contained in the interface.
  	- ```extends``` this class with the functionality of another class
+   ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/c3dc1129-4bee-4b74-9cdb-8e57267678bc)
+
 
   	  
 - **Interface Keywords**
 	- ```virtual``` makes it inheritable by any other class present in Salesforce that ```extends``` that class. Virtual methods can be defined in virtual or abstract classes
  	- ```abstract``` makes it inheritable by any other class present in Salesforce that ```extends``` that class. Abstract methods can only be defined in abstract classes.
-  		
 
 - **Sharing Keywords**
 	- By default, Apex code in classes, triggers or web services run in system mode where permissions and record sharing of the current user are **not** taken into account.
