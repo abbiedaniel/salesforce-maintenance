@@ -160,7 +160,7 @@ development be considered.
    		- The `Schema.DescribeFieldResult` class has methods to describe sObjects like getDigits() for integers, getScale() returns number of digits after the decimal for double data type, getLength() for the maximum unicode character count for field
  		- Syntax to instantiate and use get method: `Schema.DescribeFieldResult variable = Account.Field_Name.getDecribe() \n variable.getDigits()`
      	- To return a map `Map<Id, Schema.RecordTypeInfo>` of the records Ids and details of their assocaited record types, the `getRecordTypeInfosById()` method of the `Schema.DescribeSObjectResult` class can be used.
- 	- Stragtegy Buidler
+ 	- Strategy Buidler
   		- Generate element can be used to create recommendations automatically using apex. Method must have `@InvocableMethod` annotation.
     	- Load element can be used to load existing recommendations
       	- Enhance element can be used to modify recommendations on the fly when a strategy is executed
