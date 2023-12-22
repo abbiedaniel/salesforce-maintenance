@@ -1443,6 +1443,7 @@ development be considered.
   	- **How it works under the hood:** Each page is accessible via URL. User accesses the url and server performs automatic data processing required for the page, renders the page into HTML, and returns the result to the browser to display.
   	- **Pages and Components:** Page files end in ```.vfp``` and ```apex:page``` header is required. Component files ends in ```.vfc``` and ```apex:component``` header is required.
   	- **Override buttons:** You can override standard buttons by **enabling override option in object setup** on the button. Visualforce overrides are supported for new, edit, view, tab, list and clone actions in Lightning console apps. Does not support delete and custom actions.
+  	- [Standard Component Library](https://developer.salesforce.com/docs/atlas.en-us.pages.meta/pages/pages_compref.htm?_ga=2.28883772.1413815336.1703180221-417190799.1635779157)
  
 - **Ways to Access Visualforce**
 	- Open a visualforce page from the App Launcher under All Items
@@ -1454,7 +1455,7 @@ development be considered.
   	- Display a visualforce page using custom buttons or links
   	
 - **Standard Controller**
-  ```apex
+  ```html
   <apex:page standardController = "Object" lightningStylesheets = "true">
   // allows access to standard controller methods and fields
   // lightningStylesheets renders page similar to lightning experience display, without it, it looks like salesforce classic
@@ -1490,7 +1491,7 @@ development be considered.
 
   - Standard List Controllers support record pagination, rendering dynamic number of records to the page, ans using existing list view filters.
     
-```apex
+```html
 <apex:page standardController = "Object Name" recordsSetVar = "object_variable" >
 // list controllers must set the recordsSetVar variable
 // object_variable represents the list of objects
@@ -1523,7 +1524,7 @@ development be considered.
 
 - **Custom Visualforce Components**
 	- ```WelcomeMessage.vfc```
-	```apex
+	```html
 	<apex:component>
 		<apex:attribute name = "User's Name" type = "String" description = "The name of the user we are welcoming." />
 		Welcome {!name} to Salesforce CRM!
@@ -1531,7 +1532,7 @@ development be considered.
 	```
     
  	- To use in a visualforce controller
-    	```apex
+    	```html
      	<c:WelcomeMessage name = "Abbie" />
      	```
 
@@ -1575,7 +1576,7 @@ development be considered.
   
 	- Visualforce Page: ```EditPage.vfp```
    
-	```apex
+	```html
 	<apex:page controller = "EditPageController">
  
  	{ !account.Name }
@@ -1611,7 +1612,7 @@ development be considered.
   
   	```  
 - **Controller Methods**
-```apex
+```html
 <apex:page>
 	<apex:form>
 	
@@ -1632,7 +1633,7 @@ development be considered.
 
 - **Dynamic Expressions**
 
-```apex
+```html
 // dynamically decide to show results or not based on how many records are returned using a formula expression
 <apex:pageBlockTable> value = {!results} var = "r" rendered = {!NOT (ISNULL (results) )}" />
 ```
@@ -1651,7 +1652,7 @@ development be considered.
 
 	- Visualforce Page: ```EditPageController.vfp```
  
-   	```apex
+   	```html
     	<apex:page> standardController = "Account" extensions = "AccountControllerExtension, AnotherControllerExtension" recordSetVar = "acounts"/>
     	// the first extension class in the list overrides other extension method's with the same name
     
