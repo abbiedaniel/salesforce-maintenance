@@ -140,7 +140,8 @@
 
 - **Declarative Caveats**
 	- Standard validation rules are unable to operate on parent-child relationships
- 	- Roll-up summary fields can only be on the master. COUNT, SUM, MIN, MAX
+ 	- Roll-up summary fields can only be on the master. COUNT, SUM, MIN, MAX.
+  	- Roll-up summary fields can work only these lookup relationships: Opportunity-Opportunity Product, Account-Opportunity, Campaign-Campaign Members
   	- Formula fields are calculated at access time and can span multiple objects
   	- Cross-object formula can be created on a child object to reference data from parent objects (up to 10 relationships away).
   	- Cross-object formula fields cannot be used in  roll up summary fields.
