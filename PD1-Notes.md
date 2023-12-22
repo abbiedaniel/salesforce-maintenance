@@ -1283,6 +1283,7 @@ development be considered.
   		- Assignment rules
   		- Approval processes
   		- Validation rules
+    - Does NOT include info about time based workflow actions
       
 - **Developer Console Test Tab**
  	- Test Table: displays status, test run class/method, enqueued time, duration, failures, and total
