@@ -1439,16 +1439,19 @@ development be considered.
 
 - **Visualforce Basics**
   
-  	- **What is it used for:** Used to create custom UI using built in standard controllers, apex, components, HTML and CSS. Visualforce can integrate with standard web technology or javascript framework
+  	- **What is it used for:** Used to create custom UI using built in standard controllers, apex, components, HTML and optional styling elements. Visualforce can integrate with standard web technology or javascript framework
   	- **How it works under the hood:** Each page is accessible via URL. User accesses the url and server performs automatic data processing required for the page, renders the page into HTML, and returns the result to the browser to display.
-  	- **Caveat:** Visualforce pages need to be added as a tab to be accessible. Can access any pages without tabs from the app menu at the bottom under "All Items". 
-  	- Created before lightning experience, compatible with classic
-  	- Page files end in ```.vfp```
-  		- ```apex:page``` header is required
-  	- Override standard buttons by **enabling override option in object setup** on the button
-	- Component files ends in ```.vfc```
- 		- ```apex:component``` header is required
-   - Visualforce overrides are supported for new, edit, view, tab, list and clone actions in Lightning console apps. Does not support delete and custom actions.
+  	- **Pages and Components:** Page files end in ```.vfp``` and ```apex:page``` header is required. Component files ends in ```.vfc``` and ```apex:component``` header is required.
+  	- **Override buttons:** You can override standard buttons by **enabling override option in object setup** on the button. Visualforce overrides are supported for new, edit, view, tab, list and clone actions in Lightning console apps. Does not support delete and custom actions.
+ 
+- **Ways to Access Visualforce**
+	- Open a visualforce page from the App Launcher under All Items
+ 	- Add visualforce page to the navigation bar as a tab
+  	- Display Visualfroce page within a standard page layout
+  	- Add a visualforce page as a component in a custom app page in the Lightning App Builder
+  	- Launch a visualforce page as a Quick Action on a page layout
+  	- Display visualforce page by overriding standard buttons or links. Override option must be enabled for the button in the object setup.
+  	- Display a visualforce page using custom buttons or links
   	
 - **Standard Controller**
   ```apex
