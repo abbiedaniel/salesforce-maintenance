@@ -1461,6 +1461,11 @@ development be considered.
   <apex:page standardController = "Object" lightningStylesheets = "true">
   // allows access to standard controller methods and fields
   // lightningStylesheets renders page similar to lightning experience display, without it, it looks like salesforce classic
+
+  <script> some javascript method </script>
+  // runs javascript in visualforce page
+  <apex:includeScript value="{!Resource.javascriptLibrary}"/>
+  // upload javacsipt as a static resource  to run in visualforce page
         
   	<apex:form>
   	// allows user to input data to the page
