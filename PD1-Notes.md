@@ -1439,6 +1439,9 @@ development be considered.
 
 - **Visualforce Basics**
   
+  	- **What is it used for:** Used to create custom UI using built in standard controllers, apex, components, HTML and CSS. Visualforce can integrate with standard web technology or javascript framework
+  	- **How it works under the hood:** Each page is accessible via URL. User accesses the url and server performs automatic data processing required for the page, renders the page into HTML, and returns the result to the browser to display.
+  	- **Caveat:** Visualforce pages need to be added as a tab to be accessible. Can access any pages without tabs from the app menu at the bottom under "All Items". 
   	- Created before lightning experience, compatible with classic
   	- Page files end in ```.vfp```
   		- ```apex:page``` header is required
