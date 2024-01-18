@@ -1462,9 +1462,15 @@ development be considered.
 - **Visualforce Glossary**
 	- [Visualforce Functions](https://developer.salesforce.com/docs/atlas.en-us.224.0.pages.meta/pages/pages_variables_functions.htm?_ga=2.66294572.303706887.1705500956-417190799.1635779157)
  	- [Visualforce Standard Components](https://developer.salesforce.com/docs/atlas.en-us.pages.meta/pages/pages_compref.htm?_ga=2.125023880.303706887.1705500956-417190799.1635779157)
-  	- [Visualforce Global Variables](https://developer.salesforce.com/docs/atlas.en-us.224.0.pages.meta/pages/pages_variables_global.htm?_ga=2.58251944.303706887.1705500956-417190799.1635779157)  
+  	- [Visualforce Global Variables](https://developer.salesforce.com/docs/atlas.en-us.224.0.pages.meta/pages/pages_variables_global.htm?_ga=2.58251944.303706887.1705500956-417190799.1635779157)
+
+- **Standard Controller Capabilities**
+	-  Easy data access
+	- Provides a set of standard actions, such as create edit save and delete that can be added to a page through buttons and links
+	- Embed visualforce page within an object's page layout, or use object-speicifc custom action, or use mobile cards in a Salesforce app
+
   	
-- **Standard Controller**
+- **Visualforce Page with Standard Controller Example**
   ```html
   <apex:page standardController = "Object" lightningStylesheets = "true">
   // allows access to standard controller methods and fields
@@ -1507,7 +1513,7 @@ development be considered.
 
 - **Standard List Controller**
 
-  - Standard List Controllers support record pagination, rendering dynamic number of records to the page, ans using existing list view filters.
+  - Standard List Controllers support record pagination, rendering dynamic number of records to the page, an using existing list view filters.
     
 ```html
 <apex:page standardController = "Object Name" recordsSetVar = "object_variable" >
