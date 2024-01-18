@@ -53,8 +53,7 @@
   	- **How it works under the hood:** Each page is accessible via URL. User accesses the url and server performs automatic data processing required for the page, renders the page into HTML, and returns the result to the browser to display.
   	- **Pages and Components:** Page files end in ```.vfp``` and ```apex:page``` header is required. Component files ends in ```.vfc``` and ```apex:component``` header is required.
   	- **Override buttons:** You can override standard buttons by **enabling override option in object setup** on the button. Visualforce overrides are supported for new, edit, view, tab, list and clone actions in Lightning console apps. Does not support delete and custom actions.
-  	- [Standard Component Library](https://developer.salesforce.com/docs/atlas.en-us.pages.meta/pages/pages_compref.htm?_ga=2.28883772.1413815336.1703180221-417190799.1635779157)
- 
+  
 - **Ways to Access Visualforce**
 	- Open a visualforce page from the App Launcher under All Items
  	- Add visualforce page to the navigation bar as a tab
@@ -64,6 +63,12 @@
   	- Display visualforce page by overriding standard buttons or links. Override option must be enabled for the button in the object setup.
   	- Display a visualforce page using custom buttons or links
 
+- **Use Cases**
+	- Build wizards and other multi-step processes
+ 	- Provide low-code solution to non-developers or junior developers
+  	- To create custom flow control through an application
+  	- Define navigation patterns and data-specific rules for optimal, efficient application interaction
+  	- Can add visualforce pages in lightning app builder/flexipage   
 
 - **Visualforce Glossary**
 	- [Visualforce Functions](https://developer.salesforce.com/docs/atlas.en-us.224.0.pages.meta/pages/pages_variables_functions.htm?_ga=2.66294572.303706887.1705500956-417190799.1635779157)
@@ -176,13 +181,6 @@
        		3. Any ```assignTo``` attributes on the page's custom components is executed
          	4. ```apex:form``` is saved to the view state
           	5. HTML is sent to the browser. The browser executes any client-side code.   
-   
-- **Use Cases**
-	- Build wizards and other multi-step processes
- 	- Provide low-code solution to non-developers or junior developers
-  	- To create custom flow control through an application
-  	- Define navigation patterns and data-specific rules for optimal, efficient application interaction
-  	- Can add visualforce pages in lightning app builder/flexipage   
 
 - **Important Methods:**
 	- To reference an instantiation of a page:
