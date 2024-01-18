@@ -1457,6 +1457,12 @@ development be considered.
   	- Launch a visualforce page as a Quick Action on a page layout
   	- Display visualforce page by overriding standard buttons or links. Override option must be enabled for the button in the object setup.
   	- Display a visualforce page using custom buttons or links
+
+
+- **Visualforce Glossary**
+	- [Visualforce Functions](https://developer.salesforce.com/docs/atlas.en-us.224.0.pages.meta/pages/pages_variables_functions.htm?_ga=2.66294572.303706887.1705500956-417190799.1635779157)
+ 	- [Visualforce Standard Components](https://developer.salesforce.com/docs/atlas.en-us.pages.meta/pages/pages_compref.htm?_ga=2.125023880.303706887.1705500956-417190799.1635779157)
+  	- [Visualforce Global Variables](https://developer.salesforce.com/docs/atlas.en-us.224.0.pages.meta/pages/pages_variables_global.htm?_ga=2.58251944.303706887.1705500956-417190799.1635779157)  
   	
 - **Standard Controller**
   ```html
