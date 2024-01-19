@@ -1431,6 +1431,12 @@ development be considered.
   	- Display visualforce page by overriding standard buttons or links. Override option must be enabled for the button in the object setup.
   	- Display a visualforce page using custom buttons or links
 
+- **Use Cases**
+	- Build wizards and other multi-step processes
+ 	- Provide low-code solution to non-developers or junior developers
+  	- To create custom flow control through an application
+  	- Define navigation patterns and data-specific rules for optimal, efficient application interaction
+  	- Can add visualforce pages in lightning app builder/flexipage   
 
 - **Visualforce Glossary**
 	- [Visualforce Functions](https://developer.salesforce.com/docs/atlas.en-us.224.0.pages.meta/pages/pages_variables_functions.htm?_ga=2.66294572.303706887.1705500956-417190799.1635779157)
@@ -1543,13 +1549,6 @@ development be considered.
        		3. Any ```assignTo``` attributes on the page's custom components is executed
          	4. ```apex:form``` is saved to the view state
           	5. HTML is sent to the browser. The browser executes any client-side code.   
-   
-- **Use Cases**
-	- Build wizards and other multi-step processes
- 	- Provide low-code solution to non-developers or junior developers
-  	- To create custom flow control through an application
-  	- Define navigation patterns and data-specific rules for optimal, efficient application interaction
-  	- Can add visualforce pages in lightning app builder/flexipage   
 
 - **Important Methods:**
 	- To reference an instantiation of a page:
