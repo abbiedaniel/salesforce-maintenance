@@ -185,19 +185,19 @@ development be considered.
 	
  ####  Save Order of Execution
 
-  1. System Validation
-  2. Before Save Flows
-  3. Before Triggers
-  4. System Validation (again) and Custom Validation Rules
-  5. Duplicate Rules
-  6. *Record is saved to the database but doesn’t commit yet*
-  7. After Triggers
-  8. Assignment Rules
-  9. Auto-response Rules
-  10. Workflow Rules
+  1. **S**ystem Validation
+  2. Before Save **F**lows
+  3. Before **T**riggers
+  4. System **V**alidation (again) and Custom Validation Rules
+  5. **D**uplicate Rules
+  6. *Record is **sa**ved to the database but doesn’t commit yet*
+  7. After **T**riggers
+  8. **A**ssignment Rules
+  9. **A**uto-response Rules
+  10. **W**orkflow Rules
   11. *System validation and Apex triggers will fire again if a workflow rules updates a field.*
-  12. Escalation Rules
-  13. Flow Automation
+  12. **E**scalation Rules
+  13. **F**low Automation
   14. After Save Flows
   15. Commit all DML operations to the database
       
