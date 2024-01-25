@@ -1433,7 +1433,6 @@ development be considered.
   	- **How it works under the hood:** Each page is accessible via URL. User accesses the url and server performs automatic data processing required for the page, renders the page into HTML, and returns the result to the browser to display.
   	- **Pages and Components:** Page files end in ```.vfp``` and ```apex:page``` header is required. Component files ends in ```.vfc``` and ```apex:component``` header is required.
   	- **Override buttons:** You can override standard buttons by **enabling override option in object setup** on the button. Visualforce overrides are supported for new, edit, view, tab, list and clone actions in Lightning console apps. Does not support delete and custom actions.
-  	- [Standard Component Library](https://developer.salesforce.com/docs/atlas.en-us.pages.meta/pages/pages_compref.htm?_ga=2.28883772.1413815336.1703180221-417190799.1635779157)
  
 - **Ways to Access Visualforce**
 	- Open a visualforce page from the App Launcher under All Items
