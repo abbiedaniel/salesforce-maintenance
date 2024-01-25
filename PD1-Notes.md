@@ -1497,7 +1497,7 @@ development be considered.
   - Use the standard list controller with an iterative component like ```<apex:pageBlockTable>``` or ```<apex:repeat>```
 
 
-- **Visualforce Page with Standard List Controller **  
+- **Visualforce Page with Standard List Controller**  
 ```html
 <apex:page standardController = "Object Name" recordsSetVar = "object_variable" >
 // list controllers must set the recordsSetVar variable
