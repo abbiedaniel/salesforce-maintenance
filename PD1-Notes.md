@@ -1425,7 +1425,7 @@ development be considered.
 <details>
 	<summary>Visualforce Pages</summary>
 
- #### Visualforce Pages
+ #### Visualforce Pages, Standard Controllers & Custom Visualforce Components
 
 - **Visualforce Basics**
   
@@ -1454,6 +1454,15 @@ development be considered.
 	- [Visualforce Functions](https://developer.salesforce.com/docs/atlas.en-us.224.0.pages.meta/pages/pages_variables_functions.htm?_ga=2.66294572.303706887.1705500956-417190799.1635779157)
  	- [Visualforce Standard Components](https://developer.salesforce.com/docs/atlas.en-us.pages.meta/pages/pages_compref.htm?_ga=2.125023880.303706887.1705500956-417190799.1635779157)
   	- [Visualforce Global Variables](https://developer.salesforce.com/docs/atlas.en-us.224.0.pages.meta/pages/pages_variables_global.htm?_ga=2.58251944.303706887.1705500956-417190799.1635779157)
+
+- **Controller Characteristics**
+  
+    - Controllers can either be tied to a single record or a collection of records
+    	- ```StandardController``` and ```StandardSetController``` 
+    - Standard controllers exist for all custom and most standard objects
+    - Field level and object level security is enforced by built-in actions
+    - Controller extensions can be built to define custom logic and actions to be performed within a controller while retaining the functionality of the standard controller.
+   
 
 - **Standard Controller Capabilities**
 	- Easy data access
@@ -1555,19 +1564,6 @@ development be considered.
      	<c:WelcomeMessage name = "Abbie" />
      	```
 
-- **Visualforce Custom Controllers**
-	- Contains custom logic and data manipulation that can be used by a Visualforce page
-	- Custom controller can make a callout to an external web service, and validate and insert data
-	- MVC- Controllers typically retreive the data to be displayed in a visualforce page and contain code that executes in response to page actions, such as a button being clicked
-   
- - **Getter & Setters**
-	- Getter methods are written as `getSomeExpression` for the visualforce markup `{!someExpression}`. Setter methods as `setSomeExpression` for the expression ```{! someExpression}``` in the markup
- 	- Reference custom controller methods in the markup with the same name 
-	- Getter methods pull data out of your controller onto your page. Correspong setter methods let you submit values from the page back up to your controller.
-	- Apex propertities for getter and setter: ```propertyName{ get; set; }```
-	- Including only a getter method makes the property read only. Including only a setter method makes the property write only 
-	- There is no specific order in which getter or setter or properties are called, so there cannot be any order of execution dependencies between them!
-
   
 - **Debugging Visualforce Tips**
 	- Development mode in user setup allows you to directly view and edit visualforce pages
@@ -1590,15 +1586,27 @@ development be considered.
    	- To add pagination to a page
    		- The ```StandardSetController``` is designed to work with sets of records, and provides built-in methods to enable a large set of records to be displayed on a Visualforce page, with methods to assist in pagination of the record list.
    	 - to get the URL of a record on a visualforce page: `"/{!case.id}"`
-   	
     
 </details> 
 
 
 <details>
-	<summary>Visualforce Controllers</summary>
+	<summary>Visualforce Custom Controllers</summary>
 
- #### Visualforce Controllers
+ #### Visualforce Custom Controllers & Extensions 
+
+ - **Visualforce Custom Controllers**
+	- Contains custom logic and data manipulation that can be used by a Visualforce page
+	- Custom controller can make a callout to an external web service, and validate and insert data
+	- MVC- Controllers typically retreive the data to be displayed in a visualforce page and contain code that executes in response to page actions, such as a button being clicked
+   
+ - **Getter & Setters**
+	- Getter methods are written as `getSomeExpression` for the visualforce markup `{!someExpression}`. Setter methods as `setSomeExpression` for the expression ```{! someExpression}``` in the markup
+ 	- Reference custom controller methods in the markup with the same name 
+	- Getter methods pull data out of your controller onto your page. Correspong setter methods let you submit values from the page back up to your controller.
+	- Apex propertities for getter and setter: ```propertyName{ get; set; }```
+	- Including only a getter method makes the property read only. Including only a setter method makes the property write only 
+	- There is no specific order in which getter or setter or properties are called, so there cannot be any order of execution dependencies between them!
 	
 - **Basic Controller**
   
@@ -1712,14 +1720,7 @@ Test.stopTest();
 System.assertEquals(expected, actual);
 ```
 
-- **Controller Characteristics**
-  
-    - Controllers can either be tied to a single record or a collection of records
-    	- ```StandardController``` and ```StandardSetController``` 
-    - Standard controllers exist for all custom and most standard objects
-    - Field level and object level security is enforced by built-in actions
-    - Controller extensions can be built to define custom logic and actions to be performed within a controller while retaining the functionality of the standard controller.
-   
+
 </details>    
 
 
