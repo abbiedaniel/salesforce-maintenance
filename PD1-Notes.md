@@ -109,6 +109,17 @@
     
 ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/132f1294-3bc8-4042-97a5-cdca3ee501c2)
 
+
+- **Deleting Fields**
+	- You cannot delete a field if it has a reference in one of the following components:
+ 		- Apex classes and triggers
+   		- Visualforce page and components
+		- Workflow rules
+		- Field updates
+		- Critera based sharing rule
+		- Flow 
+		- Jobs
+
     
 - **Considerations**
 	- Number of Records: Data Loader can load higher data volumes than Data Import Wizard.
@@ -1729,7 +1740,9 @@ System.assertEquals(expected, actual);
   	- Lightweight for faster development
  	- Faster performance
   	- Out-of-the-box components
-  	- Built upon web standards 
+  	- Built upon web standards
+  	- Device aware and cross browser compatible
+  	- Rich custom component environment
   
 - **LWC Characteristics**
   
