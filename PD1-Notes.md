@@ -35,7 +35,7 @@
 
 :accessibility:  [Focus on Force Practice Exams](https://focusonforce.com/courses/salesforce-certified-platform-developer-1-exams/) Feb 19-Feb 23
 
-:accessibility:  [Schedule Exam](https://www.webassessor.com/salesforce) Feb 26-March 1
+:accessibility:  [Github Review & Schedule Exam](https://www.webassessor.com/salesforce) Feb 26-March 1
 
 <br>
 
