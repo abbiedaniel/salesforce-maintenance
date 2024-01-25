@@ -2,6 +2,7 @@
 
 <details>
 	<summary>Resources</summary>
+ <br>
 
 :accessibility:  ~[Exam Guide](https://trailhead.salesforce.com/help?article=Salesforce-Certified-Platform-Developer-I-Exam-Guide)~
 
@@ -26,14 +27,9 @@
  
 <details>
 	<summary>Schedule</summary>
+ <br>
 
-Jan 29-Feb 2 :accessibility:  [LWC Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
-
-Feb 5-9 :accessibility:  [Secure Serverside Development](https://trailhead.salesforce.com/content/learn/modules/secure-serverside-development?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential) 
-
-Feb 5-9 :accessibility:  [Approval Processes](https://trailhead.salesforce.com/content/learn/modules/business_process_automation?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential])
-
-Feb 5-9 :accessibility:  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI) 
+Feb 5-9 :accessibility:  [Secure Serverside Development](https://trailhead.salesforce.com/content/learn/modules/secure-serverside-development?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential) :accessibility:  [Approval Processes](https://trailhead.salesforce.com/content/learn/modules/business_process_automation?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential]) :accessibility:  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI) 
 
 Feb 12-16 :accessibility:  [Advanced Apex Specialist Superbade](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_aap)
 
@@ -42,6 +38,8 @@ Feb 19-23 :accessibility:  [Focus on Force Practice Exams](https://focusonforce.
 Feb 23-March 1 :accessibility:  [Github Review & Schedule Exam](https://www.webassessor.com/salesforce)
 
  </details>
+ 
+**Jan 29-Feb 2** :accessibility:  [LWC Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
 
 <br>
 
