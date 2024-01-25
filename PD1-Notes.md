@@ -1603,7 +1603,7 @@ development be considered.
  - **Getter & Setters**
 	- Getter methods are written as `getSomeExpression` for the visualforce markup `{!someExpression}`. Setter methods as `setSomeExpression` for the expression ```{! someExpression}``` in the markup
  	- Reference custom controller methods in the markup with the same name 
-	- Getter methods pull data out of your controller onto your page. Correspong setter methods let you submit values from the page back up to your controller.
+	- Getter methods pull data out of your controller onto your page. Corresponding setter methods let you submit values from the page back up to your controller.
 	- Apex propertities for getter and setter: ```propertyName{ get; set; }```
 	- Including only a getter method makes the property read only. Including only a setter method makes the property write only 
 	- There is no specific order in which getter or setter or properties are called, so there cannot be any order of execution dependencies between them!
