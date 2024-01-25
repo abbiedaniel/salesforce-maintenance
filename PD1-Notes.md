@@ -35,7 +35,7 @@ Feb 12-16 :accessibility:  [Advanced Apex Specialist Superbade](https://trailhea
 
 Feb 19-23 :accessibility:  [Focus on Force Practice Exams](https://focusonforce.com/courses/salesforce-certified-platform-developer-1-exams/)
 
-Feb 23-March 1:accessibility:  [Github Review & Schedule Exam](https://www.webassessor.com/salesforce)
+Feb 23-March 1 :accessibility:  [Github Review & Schedule Exam](https://www.webassessor.com/salesforce)
 
 <br>
 
