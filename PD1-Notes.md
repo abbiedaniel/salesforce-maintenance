@@ -1662,7 +1662,7 @@ development be considered.
 			// button runs the doSearch method, rerenders the page block titled "block"
 
 		</apex:pageBlock>
-	<apex:form>
+	</apex:form>
 </apex:page>
 ```
 
@@ -1671,7 +1671,7 @@ development be considered.
 
 ```html
 // dynamically decide to show results or not based on how many records are returned using a formula expression
-<apex:pageBlockTable> value = {!results} var = "r" rendered = {!NOT (ISNULL (results) )}" />
+<apex:pageBlockTable value = {!results} var = "r" rendered = {!NOT (ISNULL (results) )}" />
 ```
 
 - **Standard Controller Extensions**
@@ -1689,9 +1689,8 @@ development be considered.
 	- Visualforce Page: ```EditPageController.vfp```
  
    	```html
-    	<apex:page> standardController = "Account" extensions = "AccountControllerExtension, AnotherControllerExtension" recordSetVar = "acounts"/>
-    	// the first extension class in the list overrides other extension method's with the same name
-    
+    <apex:page standardController = "Account" extensions = "AccountControllerExtension, AnotherControllerExtension" recordSetVar = "acounts"/>
+    // the first extension class in the list overrides other extension method's with the same name
     ```
   
 - **Controller Test Coverage**
