@@ -544,6 +544,7 @@ development be considered.
     
   - ```Trigger.Old``` returns a list of the old versions of the sObject records
   	- available in ```update``` and ```delete``` triggers
+   	- always read-only 
      
    - ```Trigger.oldMap``` returns a map of IDs to the old versions of the sObject records
    		- available in ```update``` and ```delete``` triggers 
@@ -1300,6 +1301,9 @@ development be considered.
 
 	- ```List has no rows for assignment to sObject``` - running a query that returns no rows
 	- ```Index 0 is out of bounds``` - attempting to access value at index 0 when there is no data
+
+   ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/d6d64f48-94e0-4eec-a990-1afbfd332b88)
+
 
 </details> 
 
