@@ -9,3 +9,11 @@
 - **cyclomatic complexity:** number of logical branches in a block of code
 - **standard cyclomatic complexity:** complexity when control statements are removed (try, else/if)
 - **cognitive complexity:** a measure of how difficult a unit of code is to intuitively understand and read
+- **test driven development (tdd):** software development approach where the tests are written before the actual code
+- **unit testing**
+- **permission testing**
+- **integration testing**
+  
+
+### Architecture
+- **dependency injection:** design pattern to decompose and decouple large applications into smaller dependencies whose implementations can be determined and interchanged at runtime. dependency injection helps apps handle requirement changes and not become brittle and require significant refactoring. 
