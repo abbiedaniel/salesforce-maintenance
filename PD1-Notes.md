@@ -26,20 +26,24 @@
 
  
 <details>
-	<summary>Schedule</summary>
+	<summary>To Do</summary>
  <br>
 
-Feb 5-9 :accessibility:  [Secure Serverside Development](https://trailhead.salesforce.com/content/learn/modules/secure-serverside-development?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential) :accessibility:  [Approval Processes](https://trailhead.salesforce.com/content/learn/modules/business_process_automation?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential]) :accessibility:  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI) 
+:accessibility:  [Secure Serverside Development](https://trailhead.salesforce.com/content/learn/modules/secure-serverside-development?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential) 
+ 
+:accessibility:  [Approval Processes](https://trailhead.salesforce.com/content/learn/modules/business_process_automation?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential]) 
 
-Feb 12-16 :accessibility:  [Advanced Apex Specialist Superbade](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_aap)
+:accessibility:  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI) 
 
-Feb 19-23 :accessibility:  [Focus on Force Practice Exams](https://focusonforce.com/courses/salesforce-certified-platform-developer-1-exams/)
+:accessibility:  [Advanced Apex Specialist Superbade](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_aap)
 
-Feb 23-March 1 :accessibility:  [Github Review & Schedule Exam](https://www.webassessor.com/salesforce)
+:accessibility:  [Focus on Force Practice Exams](https://focusonforce.com/courses/salesforce-certified-platform-developer-1-exams/)
+
+:accessibility:  [Github Review & Schedule Exam](https://www.webassessor.com/salesforce)
 
  </details>
  
-**Jan 29-Feb 2** :accessibility:  [LWC Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
+ :accessibility:  [LWC Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
 
 <br>
 
