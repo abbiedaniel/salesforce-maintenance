@@ -46,8 +46,6 @@
 	<summary>Process Automation & Logic</summary>
 
 # Process Automation & Logic
-
-## Apex
 	
 ## About Apex
 - Apex is a programming language that uses Java-like syntax and acts like database stored procedures.
@@ -118,7 +116,6 @@
 	<summary>Testing</summary>
 
 # Testing, Debugging & Depoyments
-## Testing
 
 ## Test Class & Methods
 ## Exception Handling
@@ -140,8 +137,6 @@
 <details>
 	<summary>Debugging</summary>
 
-## Debugging
-
 ## Log Inspector
 ## Debug Logs
 
@@ -150,7 +145,6 @@
  <details>
 	<summary>Deployments</summary>
 
-## Deployments
 ## Sandboxes
 ## Code Coverage
  - why its required
@@ -174,7 +168,6 @@
 <details>
 	<summary>Lightning Web Components</summary>
 
-## Lightning Web Components
 ## LWC Framework
 ## LWC Benefits
 ## LWC Decorators
@@ -183,8 +176,6 @@
 ## Lightning Message Service
 ## Lightning Data Service
 ## LWC Security
-
-## Lightning Aura Components
 ## Lightning Aura Components
 ## Aura Component Framework
 
