@@ -5,7 +5,9 @@
 
 # Developer Fundamentals
 
-## Save Order of Execution
+## Dev Funds
+
+### Save Order of Execution
 1. System Validation
 2. Before Save Flows
 3. Before Triggers
@@ -23,16 +25,16 @@
 
 **S**am's **F**amily **T**ook **V**alerie **D**own **S**outh **T**o **A** **A**uto **W**orkshop's **E**nclosed **F**oyer.
 
-## Governor Limits
+### Governor Limits
 - SOQL Queries: 100
 - DML: 150
 
-## Model View Controller Architecture
+### Model View Controller Architecture
 - Model: where data is saved
 - View: how data is visualized
 - Controller: how data is manipulated/logic
 
-## Data Imports & Exports
+### Data Imports & Exports
 
 |   | Data Import Wizard      | Data Loader |
 | ----------- | ----------- | ----------- |
@@ -46,14 +48,16 @@
 	<summary>Process Automation & Logic</summary>
 
 # Process Automation & Logic
+
+## Apex
 	
-## About Apex
+### About Apex
 - Apex is a programming language that uses Java-like syntax and acts like database stored procedures.
 - **Hosted**: Apex is saved, compiled, and executed on the server—the Lightning Platform.
 - **Object oriented**: Apex supports classes, interfaces, inheritance, abstraction, polymorphism, and encapsulation.
 - **Strongly typed**: Apex validates references to objects at compile time.
 
-## Apex Class Definition & Members
+### Apex Class Definition & Members
 - Access modifiers: `global`, `public`, `private`, `protected`
 - sharing context: `with sharing`, `without sharing`, `inherited sharing`
 - Class keywords: `implements`, `extends`
@@ -63,7 +67,7 @@
 - Member properties
 - Methods
 
-## Apex Data Types
+### Apex Data Types
 - String: 'hello world'
 - Boolean: true or false
 - Integer: 7
@@ -78,7 +82,7 @@
 - Set: `Set<Integer> intSet = new Set<Integer>();`
 - Map: `Map<Id, String> idList = new Map<Id, String>();`
 
-## Apex Class Use Cases
+### Apex Class Use Cases
 - Trigger Handler Class: `public class AccountTriggerHandler {}`
 - Lightning Web Controller Class: `public class MedsListController{}`
 - Visualforce Controller Class: `public class EditPageController{}`
@@ -88,25 +92,25 @@
 - Invocable Methods for Flows & Process Builders to Call: `@InvocableMethod(callout = true label = 'methodName' description = 'description' category = 'DML')`
 - Web Services Methods for External Services to Call: `@future(callout=true) static void myfutureMethod(){}`
 
-## Apex Triggers*
+### Apex Triggers*
 - Trigger Definition: `trigger AccountTrigger on Account(before update){}`
 - Trigger Context:
 - Trigger Error Handling: 
 
-## Other Apex
+### Other Apex
 - Asynchronous: queueable apex, batchable apex, scheduled apex, future methods
 - Anonmyous: execute anonoymous window, salesforce CLI `force:aepx:execute` command, REST API executeAnonymous endpoint
 - Invocable: `@InvocableMethod` or `@InvocableVariable` to be used in a flow
 
-## Data Search & Manipulation in Apex
+### Data Search & Manipulation in Apex
 - complicated soql example
 - sosl
 - parent - child soql
 - child -> parent soql
 - dml example
 
-## Custom metadata, custom platform events, Custom settings
-## Apex Integration
+### Custom metadata, custom platform events, Custom settings
+### Apex Integration
 
 
 
@@ -116,17 +120,18 @@
 	<summary>Testing</summary>
 
 # Testing, Debugging & Depoyments
+## Testing
 
-## Test Class & Methods
-## Exception Handling
-## Exception Class & Method
+### Test Class & Methods
+### Exception Handling
+### Exception Class & Method
 
-## Exception Examples
+### Exception Examples
 - `System.DmlException`
 - `System.ListException`
 - `System.QueryException`
 
-## Asynch Testing
+### Asynch Testing
 - Queueable Apex: `System.enqueJob()`
 - Batchable Apex: `Database.executeBatch()`
 - Schedule Apex: `System.schedule()`
@@ -137,19 +142,22 @@
 <details>
 	<summary>Debugging</summary>
 
-## Log Inspector
-## Debug Logs
+## Debugging
+
+### Log Inspector
+### Debug Logs
 
  </details>
 
  <details>
 	<summary>Deployments</summary>
 
-## Sandboxes
-## Code Coverage
+## Deployments
+### Sandboxes
+### Code Coverage
  - why its required
-## Deployment Tools
-## Change Sets
+### Deployment Tools
+### Change Sets
 
 </details>
  
@@ -158,25 +166,28 @@
 	<summary>Visualforce</summary>
 	
 # User Interface
-## Visualforce Page
-## Standard Controller
-## Standard List Controller
-## Custom Controller
+## Visualforce
+### Visualforce Page
+### Standard Controller
+### Standard List Controller
+### Custom Controller
 </details>
 
 <details>
 	<summary>Lightning Web Components</summary>
 
-
-## LWC Framework
-## LWC Benefits
-## LWC Decorators
 ## Lightning Web Components
-## Child to Parent and Parent to Child LWC Communication
-## Lightning Message Service
-## Lightning Data Service
-## LWC Security
+### LWC Framework
+### LWC Benefits
+### LWC Decorators
+### Lightning Web Components
+### Child to Parent and Parent to Child LWC Communication
+### Lightning Message Service
+### Lightning Data Service
+### LWC Security
+
 ## Lightning Aura Components
-## Aura Component Framework
+### Lightning Aura Components
+### Aura Component Framework
 
 </details>
