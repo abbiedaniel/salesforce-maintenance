@@ -467,6 +467,7 @@ development be considered.
 - **Interface Keywords**
 	- ```virtual``` makes it inheritable by any other class present in Salesforce that ```extends``` that class. Virtual methods can be defined in virtual or abstract classes
  	- ```abstract``` makes it inheritable by any other class present in Salesforce that ```extends``` that class. Abstract methods can only be defined in abstract classes.
+  	- Interface methods can't be overridden but virtual methods can be overridden. 
 
 - **Sharing Keywords**
 	- By default, Apex code in classes, triggers or web services run in system mode where permissions and record sharing of the current user are **not** taken into account.
