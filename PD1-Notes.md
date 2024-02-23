@@ -297,7 +297,7 @@ development be considered.
 
 - **Classes & Subclasses**
 	- Top classes must have one access modifiers (such as public or private). This is not mandatory for inner classes.
- 	- Top and Inner class is private by default when no modiferies are specified.
+ 	- Inner class is private by default when no modiferies are specified.
   	- Inner classes can have their own sharing modes declared, which don’t have to match that of the outer classes.
  	-  Inner classes can only be one level deep.
 
