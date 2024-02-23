@@ -3,6 +3,8 @@
 <details>
 	<summary>Dev Fundamentals</summary>
 
+# Developer Fundamentals
+
 ## Save Order of Execution
 1. System Validation
 2. Before Save Flows
@@ -42,6 +44,8 @@
 
 <details>
 	<summary>Process Automation & Logic</summary>
+
+# Process Automation & Logic
 	
 ## About Apex
 - Apex is a programming language that uses Java-like syntax and acts like database stored procedures.
@@ -78,8 +82,8 @@
 - Trigger Handler Class
 - Lightning Web Controller Class
 - Visualforce Controller Class
-- Exception Class
-- Test Data Factory Class
+- Exception Class: `public class MyCustomException extends Exception{}`
+- Test Data Factory Class: 
 - Test Class
 - Invocable Methods for Flows & Process Builders to Call
 - Web Services Methods for External Services to Call
@@ -110,6 +114,9 @@
  
 <details>
 	<summary>Testing</summary>
+
+# Testing, Debugging & Depoyments
+
  </details>
   
 <details>
@@ -122,6 +129,9 @@
  
 <details>
 	<summary>Lightning Web Components</summary>
+
+# User Interface
+
  </details>
  
 <details>
