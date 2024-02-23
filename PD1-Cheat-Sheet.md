@@ -90,13 +90,13 @@
 
 ## Apex Triggers
 - Trigger Definition: `trigger AccountTrigger on Account(before update){}`
-- 
+- Trigger Context:
+- Trigger Error Handling
 
 ## Other Apex
-- Asynch
-- Invocable
-- Syncrh
-- Anonmyous
+- Asynchronous: queueable apex, batchable apex, scheduled apex, future methods
+- Anonmyous: execute anonoymous window, salesforce CLI `force:aepx:execute` command, REST API executeAnonymous endpoint
+- Invocable: `@InvocableMethod` or `@InvocableVariable` to be used in a flow
 
 ## Data Search & Manipulation in Apex
 - complicated soql example
@@ -116,6 +116,20 @@
 	<summary>Testing</summary>
 
 # Testing, Debugging & Depoyments
+
+## Test Class & Methods
+## Exception Handling
+## Exception Class & Method
+## Exception Examples
+- `System.DmlException`
+- `System.ListException`
+- `System.QueryException`
+
+## Asynch Testing
+- Queueable Apex: `System.enqueJob()`
+- Batchable Apex: `Database.executeBatch()`
+- Schedule Apex: `System.schedule()`
+- Future Methods: call method between `Test.startTest` and `Test.stopTest`
 
  </details>
   
