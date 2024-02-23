@@ -79,14 +79,14 @@
 - Map: `Map<Id, String> idList = new Map<Id, String>();`
 
 ## Apex Class Use Cases
-- Trigger Handler Class
-- Lightning Web Controller Class
-- Visualforce Controller Class
+- Trigger Handler Class: `public class AccountTriggerHandler {}`
+- Lightning Web Controller Class: `public class MedsListController{}`
+- Visualforce Controller Class: `public class EditPageController{}`
 - Exception Class: `public class MyCustomException extends Exception{}`
-- Test Data Factory Class: 
-- Test Class
-- Invocable Methods for Flows & Process Builders to Call
-- Web Services Methods for External Services to Call
+- Test Data Factory Class:`@isTest public class TestDataFactory{}`
+- Test Class: `@isTest private class AccountTriggerHandlerTest{}`
+- Invocable Methods for Flows & Process Builders to Call: `@InvocableMethod(callout = true label = 'methodName' description = 'description' category = 'DML')`
+- Web Services Methods for External Services to Call: `@future(callout=true) static void futureMethod(){}`
 
 ## Apex Triggers
 - Trigger Definition: `trigger AccountTrigger on Account(before update){}`
@@ -109,6 +109,8 @@
 
 
 ## Apex Integration
+
+
 
  </details>
  
