@@ -41,11 +41,11 @@
 </details>
 
 <details>
-	<summary>Process Automation</summary>
+	<summary>Process Automation & Logic</summary>
  </details>
  
 <details>
-	<summary>Testing & Deployments</summary>
+	<summary>Testing, Debugging & Deployments</summary>
  </details>
  
 <details>
