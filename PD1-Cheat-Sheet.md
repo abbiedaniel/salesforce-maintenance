@@ -49,24 +49,68 @@
 - **Object oriented**: Apex supports classes, interfaces, inheritance, abstraction, polymorphism, and encapsulation.
 - **Strongly typed**: Apex validates references to objects at compile time.
 
-## Apex Class Definition
-- access modifiers: global, public, private, protected
-- sharing context: with/without/inherited sharing
-- class keywords: implements, extends
-- interface keywords: abstract/virtual, interface
-- constructors
-- member variables
-- member properties
-- methods
+## Apex Class Definition & Members
+- Access modifiers: `global`, `public`, `private`, `protected`
+- sharing context: `with sharing`, `without sharing`, `inherited sharing`
+- Class keywords: `implements`, `extends`
+- Interface keywords: `abstract`, `virtual`, `interface`
+- Constructors
+- Member variables
+- Member properties
+- Methods
+
+## Apex Data Types
+- String: 'hello world'
+- Boolean: true or false
+- Integer: 7
+- Decimal: 7.7
+- Id: 006Hs00001KsrsSIAR
+- Date: 2024-01-23
+- DateTime: 2024-01-23 03:03:03
+- Time: 02:39:39.217Z
+- Blob: binary data
+- Enum: store set of id that are accessed one at a time
+- List: `List<String> colorsList = new List<String>{'red'};`
+- Set: `Set<Integer> intSet = new Set<Integer>();`
+- Map: `Map<Id, String> idList = new Map<Id, String>();`
+
+## Apex Use Cases
+- different types of classes and an example of thhe class definition
 
 ## Apex Triggers
+- event contexts
+- trigger deinfition
+
+## Other Apex
+- Asynch
+- Invocable
+- Syncrh
+- Anonmyous
+
+## Data Search & Manipulation in Apex
+- complicated soql example
+- sosl
+- parent - child soql
+- child -> parent soql
+- dml example
+
+## Custom metadata, custom platform events, Custom settings
 
 
+## Apex Integration
 
  </details>
  
 <details>
-	<summary>Testing, Debugging & Deployments</summary>
+	<summary>Testing</summary>
+ </details>
+  
+<details>
+	<summary>Debugging</summary>
+ </details>
+
+ <details>
+	<summary>Deployments</summary>
  </details>
  
 <details>
