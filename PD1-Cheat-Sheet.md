@@ -1,5 +1,8 @@
 # PD1 Cheat Sheet
 
+<details>
+	<summary>Dev Fundamentals</summary>
+
 ## Save Order of Execution
 1. System Validation
 2. Before Save Flows
@@ -33,4 +36,22 @@
 | ----------- | ----------- | ----------- |
 | **Max Records** | 50K    | 5M       |
 | **Pros** | - Choose whether to trigger workflow rules   | - Can save mapping for later use <br> - Can delete and export data    |
-| **Cons** |  - Can only insert, update or upsert <br> - Can't use on product and opportunities <br> - Can't save mappings <br> - Can't schedule imports   | - No option to turn off workflow rules        |
+| **Cons** |  - Can only insert, update or upsert <br> - Can't use on product and opportunities <br> - Can't save mappings <br> - Can't schedule imports   | - No option to turn off workflow rules |
+
+</details>
+
+<details>
+	<summary>Process Automation</summary>
+ </details>
+ 
+<details>
+	<summary>Testing & Deployments</summary>
+ </details>
+ 
+<details>
+	<summary>Lightning Web Components</summary>
+ </details>
+ 
+<details>
+	<summary>Visualforce</summary>
+ </details>
