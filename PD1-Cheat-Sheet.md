@@ -42,6 +42,27 @@
 
 <details>
 	<summary>Process Automation & Logic</summary>
+	
+## About Apex
+- Apex is a programming language that uses Java-like syntax and acts like database stored procedures.
+- **Hosted**: Apex is saved, compiled, and executed on the server—the Lightning Platform.
+- **Object oriented**: Apex supports classes, interfaces, inheritance, abstraction, polymorphism, and encapsulation.
+- **Strongly typed**: Apex validates references to objects at compile time.
+
+## Apex Class Definition
+- access modifiers: global, public, private, protected
+- sharing context: with/without/inherited sharing
+- class keywords: implements, extends
+- interface keywords: abstract/virtual, interface
+- constructors
+- member variables
+- member properties
+- methods
+
+## Apex Triggers
+
+
+
  </details>
  
 <details>
