@@ -86,12 +86,12 @@
 - Test Data Factory Class:`@isTest public class TestDataFactory{}`
 - Test Class: `@isTest private class AccountTriggerHandlerTest{}`
 - Invocable Methods for Flows & Process Builders to Call: `@InvocableMethod(callout = true label = 'methodName' description = 'description' category = 'DML')`
-- Web Services Methods for External Services to Call: `@future(callout=true) static void futureMethod(){}`
+- Web Services Methods for External Services to Call: `@future(callout=true) static void myfutureMethod(){}`
 
-## Apex Triggers
+## Apex Triggers*
 - Trigger Definition: `trigger AccountTrigger on Account(before update){}`
 - Trigger Context:
-- Trigger Error Handling
+- Trigger Error Handling: 
 
 ## Other Apex
 - Asynchronous: queueable apex, batchable apex, scheduled apex, future methods
@@ -106,8 +106,6 @@
 - dml example
 
 ## Custom metadata, custom platform events, Custom settings
-
-
 ## Apex Integration
 
 
@@ -122,6 +120,7 @@
 ## Test Class & Methods
 ## Exception Handling
 ## Exception Class & Method
+
 ## Exception Examples
 - `System.DmlException`
 - `System.ListException`
@@ -137,19 +136,47 @@
   
 <details>
 	<summary>Debugging</summary>
+
+## Log Inspector
+## Debug Logs
+
  </details>
 
  <details>
 	<summary>Deployments</summary>
- </details>
+
+## Sandboxes
+## Code Coverage
+ - why its required
+## Deployment Tools
+## Change Sets
+
+</details>
  
-<details>
-	<summary>Lightning Web Components</summary>
-
-# User Interface
-
- </details>
  
 <details>
 	<summary>Visualforce</summary>
- </details>
+	
+# User Interface
+## Visualforce Page
+## Standard Controller
+## Standard List Controller
+## Custom Controller
+</details>
+
+<details>
+	<summary>Lightning Web Components</summary>
+
+
+## LWC Framework
+## LWC Benefits
+## LWC Decorators
+## Lightning Web Components
+## Child to Parent and Parent to Child LWC Communication
+## Lightning Message Service
+## Lightning Data Service
+## LWC Security
+## Lightning Aura Components
+## Aura Component Framework
+
+</details>
