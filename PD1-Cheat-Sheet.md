@@ -74,12 +74,19 @@
 - Set: `Set<Integer> intSet = new Set<Integer>();`
 - Map: `Map<Id, String> idList = new Map<Id, String>();`
 
-## Apex Use Cases
-- different types of classes and an example of thhe class definition
+## Apex Class Use Cases
+- Trigger Handler Class
+- Lightning Web Controller Class
+- Visualforce Controller Class
+- Exception Class
+- Test Data Factory Class
+- Test Class
+- Invocable Methods for Flows & Process Builders to Call
+- Web Services Methods for External Services to Call
 
 ## Apex Triggers
-- event contexts
-- trigger deinfition
+- Trigger Definition: `trigger AccountTrigger on Account(before update){}`
+- 
 
 ## Other Apex
 - Asynch
