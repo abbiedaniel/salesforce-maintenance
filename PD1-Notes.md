@@ -24,19 +24,18 @@
 
  </details>
 
-:accessibility:  [Secure Serverside Development](https://trailhead.salesforce.com/content/learn/modules/secure-serverside-development?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential) 
- 
+:accessibility:  [Advanced Apex Specialist Superbade](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_aap)
+
+:accessibility:  [LWC Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
+
 :accessibility:  [PD1 Trailmix](https://trailhead.salesforce.com/users/strailhead/trailmixes/prepare-for-your-salesforce-platform-developer-i-credential)
 
 :accessibility:  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI) 1:20:10 
-
-:accessibility:  [Advanced Apex Specialist Superbade](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_aap)
 
 :accessibility:  [Focus on Force Practice Exams](https://focusonforce.com/courses/salesforce-certified-platform-developer-1-exams/)
 
 :accessibility:  [Github Review & Schedule Exam](https://www.webassessor.com/salesforce)
  
-:accessibility:  [LWC Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
 
 <br>
 
