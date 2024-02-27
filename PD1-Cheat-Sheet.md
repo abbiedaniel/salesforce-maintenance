@@ -40,6 +40,25 @@
 | **Pros** | - Choose whether to trigger workflow rules   | - Can save mapping for later use <br> - Can delete and export data    |
 | **Cons** |  - Can only insert, update or upsert <br> - Can't use on product and opportunities <br> - Can't save mappings <br> - Can't schedule imports   | - No option to turn off workflow rules |
 
+![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/41026379-2bf2-46e1-a7b5-28dab8514a1b)
+
+
+## Standard Relationships & Fields
+
+- **Master-detail**: on the child object
+- **Lookup**: on the child object
+- **Junction**: child object with two master detail fields (inherits security of first master)
+- **External Lookup**: external parent object
+- **Internal Lookup**: external child object
+- **Roll Up Summary**: on the master, COUNT/SUM/MIN/MAX, works on lookups: Opp-Opp Product, Account-Opp, Campaign-Campaign Members
+- **Validation Rules**: don't operate on parent-child relationships
+- **Formula Field**: can't be used in a roll up summary field if it references a field on a different object or if NOW() or TODAY() methods are in the formula
+- **Cross-object Formula Field**: created on child to reference data from parent, can't be used in roll-up summary fields
+
+  
+## Schema Namespace
+
+
 </details>
 
 <details>
