@@ -5,6 +5,20 @@
 
 # Developer Fundamentals
 
+
+## Standard Relationships & Fields
+
+- **Master-detail**: on the child object, child obj do not have owners so they can't be used with queues
+- **Lookup**: on the child object
+- **Junction**: child object with two master detail fields, inherits security of first master
+- **External Lookup**: external parent object
+- **Indirect Lookup**: external child object
+- **Roll Up Summary**: on the master, COUNT/SUM/MIN/MAX, works on lookups: Opp-Opp Product, Account-Opp, Campaign-Campaign Members
+- **Validation Rules**: don't operate on parent-child relationships
+- **Formula Field**: can't be used in a roll up summary field if it references a field on a different object or if NOW() or TODAY() methods are in the formula
+- **Cross-Object Formula Field**: created on child to reference data from parent, can't be used in roll-up summary fields
+
+
 ## Save Order of Execution
 1. System Validation
 2. Before Save Flows
@@ -32,6 +46,18 @@
 - View: how data is visualized
 - Controller: how data is manipulated/logic
 
+## Schema Namespace
+- `DescribeSObjectResult` Methods
+	- `getLabel()` label may or may not match object name, `getName()` name of object
+ 	- `isDeletable()`, `isAccessible()` and `isCreatable()`
+  	- `getSobjectType()`
+  	- `getRecordTypeInfos()`, `getRecordTypeInfosByDeveloperName()`, `getRecordTypeInfosById()`, and `getRecordTypeInfosByName()`
+- `DescribeFieldResult` Methods
+	- `getDigits()` for ints, `getScale()` for doubles 
+ 	- `getLength()` for max size of field in char
+  	- `getLabel()`
+  	- `getSObjectType()`
+
 ## Data Imports & Exports
 
 |   | Data Import Wizard      | Data Loader |
@@ -41,22 +67,6 @@
 | **Cons** |  - Can only insert, update or upsert <br> - Can't use on product and opportunities <br> - Can't save mappings <br> - Can't schedule imports   | - No option to turn off workflow rules |
 
 ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/41026379-2bf2-46e1-a7b5-28dab8514a1b)
-
-
-## Standard Relationships & Fields
-
-- **Master-detail**: on the child object, child obj do not have owners so they can't be used with queues
-- **Lookup**: on the child object
-- **Junction**: child object with two master detail fields, inherits security of first master
-- **External Lookup**: external parent object
-- **Internal Lookup**: external child object
-- **Roll Up Summary**: on the master, COUNT/SUM/MIN/MAX, works on lookups: Opp-Opp Product, Account-Opp, Campaign-Campaign Members
-- **Validation Rules**: don't operate on parent-child relationships
-- **Formula Field**: can't be used in a roll up summary field if it references a field on a different object or if NOW() or TODAY() methods are in the formula
-- **Cross-Object Formula Field**: created on child to reference data from parent, can't be used in roll-up summary fields
-
-  
-## Schema Namespace
 
 
 </details>
