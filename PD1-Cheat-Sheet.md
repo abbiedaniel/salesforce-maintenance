@@ -14,7 +14,7 @@
 - **External Lookup**: external parent object
 - **Indirect Lookup**: external child object
 - **Roll Up Summary**: on the master, COUNT/SUM/MIN/MAX, works on lookups: Opp-Opp Product, Account-Opp, Campaign-Campaign Members
-- **Validation Rules**: don't operate on parent-child relationships
+- **Validation Rules**: don't operate on parent-child relationships, can't be used on record deletion
 - **Formula Field**: can't be used in a roll up summary field if it references a field on a different object or if NOW() or TODAY() methods are in the formula
 - **Cross-Object Formula Field**: created on child to reference data from parent, can't be used in roll-up summary fields
 
