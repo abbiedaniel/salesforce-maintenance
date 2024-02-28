@@ -13,9 +13,9 @@
 - **Junction**: child object with two master detail fields, inherits security of first master
 - **External Lookup**: external parent object
 - **Indirect Lookup**: external child object
-- **Roll Up Summary**: on the master, COUNT/SUM/MIN/MAX, works on lookups: Opp-Opp Product, Account-Opp, Campaign-Campaign Members
+- **Roll Up Summary**: on the master, `COUNT/SUM/MIN/MAX`, works on lookups: Opp-Opp Product, Account-Opp, Campaign-Campaign Members
 - **Validation Rules**: don't operate on parent-child relationships, can't be used on record deletion
-- **Formula Field**: can't be used in a roll up summary field if it references a field on a different object or if NOW() or TODAY() methods are in the formula
+- **Formula Field**: can't be used in a roll up summary field if it references a field on a different object or if `NOW()` or `TODAY()` methods are in the formula
 - **Cross-Object Formula Field**: created on child to reference data from parent, can't be used in roll-up summary fields
 
 
@@ -38,13 +38,13 @@
 **S**am's **F**amily **T**ook **V**alerie **D**own **S**outh **T**o **A** **A**uto **W**orkshop's **E**nclosed **F**oyer.
 
 ## Governor Limits
-- SOQL Queries: 100
-- DML: 150
+- **SOQL Queries**: 100
+- **DML**: 150
 
 ## Model View Controller Architecture
-- Model: where data is saved
-- View: how data is visualized
-- Controller: how data is manipulated/logic
+- **Model**: where data is saved
+- **View**: how data is visualized
+- **Controller**: how data is manipulated/logic
 
 ## Data Imports & Exports
 
@@ -62,17 +62,17 @@
  	- `isDeletable()`, `isAccessible()` and `isCreatable()`
   	- `getSobjectType()`
   	- `getRecordTypeInfos()`, `getRecordTypeInfosByDeveloperName()`, `getRecordTypeInfosById()`, and `getRecordTypeInfosByName()`
-  	- `getDescribe()`
 - `DescribeFieldResult` Methods
 	- `getDigits()` for ints, `getScale()` for doubles 
  	- `getLength()` for max size of field in char
   	- `getLabel()`
   	- `getSObjectType()`
+  	- `getDescribe()` instantiates a field describe result object
 
 ## Object & Field Level Security
 - `WITH SECURITY_ENFORCED`: enable FLS and object level secuirty permissions checking in a SOQL query. TYhrows an exception if a field or object referenced is inaccessible.
 - `Security.stripInaccessible(AccessType.CREATABLE, sourceRecords)`: strip fields from SOQL results that fail FLS checks. No exception is thrown.
-- `Contact.sobjectType.getDescribe().isCreateable()` and `Contact.LastName.getDescribe().isReadable()`: respect the object and field access of the running user
+- `Contact.sobjectType.getDescribe().isCreateable()` and `Contact.LastName.getDescribe().isReadable()`: respect the object and field access of the running user. This can also be accomplished with `Schema.sObjectType.Contact.isDeletable()`.
 
 </details>
 
@@ -88,9 +88,9 @@
 - **Strongly typed**: Apex validates references to objects at compile time.
 
 ## Apex Class Definition & Members
-- Access modifiers: `global`, `public`, `private`, `protected`
-- sharing context: `with sharing`, `without sharing`, `inherited sharing`
-- Class keywords: `implements`, `extends`
+- Access Modifiers: `global`, `public`, `private`, `protected`
+- Sharing Context: `with sharing`, `without sharing`, `inherited sharing`
+- Class Keywords: `implements`, `extends`
 - Interface keywords: `abstract`, `virtual`, `interface`
 - Constructors
 - Member variables
@@ -98,39 +98,43 @@
 - Methods
 
 ## Apex Data Types
-- String: 'hello world'
-- Boolean: true or false
-- Integer: 7
-- Decimal: 7.7
-- Id: 006Hs00001KsrsSIAR
-- Date: 2024-01-23
-- DateTime: 2024-01-23 03:03:03
-- Time: 02:39:39.217Z
-- Blob: binary data
-- Enum: store set of id that are accessed one at a time
-- List: `List<String> colorsList = new List<String>{'red'};`
-- Set: `Set<Integer> intSet = new Set<Integer>();`
-- Map: `Map<Id, String> idList = new Map<Id, String>();`
+- **String**: 'hello world'
+- **Boolean**: true or false
+- **Integer**: 7
+- **Decimal**: 7.7
+- **Double**: 3.14159265
+- **Id**: 006Hs00001KsrsSIAR
+- **Date**: 2024-01-23
+- **DateTime**: 2024-01-23 03:03:03
+- **Time**: 02:39:39.217Z
+- **Blob**: binary data
+- **Enum**: store set of id that are accessed one at a time
+- **List**: `List<String> colorsList = new List<String>{'red'};`
+- **Set**: `Set<Integer> intSet = new Set<Integer>();`
+- **Map**: `Map<Id, String> idList = new Map<Id, String>();`
 
 ## Apex Class Use Cases
-- Trigger Handler Class: `public class AccountTriggerHandler {}`
-- Lightning Web Controller Class: `public class MedsListController{}`
-- Visualforce Controller Class: `public class EditPageController{}`
-- Exception Class: `public class MyCustomException extends Exception{}`
-- Test Data Factory Class:`@isTest public class TestDataFactory{}`
-- Test Class: `@isTest private class AccountTriggerHandlerTest{}`
-- Invocable Methods for Flows & Process Builders to Call: `@InvocableMethod(callout = true label = 'methodName' description = 'description' category = 'DML')`
-- Web Services Methods for External Services to Call: `@future(callout=true) static void myfutureMethod(){}`
+- **Trigger Handler Class:** `public class AccountTriggerHandler {}`
+- **Lightning Web Controller Class:** `public class MedsListController{}`
+- **Visualforce Controller Class:** `public class EditPageController{}`
+- **Exception Class:** `public class MyCustomException extends Exception{}`
+- **Test Data Factory Class:** `@isTest public class TestDataFactory{}`
+- **Test Class:** `@isTest private class AccountTriggerHandlerTest{}`
+- **Invocable Methods for Flows & Process Builders to Call:** `@InvocableMethod(callout = true label = 'methodName' description = 'description' category = 'DML')`
+- **Web Services Methods for External Services to Call:** `@future(callout=true) static void myfutureMethod(){}`
 
-## Apex Triggers*
-- Trigger Definition: `trigger AccountTrigger on Account(before update){}`
-- Trigger Context:
-- Trigger Error Handling: 
+## Apex Triggers
+- **Before triggers** are used to validate and potentially update record values on the same object.
+- **After triggers** are used to acceess field values, such as Ids, that are set by the system and to effect changes in other records or other objects.
+- before insert, update, delete and after insert, update, delete and undelete
+- **Trigger Definition:** `trigger AccountTrigger on Account(before update){}`
+- **Trigger Event Context:** insert, update, delete and undelete
+- **Trigger Error Handling:** 
 
 ## Other Apex
-- Asynchronous: queueable apex, batchable apex, scheduled apex, future methods
-- Anonmyous: execute anonoymous window, salesforce CLI `force:aepx:execute` command, REST API executeAnonymous endpoint
-- Invocable: `@InvocableMethod` or `@InvocableVariable` to be used in a flow
+- **Asynchronous**: queueable apex, batchable apex, scheduled apex, future methods
+- **Anonmyous**: execute anonoymous window, salesforce CLI `force:aepx:execute` command, REST API executeAnonymous endpoint
+- **Invocable**: `@InvocableMethod` or `@InvocableVariable` to be used in a flow
 
 ## Data Search & Manipulation in Apex
 - complicated soql example
