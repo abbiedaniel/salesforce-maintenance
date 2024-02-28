@@ -126,10 +126,10 @@
 ## Apex Triggers
 - **Before triggers** are used to validate and potentially update record values on the same object.
 - **After triggers** are used to acceess field values, such as Ids, that are set by the system and to effect changes in other records or other objects.
-- before insert, update, delete and after insert, update, delete and undelete
+- **Trigger Event Context:** before insert/update/delete and after insert/update/delete/undelete
 - **Trigger Definition:** `trigger AccountTrigger on Account(before update){}`
-- **Trigger Event Context:** insert, update, delete and undelete
-- **Trigger Error Handling:** 
+- **Trigger Context Variables:**: `Trigger.old` & `Trigger.oldMap` is avail in delete and update. `Trigger.new` & `Trigger.newMap` is avail in after undelete, insert, update, and before update triggers. `Trgger.new` is available in before insert triggers.
+- **Trigger Error Handling:** `addError('Error!')` prevents the dml operation from occurring on the field or record
 
 ## Other Apex
 - **Asynchronous**: queueable apex, batchable apex, scheduled apex, future methods
