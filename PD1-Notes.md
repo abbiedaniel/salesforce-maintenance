@@ -28,9 +28,6 @@
 
  </details>
 
-:accessibility:  [Advanced Apex Specialist Superbade](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_aap)
-
-:accessibility:  [LWC Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
 
 :accessibility: [LWC for VF Developers](https://trailhead.salesforce.com/content/learn/modules/lwc-for-visualforce-developers)
 
@@ -40,6 +37,9 @@
 
 :accessibility: [Change Set Development Model](https://trailhead.salesforce.com/content/learn/modules/declarative-change-set-development)
 
+📉  [Advanced Apex Specialist Superbade](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_aap)
+
+📉  [LWC Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
 
  ☑️  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI) 1:26:19
 
