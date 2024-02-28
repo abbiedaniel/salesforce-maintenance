@@ -46,18 +46,6 @@
 - View: how data is visualized
 - Controller: how data is manipulated/logic
 
-## Schema Namespace
-- `DescribeSObjectResult` Methods
-	- `getLabel()` label may or may not match object name, `getName()` name of object
- 	- `isDeletable()`, `isAccessible()` and `isCreatable()`
-  	- `getSobjectType()`
-  	- `getRecordTypeInfos()`, `getRecordTypeInfosByDeveloperName()`, `getRecordTypeInfosById()`, and `getRecordTypeInfosByName()`
-- `DescribeFieldResult` Methods
-	- `getDigits()` for ints, `getScale()` for doubles 
- 	- `getLength()` for max size of field in char
-  	- `getLabel()`
-  	- `getSObjectType()`
-
 ## Data Imports & Exports
 
 |   | Data Import Wizard      | Data Loader |
@@ -68,6 +56,23 @@
 
 ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/41026379-2bf2-46e1-a7b5-28dab8514a1b)
 
+## Schema Namespace
+- `DescribeSObjectResult` Methods
+	- `getLabel()` label may or may not match object name, `getName()` name of object
+ 	- `isDeletable()`, `isAccessible()` and `isCreatable()`
+  	- `getSobjectType()`
+  	- `getRecordTypeInfos()`, `getRecordTypeInfosByDeveloperName()`, `getRecordTypeInfosById()`, and `getRecordTypeInfosByName()`
+  	- `getDescribe()`
+- `DescribeFieldResult` Methods
+	- `getDigits()` for ints, `getScale()` for doubles 
+ 	- `getLength()` for max size of field in char
+  	- `getLabel()`
+  	- `getSObjectType()`
+
+## Object & Field Level Security
+- `WITH SECURITY_ENFORCED`: enable FLS and object level secuirty permissions checking in a SOQL query. TYhrows an exception if a field or object referenced is inaccessible.
+- `Security.stripInaccessible(AccessType.CREATABLE, sourceRecords)`: strip fields from SOQL results that fail FLS checks. No exception is thrown.
+- `Contact.sobjectType.getDescribe().isCreateable()` and `Contact.LastName.getDescribe().isReadable()`: respect the object and field access of the running user
 
 </details>
 
