@@ -39,7 +39,7 @@
 :accessibility: [Change Set Development Model](https://trailhead.salesforce.com/content/learn/modules/declarative-change-set-development)
 
 
- ☑️  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI) 1:20:10 
+ ☑️  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI) 1:26:19
 
  ☑️  [Focus on Force Practice Exams](https://focusonforce.com/courses/salesforce-certified-platform-developer-1-exams/)
 
