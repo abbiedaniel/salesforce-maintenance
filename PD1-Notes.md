@@ -34,6 +34,8 @@
 
 :accessibility: [LWC for VF Developers](https://trailhead.salesforce.com/content/learn/modules/lwc-for-visualforce-developers)
 
+:accessibility: [Aura Components](https://trailhead.salesforce.com/content/learn/projects/quickstart-lightning-components)
+
 :accessibility: [LWC Best Practices](https://trailhead.salesforce.com/content/learn/modules/best-practices-in-lightning-web-components)
 
 :accessibility: [Change Set Development Model](https://trailhead.salesforce.com/content/learn/modules/declarative-change-set-development)
