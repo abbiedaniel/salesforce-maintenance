@@ -549,7 +549,7 @@ development be considered.
    	- records can only be modified in ```before``` triggers
       
   - ```Trigger.newMap``` returns a new map of IDs to the new versions of the sObject records
-	- available in ```before insert```,```after insert```,```after update```,```after undelete```
+	- available in ```before update```,```after insert```, ```after update```,```after undelete```
     
   - ```Trigger.Old``` returns a list of the old versions of the sObject records
   	- available in ```update``` and ```delete``` triggers
