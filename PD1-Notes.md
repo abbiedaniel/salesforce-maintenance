@@ -22,13 +22,11 @@
 
 :accessibility:  ~[Approval Processes](https://trailhead.salesforce.com/content/learn/modules/business_process_automation?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential])~ 
 
+:accessibility: ~[Secure Serverside Development](https://trailhead.salesforce.com/content/learn/modules/secure-serverside-development?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)~
+
 :accessibility:  ~[PD1 Trailmix](https://trailhead.salesforce.com/users/strailhead/trailmixes/prepare-for-your-salesforce-platform-developer-i-credential)~
 
  </details>
-
-
-
-:accessibility: [Secure Serverside Development](https://trailhead.salesforce.com/content/learn/modules/secure-serverside-development?trailmix_creator_id=strailhead&trailmix_slug=prepare-for-your-salesforce-platform-developer-i-credential)
 
 :accessibility:  [Advanced Apex Specialist Superbade](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_aap)
 
@@ -39,7 +37,6 @@
 :accessibility: [LWC Best Practices](https://trailhead.salesforce.com/content/learn/modules/best-practices-in-lightning-web-components)
 
 :accessibility: [Change Set Development Model](https://trailhead.salesforce.com/content/learn/modules/declarative-change-set-development)
-
 
 
  ☑️  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI) 1:20:10 
