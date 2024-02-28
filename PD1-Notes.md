@@ -28,9 +28,9 @@
 
  </details>
 
-:accessibility: [Quickstart: Visualforce](https://trailhead.salesforce.com/content/learn/projects/quickstart-visualforce)
+:accessibility: [LWC for VF Developers(optional)](https://trailhead.salesforce.com/content/learn/modules/lwc-for-visualforce-developers)
 
-:accessibility: [LWC for VF Developers](https://trailhead.salesforce.com/content/learn/modules/lwc-for-visualforce-developers)
+:accessibility: [Quickstart: Visualforce](https://trailhead.salesforce.com/content/learn/projects/quickstart-visualforce)
 
 :accessibility: [LWC Best Practices](https://trailhead.salesforce.com/content/learn/modules/best-practices-in-lightning-web-components)
 
