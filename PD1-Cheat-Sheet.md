@@ -195,6 +195,7 @@
 ## Code Coverage
  - why its required
 ## Deployment Tools
+- VSCode & Salesforce CLI
 ## Change Sets
 
 </details>
@@ -208,6 +209,7 @@
 ## Standard Controller
 ## Standard List Controller
 ## Custom Controller
+
 </details>
 
 <details>
