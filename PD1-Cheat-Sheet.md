@@ -5,7 +5,6 @@
 
 # Developer Fundamentals
 
-
 ## Standard Relationships & Fields
 
 - **Master-detail**: on the child object, child obj do not have owners so they can't be used with queues
@@ -17,7 +16,6 @@
 - **Validation Rules**: don't operate on parent-child relationships, can't be used on record deletion
 - **Formula Field**: can't be used in a roll up summary field if it references a field on a different object or if `NOW()` or `TODAY()` methods are in the formula
 - **Cross-Object Formula Field**: created on child to reference data from parent, can't be used in roll-up summary fields
-
 
 ## Save Order of Execution
 1. System Validation
@@ -54,6 +52,8 @@
 | **Pros** | - Choose whether to trigger workflow rules   | - Can save mapping for later use <br> - Can delete and export data    |
 | **Cons** |  - Can only insert, update or upsert <br> - Can't use on product and opportunities <br> - Can't save mappings <br> - Can't schedule imports   | - No option to turn off workflow rules |
 
+<br>
+
 ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/41026379-2bf2-46e1-a7b5-28dab8514a1b)
 
 ## Schema Namespace
@@ -73,6 +73,8 @@
 - `WITH SECURITY_ENFORCED`: enable FLS and object level secuirty permissions checking in a SOQL query. TYhrows an exception if a field or object referenced is inaccessible.
 - `Security.stripInaccessible(AccessType.CREATABLE, sourceRecords)`: strip fields from SOQL results that fail FLS checks. No exception is thrown.
 - `Contact.sobjectType.getDescribe().isCreateable()` and `Contact.LastName.getDescribe().isReadable()`: respect the object and field access of the running user. This can also be accomplished with `Schema.sObjectType.Contact.isDeletable()`.
+
+<br>
 
 </details>
 
@@ -142,24 +144,30 @@
 - **Scheduled Apex:** scheduled processing, weekly or monthly. must have `execute` method. It can call schedule other async apex classes. Use `System.schedule('Job Title', scheduledDateTime, ExampleScheduledApexClass)` to schedule the class or schedule the class in setup.  
 
 ## DML
-- insert, update, upsert, delete, undelete, merge
+- DML operations: insert, update, upsert, delete, undelete, merge
 - Database methods allow for partial success: `Database.insert(records, allOrNone)`
-- Database methods return results objects in `Database.SaveResults`
-- 
+- Database methods return results objects in `Database.SaveResult` for inserts and updates, `Database.UndeleteResult` for undeletes, `Database.DeleteResult` for deletes, `Database.UpsertResult` for upsert and `Database.MergeResult` for merges. Each object has `getErrors()` and `isSucess()` methods. 
 
 ## SOQL
-- complicated soql example
-- parent - child soql
-- child -> parent soql
-  
+- Standard Object and Fields: `SELECT Id, FirstName, LastName FROM Contact WHERE FirstName='Abbie' AND LastName='Daniel' ORDER BY FirstName ASC LIMIT 10`
+- Standard Parent-to-Child: `SELECT Id, Name, ( SELECT Id FROM Contacts ) FROM Account`
+- Custom Parent-to-Child: `SELECT Id, Name, ( SELECT Id FROM Course_Deliveries__r ) FROM Course__c`
+- Standard Child-to-Parent: `SELECT Id, AccountId, Account.Name FROM Contact`
+- Custom Child-to-Parent: `SELECT Id, Course__C, Course__r.Name FROM Course_Delivery__c`
+- Geolocation Field: `SELECT Id, Office_Location__Lattitude__s, Office_Location__Longitude__s FROM Account `
+- Wildcards: `%` matches 0 or more characters & `_` matches 1 or more characters
+- Count & Group By: `SELECT StatusPickList__c, COUNT(Name) FROM Case GROUP BY StatusPicklist__c`
+
+# LEFT OFF HERE
+
 ## SOSL
 - complicated SOSL example
-
 
 ## Custom metadata, Custom platform events, Custom settings
 
 ## Apex Integration
 
+<br>
 
 </details>
  
@@ -176,7 +184,10 @@
 - `System.DmlException`
 - `System.ListException`
 - `System.QueryException`
-- `System.LimitException`
+- `System.LimitException
+
+<br>
+
 
 </details>
 
@@ -185,6 +196,8 @@
 
 ## Log Inspector
 ## Debug Logs
+
+<br>
 
  </details>
 
@@ -198,6 +211,9 @@
 - VSCode & Salesforce CLI
 ## Change Sets
 
+<br>
+
+
 </details>
  
 <details>
@@ -209,6 +225,9 @@
 ## Standard Controller
 ## Standard List Controller
 ## Custom Controller
+
+<br>
+
 
 </details>
 
@@ -225,5 +244,8 @@
 ## LWC Security
 ## Lightning Aura Components
 ## Aura Component Framework
+
+<br>
+
 
 </details>
