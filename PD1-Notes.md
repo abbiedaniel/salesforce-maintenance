@@ -745,7 +745,7 @@ development be considered.
     	- Parent and child records are supported. Custom lookups that haven't been replaced can be restored. 
     - ```merge``` merges up to three records of the same sObject type into one of the records, deletes the others, and re-parents any related records.
     - ```Database.insert(sObjectList, allOrNone)``` You can also call the built-in Database class static methods. Optional allOrNone parameter that allows you to specify whether the operation should partially succeed.
-    		- The Database methods return result objects containing success or failure information for each record in ```Database.SaveResults, Database.DeleteResult, Database.UpsertResult``` objects. These objects have getErrors() and isSucess() methods.
+    - The Database methods return result objects containing success or failure information for each record in ```Database.SaveResults, Database.DeleteResult, Database.UpsertResult``` objects. These objects have getErrors() and isSucess() methods.
       
 - **DML Best Practices**
     - Always use DMLs with lists over single records
