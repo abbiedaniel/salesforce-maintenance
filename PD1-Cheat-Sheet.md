@@ -124,12 +124,17 @@
 - **Web Services Methods for External Services to Call:** `@future(callout=true) static void myfutureMethod(){}`
 
 ## Apex Triggers
-- **Before triggers** are used to validate and potentially update record values on the same object.
-- **After triggers** are used to acceess field values, such as Ids, that are set by the system and to effect changes in other records or other objects.
+- **Before triggers** are used to update or validate record values before they’re saved to the database.
+- **After triggers** are used to acceess field values, such as Ids, that are set by the system and to effect changes in other records or other objects. (read-only)
 - **Trigger Event Context:** before insert/update/delete and after insert/update/delete/undelete
 - **Trigger Definition:** `trigger AccountTrigger on Account(before update){}`
-- **Trigger Context Variables:**: `Trigger.old` & `Trigger.oldMap` is avail in delete and update. `Trigger.new` & `Trigger.newMap` is avail in after undelete, insert, update, and before update triggers. `Trgger.new` is available in before insert triggers.
 - **Trigger Error Handling:** `addError('Error!')` prevents the dml operation from occurring on the field or record
+- **Trigger Context Variables:**:
+	- update: `Trigger.old`, `Trigger.oldMap`,  `Trigger.new` & `Trigger.newMap` 
+	- delete: `Trigger.old` & `Trigger.oldMap` 
+ 	- undelete: `Trigger.new` & `Trigger.newMap` (before undelete is not a thing)
+  	- insert: `Trigger.new` & **after** insert: `Trigger.newMap`
+ 
 
 ## Other Apex
 - **Asynchronous**: queueable apex, batchable apex, scheduled apex, future methods
