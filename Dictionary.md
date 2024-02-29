@@ -15,5 +15,10 @@
 - **integration testing**
   
 
-### Architecture
+### Design Patterns
 - **dependency injection:** design pattern to decompose and decouple large applications into smaller dependencies whose implementations can be determined and interchanged at runtime. dependency injection helps apps handle requirement changes and not become brittle and require significant refactoring. 
+- selector pattern
+- domain pattern
+- service pattern
+- unit of work pattner
+  
