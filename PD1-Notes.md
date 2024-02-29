@@ -594,7 +594,7 @@ development be considered.
 	- Future methods: separate transactions, web service callouts
     - Batch Apex: large data processing, data cleansing or archiving
     - Queueable Apex: sequential processing, external web service callouts
-    - Scheduled Apex: scheduled processing, daily or weekly
+    - Scheduled Apex: scheduled processing, weekly or monthly
         
 - **Reasons to Program Asynchronously**
   
