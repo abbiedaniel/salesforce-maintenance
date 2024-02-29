@@ -1,7 +1,7 @@
 # PD1 Cheat Sheet
 
 <details>
-	<summary>Dev Fundamentals</summary>
+	<summary>Developer Fundamentals</summary>
 
 # Developer Fundamentals
 
