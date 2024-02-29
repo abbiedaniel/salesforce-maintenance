@@ -167,59 +167,48 @@
 
 ## Apex Integration
 
+## Exception Handling/Exception Class & Method
+
 <br>
 
 </details>
  
 <details>
-	<summary>Testing</summary>
-
+	<summary>Testing, Debugging & Deployments</summary>
+ 
 # Testing, Debugging & Depoyments
 
 ## Test Class & Methods
-## Exception Handling
-## Exception Class & Method
-
 ## Exception Examples
 - `System.DmlException`
 - `System.ListException`
 - `System.QueryException`
 - `System.LimitException
 
-<br>
-
-
-</details>
-
- <details>
-	<summary>Debugging</summary>
-
 ## Log Inspector
 ## Debug Logs
-
-<br>
-
- </details>
-
- <details>
-	<summary>Deployments</summary>
-
 ## Sandboxes
 ## Code Coverage
  - why its required
 ## Deployment Tools
 - VSCode & Salesforce CLI
+- **ANT Migration Tool:** Java/Ant-based command-line utility for moving metadata between a local directory and a Salesforce org. Can be used for deployment in a scripting environment and is best to use in repetetive deployments using the same parameters.
 ## Change Sets
 
 <br>
 
 
 </details>
- 
+
+
+<details>
+	<summary>User Interface</summary>
+
+ # User Interface
+
 <details>
 	<summary>Visualforce</summary>
-	
-# User Interface
+
 ## Visualforce
 ## Visualforce Page
 ## Standard Controller
@@ -242,10 +231,18 @@
 ## Lightning Message Service
 ## Lightning Data Service
 ## LWC Security
+</details>
+
+<details>
+	<summary>Lightning Aura Component</summary>
+	
 ## Lightning Aura Components
 ## Aura Component Framework
 
 <br>
+
+
+</details>
 
 
 </details>
