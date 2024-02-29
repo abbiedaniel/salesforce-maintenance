@@ -120,7 +120,7 @@
 - **Exception Class:** `public class MyCustomException extends Exception{}`
 - **Test Data Factory Class:** `@isTest public class TestDataFactory{}`
 - **Test Class:** `@isTest private class AccountTriggerHandlerTest{}`
-- **Invocable Methods for Flows & Process Builders to Call:** `@InvocableMethod(callout = true label = 'methodName' description = 'description' category = 'DML')`
+- **Invocable Methods for Flows & Process Builders to Call:** `@InvocableMethod(callout = true label = 'methodName' description = 'description' category = 'DML')specialMethod(){}`
 - **Web Services Methods for External Services to Call:** `@future(callout=true) static void myfutureMethod(){}`
 
 ## Apex Triggers
@@ -135,25 +135,33 @@
  	- undelete: `Trigger.new` & `Trigger.newMap` (before undelete is not a thing)
   	- insert: `Trigger.new` & **after** insert: `Trigger.newMap`
  
+## Asynchronous Apex
+- **Future methods:** separate transactions, web service callouts. Must have `@future` annotation.
+- **Batch Apex:** large data processing, data cleansing or archiving. Must have `start`, `execute` and `finish` methods. Use `Database.executeBatch(ExampleClass, batchSize)` to run the batch class.
+- **Queueable Apex:** sequential processing, external web service callouts. Must have `execute` method. Use `System.enqueJob(ExampleQueueableClass)` to run the class.
+- **Scheduled Apex:** scheduled processing, weekly or monthly. must have `execute` method. It can call schedule other async apex classes. Use `System.schedule('Job Title', scheduledDateTime, ExampleScheduledApexClass)` to schedule the class or schedule the class in setup.  
 
-## Other Apex
-- **Asynchronous**: queueable apex, batchable apex, scheduled apex, future methods
-- **Anonmyous**: execute anonoymous window, salesforce CLI `force:aepx:execute` command, REST API executeAnonymous endpoint
-- **Invocable**: `@InvocableMethod` or `@InvocableVariable` to be used in a flow
+## DML
+- insert, update, upsert, delete, undelete, merge
+- Database methods allow for partial success: `Database.insert(records, allOrNone)`
+- Database methods return results objects in `Database.SaveResults`
+- 
 
-## Data Search & Manipulation in Apex
+## SOQL
 - complicated soql example
-- sosl
 - parent - child soql
 - child -> parent soql
-- dml example
+  
+## SOSL
+- complicated SOSL example
 
-## Custom metadata, custom platform events, Custom settings
+
+## Custom metadata, Custom platform events, Custom settings
+
 ## Apex Integration
 
 
-
- </details>
+</details>
  
 <details>
 	<summary>Testing</summary>
@@ -168,16 +176,11 @@
 - `System.DmlException`
 - `System.ListException`
 - `System.QueryException`
+- `System.LimitException`
 
-## Asynch Testing
-- Queueable Apex: `System.enqueJob()`
-- Batchable Apex: `Database.executeBatch()`
-- Schedule Apex: `System.schedule()`
-- Future Methods: call method between `Test.startTest` and `Test.stopTest`
+</details>
 
- </details>
-  
-<details>
+ <details>
 	<summary>Debugging</summary>
 
 ## Log Inspector
@@ -196,7 +199,6 @@
 
 </details>
  
- 
 <details>
 	<summary>Visualforce</summary>
 	
@@ -209,7 +211,7 @@
 </details>
 
 <details>
-	<summary>Lightning Web Components</summary>
+	<summary>Lightning Web Component</summary>
 
 ## LWC Framework
 ## LWC Benefits
