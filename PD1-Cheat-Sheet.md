@@ -82,6 +82,10 @@
 	<summary>Process Automation & Logic</summary>
 
 # Process Automation & Logic
+
+
+<details>
+	<summary>Apex</summary>
 	
 ## About Apex
 - Apex is a programming language that uses Java-like syntax and acts like database stored procedures.
@@ -141,7 +145,20 @@
 - **Future methods:** separate transactions, web service callouts. Must have `@future` annotation.
 - **Batch Apex:** large data processing, data cleansing or archiving. Must have `start`, `execute` and `finish` methods. Use `Database.executeBatch(ExampleClass, batchSize)` to run the batch class.
 - **Queueable Apex:** sequential processing, external web service callouts. Must have `execute` method. Use `System.enqueJob(ExampleQueueableClass)` to run the class.
-- **Scheduled Apex:** scheduled processing, weekly or monthly. must have `execute` method. It can call schedule other async apex classes. Use `System.schedule('Job Title', scheduledDateTime, ExampleScheduledApexClass)` to schedule the class or schedule the class in setup.  
+- **Scheduled Apex:** scheduled processing, weekly or monthly. must have `execute` method. It can call schedule other async apex classes. Use `System.schedule('Job Title', scheduledDateTime, ExampleScheduledApexClass)` to schedule the class or schedule the class in setup.
+
+## Exception Handling/Exception Class & Method
+
+## Exception Examples
+- `System.DmlException`
+- `System.ListException`
+- `System.QueryException`
+- `System.LimitException
+
+</details>
+
+<details>
+	<summary>DML, SOQL & SOSL</summary>
 
 ## DML
 - DML operations: insert, update, upsert, delete, undelete, merge
@@ -163,11 +180,20 @@
 ## SOSL
 - complicated SOSL example
 
-## Custom metadata, Custom platform events, Custom settings
+</details>
+
+<details>
+	<summary>Apex Integration</summary>
+
+## Custom Metadata
+
+## Custom Platform Events
+
+## Custom Settings
 
 ## Apex Integration
 
-## Exception Handling/Exception Class & Method
+</details>
 
 <br>
 
@@ -179,12 +205,6 @@
 # Testing, Debugging & Depoyments
 
 ## Test Class & Methods
-## Exception Examples
-- `System.DmlException`
-- `System.ListException`
-- `System.QueryException`
-- `System.LimitException
-
 ## Log Inspector
 ## Debug Logs
 ## Sandboxes
