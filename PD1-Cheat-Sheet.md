@@ -18,6 +18,7 @@
 - **Cross-Object Formula Field**: created on child to reference data from parent, can't be used in roll-up summary fields
 
 ## Save Order of Execution
+Record Initialization
 1. System Validation
 2. Before Save Flows
 3. Before Triggers
@@ -25,13 +26,21 @@
 5. Duplicate Rules
 6. _Save to database but not committed_
 7. After Trigger
-8. Assignment Rules
-9. Auto response Rules
+8. Assignment Rules (Cases & Leads)
+9. Auto-response Rules (Cases & Leads)
 10. Workflow Rules
-11. Escalation Rules
-12. Flow Automation
+	a. If workflow rule updates a field: before update triggers &#8594; system validation &#8594; record saves to the database &#8594; after update triggers
+11. Escalation Rules (Cases)
+12. Flow Automation (Processes & Flows launched by processes or workflows)
+    	a. If a process updates a field: before update triggers &#8594; system validation & custom validation rules &#8594; record saves to the database &#8594; after update triggers &#8594; workflow rules &#8594; if process has recursion option, execute process again
 13. After Save Flows
-14. Commit to database
+	a. If after-save record-trigger flow updates a field: before update triggers &#8594; system validation & custom validation rules &#8594; record saves to the database &#8594; after update triggers
+14. Entitlement Rules (Cases & Word Orders)
+15. Roll Up Summary Fields & Cross-Object Workflow
+	a. If roll up summary field recalculation occurs: another set of data starts another set of Save Order of Execution events (steps 1-16) 
+16. Criteria-Based Sharing Rules
+17. _Commit to database_
+18. Post Commit Logic like sending emails, outbound message or future methods
 
 **S**am's **F**amily **T**ook **V**alerie **D**own **S**outh **T**o **A** **A**uto **W**orkshop's **E**nclosed **F**oyer.
 
@@ -151,8 +160,6 @@
 - **Monitor Jobs:** View in progress or completed jobs in **Apex Jobs** and view future scheduled jobs in **Scheduled Jobs**. The calling methods for batch, queueable and scheduled apex return a job id, which can be used to query for the `AsyncApexJob` object. Example: `ID jobID = System.enqueueJob(queueClass);`
 `AsyncApexJob job = [SELECT Id, Status, NumberOfErrors FROM AsyncApexJob WHERE Id = :jobID];`
 
-
-
 ## Exception Handling
 
 ## Custom Exception Class & Method
@@ -193,14 +200,25 @@
 <details>
 	<summary>Apex Integration</summary>
 
-## Custom Metadata
+## Custom Metadata & Custom Settings
 
-## Custom Platform Events
+## Platform Events
+- Platform events enable you to deliver secure, scalable and customizable event notification within Salesforce or from external sources. Publish event with the `EventBus.publish()` method.
+- **Publish and Subscribe**: Apex Triggers, Flows, Process Builder
+- **Publisher Only**: Apex, APIs
+- **Subscribers**: LWC
+  
+- External Publishers: Salesforce Platform APIs (SOAP, REST or Bulk API), External Subscribers: Bayeux Protocol (WebSocket & HTTP. CometD)
+  
+- Used for outbound communication
+- From Salesforce &#8594; external source
+- From salesforce &#8594; another salesforce org
 
-## Custom Settings
+
+A **Publisher** categorizes messages into classes and sends them without knowledge of the subscriber that will receive it. An event producer that publishes an event message to an event bus/channel. A **Subscriber** expresses interest in one ore more classes and only receives messages that of interest, without knowledge of the publisher that produced them. An event consumer that subscribes to an event bus/channel.
+
 
 ## Apex Integration
-
 ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/656217d8-c27f-4759-90bd-efe3197c1c36)
 
 
