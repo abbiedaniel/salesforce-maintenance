@@ -987,6 +987,7 @@ development be considered.
 
 - **Custom Platform Events**
   - Platform events connect business processes in Salesforce and external apps through the exchange of real-time event data. Platform events are secure and scalable messages that contain data. Publishers publish event messages that subscribers receive in real time. To customize the data published, define platform event fields.
+  - Uses Publish-subscribe architecture: A **Publisher** categorizes messages into classes and sends them without knowledge of the subscriber that will receive it. An event producer that publishes an event message to an event bus/channel. A **Subscriber** expresses interest in one ore more classes and only receives messages that of interest, without knowledge of the publisher that produced them. An event consumer that subscribes to an event bus/channel.
   - Create in setup. 
   - ```__e``` suffix for API name
   - Inserting platform event records (from a Flow, Apex, or Process Builder) fires the event
@@ -1013,6 +1014,19 @@ development be considered.
   - Publish Behavior:
   	- Publish After Commit: don't want event to fire if Apex fails
    	- Publish Immediately: the event will fire immediately even if Apex fails
+
+- **Publish Platform Event Using Apex Example**
+
+```java
+public static void publishEvents(List<String> messages){
+	List<Event_Message__e> events = new List<EventMessage__E>();
+ 	for (String message : messages){
+  		events.add(new EventMessage__e(Message__c = message));
+	}
+ 	List<Database.SaveResult> results = EventBus.publish(events);
+  	// Inspect publishing results
+}
+```
 
 </details>
 
