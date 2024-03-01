@@ -32,7 +32,7 @@ Record Initialization
 	- If workflow rule updates a field: before update triggers &#8594; system validation &#8594; record saves to the database &#8594; after update triggers
 11. Escalation Rules (Cases)
 12. Flow Automation (Processes & Flows launched by processes or workflows)
-    	- If a process updates a field: before update triggers &#8594; system validation & custom validation rules &#8594; record saves to the database &#8594; after update triggers &#8594; workflow rules &#8594; if process has recursion option, execute process again
+	- If a process updates a field: before update triggers &#8594; system validation & custom validation rules &#8594; record saves to the database &#8594; after update triggers &#8594; workflow rules &#8594; if process has recursion option, execute process again
 13. After Save Flows
 	- If after-save record-trigger flow updates a field: before update triggers &#8594; system validation & custom validation rules &#8594; record saves to the database &#8594; after update triggers
 14. Entitlement Rules (Cases & Word Orders)
