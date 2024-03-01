@@ -130,16 +130,18 @@
 - **Web Services Methods for External Services to Call:** `@future(callout=true) static void myfutureMethod(){}`
 
 ## Apex Triggers
-- **Before triggers** are used to update or validate record values before they’re saved to the database.
-- **After triggers** are used to acceess field values, such as Ids, that are set by the system and to effect changes in other records or other objects. (read-only)
+- **Before triggers** are used to update or validate record values on the same record/object before they’re saved to the database.
+- **After triggers** are used to acceess field values, such as Ids, that are set by the system and to effect changes in other or related records or objects. (Records that trigger the after trigger are **read-only**).
 - **Trigger Event Context:** before insert/update/delete and after insert/update/delete/undelete
 - **Trigger Definition:** `trigger AccountTrigger on Account(before update){}`
 - **Trigger Error Handling:** `addError('Error!')` prevents the dml operation from occurring on the field or record
-- **Trigger Context Variables:**:
+- **Trigger Context Variables:**
 	- update: `Trigger.old`, `Trigger.oldMap`,  `Trigger.new` & `Trigger.newMap` 
 	- delete: `Trigger.old` & `Trigger.oldMap` 
- 	- undelete: `Trigger.new` & `Trigger.newMap` (before undelete is not a thing)
-  	- insert: `Trigger.new` & **after** insert: `Trigger.newMap`
+ 	- undelete: `Trigger.new` & `Trigger.newMap` (before undelete is not a thing so this is only for after undelete triggers)
+  	- insert: `Trigger.new` & **after** insert: `Trigger.newMap` (before insert won't have access to the new map since the record id won't exist yet)
+- **Other Context Variables available in all triggers:** `isBefore`, `isAfter`, `isUndelete`, `isDelete`, `isUpdate`,  `isInsert`, `isExecuting`, `operationType`, `size`
+
  
 ## Asynchronous Apex
 - **Future methods:** separate transactions, web service callouts. Must have `@future` annotation.
@@ -147,13 +149,15 @@
 - **Queueable Apex:** sequential processing, external web service callouts. Must have `execute` method. Use `System.enqueJob(ExampleQueueableClass)` to run the class.
 - **Scheduled Apex:** scheduled processing, weekly or monthly. must have `execute` method. It can call schedule other async apex classes. Use `System.schedule('Job Title', scheduledDateTime, ExampleScheduledApexClass)` to schedule the class or schedule the class in setup.
 
-## Exception Handling/Exception Class & Method
+## Exception Handling
+
+## Custom Exception Class & Method
 
 ## Exception Examples
 - `System.DmlException`
 - `System.ListException`
 - `System.QueryException`
-- `System.LimitException
+- `System.LimitException`
 
 </details>
 
