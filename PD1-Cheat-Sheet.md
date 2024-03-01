@@ -29,15 +29,15 @@ Record Initialization
 8. Assignment Rules (Cases & Leads)
 9. Auto-response Rules (Cases & Leads)
 10. Workflow Rules
-	a. If workflow rule updates a field: before update triggers &#8594; system validation &#8594; record saves to the database &#8594; after update triggers
+	- If workflow rule updates a field: before update triggers &#8594; system validation &#8594; record saves to the database &#8594; after update triggers
 11. Escalation Rules (Cases)
 12. Flow Automation (Processes & Flows launched by processes or workflows)
-    	a. If a process updates a field: before update triggers &#8594; system validation & custom validation rules &#8594; record saves to the database &#8594; after update triggers &#8594; workflow rules &#8594; if process has recursion option, execute process again
+    	- If a process updates a field: before update triggers &#8594; system validation & custom validation rules &#8594; record saves to the database &#8594; after update triggers &#8594; workflow rules &#8594; if process has recursion option, execute process again
 13. After Save Flows
-	a. If after-save record-trigger flow updates a field: before update triggers &#8594; system validation & custom validation rules &#8594; record saves to the database &#8594; after update triggers
+	- If after-save record-trigger flow updates a field: before update triggers &#8594; system validation & custom validation rules &#8594; record saves to the database &#8594; after update triggers
 14. Entitlement Rules (Cases & Word Orders)
 15. Roll Up Summary Fields & Cross-Object Workflow
-	a. If roll up summary field recalculation occurs: another set of data starts another set of Save Order of Execution events (steps 1-16) 
+	- If roll up summary field recalculation occurs: another set of data starts another set of Save Order of Execution events (steps 1-16) 
 16. Criteria-Based Sharing Rules
 17. _Commit to database_
 18. Post Commit Logic like sending emails, outbound message or future methods
