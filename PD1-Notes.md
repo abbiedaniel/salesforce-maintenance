@@ -1028,6 +1028,16 @@ public static void publishEvents(List<String> messages){
 }
 ```
 
+- **Subscribe to a Platform Event Using Apex Trigger**
+
+```java
+trigger EventMessageTrigger on EventMessage__e (after insert){
+	for (EventMessage__e event : trigger.new){
+		// subscribing is only available in the after insert trigger
+	}
+}
+```
+
 </details>
 
 
