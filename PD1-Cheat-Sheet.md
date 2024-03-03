@@ -163,7 +163,7 @@ Record Initialization
 ## Exception Handling
 ```apex
 try {
-	Database.SaveResult results = Database.insert(listToInsert); 
+	Database.SaveResult results = Database.insert(listToInsert, allOrNone, accessLevel); 
 } catch ( Exception ex ){
 	throw ex;
 	Trigger.HandlerClass.throwException(ex.getMessage());
@@ -184,7 +184,6 @@ public static void throwException(String message){
 	throw new AccountTriggerException(message);
 }
 ```
-
 
 ## Exception Examples
 - `System.DmlException`
