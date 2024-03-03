@@ -161,8 +161,30 @@ Record Initialization
 `AsyncApexJob job = [SELECT Id, Status, NumberOfErrors FROM AsyncApexJob WHERE Id = :jobID];`
 
 ## Exception Handling
+```apex
+try {
+	Database.SaveResult results = Database.insert(listToInsert); 
+} catch ( Exception ex ){
+	throw ex;
+	Trigger.HandlerClass.throwException(ex.getMessage());
+} finally {
+	// runs after the try block successfully runs or the catch block finishes executing
+}
+```
 
 ## Custom Exception Class & Method
+
+```apex
+public class AccountTriggerException extends Exception {}
+```
+
+```apex
+public static void throwException(String message){
+	System.debug(message);
+	throw new AccountTriggerException(message);
+}
+```
+
 
 ## Exception Examples
 - `System.DmlException`
