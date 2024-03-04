@@ -163,7 +163,8 @@
 ```apex
 try {
 	// something you think could fail or error out like an dml operation
-	Database.SaveResult results = Database.insert(listToInsert, allOrNone, accessLevel); 
+	Database.SaveResult results = Database.insert(listToInsert, allOrNone, accessLevel);
+	/// allOrNone boolean allows for partial sucess if an error is thrown when it is set to false
 } catch ( Exception ex ){
 	throw ex;
 
@@ -178,7 +179,9 @@ try {
 ## Custom Exception Class & Method
 
 ```apex
-public class AccountTriggerException extends Exception {}
+public class AccountTriggerException extends Exception {
+	// exception class name must end with "exception"
+}
 ```
 
 ```apex
