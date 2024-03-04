@@ -162,11 +162,15 @@
 ## Exception Handling
 ```apex
 try {
+	// something you think could fail or error out like an dml operation
 	Database.SaveResult results = Database.insert(listToInsert, allOrNone, accessLevel); 
 } catch ( Exception ex ){
 	throw ex;
+
+	// call a custom exception method
 	Trigger.HandlerClass.throwException(ex.getMessage());
 } finally {
+	// optional finally block
 	// runs after the try block successfully runs or the catch block finishes executing
 }
 ```
