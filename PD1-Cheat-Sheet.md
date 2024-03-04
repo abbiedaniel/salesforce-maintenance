@@ -18,31 +18,30 @@
 - **Cross-Object Formula Field**: created on child to reference data from parent, can't be used in roll-up summary fields
 
 ## Save Order of Execution
-Record Initialization
-1. System Validation
-2. Before Save Flows
-3. Before Triggers
-4. Validation Rules and System Validation
-5. Duplicate Rules
-6. _Save to database but not committed_
-7. After Trigger
-8. Assignment Rules (Cases & Leads)
-9. Auto-response Rules (Cases & Leads)
-10. Workflow Rules
-	- If workflow rule updates a field: before update triggers &#8594; system validation &#8594; record saves to the database &#8594; after update triggers
-11. Escalation Rules (Cases)
-12. Flow Automation (Processes & Flows launched by processes or workflows)
-	- If a process updates a field: before update triggers &#8594; system validation & custom validation rules &#8594; record saves to the database &#8594; after update triggers &#8594; workflow rules &#8594; if process has recursion option, execute process again
-13. After Save Flows
-	- If after-save record-trigger flow updates a field: before update triggers &#8594; system validation & custom validation rules &#8594; record saves to the database &#8594; after update triggers
-14. Entitlement Rules (Cases & Word Orders)
-15. Roll Up Summary Fields & Cross-Object Workflow
-	- If roll up summary field recalculation occurs: another set of data starts another set of Save Order of Execution events (steps 1-16) 
-16. Criteria-Based Sharing Rules
-17. _Commit to database_
-18. Post Commit Logic like sending emails, outbound message or future methods
+
+1. Record Initialization
+2. **System** Validation
+3. Before Save **Flows**
+4. Before **Triggers**
+5. **Validation** Rules and System Validation
+6. **Duplicate** Rules
+7. _**Save** to database but not committed_
+8. After **Trigger**
+9. **Assignment** Rules (Cases & Leads)
+10. **Auto-response** Rules (Cases & Leads)
+11. **Workflow** Rules
+12. **Escalation** Rules (Cases)
+13. Flow Automation (Processes & Flows launched by processes or workflows)
+14. After Save **Flows**
+15. Entitlement Rules (Cases & Word Orders)
+16. Roll Up Summary Fields & Cross-Object Workflow
+17. Criteria-Based Sharing Rules
+18. _Commit to database_
+19. Post Commit Logic like sending emails, outbound message or future methods
 
 **S**am's **F**amily **T**ook **V**alerie **D**own **S**outh **T**o **A** **A**uto **W**orkshop's **E**nclosed **F**oyer.
+ 
+
 
 ## Governor Limits
 - **SOQL Queries**: 100
