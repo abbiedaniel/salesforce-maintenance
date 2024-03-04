@@ -242,7 +242,28 @@ public static void throwException(String message){
 	- **Subscriber Only**: LWC
 
 ## Apex Integration
+- **Apex Callouts:** makes a call to an external web service or sends HTTP Request from Apex code, and then receives the response.
+- **SOAP Callouts:** Web service callouts to SOAP web services use XML, and typically require a WSDL (web services description language) document for code generation. Usually used for enterprise applications or integrations.
+- **REST Callouts:** HTTP callouts to services typically use REST with JSON. Can also be used with SOAP web service and XML. 
+- **Apex Web Services:** Expose apex class methods as a REST or SOAP web service operation. For REST, use the `@RestResource` and `@HttpGet` annotation to the `global` class and method. For SOAP, use the `webservice` keyword on the method definition.
+- **Best Practice:** Place the callout code in an asynchronous method that’s annotated with @future(callout=true) or use Queueable Apex. This way, the callout runs on a separate thread, and the code after the callout isn't blocked.
 
+## HTTP Callout
+- **HTTP Methods:** GET to retrieve data from a URL, POST to crete a resource or post data to the server, DELETE to delete a resource identified by a URL, PUT to create or replace resource sent in a request body
+```apex
+public static HttpResponse makeGetCallout(){
+	Http http = new Http();
+	HttpRequest request = new HttpRequest();
+	request.setEndpoint('https://endpoint.com/data');
+	request.setMethod('GET');
+	HttpResponse response = http.send(request);
+
+	if (response.getStatusCode() == 200){
+		// deserialize json string into collection of primitive data types
+	}
+	return response;
+} 
+```
 
   
 ## Salesforce APIs
