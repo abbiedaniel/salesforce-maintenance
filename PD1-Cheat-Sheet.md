@@ -210,17 +210,16 @@ public static void throwException(String message){
 ## SOQL
 - Standard Object and Fields: `SELECT Id, FirstName, LastName FROM Contact WHERE FirstName='Abbie' AND LastName='Daniel' ORDER BY FirstName ASC LIMIT 10`
 - Standard Parent-to-Child: `SELECT Id, Name, ( SELECT Id FROM Contacts ) FROM Account`
-- Custom Parent-to-Child: `SELECT Id, Name, ( SELECT Id FROM Course_Deliveries__r ) FROM Course__c`
+- **Custom Parent-to-Child:** `SELECT Id, Name, ( SELECT Id FROM Course_Deliveries__r ) FROM Course__c`
 - Standard Child-to-Parent: `SELECT Id, AccountId, Account.Name FROM Contact`
-- Custom Child-to-Parent: `SELECT Id, Course__C, Course__r.Name FROM Course_Delivery__c`
+- **Custom Child-to-Parent:** `SELECT Id, Course__C, Course__r.Name FROM Course_Delivery__c`
 - Geolocation Field: `SELECT Id, Office_Location__Lattitude__s, Office_Location__Longitude__s FROM Account `
 - Wildcards: `%` matches 0 or more characters & `_` matches 1 or more characters
 - Count & Group By: `SELECT StatusPickList__c, COUNT(Name) FROM Case GROUP BY StatusPicklist__c`
 
-# LEFT OFF HERE
 
 ## SOSL
-- complicated SOSL example
+- complicated SOSL example `FIND 'Senior Engineer' IN ALL FIELDS RETURNING Contact(Id, Name, Role__ c), Account(Id, Name, )`
 
 </details>
 
