@@ -1116,7 +1116,8 @@ trigger EventMessageTrigger on EventMessage__e (after insert){
 	- WSDL Apex code must have code coverage. Create a callout mock class and a test class. Then use ```Test.setMock(WebServiceMock.class, new CalloutMockClass()``` in the test class.
 
 
-  ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/c7469df6-8d33-4137-9d0e-691002aa94be)
+![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/e38f8617-0e04-4bb7-85df-f68da57fd613)
+
 
  </details>
 
