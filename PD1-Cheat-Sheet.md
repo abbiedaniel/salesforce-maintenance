@@ -230,20 +230,14 @@ public static void throwException(String message){
 ## Custom Metadata & Custom Settings
 
 ## Platform Events
-- Platform events enable you to deliver secure, scalable and customizable event notification within Salesforce or from external sources. Publish event with the `EventBus.publish()` method.
-- **Publish and Subscribe**: Apex Triggers, Flows, Process Builder
-- **Publisher Only**: Apex, APIs
-- **Subscribers**: LWC
+- Deliver secure, scalable and customizable event notification within Salesforce or from external sources with platform events. 
+- A **Publisher** publishes messages to an event bus/channel and sends them without knowledge of the subscriber that will receive it. Publish event with the `EventBus.publish()` method.
+	- **Publish & Subscribe**: Apex Triggers (after insert only for subscribe), Flows, Process Builder
+	- **Publisher Only**: Apex, APIs 
+- A **Subscriber** expresses subsc ribes to one ore more event bus/channels and only receives messages that of interest, without knowledge of the publisher that produced them.
+	- **Publish & Subscribe**: Apex Triggers (after insert only for subscribe), Flows, Process Builder
+	- **Subscriber Only**: LWC
   
-- External Publishers: Salesforce Platform APIs (SOAP, REST or Bulk API), External Subscribers: Bayeux Protocol (WebSocket & HTTP. CometD)
-  
-- Used for outbound communication
-- From Salesforce &#8594; external source
-- From salesforce &#8594; another salesforce org
-
-
-A **Publisher** categorizes messages into classes and sends them without knowledge of the subscriber that will receive it. An event producer that publishes an event message to an event bus/channel. A **Subscriber** expresses interest in one ore more classes and only receives messages that of interest, without knowledge of the publisher that produced them. An event consumer that subscribes to an event bus/channel.
-
 
 ## Apex Integration
 ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/656217d8-c27f-4759-90bd-efe3197c1c36)
