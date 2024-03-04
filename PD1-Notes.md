@@ -218,22 +218,29 @@ development be considered.
 	
  ####  Save Order of Execution
 
-  1. **S**ystem Validation
-  2. Before Save **F**lows
-  3. Before **T**riggers
-  4. System **V**alidation (again) and Custom Validation Rules
-  5. **D**uplicate Rules
-  6. *Record is **sa**ved to the database but doesn’t commit yet*
-  7. After **T**riggers
-  8. **A**ssignment Rules
-  9. **A**uto-response Rules
-  10. **W**orkflow Rules
-  11. *System validation and Apex triggers will fire again if a workflow rules updates a field.*
-  12. **E**scalation Rules
-  13. **F**low Automation
-  14. After Save Flows
-  15. Commit all DML operations to the database
-      
+1. Record Initialization
+2. **System** Validation
+3. Before Save **Flows**
+4. Before **Triggers**
+5. **Validation** Rules and System Validation
+6. **Duplicate** Rules
+7. _**Save** to database but not committed_
+8. After **Trigger**
+9. **Assignment** Rules (Cases & Leads)
+10. **Auto-response** Rules (Cases & Leads)
+11. **Workflow** Rules
+	- If workflow rule updates a field: before update triggers &#8594; system validation &#8594; record saves to the database &#8594; after update triggers
+12. **Escalation** Rules (Cases)
+13. Flow Automation (Processes & Flows launched by processes or workflows)
+	- If a process updates a field: before update triggers &#8594; system validation & custom validation rules &#8594; record saves to the database &#8594; after update triggers &#8594; workflow rules &#8594; if process has recursion option, execute process again
+14. After Save **Flows**
+	- If after-save record-trigger flow updates a field: before update triggers &#8594; system validation & custom validation rules &#8594; record saves to the database &#8594; after update triggers
+15. Entitlement Rules (Cases & Word Orders)
+16. Roll Up Summary Fields & Cross-Object Workflow
+	- If roll up summary field recalculation occurs: another set of data starts another set of Save Order of Execution events (steps 1-16) 
+17. Criteria-Based Sharing Rules
+18. _Commit to database_
+19. Post Commit Logic like sending emails, outbound message or future methods
 **S**am's **F**amily **T**ook **V**alerie **D**own **S**outh **T**o **A** **A**uto **W**orkshop's **E**nclosed **F**oyer.
       
   - https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_triggers_order_of_execution.htm
