@@ -208,6 +208,7 @@ public static void throwException(String message){
 - Database methods return results objects in `Database.SaveResult` for inserts and updates, `Database.UndeleteResult` for undeletes, `Database.DeleteResult` for deletes, `Database.UpsertResult` for upsert and `Database.MergeResult` for merges. Each object has `getErrors()` and `isSucess()` methods. 
 
 ## SOQL
+- Return Types: Integer, List of sObjects, 1 sObject
 - Standard Object and Fields: `SELECT Id, FirstName, LastName FROM Contact WHERE FirstName='Abbie' AND LastName='Daniel' ORDER BY FirstName ASC LIMIT 10`
 - Standard Parent-to-Child: `SELECT Id, Name, ( SELECT Id FROM Contacts ) FROM Account`
 - **Custom Parent-to-Child:** `SELECT Id, Name, ( SELECT Id FROM Course_Deliveries__r ) FROM Course__c`
@@ -219,14 +220,17 @@ public static void throwException(String message){
 
 
 ## SOSL
-- complicated SOSL example `FIND 'Senior Engineer' IN ALL FIELDS RETURNING Contact(Id, Name, Role__ c), Account(Id, Name, )`
+- Return Type: list of a list of sObjects  `List<List<sObject>>`
+- SOSL Example: `FIND 'Senior Engineer' IN ALL FIELDS RETURNING Contact(Id, Name, Role__ c), Account(Id, Name ORDER BY Name DESC NULLS last) WITH METADATA='Labels' LIMIT 10`
+- Format Example: `FIND {Acme} RETURNING Account(Id, LastModifiedDate, FORMAT(LastModifiedDate) FormattedDate)`
+- Offset Example: `FIND {test} RETURNING Account(Name, Id ORDER BY Name LIMIT 100 OFFSET 100)` returns rows 101-200
+- To Label Example: `FIND {Joe} RETURNING Lead(company, toLabel(Recordtype.Name))` returned records are translated into the user's language
+- Search.query method uses a String and brackets for search term: `Search.query('Find {Acme} RETURNING Accounts')`
 
 </details>
 
 <details>
 	<summary>Apex Integration</summary>
-
-## Custom Metadata & Custom Settings
 
 ## Platform Events
 - Deliver secure, scalable and customizable event notification within Salesforce or from external sources with platform events. 
@@ -236,12 +240,20 @@ public static void throwException(String message){
 - A **Subscriber** expresses subsc ribes to one ore more event bus/channels and only receives messages that of interest, without knowledge of the publisher that produced them.
 	- **Publish & Subscribe**: Apex Triggers (after insert only for subscribe), Flows, Process Builder
 	- **Subscriber Only**: LWC
-  
 
 ## Apex Integration
+
+
+  
+## Salesforce APIs
+
+- **Bulk API:** Specialized for bulk data load or query. Used for DataLoader
+- **Metadata API:** Specialized for migrating changes from a sandbox or testing org to production. Used for Ant Migration Tool via command line.
+- **Tooling API:** Specialized for building custom development tools or apps for Platform applications.
+
 ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/656217d8-c27f-4759-90bd-efe3197c1c36)
 
-
+  
 </details>
 
 <br>
