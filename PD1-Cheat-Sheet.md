@@ -249,7 +249,8 @@ public static void throwException(String message){
 - **Best Practice:** Place the callout code in an asynchronous method that’s annotated with @future(callout=true) or use Queueable Apex. This way, the callout runs on a separate thread, and the code after the callout isn't blocked.
 
 ## HTTP Callout
-- **HTTP Methods:** GET to retrieve data from a URL, POST to crete a resource or post data to the server, DELETE to delete a resource identified by a URL, PUT to create or replace resource sent in a request body
+- **HTTP Methods:** GET to retrieve data from a URL, POST to create a resource or post data to the server, DELETE to delete a resource identified by a URL, PUT to create or replace resource sent in a request body
+  
 ```apex
 public static HttpResponse makeGetCallout(){
 	Http http = new Http();
@@ -287,6 +288,21 @@ public static HttpResponse makeGetCallout(){
 # Testing, Debugging & Depoyments
 
 ## Test Class & Methods
+
+## Mock Testing
+- **StaticResourceCalloutMock** for GET Callout
+```apex
+StaticResourceCalloutMock mock = new StaticResourceCalloutMock();
+mock.setStaticResrouce('some_static_resource_json_file');
+Test.setMock(HttpCalloutMock.class, mock);
+HttpResponse result = CalloutClass.makeGetCallout();
+```
+- **HTTPCalloutMock** for POST callout
+```apex
+//CalloutClassMock implements HttpCalloutMock class and has a respond(HttpRequest) method that creates a fake response
+Test.setMock(HttpCalloutMock.class, new CalloutClassMock());
+```
+
 ## Log Inspector
 ## Debug Logs
 ## Sandboxes
