@@ -139,7 +139,7 @@
 
 ## Apex Triggers
 - **Before triggers** are used to update or validate record values on the same record/object before they’re saved to the database.
-- **After triggers** are used to acceess field values, such as Ids, that are set by the system and to effect changes in other or related records or objects. (Records that trigger the after trigger are **read-only**).
+- **After triggers** are used to access field values, such as Ids, that are set by the system and to effect changes in other or related records or objects. (Records that trigger the after trigger are **read-only**).
 - **Trigger Event Context:** before insert/update/delete and after insert/update/delete/undelete
 - **Trigger Definition:** `trigger AccountTrigger on Account(before update){}`
 - **Trigger Error Handling:** `addError('Error!')` prevents the dml operation from occurring on the field or record
