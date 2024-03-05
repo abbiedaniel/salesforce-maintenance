@@ -152,10 +152,10 @@
 
  
 ## Asynchronous Apex
-- **Future methods:** separate transactions, web service callouts. Must have `@future` annotation.
-- **Batch Apex:** large data processing, data cleansing or archiving. Must have `start`, `execute` and `finish` methods. Use `Database.executeBatch(ExampleClass, batchSize)` to run the batch class.
-- **Queueable Apex:** sequential processing, external web service callouts. Must have `execute` method. Use `System.enqueJob(ExampleQueueableClass)` to run the class.
-- **Scheduled Apex:** scheduled processing, weekly or monthly. must have `execute` method. It can call schedule other async apex classes. Use `System.schedule('Job Title', scheduledDateTime, ExampleScheduledApexClass)` to schedule the class or schedule the class in setup.
+- **Future methods:** separate transactions, web service callouts. Must have `@future` annotation. 
+- **Batch Apex:** large data processing, data cleansing or archiving. The class must `implements Database.Batchable<sObject>, Database.Stateful`. Must have `start(Database.BatchableContext bc)`, `execute(Database.BatchableContext bc, List<sObject> scope)` and `finish(Database.BatchableContext bc)` methods. Use `Database.executeBatch(ExampleClass, batchSize)` to run the batch class.
+- **Queueable Apex:** sequential processing, external web service callouts. Must have `execute(QueueableContext context)` method and  `implements Queueable` on the class definition. Use `System.enqueJob(ExampleQueueableClass)` to run the class.
+- **Scheduled Apex:** scheduled processing, weekly or monthly. Must have `execute(SchedulableContext SC)` method and `implements Schedulable` in the class definition. It can call other async apex classes and schedule them. Use `System.schedule('Job Title', scheduledDateTime, ExampleScheduledApexClass)` to schedule the class or schedule the class in setup.
 - **Monitor Jobs:** View in progress or completed jobs in **Apex Jobs** and view future scheduled jobs in **Scheduled Jobs**. The calling methods for batch, queueable and scheduled apex return a job id, which can be used to query for the `AsyncApexJob` object. Example: `ID jobID = System.enqueueJob(queueClass);`
 `AsyncApexJob job = [SELECT Id, Status, NumberOfErrors FROM AsyncApexJob WHERE Id = :jobID];`
 
