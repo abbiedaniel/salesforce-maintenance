@@ -40,12 +40,11 @@
 19. Post Commit Logic like sending emails, outbound message or future methods
 
 **S**am's **F**amily **T**ook **V**alerie **D**own **S**outh **T**o **A** **A**uto **W**orkshop's **E**nclosed **F**oyer.
- 
-
 
 ## Governor Limits
 - **SOQL Queries**: 100
 - **DML**: 150
+- When a governor limit is reached, all changes are rolled back up to the error, a limit exception is thrown and the entire execution process is exited.
 
 ## Model View Controller Architecture
 - **Model**: where data is saved
@@ -160,15 +159,19 @@
 `AsyncApexJob job = [SELECT Id, Status, NumberOfErrors FROM AsyncApexJob WHERE Id = :jobID];`
 
 ## Exception Handling
+`throw` statements can be used to generate exceptions. 
+`try`, `catch`, and `finally` can be used to gracefully recover from an exception.
+
 ```apex
 try {
 	// something you think could fail or error out like an dml operation
 	Database.SaveResult results = Database.insert(listToInsert, allOrNone, accessLevel);
 	/// allOrNone boolean allows for partial sucess if an error is thrown when it is set to false
-} catch ( Exception ex ){
-	throw ex;
+} catch ( DmlException ex ){
+	// if a DmlException occurs, the other catch blocks do not execute
 
-	// call a custom exception method
+} catch ( Exception ex ){
+	// call a custom exception method to handle the exception
 	Trigger.HandlerClass.throwException(ex.getMessage()); // gets string message of an exception 
 } finally {
 	// optional finally block
@@ -182,6 +185,12 @@ try {
 public class AccountTriggerException extends Exception {
 	// exception class name must end with "exception"
 }
+
+// you can instantiate this class with
+new AccountTriggerException(); // no params
+new AccountTriggerException('error message to display'); // string param
+new AccountTriggerExceptions(e); //single exception param
+new AccountTriggerException('error message to display', e); // with string and exception param
 ```
 
 ```apex
@@ -191,11 +200,11 @@ public static void throwException(String message){
 }
 ```
 
-## Built-In Exception
+## Built-In Exceptions
 - `System.DmlException` if there are any problems with a DML statment like an object missing a required field
 - `System.ListException` if there are any problems with a list like attempting to access an index that is out of bounds
 - `System.QueryException` if there are any problems with SOQL queries like assigning a query that returns no records to a singleton sObject variable
-- `System.LimitException` for exceeded governor limits. This type of exception cannot be caught.
+- `System.LimitException` for exceeded governor limits. This type of exception cannot be caught. 
 - `System.NullPointerException` any problems with derefencing a null variable
 - `System.SObjectException` for any problems with sObject records like referencing a field that was not queried for
 - Common Exception Methods: `getCause`, `getLineNumber`, `getMessage`, `getStackTraceString`, `getTypeName`
