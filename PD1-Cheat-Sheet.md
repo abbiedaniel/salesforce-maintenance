@@ -169,7 +169,7 @@ try {
 	throw ex;
 
 	// call a custom exception method
-	Trigger.HandlerClass.throwException(ex.getMessage());
+	Trigger.HandlerClass.throwException(ex.getMessage()); // gets string message of an exception 
 } finally {
 	// optional finally block
 	// runs after the try block successfully runs or the catch block finishes executing
@@ -191,11 +191,14 @@ public static void throwException(String message){
 }
 ```
 
-## Exception Examples
-- `System.DmlException`
-- `System.ListException`
-- `System.QueryException`
-- `System.LimitException`
+## Built-In Exception
+- `System.DmlException` if there are any problems with a DML statment like an object missing a required field
+- `System.ListException` if there are any problems with a list like attempting to access an index that is out of bounds
+- `System.QueryException` if there are any problems with SOQL queries like assigning a query that returns no records to a singleton sObject variable
+- `System.LimitException` for exceeded governor limits. This type of exception cannot be caught.
+- `System.NullPointerException` any problems with derefencing a null variable
+- `System.SObjectException` for any problems with sObject records like referencing a field that was not queried for
+- Common Exception Methods: `getCause`, `getLineNumber`, `getMessage`, `getStackTraceString`, `getTypeName`
 
 </details>
 
