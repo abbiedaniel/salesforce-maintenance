@@ -1232,6 +1232,12 @@ trigger EventMessageTrigger on EventMessage__e (after insert){
    
    ```apex
    public class AccountTriggerException extends Exception {}
+   
+   // you can instantiate this class with
+   new AccountTriggerException(); // no params
+   new AccountTriggerException('error message to display'); // string param
+   new AccountTriggerExceptions(e); //single exception param
+   new AccountTriggerException('error message to display', e); // with string and exception param
    ```
     
 - **Custom Exception Method** 
@@ -1250,6 +1256,22 @@ trigger EventMessageTrigger on EventMessage__e (after insert){
   		// When we wish to configure the DML operation, or handle failed records,
   		// we must use the Database class methods.
  		```
+
+- **Rethrowing Exceptions & Inner Exceptions**
+	- After catching an exception in a catch block, you have the option to rethrow the caught exception variable. This is useful if your method is called by another method and you want to delegate the handling of the exception to the caller method. You can rethrow the caught exception as an inner exception in your custom exception and have the main method catch your custom exception type.
+    	```apex
+     	public class My1Exception extends Exception {}
+     	public class M2Exception extends Exception {}
+
+     	try {
+     		throw new My1Exception('first exception');
+     	} catch (My1Exception e){
+     		throw new My2Exception('thrown with inner exception', e);
+     	}
+     	``` 
+
+
+
 
 </details>
 
