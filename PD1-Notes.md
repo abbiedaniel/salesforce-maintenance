@@ -1204,25 +1204,31 @@ trigger EventMessageTrigger on EventMessage__e (after insert){
 
  #### Exception Handling
 	
-- **Try/Catch Block**
+- **Try/Catch Block**: `throw` statements can be used to generate exceptions, while `try`, `catch`, and `finally` can be used to gracefully recover from an exception.
   ```apex
   try {
   	// something you think could fail or error
   } catch ( Exception ex ){
+  	// to throw an exception
   	throw ex;
   
   	// to call custom exception method:
   	TriggerHandlerClass.throwException(ex.getMessage());
   }
-  
+  catch (CustomException ex){
+  	// a single try can have 0 or more catch blocks
+  	// and each catch block must have a unique exception type as the parameter
+  	// once a particular exception type is caught in one catch block, the remaining catch blocks aren't executed
+  }
   //optional:
   finally{
-	// runs after the try block successfully runs or the catch block finishes executing  
+	// runs after the try block successfully runs or the catch block finishes executing
+  	// use for cleanup code like freeing up resources
 
   }
   ```
 - **Custom Exception Class**
-	-  class name must end with ```Exception```
+	-  class name must end with `Exception` and extend the `Exception` class
    
    ```apex
    public class AccountTriggerException extends Exception {}
@@ -1251,6 +1257,8 @@ trigger EventMessageTrigger on EventMessage__e (after insert){
 
 <details>
 	<summary>Exception Examples</summary>
+	
+ - `System.LimitExceptions` can't be caught, generic Exceptions can't be thrown.
 
 ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/148418e9-f911-4a44-8b93-b9ca4bb6b0f8)
 
