@@ -954,8 +954,10 @@ development be considered.
      - When the maximum SOQL, DML, or SOSL limit is reached, a `System.LimitException` will be thrown. All records and changes will be rolled back (unless `allOrNone` boolean is set to false in database method)
 
 - **Debugging**
-	- ```Limits.getDMLRows()``` returns the number of records that have been processed using any SDML statements that count against the limit
- 	- ```Limits.getLimitDMLRows()``` returns the actual limit
+	- `Limits.getDMLRows()` returns the number of records that have been processed using any DML statements that count against the limit
+ 	- `Limits.getLimitDMLRows()` returns limit of number of records that can be processed by a DML statement aka 10k
+  	- `Limits.getDMLStatements()` returns the number of DML operations that have been called
+  	- `Limits.getLimitDMLStatements()` returns 150, the limit of DML statements that can be called
     
 ![image](https://github.com/abbiedaniel/salesforce-maintenance/assets/116677150/c051ebcb-30be-4f04-b63d-650529b90225)
 
