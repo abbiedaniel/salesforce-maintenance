@@ -155,7 +155,7 @@
 ####  Declarative Process & Automation
 
 - **Flows**
-  - Screen
+  - Screen (section component can be used to create columns)
   - Schedule-Triggered
     - once, daily, weekly
   - Record-Triggered
@@ -165,6 +165,7 @@
   - Autolaunched
   - Flows can be configured to run in system with sharing (record level enforced, ignores  fls), system without sharing (acces to all data), or run in the context it was launched in (either user or system).
   - Flow Trigger Explorer is a tool used for identifying the record-triggered flows that are associated with a specific object and trigger type such as created, updated or deleted. The flow trigger explorer also allows sorting of the execution order of the flows via drag-and-drop.
+  - View Test button in flow builder can be used to create, save and run flow tests. Record trigger flows do not have this option.
 
 - **Declarative Caveats**
 	- Standard validation rules are unable to operate on parent-child relationships
@@ -573,6 +574,14 @@ development be considered.
   	- You can then use context-specific handler methods within triggers to create logic-less triggers
   - Control triggers with declarative functionality.
   	- Allow admins to access custom metadata or custom settings that  can turn triggers on/off.
+
+
+- **Cascading Triggers**
+	- If the execution of one trigger causes 1 or more additional triggers to be fired, the triggers are said to be cascading triggers
+ 	- Cascading triggers are part of the same execution context
+  	- There is no salesforce limits on how many triggers can be executed   
+
+   
 </details>
 
 <details>
