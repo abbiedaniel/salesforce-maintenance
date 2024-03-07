@@ -122,7 +122,7 @@
 - **Time**: 02:39:39.217Z
 - **Blob**: binary data
 - **Enum**: store set of id that are accessed one at a time
-- **List**: `List<String> colorsList = new List<String>{'red'};`
+- **List**: `List<String> colorsList = new List<String>{'red'};` or `Lead[] leadList = new List<Lead>();`
 - **Set**: `Set<Integer> intSet = new Set<Integer>();`
 - **Map**: `Map<Id, String> idList = new Map<Id, String>();`
 
