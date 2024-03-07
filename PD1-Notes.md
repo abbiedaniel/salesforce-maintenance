@@ -425,6 +425,7 @@ development be considered.
   	- SOQL for loops: batches of 200 records, utilize more efficient chunking of SObjects behind the scenes, resulting in reduced heap usage and a lower chance of hitting governor limits for large queries. 
   	- while loop
   	- do {...} while loops (will run at least once)
+  	- continue and break statements
   	- ternary operator
   	  ```apex
   	  variable = condition ? if true action : if false action
@@ -830,6 +831,7 @@ development be considered.
   	 - SOQL does not support the asterisk * wild card character
   	 - Heap Limits: Use ```transient``` keyword prevents an Apex instance variable from being transmitted as part of the view state of a Visualforce page, which reduces view state size. Use SOQL loops for controlled batches. Clear variables once done to clear up memory.
   	 - Backslash Escape Character in SOQL:  \'  or \" or \n or \? etc.
+  	 - Picklist field filters: ; can be used instead of AND & , can be used instead of OR
   	 - The % and _ wildcards are suppored for with the LIKE operator.
   	 	- 'xyz%' matches zero or more characters
   	  	- '_xyz' matches exactly one character
@@ -967,7 +969,7 @@ development be considered.
 
     
 <details>
-	<summary>Custom Metadata Types</summary>
+	<summary>Custom Metadata & Custom Settings</summary>
 	
  #### Custom Metadata Types
 
@@ -984,6 +986,17 @@ development be considered.
   - Option to create a new record of the custom metadata type
   - Custom_Metadata_Type_Name__mdt to reference in apex
   - Use ```Custom_Metadata_Type_Name__mdt.getInstance('Record_Name');``` to access custom metadata in Apex
+ 
+#### Custom Settings
+
+- **Characteristics**
+  
+	- two types: hierarchy and list
+	- Hierarchy custom settings can be accessed through: custom settings method in apex, formula fields, validation rules, flows , and processes using $Setup. List custom settings can only be accessed in apex and through api calls.
+	- Salesforce no longer recommends list custom settings. Custom metadata types are prefferred since they can be migrated to other orgs using packages or metadata api tools.
+ 	- `__c` suffix
+    	- can have fields on the custom setting  
+
 
 </details>
   
@@ -1205,6 +1218,8 @@ trigger EventMessageTrigger on EventMessage__e (after insert){
  #### Exception Handling
 	
 - **Try/Catch Block**: `throw` statements can be used to generate exceptions, while `try`, `catch`, and `finally` can be used to gracefully recover from an exception.
+- When an unhandled exception occurs, the transaction is immediatly terminated and any DML operations or changes made to the database are rolled back.
+
   ```apex
   try {
   	// something you think could fail or error
