@@ -20,5 +20,25 @@
 - selector pattern
 - domain pattern
 - service pattern
-- unit of work pattner
-  
+- unit of work partner
+- strategy pattern
+
+
+### Data Structures & Algorithms
+- Arrays & Matrix
+- String
+- Searching
+- Sorting
+- Hashing
+- Stack
+- Queue
+- Linked List
+- Recursion
+- Backtracking
+- Tree
+- Binary Search Tree
+- Heap or priority queue
+- Graph
+- Greedy
+- Dynamic programming
+- Trie
