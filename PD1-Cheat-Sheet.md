@@ -343,12 +343,21 @@ Test.setMock(HttpCalloutMock.class, new CalloutClassMock());
 - Visualforce Page is a container for Visualforce markup.
 - Visualforce Controller is a set of instructions that specify what happens when a user interacts with the components specified in the associated Visualforce markup.
 - Visualforce page can use a standard controller or a custom controller. Controllers can also have custom controller extensions.
-
+ 	 
 ## Visualforce Page
-- HTML
-- Visualforce tags
-- Javascript (inline or static resource) 
-- CSS (inline or static resource)
+- Consists of:
+	- HTML
+	- Visualforce tags
+	- Javascript (inline or static resource) 
+	- CSS (inline or static resource)
+ - Visualforce page can be launched from:
+	- Using the page URL
+ 	- Custom button, link
+  	- Custom action (requires standard controller)
+  	- Override standard action (requires standard controller)
+  	- In a page layout (requires standard controller)
+  	- Custom Visualforce tab
+ 	- Add to a Lightning App Builder page	
 
 ## Standard Controller
 - Enables the same functionality as a standard page when working with a single record
@@ -359,11 +368,17 @@ Test.setMock(HttpCalloutMock.class, new CalloutClassMock());
 - `<apex:page standardController = "Contact" recordsSetVar = "contact_list" >`
 
 ## Custom Controller
-- Enables a dev to create Apex classes that implement a page's logic and behavior including database access and navigation (logic is more complex/isn't in standard controller)
+- Enables a dev to create Apex classes that implement a page's logic and behavior including database access and navigation (logic is more complex/isn't in standard controller like traversing from parent-to-child more than 1 level)
 - ``<apex:page controller = "EditPageController">``
+- Use Cases:
+	-  Using a custom visualforce component
+ 	-  Traversing parent-to-child 2 or more levels    	
 
 ## Custom Controller Extensions
 - Enables a dev to create Apex classes that leverage the behavior of standard (or custom) controllers while adding additional functionality not available to the extended controller
+- Use Case:
+	- Accessing parent-to-child 2 or more levels
+ 	- You want to use the existing functions in a standard/custom controller and then some
   
 ```apex
 public class EditPageControllerExtension{
