@@ -340,10 +340,44 @@ Test.setMock(HttpCalloutMock.class, new CalloutClassMock());
 	<summary>Visualforce</summary>
 
 ## Visualforce
+- Visualforce Page is a container for Visualforce markup.
+- Visualforce Controller is a set of instructions that specify what happens when a user interacts with the components specified in the associated Visualforce markup.
+- Visualforce page can use a standard controller or a custom controller. Controllers can also have custom controller extensions.
+
 ## Visualforce Page
+- HTML
+- Visualforce tags
+- Javascript (inline or static resource) 
+- CSS (inline or static resource)
+
 ## Standard Controller
+- Enables the same functionality as a standard page when working with a single record
+- `<apex:page standardController = "Contact">`
+
 ## Standard List Controller
+- Enables similar functionality as standard pages when working with lists of records
+- `<apex:page standardController = "Contact" recordsSetVar = "contact_list" >`
+
 ## Custom Controller
+- Enables a dev to create Apex classes that implement a page's logic and behavior including database access and navigation (logic is more complex/isn't in standard controller)
+- ``<apex:page controller = "EditPageController">``
+
+## Custom Controller Extensions
+- Enables a dev to create Apex classes that leverage the behavior of standard (or custom) controllers while adding additional functionality not available to the extended controller
+```apex
+public class EditPageControllerExtension{
+
+ 	// need a constructor to take in a standardSetController
+ 	public AccountControllerExtension(ApexPages.StandardSetController stdSetController){}
+}
+```
+
+```html
+<apex:page standardController = "Account" extensions = "EditPageControllerExtension, AnotherControllerExtension" recordSetVar = "acounts"/>
+// the first extension class in the list overrides other extension method's with the same name
+```
+
+
 
 <br>
 
