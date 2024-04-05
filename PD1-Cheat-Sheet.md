@@ -364,6 +364,7 @@ Test.setMock(HttpCalloutMock.class, new CalloutClassMock());
 
 ## Custom Controller Extensions
 - Enables a dev to create Apex classes that leverage the behavior of standard (or custom) controllers while adding additional functionality not available to the extended controller
+  
 ```apex
 public class EditPageControllerExtension{
 
