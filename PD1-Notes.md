@@ -1583,6 +1583,7 @@ trigger EventMessageTrigger on EventMessage__e (after insert){
 - **Standard Controller Capabilities**
 	- Easy data access
 	- Provides a set of standard actions, such as create edit save and delete that can be added to a page through buttons and links
+ 		- save, quicksave, cancel, delete, edit, list 
 	- Embed visualforce page within an object's page layout, or use object-speicifc custom action, or use mobile cards in a Salesforce app
 
 
