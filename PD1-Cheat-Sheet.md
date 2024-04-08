@@ -348,8 +348,11 @@ Test.setMock(HttpCalloutMock.class, new CalloutClassMock());
 - Consists of:
 	- HTML
 	- Visualforce tags
-	- Javascript (inline or static resource) 
+	- Javascript (inline or static resource)
+ 		- `<script> some javascript method </script>`
+		- `<apex:includeScript value="{!Resource.javascriptLibrary}"/>` 
 	- CSS (inline or static resource)
+ 		- `<apex:styleSheet value="{!URLFOR($Resource.StyleResource, 'filename.css')}"/>` 
  - Visualforce page can be launched from:
 	- Using the page URL
  	- Custom button, link
