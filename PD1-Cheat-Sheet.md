@@ -404,13 +404,23 @@ public class EditPageControllerExtension{
 	<summary>Lightning Web Component</summary>
 
 ## LWC Framework
+
 ## LWC Benefits
+- Lightweight for faster development
+- Faster performance (stateful client, stateless server)
+- Device-aware and cross-browser compatible (responsive)
+- Out-of-the-box components
+- Built upon web standards
+
 ## LWC Decorators
 ## Lightning Web Components
 ## Child to Parent and Parent to Child LWC Communication
 ## Lightning Message Service
 ## Lightning Data Service
 ## LWC Security
+
+
+
 </details>
 
 <details>
