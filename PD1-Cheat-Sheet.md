@@ -417,6 +417,10 @@ public class EditPageControllerExtension{
 	<summary>Lightning Aura Component</summary>
 	
 ## Lightning Aura Components
+- LWC can't contain aura components
+- Lightning app can't contain another lightning app
+- Custom lightning app can only be created using Aura
+
 ## Aura Component Framework
 
 <br>
