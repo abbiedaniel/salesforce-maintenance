@@ -42,7 +42,7 @@
 
 📉  [LWC Specialist Superbadge](https://trailhead.salesforce.com/content/learn/superbadges/superbadge_lwc_specialist)
 
- ☑️  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI) 2:08:51
+ ☑️  [Trailhead Academy Review Video](https://www.youtube.com/watch?v=qHrGpF_IaZI) 2:42:33
 
  ☑️  [Focus on Force Practice Exams](https://focusonforce.com/courses/salesforce-certified-platform-developer-1-exams/)
 
